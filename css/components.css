@@ -716,7 +716,8 @@ button.flow-row[aria-expanded="true"] { border-color: var(--focus); }
 .wb-head .badges { grid-column: 1 / -1; }
 .wb-field { display: grid; align-content: start; gap: 0.3rem; margin: 0; }
 .wb-field > .wb-label { color: var(--muted); font-size: var(--text-sm); font-weight: 500; }
-.wb-field input, .wb-field select, .wb-field textarea { width: 100%; padding: 0.3rem 0.5rem; }
+.wb-field input:where(:not([type="checkbox"], [type="radio"])), .wb-field select, .wb-field textarea { width: 100%;
+  padding: 0.3rem 0.5rem; }  /* a field's box; a choice's box, in a fieldset of them, keeps its own size */
 .wb-field textarea { resize: vertical; line-height: 1.5; }
 fieldset.wb-field { min-width: 0; margin: 0; padding: 0; border: 0; }  /* a field of choices, its legend a label */
 .choices.inline { flex-direction: row; flex-wrap: wrap; gap: 0.35rem 0.85rem; }  /* short ones, such as days, in a row */
@@ -854,6 +855,9 @@ button.fd-part { width: 100%; padding: 0.3rem 0.4rem; border: 0; background: tra
   .wb-body > .flow { min-height: 26rem; }
   .wb-body > .wb-inspector { overflow: visible; border-inline-start: 0; border-top: 1px solid var(--line); }
 }
+@media (max-width: 760px) {
+  .wb-view, .flow-listing { padding: var(--space-4); }  /* a phone's width, given to the work */
+}
 
 /* A change request (proposed), for a3t: what it changes, in words, beside its checks and its decision */
 .cr-body { display: grid; grid-template-columns: minmax(0, 1fr) 24rem; gap: var(--space-4); align-items: start; }
@@ -967,7 +971,7 @@ button.fd-part { width: 100%; padding: 0.3rem 0.4rem; border: 0; background: tra
 .sheet-head strong { display: block; }
 .sheet-head span { color: var(--muted); font-size: var(--text-xs); }
 .sheet .wb-label { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); }
-.sheet .wb-field input, .sheet .wb-field select { width: 100%; }
+.sheet .wb-field input:where(:not([type="checkbox"], [type="radio"])), .sheet .wb-field select { width: 100%; }
 .sheet-note { margin: 0; color: var(--muted); font-size: var(--text-xs); text-align: center; }
 .was { display: flex; justify-content: space-between; gap: var(--space-2); color: var(--muted); font-size: var(--text-xs); }
 .attached { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); padding: var(--space-2) var(--space-3);
