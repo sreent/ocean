@@ -13,7 +13,8 @@ export type Kind = "person" | "agent" | "service";
 /** The icons in icons/, each a few lines on a 24-unit square. */
 export type IconName = "chat" | "tasks" | "book" | "studio" | "decide" | "grade" | "settings" | "audit" | "admin"
   | "officer" | "agent" | "tool" | "clock" | "message" | "bell" | "report" | "shield" | "back" | "check" | "run"
-  | "people" | "trace" | "cross" | "pause" | "camera" | "photos" | "attach" | "send";
+  | "people" | "trace" | "cross" | "pause" | "camera" | "photos" | "attach" | "send"
+  | "webhook" | "plug" | "sync" | "wait" | "model" | "code" | "list";
 
 export interface IconProps { name: IconName; className?: string }
 /** An icon in `currentColor`. */
@@ -175,14 +176,18 @@ export interface FlowNodeProps {
   title: string;
   /** What it does, in a few words, under its name. */
   detail?: string;
-  /** Its icon's colour: what the step does. */
-  tone?: Tone;
+  /** Its icon's colour: what the step does, or an agent's, for another agent hanging from one (drawn as agent-tone). */
+  tone?: Tone | "agent";
   /** A trigger is rounded where nothing comes in; an agent is wide; what hangs from an agent is round. */
   kind?: "trigger" | "step" | "agent" | "hanging";
-  /** How it stood after the last run: done, or waiting on someone. */
-  state?: "done" | "waiting";
+  /** How it stood after the last run: done, waiting on someone, or failed. */
+  state?: "done" | "waiting" | "failed";
   /** Problems the step has, counted in its corner. */
   problems?: number;
+  /** A call the checks refused, or a tool that isn't the agent's. */
+  refused?: boolean;
+  /** What a run didn't use, or a step its condition skipped: it fades, and its words stay readable. */
+  dim?: boolean;
   /** The step someone has chosen. */
   chosen?: boolean;
   /** Nothing goes on from it. */
@@ -190,6 +195,44 @@ export interface FlowNodeProps {
 }
 /** A step on a canvas, as n8n draws them, in Ocean's colours: a5s's agents, a7c's skills, a3t's processes. Proposed. */
 export declare function FlowNode(props: FlowNodeProps): React.ReactElement;
+
+/** A row of a canvas's list: a step, a start, the agent, or what hangs from it. */
+export type FlowRow = {
+  id: string;
+  icon: IconName;
+  name: string;
+  about?: string;
+  /** Its icon's colour: what it does, the agent's, or refused. */
+  tone?: Tone | "agent" | "refused";
+  /** The condition it runs only when, in the product's words. */
+  when?: string;
+  /** How it stood, or its problems, at the row's end. */
+  end?: React.ReactNode;
+  /** Its settings, opened in place when it's chosen. */
+  settings?: React.ReactNode;
+};
+
+export interface FlowListProps {
+  /** The canvas's parts in its order: what starts a run, its steps, or the agent and what it works with. */
+  sections: { title: string; rows: FlowRow[] }[];
+  /** The row whose settings are open. */
+  open?: string;
+  onOpen: (id: string | undefined) => void;
+  /** Back to the canvas. */
+  onCanvas: () => void;
+}
+/** A canvas as its list, for the keyboard and for a phone. Every canvas has one. Proposed. */
+export declare function FlowList(props: FlowListProps): React.ReactElement;
+
+export interface PickerProps {
+  /** What the product's definitions allow, grouped: kinds of step, connectors, tools by what they do. */
+  groups: { title: string; parts: { id: string; icon: IconName; name: string; about?: string; tone?: Tone | "agent"; mono?: boolean }[] }[];
+  placeholder: string;
+  /** Adds a part after the chosen step; someone can also drag it onto the canvas. */
+  onAdd: (id: string) => void;
+}
+/** The parts someone adds to a canvas, at the workbench's left. Proposed. */
+export declare function Picker(props: PickerProps): React.ReactElement;
 
 export interface AuditEntryProps {
   /** When, to the second, in UTC. */

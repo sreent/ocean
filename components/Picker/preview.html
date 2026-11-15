@@ -1,0 +1,67 @@
+<!-- @dsCard group="Workbench" height=851 width=700 subtitle="The parts someone adds to a canvas: a7c's kinds and connectors, a5s's tools by what they do" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Picker</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-row ds-pickers">
+<div class="ds-group"><p class="label">a7c · the builder's parts</p>
+<div class="fd-palette ds-palette" aria-label="a7c's parts">
+<input type="search" aria-label="Find a step or a connector" placeholder="Find a step or a connector">
+<div class="fd-group"><p class="label">Steps</p>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 3.5v4"/><path d="M15 3.5v4"/><path d="M6.5 7.5h11v3a5.5 5.5 0 0 1-11 0z"/><path d="M12 16v4.5"/></svg></span><span class="fd-text"><span>A connector</span><span class="fd-about">an operation of a connector, through a connection</span></span></button>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type own"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></span><span class="fd-text"><span>An operation</span><span class="fd-about">of a7c's own modules</span></span></button>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type reads"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3"/><path d="M4.5 12a7.5 7.5 0 0 1 12.8-5.3"/><path d="M17.5 3.5v3.3h-3.3"/><path d="M6.5 20.5v-3.3h3.3"/></svg></span><span class="fd-text"><span>A sync</span><span class="fd-about">into the world model</span></span></button>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6.5 3.5h11"/><path d="M6.5 20.5h11"/><path d="M8 3.5V6l8 6-8 6v2.5"/><path d="M16 3.5V6l-8 6 8 6v2.5"/></svg></span><span class="fd-text"><span>A wait</span><span class="fd-about">for a time, or until one</span></span></button>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7h10v10H7z"/><path d="M10 10h4v4h-4z"/><path d="M9.5 3.5V7"/><path d="M14.5 3.5V7"/><path d="M9.5 17v3.5"/><path d="M14.5 17v3.5"/><path d="M3.5 9.5H7"/><path d="M3.5 14.5H7"/><path d="M17 9.5h3.5"/><path d="M17 14.5h3.5"/></svg></span><span class="fd-text"><span>A model</span><span class="fd-about">the organisation's, such as fast</span></span></button>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M8.5 7.5L4 12l4.5 4.5"/><path d="M15.5 7.5L20 12l-4.5 4.5"/><path d="M13.5 5l-3 14"/></svg></span><span class="fd-text"><span>Code</span><span class="fd-about">in the sandbox</span></span></button>
+</div>
+<div class="fd-group"><p class="label">What starts a run</p>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg></span><span class="fd-text"><span>A schedule</span><span class="fd-about">five fields of cron</span></span></button>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M3.5 12h10"/><path d="M10 8.5l3.5 3.5-3.5 3.5"/><path d="M16 4.5h4v15h-4"/></svg></span><span class="fd-text"><span>A webhook</span><span class="fd-about">with a token, or open</span></span></button>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 3.5v4"/><path d="M15 3.5v4"/><path d="M6.5 7.5h11v3a5.5 5.5 0 0 1-11 0z"/><path d="M12 16v4.5"/></svg></span><span class="fd-text"><span>A connector's event</span><span class="fd-about">signed by its connection</span></span></button>
+</div>
+<div class="fd-group"><p class="label">Connectors</p>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 3.5v4"/><path d="M15 3.5v4"/><path d="M6.5 7.5h11v3a5.5 5.5 0 0 1-11 0z"/><path d="M12 16v4.5"/></svg></span><span class="fd-text"><span>GitHub</span><span class="fd-about">issues, pull requests and checks</span></span></button>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 3.5v4"/><path d="M15 3.5v4"/><path d="M6.5 7.5h11v3a5.5 5.5 0 0 1-11 0z"/><path d="M12 16v4.5"/></svg></span><span class="fd-text"><span>ERP</span><span class="fd-about">the organisation's, by OpenAPI</span></span></button>
+</div>
+</div>
+</div>
+<div class="ds-group"><p class="label">a5s · the designer's parts</p>
+<div class="fd-palette ds-palette" aria-label="a5s's parts">
+<input type="search" aria-label="Find a tool or an ability" placeholder="Find a tool or an ability">
+<div class="fd-group"><p class="label">Reads</p>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type reads"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></span><span class="fd-text"><span class="mono">search_records</span><span class="fd-about">finds records by what they say</span></span></button>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type reads"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></span><span class="fd-text"><span class="mono">get_record</span><span class="fd-about">one record, whole</span></span></button>
+</div>
+<div class="fd-group"><p class="label">Writes</p>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type writes"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></span><span class="fd-text"><span class="mono">create_draft</span><span class="fd-about">a draft nobody relies on yet</span></span></button>
+</div>
+<div class="fd-group"><p class="label">Changes records</p>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type changes"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></span><span class="fd-text"><span class="mono">change_due_date</span><span class="fd-about">moves a due date</span></span></button>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type changes"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></span><span class="fd-text"><span class="mono">close_question</span><span class="fd-about">closes a question</span></span></button>
+</div>
+<div class="fd-group"><p class="label">Sends outside</p>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type outside"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></span><span class="fd-text"><span class="mono">send_email</span><span class="fd-about">to someone outside</span></span></button>
+</div>
+<div class="fd-group"><p class="label">a5s's own</p>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type own"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6.5 16.5V11a5.5 5.5 0 0 1 11 0v5.5l1.5 2H5z"/><path d="M10 20.5h4"/></svg></span><span class="fd-text"><span>Reminders</span><span class="fd-about">that people ask for</span></span></button>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type own"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5 4.5h10.5a3 3 0 0 1 3 3V20H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h10.5"/></svg></span><span class="fd-text"><span>A notebook</span><span class="fd-about">of what it learns from records</span></span></button>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type own"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M10 6.5h10"/><path d="M10 12h10"/><path d="M10 17.5h10"/><path d="M4 6.5l1.5 1.5 2.5-2.5"/><path d="M4 12l1.5 1.5 2.5-2.5"/><path d="M4 17.5l1.5 1.5 2.5-2.5"/></svg></span><span class="fd-text"><span>Long tasks</span><span class="fd-about">over more than one run</span></span></button>
+</div>
+<div class="fd-group"><p class="label">What starts a run</p>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 5.5h16v10.5H9l-5 4z"/><path d="M8 9.5h8"/><path d="M8 12.5h5"/></svg></span><span class="fd-text"><span>A message</span><span class="fd-about">from the people it works for</span></span></button>
+<button type="button" class="fd-part" draggable="true"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg></span><span class="fd-text"><span>A schedule</span><span class="fd-about">days and times</span></span></button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

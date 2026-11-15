@@ -1,0 +1,86 @@
+<!-- @dsCard group="Workbench" height=1041 width=960 subtitle="Every kind of node, from a7c's and a5s's own definitions" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>FlowKinds</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="label">a7c · what starts a skill's run</p>
+<div class="flow ds-canvas-wide" data-height="170">
+<svg class="flow-edges" width="928" height="170" aria-hidden="true">
+
+</svg>
+<div class="flow-step trigger" data-at="30 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg></div><span class="flow-name">A schedule</span><span class="flow-about">five fields of cron</span></div>
+<div class="flow-step trigger" data-at="175 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M3.5 12h10"/><path d="M10 8.5l3.5 3.5-3.5 3.5"/><path d="M16 4.5h4v15h-4"/></svg></div><span class="flow-name">A webhook</span><span class="flow-about">a person or a service calls it</span></div>
+<div class="flow-step trigger" data-at="320 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 3.5v4"/><path d="M15 3.5v4"/><path d="M6.5 7.5h11v3a5.5 5.5 0 0 1-11 0z"/><path d="M12 16v4.5"/></svg></div><span class="flow-name">A connector's event</span><span class="flow-about">signed by its connection</span></div>
+</div>
+</div>
+<div class="ds-group"><p class="label">a7c · its steps, which run in order</p>
+<div class="flow ds-canvas-wide" data-height="190">
+<svg class="flow-edges" width="928" height="190" aria-hidden="true">
+
+</svg>
+<div class="flow-step own" data-at="30 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div><span class="flow-name">An operation</span><span class="flow-about">of a7c's own modules</span></div>
+<div class="flow-step changes" data-at="175 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 3.5v4"/><path d="M15 3.5v4"/><path d="M6.5 7.5h11v3a5.5 5.5 0 0 1-11 0z"/><path d="M12 16v4.5"/></svg></div><span class="flow-name">A connector</span><span class="flow-about">in its operation's colour: here, it changes records</span></div>
+<div class="flow-step reads" data-at="320 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3"/><path d="M4.5 12a7.5 7.5 0 0 1 12.8-5.3"/><path d="M17.5 3.5v3.3h-3.3"/><path d="M6.5 20.5v-3.3h3.3"/></svg></div><span class="flow-name">A sync</span><span class="flow-about">reads into the world model</span></div>
+<div class="flow-step" data-at="465 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6.5 3.5h11"/><path d="M6.5 20.5h11"/><path d="M8 3.5V6l8 6-8 6v2.5"/><path d="M16 3.5V6l-8 6 8 6v2.5"/></svg></div><span class="flow-name">A wait</span><span class="flow-about">for a time, or until one</span></div>
+<div class="flow-step" data-at="610 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7h10v10H7z"/><path d="M10 10h4v4h-4z"/><path d="M9.5 3.5V7"/><path d="M14.5 3.5V7"/><path d="M9.5 17v3.5"/><path d="M14.5 17v3.5"/><path d="M3.5 9.5H7"/><path d="M3.5 14.5H7"/><path d="M17 9.5h3.5"/><path d="M17 14.5h3.5"/></svg></div><span class="flow-name">A model</span><span class="flow-about">the organisation's, such as fast</span></div>
+<div class="flow-step" data-at="755 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M8.5 7.5L4 12l4.5 4.5"/><path d="M15.5 7.5L20 12l-4.5 4.5"/><path d="M13.5 5l-3 14"/></svg></div><span class="flow-name">Code</span><span class="flow-about">in the sandbox, with no network</span></div>
+</div>
+</div>
+<div class="ds-group"><p class="label">a5s · what starts an agent's run</p>
+<div class="flow ds-canvas-wide" data-height="190">
+<svg class="flow-edges" width="928" height="190" aria-hidden="true">
+
+</svg>
+<div class="flow-step trigger" data-at="30 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 5.5h16v10.5H9l-5 4z"/><path d="M8 9.5h8"/><path d="M8 12.5h5"/></svg></div><span class="flow-name">A message</span><span class="flow-about">from the people it works for</span></div>
+<div class="flow-step trigger" data-at="175 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg></div><span class="flow-name">A schedule</span><span class="flow-about">at the times it's given</span></div>
+<div class="flow-step trigger" data-at="320 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6.5 16.5V11a5.5 5.5 0 0 1 11 0v5.5l1.5 2H5z"/><path d="M10 20.5h4"/></svg></div><span class="flow-name">What people owe</span><span class="flow-about">records, which it chases</span></div>
+<div class="flow-step trigger" data-at="465 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6.5 16.5V11a5.5 5.5 0 0 1 11 0v5.5l1.5 2H5z"/><path d="M10 20.5h4"/></svg></div><span class="flow-name">Reminders</span><span class="flow-about">that people ask for</span></div>
+<div class="flow-step trigger" data-at="610 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 3.5h9l3 3v14H6z"/><path d="M9 12.5h6"/><path d="M9 16h6"/><path d="M9 9h3"/></svg></div><span class="flow-name">A report</span><span class="flow-about">each day, on their own records</span></div>
+<div class="flow-step trigger" data-at="755 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M10 6.5h10"/><path d="M10 12h10"/><path d="M10 17.5h10"/><path d="M4 6.5l1.5 1.5 2.5-2.5"/><path d="M4 12l1.5 1.5 2.5-2.5"/><path d="M4 17.5l1.5 1.5 2.5-2.5"/></svg></div><span class="flow-name">A long task</span><span class="flow-about">once someone says yes</span></div>
+</div>
+</div>
+<div class="ds-group"><p class="label">a5s · the agent, and what hangs from it</p>
+<div class="flow ds-canvas-wide" data-height="300">
+<svg class="flow-edges" width="928" height="300" aria-hidden="true">
+<path class="hangs" d="M81 142 C81 168 60 160 60 192"/>
+<path class="hangs" d="M145 142 C145 168 160 160 160 192"/>
+<path class="hangs" d="M209 142 C209 168 260 160 260 192"/>
+<path class="hangs" d="M209 142 C209 168 360 160 360 192"/>
+<path class="hangs" d="M209 142 C209 168 460 160 460 192"/>
+<path class="hangs" d="M209 142 C209 168 560 160 560 192"/>
+<path class="hangs" d="M209 142 C209 168 660 160 660 192"/>
+<path class="hangs" d="M209 142 C209 168 760 160 760 192"/>
+<path class="hangs refused" d="M209 142 C209 168 860 160 860 192"/>
+</svg>
+<div class="flow-step agent" data-at="40 30"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg><span class="flow-agent-text"><strong>assistant</strong><span>levels 1–2</span></span><span class="flow-slots"><span class="flow-slot"><span>Model</span></span><span class="flow-slot"><span>Checks</span></span><span class="flow-slot"><span>Tools</span></span></span></div></div>
+<div class="flow-step hanging" data-at="0 190"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7h10v10H7z"/><path d="M10 10h4v4h-4z"/><path d="M9.5 3.5V7"/><path d="M14.5 3.5V7"/><path d="M9.5 17v3.5"/><path d="M14.5 17v3.5"/><path d="M3.5 9.5H7"/><path d="M3.5 14.5H7"/><path d="M17 9.5h3.5"/><path d="M17 14.5h3.5"/></svg></div><span class="flow-name">Model</span><span class="flow-about">the gateway's</span></div>
+<div class="flow-step own hanging" data-at="100 190"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3l7.5 3v6c0 4.5-3.2 7.8-7.5 9-4.3-1.2-7.5-4.5-7.5-9V6z"/></svg></div><span class="flow-name">a5s's checks</span><span class="flow-about">on every call</span></div>
+<div class="flow-step reads hanging" data-at="200 190"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div><span class="flow-name">search_records</span><span class="flow-about">reads</span></div>
+<div class="flow-step writes hanging" data-at="300 190"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div><span class="flow-name">create_draft</span><span class="flow-about">writes</span></div>
+<div class="flow-step changes hanging" data-at="400 190"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div><span class="flow-name">change_due_date</span><span class="flow-about">changes records</span></div>
+<div class="flow-step outside hanging" data-at="500 190"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div><span class="flow-name">send_email</span><span class="flow-about">sends outside</span></div>
+<div class="flow-step own hanging" data-at="600 190"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div><span class="flow-name">a5s's own</span><span class="flow-about">21 tools, as one</span></div>
+<div class="flow-step agent-tone hanging" data-at="700 190"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></div><span class="flow-name">watcher-finance</span><span class="flow-about">another agent it may ask</span></div>
+<div class="flow-step refused hanging" data-at="800 190"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div><span class="flow-name">delete_record</span><span class="flow-about">refused: not one of its tools</span></div>
+</div>
+</div>
+</div>
+</div>
+<script>
+for (const node of document.querySelectorAll("[data-at]")) {
+  const [x, y] = node.dataset.at.split(" ");
+  node.style.left = `${x}px`;
+  node.style.top = `${y}px`;
+}
+for (const box of document.querySelectorAll("[data-height]")) box.style.height = `${box.dataset.height}px`;
+</script>
+</body>
+</html>

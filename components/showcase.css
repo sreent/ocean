@@ -243,5 +243,11 @@ dialog.dialog.ds-in-place { position: static; margin: 0; }
 .ds-teams { display: grid; grid-template-columns: 880px minmax(0, 1fr); gap: var(--space-5); align-items: start; }
 .ds-teams-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); align-items: start; }
 
+/* The canvas's list and picker, framed as the workbench shows them */
+.ds-listing { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--page); }
+.ds-listing .flow-listing { padding: var(--space-4); }
+.ds-pickers { align-items: start; }
+.ds-palette { width: 20rem; overflow: visible; border: 1px solid var(--line); border-radius: var(--radius-md); }
+
 /* Room under a popover drawn open, as it floats over what's below it on a page */
 .ds-pop-room { min-height: 15rem; }

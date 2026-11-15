@@ -10,6 +10,7 @@ a5s, a7c, a3t and a4a are four platforms about the same thing: work that people,
 4. The palette is closed. A new state finds its meaning, and a new meaning is added to Ocean, for every product.
 5. One brand change, in one place. An organisation's colours replace the primitives in `css/tokens.css`, and every product takes them.
 6. The same checks: `scripts/check.mjs` in each product's CI, and axe on every page.
+7. One source, so one truth. A product takes its look from this repo, at a commit, and anything new or changed in it is made here first, never in a product's own stylesheets: a piece a product needs is drawn here, for every product, and the product takes the commit that has it.
 
 ## The same words, the same look
 
@@ -62,16 +63,15 @@ Where something runs is told by line rather than colour, so it never competes wi
 
 ### a5s
 
-a5s already is Ocean. To take it from here rather than keep its own copy:
+a5s takes Ocean from here, at a commit (its `deploy/ocean.sh`, pinned in `src/a5s/core/webchat/ocean/ocean.json`, which its tests hold the copy to): its pages and its studio load `css/tokens.css`, `css/components.css` and `fonts/` from that copy, and its studio `css/charts.css`. Its pages' policy stays as it is, since the files are a5s's own. What's done, and what's to do:
 
-- Serve `css/tokens.css`, `css/components.css` and `fonts/` from a release of this repo, in place of the top of `app.css` and its fonts. Its pages' policy stays as it is, since the files are a5s's own.
-- Its chat moves to the conversation kit's Talk ([`conversation.md`](conversation.md)), and its own messages take `--own-message` in place of `--a5s`. Ocean doesn't carry the chat's own styles (`#conversation`, `#compose`).
-- Run `scripts/check.mjs` beside `tests/test_design.py`, or in its place.
-- Draw the runs chart from `css/charts.css`: `--chart-done`, `--chart-short`, `--chart-failed` and `--chart-open` in place of its four colours of its own (`studio.css`, `.runs-chart`), the brightest in a5s and the only ones outside Ocean.
-- Give each state its shape: `StatusBadge`, the grades and the gates draw a tick, a clock, a cross or a pause where they draw a dot today.
-- Its fields' edges become `--line-control`, and `--outside` moves darker, both from `css/tokens.css` with no change of its own.
-- The studio's pieces (`studio/src/design`) can move here as the family's React components when a7c or a3t first needs them.
-- Its agent's map moves to FlowNode, laid out as n8n lays out a canvas, in place of the striped nodes it draws today.
+- Done: its chat's own messages take `--own-message`; its runs chart takes `--chart-done`, `--chart-short`, `--chart-failed` and `--chart-open`; its fields' edges and `--outside` come from `css/tokens.css`.
+- Done: its agent's map is FlowNode on React Flow, laid out as n8n lays out a canvas, on the agent's page, a run's page and the draft's designer alike, with React Flow's `base.css` and Ocean's names: `refused`, `.fd-palette`, FlowList's `flow-listing`, `flow-row`, `flow-inline` and `flow-views`, and an agent its instance may ask as `agent-tone`. Its draft is a workbench in a window (`wb window`, `wb-main`), and its inspector says what each change made follow (`wb-well notice`), its parts set apart (`wb-section`).
+- Done: it keeps none of Ocean's rules in `studio.css` or `app.css`, and adds no piece of its own there: what it needs is drawn here first. Its `tests/test_design.py` fails if either styles a selector Ocean's pieces or charts style. What `studio.css` still holds are its pages' own compositions, below.
+- To do: its chat moves to the conversation kit's Talk ([`conversation.md`](conversation.md)); Ocean doesn't carry the chat's own styles (`#conversation`, `#compose`) meanwhile.
+- To do: each state gets its shape: `StatusBadge`, the grades and the gates draw a tick, a clock, a cross or a pause where they draw a dot today.
+- To do: run `scripts/check.mjs` beside `tests/test_design.py`, or in its place.
+- To do: the studio's pages' own compositions in `studio.css` (an agent's card, the tiles of an instance's figures, the runs chart, the sandbox's turns and test cases) move here as pieces, and the studio's React pieces (`studio/src/design`) as the family's components, when a7c or a3t first needs them.
 
 ### a7c
 
@@ -88,6 +88,8 @@ a7c's builder (`apps/web`) uses the system's fonts and colours today, with two c
 | lines at 20% of the text colour | `--line`; at 35%, `--line-strong` |
 | `.status` pills | Badge, with its shape: a tick for passed, a cross for failed |
 | `.react-flow__edge.reads`, dashed: a step that an expression reads | `.reads-from`, shown for the chosen step, so that `reads` keeps meaning what a tool does |
+| `@xyflow/react/dist/style.css` | `base.css`, with the canvas in `flow flow-canvas`: Ocean draws the rest |
+| Handles at the top and the foot of a step | `at-left` and `at-right`: steps run left to right |
 | `.box`, the steps on the canvas | FlowNode: a square, its icon in the colour of the step's risk, its name beneath |
 | `.dialog` | the browser's own dialog, in Confirm's look |
 
@@ -150,7 +152,7 @@ a3t has no pages yet: its code (`sreent/joget`) is the governance kernel so far.
 
 ### a4a
 
-a4a is new, and starts on Ocean. Its web app is React 19 with Tailwind v4, which takes Ocean as a3t's does (above), and its components emit Ocean's markup and classes, so its pages have no look of their own:
+a4a is new, and starts on Ocean. Its web app is React 19 with Tailwind v4, which takes Ocean as a3t's does (above), and its components emit Ocean's markup and classes:
 
 ```css
 @import "@sreent/ocean/tokens.css";
@@ -163,6 +165,7 @@ a4a is new, and starts on Ocean. Its web app is React 19 with Tailwind v4, which
 - Its agents are agents wherever they act: the assistant, triage, and agents outside it over MCP, such as claude-code, each by the agent's square and its lower-case id, never a sparkle. One acting for a person says so: "claude-code for Anna Schmidt · via MCP". A script with an API token is a service.
 - Asking in words, for a search or a command, is marked by the agent's mark and name, and answers "Interpreted as:" with the query it made, before anything happens.
 - A value an agent worked out is dashed until a person accepts it, and the issue's history says who did.
+- Not yet: its own stylesheets still restyle some of Ocean's pieces where its pages compose them (the assistant's conversation, levelling's list of moves, tables that scroll sideways). By rule 7 those come here, as a5s's did, and a check like a5s's design test then keeps a4a's stylesheets to its pages' own compositions.
 
 | a4a's word | Ocean |
 | --- | --- |
