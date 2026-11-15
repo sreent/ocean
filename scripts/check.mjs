@@ -12,7 +12,8 @@
 //    tokens declare is a font file here.
 // 5. A chart's marks read on the card it sits on at 3 to 1: every status, Other, and the series
 //    a chart uses most, all eight in dark. In light, series 5, 7 and 8 are under it, and their
-//    marks are labelled in --text (css/charts.css).
+//    marks are labelled in --text (css/charts.css). Words on a chart's shades, such as the hours
+//    on a4a's load, read on them at 4.5 to 1.
 // 6. In this repo, the chart palettes as data (charts/palettes.json) agree with css/charts.css, and
 //    the Teams cards (teams/cards) are Adaptive Cards of version 1.5, made only of what Teams draws.
 
@@ -41,6 +42,8 @@ const TEXT = [  // text, and what it's on: 4.5 to 1
   ["text", "warn-bg"], ["warn", "surface"],  // a question that waits on the person, and its answers
   ["text", "changes-bg"], ["text", "writes-bg"], ["text", "outside-bg"],  // what sending does, in its tone
   ["viewfinder-text", "viewfinder"], ["viewfinder-text", "viewfinder-line"], ["paper-ink", "paper"],  // capture
+  ["muted", "accent-soft"], ["accent", "sunken"],  // a4a: an issue's row, chosen or under the pointer
+  ["bad", "surface"], ["changes", "surface"],  // a4a: a query's problem, a late task's words; a change in an issue's history
   ...["reads", "writes", "changes", "outside", "own", "good", "warn", "bad", "idle"].map((tone) => [tone, `${tone}-bg`]),
 ];
 const MARKS = [  // 3 to 1
@@ -53,6 +56,10 @@ const MARKS = [  // 3 to 1
   ["own", "own-message"],  // the shield beside the product's own word, in a conversation
   ...["surface", "page", "sunken"].map((on) => ["line-control", on]),  // a field's edge, where to type
   ["viewfinder-mark", "viewfinder-line"],  // the frame that finds a document, on a camera's view
+  ["focus", "accent-soft"], ["focus", "sunken"],  // a4a: the ring on a row chosen, or under the pointer
+];
+const CHART_WORDS = [  // words on a chart's shades: a4a's hours on Ocean Blue's steps, at 4.5 to 1
+  ["text", "chart-seq-1"], ["text", "chart-seq-2"], ["surface", "chart-seq-4"], ["surface", "chart-seq-6"],
 ];
 const CHART_MARKS = {  // on the card a chart sits on: 3 to 1
   light: ["chart-1", "chart-2", "chart-3", "chart-4", "chart-6", "chart-other", "chart-done", "chart-short", "chart-failed", "chart-open"],
@@ -86,6 +93,16 @@ check("Chart marks that read less well than WCAG asks", () => {
     if (!/^#[0-9a-f]{6}$/i.test(value ?? "")) return [`${mode}: --${name} is ${value}, not a colour`];
     const ratio = contrast(value.toLowerCase(), colour(theme[mode], "surface"));
     return ratio < 3 ? [`${mode}: --${name} on --surface is ${ratio.toFixed(2)} to 1, under 3`] : [];
+  }));
+});
+
+check("Words on a chart's shades that read less well than WCAG asks", () => {
+  if (!files.charts) return [];
+  const marks = charts(files.charts);
+  const theme = themes(files.tokens);
+  return ["light", "dark"].flatMap((mode) => CHART_WORDS.flatMap(([fg, on]) => {
+    const ratio = contrast(colour(theme[mode], fg), (marks[mode][on] ?? "").toLowerCase());
+    return ratio < 4.5 ? [`${mode}: --${fg} on --${on} is ${ratio.toFixed(2)} to 1, under 4.5`] : [];
   }));
 });
 
@@ -168,7 +185,7 @@ if (problems.length) {
   console.error(problems.join("\n\n"));
   process.exit(1);
 }
-const pairs = (TEXT.length + MARKS.length) * 2 + CHART_MARKS.light.length + CHART_MARKS.dark.length;
+const pairs = (TEXT.length + MARKS.length + CHART_WORDS.length) * 2 + CHART_MARKS.light.length + CHART_MARKS.dark.length;
 console.log(`Ocean holds: ${pairs} pairs read well in light and dark, charts' among them, the meanings name only ` +
   `primitives, the pieces name only meanings, and nothing loads from outside (${faces(files.tokens).length} faces, all here)` +
   (OWN ? ". The chart palettes as data agree, and the Teams cards are drawable." : "."));
