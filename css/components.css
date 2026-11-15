@@ -1163,7 +1163,7 @@ dialog.dialog.command[open] { display: grid; gap: var(--space-3); }
    as production is; a late task's edge is --bad, with its words */
 .gantt { display: grid; gap: var(--space-3); min-width: 0; }
 .gantt-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
-.gantt-grid { display: grid; grid-template-columns: auto max-content; width: max-content; min-width: 100%; }
+.gantt-grid { display: grid; grid-template-columns: auto max-content; justify-content: start; width: max-content; min-width: 100%; }  /* spare room after the chart, not between it and the list */
 .gantt-side { position: sticky; inset-inline-start: 0; z-index: 1; width: 22.5rem; border-inline-end: 1px solid var(--line);
               background: var(--surface); }
 .gantt-side-head, .gantt-row { display: grid; grid-template-columns: minmax(0, 1fr) 6rem 2.6rem; gap: var(--space-2); align-items: center;
