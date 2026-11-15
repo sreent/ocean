@@ -36,6 +36,10 @@ body:has(dialog.ds-in-place[open]) { overflow: visible; }
 .ds-product-name { margin: 0; padding: var(--space-2) var(--space-4); border-bottom: 1px solid var(--line);
                    background: var(--sunken); color: var(--muted); font-size: var(--text-sm); }
 
+/* A whole screen, at a desktop's size */
+#root.ds-screen { width: 1440px; height: 900px; padding: 0; overflow: hidden; }
+#root.ds-screen > .wb { height: 900px; }
+
 /* The icon set */
 .ds-icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr)); gap: var(--space-2);
             margin: 0; padding: 0; list-style: none; }

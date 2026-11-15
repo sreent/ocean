@@ -83,10 +83,27 @@ a7c's builder (`apps/web`) uses the system's fonts and colours today, with two c
 | lines at 20% of the text colour | `--line`; at 35%, `--line-strong` |
 | `.status` pills | Badge, with its dot |
 | `.box`, the steps on the canvas | FlowNode: the map's node, its stripe in the colour of the step's risk |
-| `.react-flow__edge.reads`, dashed: a step that an expression reads | `.uses`, so that `reads` keeps meaning what a tool does |
+| `.react-flow__edge.reads`, dashed: a step that an expression reads | `.reads-from`, shown for the chosen step, so that `reads` keeps meaning what a tool does |
+| `.box`, the steps on the canvas | FlowNode: a square, its icon in the colour of the step's risk, its name beneath |
 | `.dialog` | the browser's own dialog, in Confirm's look |
 
 Then the frame (Shell) around its pages, the GateList on a promotion, and the ladder on each agent's skills. a7c's risks map one to one: `read` to `--reads`, `change` to `--changes`, `send-out` to `--outside`.
+
+#### The builder, as n8n lays it out
+
+a7c's builder follows n8n's editor, which has worked out a workflow canvas well: the canvas fills the window, steps are squares with their names beneath, curves join them at a dot on each side, a step opens to what came in, its settings and what went out, and the one thing to do, Run the tests, sits at the canvas's foot. [Workbench](../components/Workbench/README.md) and [StepPanel](../components/StepPanel/README.md) show it. What a7c draws differently is what it does differently:
+
+| | n8n | a7c | On a7c's canvas |
+| --- | --- | --- | --- |
+| Branching | an if or switch step, with an output for each answer | each step has its own condition, "Runs only when", in CEL | the condition as a label on the curve into the step |
+| Expressions | JavaScript, mapped by dragging a field | CEL, reading other steps as `steps.<id>` | a chip for each value an expression reads, and a dashed curve to it from the chosen step |
+| Data | items, passed from step to step | typed input and output, so problems show before the first run | a count of problems in the step's corner and the toolbar |
+| Testing | a test runs the workflow for real | cases run on mocks in the personal tier, and change no system | Run the tests; "passed, mocked" |
+| Going live | a switch, on or off | a draft is published as a version, and promoted from tier to tier through gates | the tier beside the draft, and Versions with its gates |
+| Credentials | stored, and attached to a step | capabilities, declared; a connection reference that each tier binds | a reference, not a secret, in a step's settings |
+| Risk | not shown | every operation is a read, a change or a send-out | each step's icon in the colour of its risk |
+
+a7c is a new product without n8n's code (its ADR 0002): it takes n8n's ideas and patterns, never its code, words, icons or colours.
 
 ### a3t
 

@@ -1,4 +1,4 @@
-<!-- @dsCard group="Runs and records" height=720 width=960 subtitle="a5s's agent map; a7c's builder canvas, proposed" -->
+<!-- @dsCard group="Workbench" height=600 width=960 subtitle="Steps and their states; an agent and what hangs from it" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,38 +11,39 @@
 <body>
 <div id="root">
 <div class="ds-stack">
-<div class="ds-group"><p class="label">a5s · how assistant is wired</p>
-<div class="flow-canvas ds-canvas-wide" data-height="344">
-<svg class="flow-edges" width="928" height="344" aria-hidden="true">
-<path d="M218.5 171.25 H250"/><path d="M452.5 171.25 H484"/>
-<path class="changes" d="M686.5 171.25 H698 V43.25 H710"/>
-<path class="changes" d="M686.5 171.25 H698 V107.25 H710"/>
-<path class="writes" d="M686.5 171.25 H710"/>
-<path class="reads" d="M686.5 171.25 H698 V235.25 H710"/>
-<path class="own" d="M686.5 171.25 H698 V299.25 H710"/>
+<div class="ds-group"><p class="label">a7c · a skill's steps, after a test</p>
+<div class="flow ds-canvas-wide" data-height="210">
+<svg class="flow-edges" width="928" height="210" aria-hidden="true">
+<path class="ran" d="M132 82 C175 82 175 82 218 82"/>
+<path class="ran" d="M302 82 C345 82 345 82 388 82"/>
+<path d="M472 82 C515 82 515 82 558 82"/>
+<path d="M642 82 L684 82"/>
 </svg>
-<div class="map-node" data-at="16 144"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon map-icon"><path d="M4 5.5h16v10.5H9l-5 4z"/><path d="M8 9.5h8"/><path d="M8 12.5h5"/></svg><div class="map-text"><div class="map-title">A message</div><div class="map-detail">from the people it works for</div></div></div>
-<div class="map-node agent" data-at="250 144"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon map-icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg><div class="map-text"><div class="map-title">assistant</div><div class="map-detail">fake, levels 1–2</div></div></div>
-<div class="map-node checks" data-at="484 144"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon map-icon"><path d="M12 3l7.5 3v6c0 4.5-3.2 7.8-7.5 9-4.3-1.2-7.5-4.5-7.5-9V6z"/></svg><div class="map-text"><div class="map-title">a5s's checks</div><div class="map-detail">policy, need-to-know, budget</div></div></div>
-<div class="map-node changes" data-at="710 16"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon map-icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg><div class="map-text"><div class="map-title">change_due_date</div><div class="map-detail">changes change-due-date</div></div></div>
-<div class="map-node changes" data-at="710 80"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon map-icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg><div class="map-text"><div class="map-title">close_question</div><div class="map-detail">changes close-question</div></div></div>
-<div class="map-node writes" data-at="710 144"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon map-icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg><div class="map-text"><div class="map-title">create_draft</div><div class="map-detail">Writes</div></div></div>
-<div class="map-node reads" data-at="710 208"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon map-icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg><div class="map-text"><div class="map-title">search_records</div><div class="map-detail">Reads</div></div></div>
-<div class="map-node own" data-at="710 272"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon map-icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg><div class="map-text"><div class="map-title">a5s's own</div><div class="map-detail">21 tools: tasks, reminders, notes…</div></div></div>
+<div class="flow-step trigger" data-at="30 40"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg><span class="flow-state" role="img" aria-label="done in the last run"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg></span></div><span class="flow-name">Every weekday</span><span class="flow-about">schedule, 07:00 UTC</span></div>
+<div class="flow-step reads" data-at="200 40"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 3.5h9l3 3v14H6z"/><path d="M9 12.5h6"/><path d="M9 16h6"/><path d="M9 9h3"/></svg><span class="flow-state" role="img" aria-label="done in the last run"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg></span></div><span class="flow-name">Read open orders</span><span class="flow-about">reads the ERP</span></div>
+<div class="flow-step changes" data-at="370 40"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg><span class="flow-state warn" role="img" aria-label="waiting on someone"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg></span></div><span class="flow-name">Order more</span><span class="flow-about">changes purchase orders</span></div>
+<div class="flow-step outside chosen" data-at="540 40"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 5.5h16v10.5H9l-5 4z"/><path d="M8 9.5h8"/><path d="M8 12.5h5"/></svg><span class="map-problems" role="img" aria-label="1 problem">1</span></div><span class="flow-name">Email the supplier</span><span class="flow-about">sends out, by email</span></div>
+<button type="button" class="flow-stub" data-at="684 82" aria-label="Add a step">+</button>
 </div></div>
-<div class="ds-group"><p class="label">a7c · reorder-stock on the builder's canvas, proposed</p>
-<div class="flow-canvas ds-canvas-wide" data-height="244">
-<svg class="flow-edges" width="928" height="244" aria-hidden="true">
-<path d="M218.5 131.25 H250"/><path d="M452.5 131.25 H484"/>
-<path class="changes" d="M686.5 131.25 H698 V67.25 H710"/>
-<path class="outside" d="M686.5 131.25 H698 V195.25 H710"/>
-<path class="uses" d="M351 104 C351 30 811 10 811 40"/>
+<div class="ds-group"><p class="label">a5s · how assistant is wired, as an agent</p>
+<div class="flow ds-canvas-wide" data-height="330">
+<svg class="flow-edges" width="928" height="330" aria-hidden="true">
+<path class="ran" d="M132 82 C181 82 181 82 230 82"/>
+<path d="M440 82 C489 82 489 82 538 82"/>
+<path class="hangs" d="M271 136 C271 170 150 170 150 202"/>
+<path class="hangs" d="M335 136 C335 170 290 170 290 202"/>
+<path class="hangs" d="M399 136 C399 170 430 170 430 202"/>
+<path class="hangs" d="M399 136 C399 170 560 170 560 202"/>
+<path class="hangs" d="M399 136 C399 170 690 170 690 202"/>
 </svg>
-<div class="map-node" data-at="16 104"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon map-icon"><path d="M8 5.5l10 6.5-10 6.5z"/></svg><div class="map-text"><div class="map-title">When an order arrives</div><div class="map-detail">trigger · ERP orders</div></div></div>
-<div class="map-node reads" data-at="250 104"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon map-icon"><path d="M6 3.5h9l3 3v14H6z"/><path d="M9 12.5h6"/><path d="M9 16h6"/><path d="M9 9h3"/></svg><div class="map-text"><div class="map-title">Forecast stock</div><div class="map-detail">reads · stock-forecast 3</div></div></div>
-<div class="map-node reads chosen" data-at="484 104"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon map-icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M8 12.2l2.7 2.7L16.2 9.4"/></svg><div class="map-text"><div class="map-title">Below 5 days of stock?</div><div class="map-detail">if forecast.days &lt; 5</div></div></div>
-<div class="map-node changes" data-at="710 40"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon map-icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg><div class="map-text"><div class="map-title">Order more</div><div class="map-detail">changes purchase orders</div></div></div>
-<div class="map-node outside faulty" data-at="710 168"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon map-icon"><path d="M4 5.5h16v10.5H9l-5 4z"/><path d="M8 9.5h8"/><path d="M8 12.5h5"/></svg><div class="map-text"><div class="map-title">Email the supplier</div><div class="map-detail">sends out · by email</div></div><span class="map-problems" role="img" aria-label="1 problem">1</span></div>
+<div class="flow-step trigger" data-at="30 40"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 5.5h16v10.5H9l-5 4z"/><path d="M8 9.5h8"/><path d="M8 12.5h5"/></svg><span class="flow-state" role="img" aria-label="done in the last run"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg></span></div><span class="flow-name">A message</span><span class="flow-about">from the people it works for</span></div>
+<div class="flow-step agent" data-at="230 40"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg><span class="flow-agent-text"><strong>assistant</strong><span>levels 1–2</span></span><span class="flow-state" role="img" aria-label="done in the last run"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg></span><span class="flow-slots"><span class="flow-slot"><span>Model</span></span><span class="flow-slot"><span>Checks</span></span><span class="flow-slot"><span>Tools</span></span></span></div></div>
+<div class="flow-step own last" data-at="520 40"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 5.5h16v10.5H9l-5 4z"/></svg></div><span class="flow-name">Reply</span><span class="flow-about">in the chat</span></div>
+<div class="flow-step hanging" data-at="90 200"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M3.5 6.5h5v5h-5z"/><path d="M15.5 3.5h5v5h-5z"/><path d="M15.5 15.5h5v5h-5z"/><path d="M8.5 9h3.5v-3h3.5"/><path d="M12 9v9h3.5"/></svg></div><span class="flow-name">Model</span><span class="flow-about">through the gateway</span></div>
+<div class="flow-step own hanging" data-at="230 200"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3l7.5 3v6c0 4.5-3.2 7.8-7.5 9-4.3-1.2-7.5-4.5-7.5-9V6z"/></svg></div><span class="flow-name">a5s's checks</span><span class="flow-about">policy, need-to-know, budget</span></div>
+<div class="flow-step changes hanging" data-at="370 200"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div><span class="flow-name">change_due_date</span><span class="flow-about">changes due dates</span></div>
+<div class="flow-step writes hanging" data-at="500 200"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div><span class="flow-name">create_draft</span><span class="flow-about">writes</span></div>
+<div class="flow-step reads hanging" data-at="630 200"><div class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></div><span class="flow-name">search_records</span><span class="flow-about">reads</span></div>
 </div></div>
 </div>
 </div>
@@ -53,7 +54,6 @@ for (const node of document.querySelectorAll("[data-at]")) {
   node.style.top = `${y}px`;
 }
 for (const box of document.querySelectorAll("[data-height]")) box.style.height = `${box.dataset.height}px`;
-for (const bar of document.querySelectorAll("[data-width]")) bar.style.width = bar.dataset.width;
 </script>
 </body>
 </html>

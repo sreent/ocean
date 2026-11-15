@@ -159,21 +159,24 @@ export declare function GateList(props: GateListProps): React.ReactElement;
 
 export interface FlowNodeProps {
   icon: IconName;
+  /** Its name, under it. */
   title: string;
+  /** What it does, in a few words, under its name. */
   detail?: string;
-  /** Its stripe: what the step does; or an agent, the product's checks, or a refused step. */
-  tone?: Tone | "agent" | "checks" | "denied";
-  /** The step someone has chosen. */
-  chosen?: boolean;
+  /** Its icon's colour: what the step does. */
+  tone?: Tone;
+  /** A trigger is rounded where nothing comes in; an agent is wide; what hangs from an agent is round. */
+  kind?: "trigger" | "step" | "agent" | "hanging";
+  /** How it stood after the last run: done, or waiting on someone. */
+  state?: "done" | "waiting";
   /** Problems the step has, counted in its corner. */
   problems?: number;
-  /** On a run's path: how often it went this way, and how often that was refused. */
-  calls?: number;
-  refused?: number;
-  /** Not on this run's path. */
-  dim?: boolean;
+  /** The step someone has chosen. */
+  chosen?: boolean;
+  /** Nothing goes on from it. */
+  last?: boolean;
 }
-/** A step on a canvas: an agent's map in a5s, a skill on a7c's builder, a process in a3t's designer. Proposed. */
+/** A step on a canvas, as n8n draws them, in Ocean's colours: a5s's agents, a7c's skills, a3t's processes. Proposed. */
 export declare function FlowNode(props: FlowNodeProps): React.ReactElement;
 
 export interface AuditEntryProps {

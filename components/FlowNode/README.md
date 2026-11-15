@@ -1,14 +1,15 @@
 # FlowNode
 
-A step on a canvas: a5s's map of how an agent is wired, a skill on a7c's builder, a process in a3t's designer. Proposed for the family, from a5s's map.
+A step on a canvas, as workflow builders draw them: a5s's agents, a7c's skills, a3t's processes. It follows n8n's canvas, which has worked these out well, in Ocean's colours. Proposed.
 
-- Each step is a card with its icon, its name, and a line of what it does, striped on its left in the colour of what it does: `--reads`, `--writes`, `--changes`, `--outside`, `--own`.
-- Agents' steps are in the agent colour. The product's checks are edged in `--own`.
-- Edges take the colour of where they lead. An edge dashed is a step that reads another's result, as a7c draws it (`.uses`).
-- The step someone has chosen wears the focus ring. A step with problems has a `--bad` edge, its stripe kept, and their count in a bubble on its corner.
-- On a run's path, what the run used is bolder, what it didn't is faded, and refusals are counted in `--bad`.
-- The canvas is `--sunken`, with a dot grid in `--line-strong`.
+- A square for each step, with its icon, and its name and what it does beneath, so names are never cut short.
+- The icon takes the colour of what the step does: `--reads`, `--writes`, `--changes`, `--outside`, `--own`. Risk shows before anything runs, and the canvas stays calm.
+- A trigger is rounded on its left, where nothing comes in.
+- Steps join at a dot on each side, by curves in `--line-strong`. Where the last run went, the curves are `--good`. Where nothing goes on yet, a short line ends at a button to add the next step.
+- How a step stood after the last run is in its corner: a tick on `--good` when it's done, a clock on `--warn` when it waits on someone, and a count on `--bad` for its problems, which a7c finds before the first run.
+- The chosen step wears the focus ring. In a7c, the condition a step runs on ("when …") is a label on the curve into it, and a dashed curve in `--accent` shows what the chosen step's expressions read.
+- An agent is wide, in the agent colour, with its name inside. Its model, the product's checks and its tools hang below it as circles, from slots along its foot, each tool's icon in the colour of what it does.
 
-**Takes:** `icon`, `title`, `detail`, `tone`, `chosen`, `problems`, `calls`, `refused`, `dim`.
+**Takes:** `icon`, `title`, `detail`, `tone`, `kind` (`trigger`, `step`, `agent`, `hanging`), `state`, `problems`, `chosen`, `last`.
 
-**In a5s:** `studio/src/AgentMap.tsx` on React Flow, which a7c and a3t use too. The preview is a static rendition, placed by hand.
+**On:** React Flow (`@xyflow/react`), which a5s, a7c and a3t all draw their canvases with. The preview is a static rendition, placed by hand.
