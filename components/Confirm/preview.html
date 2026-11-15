@@ -1,0 +1,42 @@
+<!-- @dsCard group="Actions" height=340 subtitle="Asking, and the dialog once open" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Confirm</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="note">For what can't be undone, a page asks first, and says what will happen.</p>
+<div class="ds-row" id="asking"><button type="button" class="danger" id="open">Delete this draft</button></div></div>
+<div class="ds-group"><p class="label">Once it asks</p>
+<dialog class="dialog ds-in-place" open aria-labelledby="shown-title" aria-describedby="shown-about">
+<h2 id="shown-title">Delete the draft of scout?</h2>
+<p id="shown-about">Its folder and its test cases go with it, and nobody can bring them back.</p>
+<div class="dialog-actions"><button type="button">Keep it</button><button type="button" class="danger primary">Delete it</button></div>
+</dialog></div>
+<dialog class="dialog" id="ask" aria-labelledby="ask-title" aria-describedby="ask-about">
+<h2 id="ask-title">Delete the draft of scout?</h2>
+<p id="ask-about">Its folder and its test cases go with it, and nobody can bring them back.</p>
+<div class="dialog-actions"><button type="button" autofocus data-keep>Keep it</button><button type="button" class="danger primary" data-delete>Delete it</button></div>
+</dialog>
+</div>
+</div>
+<script>
+const ask = document.getElementById("ask");
+document.getElementById("open").addEventListener("click", () => ask.showModal());
+ask.querySelector("[data-keep]").addEventListener("click", () => ask.close());
+ask.querySelector("[data-delete]").addEventListener("click", () => {
+  ask.close();
+  const gone = document.createElement("p");
+  gone.setAttribute("role", "status");
+  gone.textContent = "The draft is gone.";
+  document.getElementById("asking").replaceChildren(gone);
+});
+</script>
+</body>
+</html>

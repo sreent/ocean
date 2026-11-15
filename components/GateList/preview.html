@@ -1,0 +1,33 @@
+<!-- @dsCard group="Runs and records" height=350 subtitle="A promotion in a7c; a change request in a3t" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GateList</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-cols">
+<div class="ds-group"><p class="label">a7c · reorder-stock 0.4.0 to production</p>
+<ul class="gates">
+<li><span class="badge good"><span class="dot"></span>passed</span><span><span class="gate-name">Tests</span><span class="gate-about">12 of 12 cases pass</span></span></li>
+<li><span class="badge good"><span class="dot"></span>passed</span><span><span class="gate-name">Capabilities</span><span class="gate-about">Declared: ERP orders, the supplier's mail host</span></span></li>
+<li><span class="badge good"><span class="dot"></span>passed</span><span><span class="gate-name">Policy</span><span class="gate-about">Nothing at production forbids it</span></span></li>
+<li><span class="badge warn"><span class="dot"></span>waiting</span><span><span class="gate-name">Approval</span><span class="gate-about">Waiting on Lena Park, owner of procurement</span></span></li>
+<li><span class="badge"><span class="dot"></span>not needed</span><span><span class="gate-name">Data review</span><span class="gate-about">It keeps no personal data</span></span></li>
+</ul></div>
+<div class="ds-group"><p class="label">a3t · change request 18 to expenses</p>
+<ul class="gates">
+<li><span class="badge good"><span class="dot"></span>passed</span><span><span class="gate-name">Definitions</span><span class="gate-about">Every form, view and process is valid</span></span></li>
+<li><span class="badge bad"><span class="dot"></span>failed</span><span><span class="gate-name">Tests</span><span class="gate-about">2 of 40 fail: expense-limits</span></span></li>
+<li><span class="badge warn"><span class="dot"></span>waiting</span><span><span class="gate-name">Permissions</span><span class="gate-about">Auditors may now export records: a security admin reviews it</span></span></li>
+<li><span class="badge"><span class="dot"></span>running</span><span><span class="gate-name">Preview</span><span class="gate-about">Building preview-18</span></span></li>
+<li><span class="badge warn"><span class="dot"></span>waiting</span><span><span class="gate-name">Approvals</span><span class="gate-about">1 of 2</span></span></li>
+</ul></div>
+</div>
+</div>
+</body>
+</html>

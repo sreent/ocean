@@ -1,0 +1,34 @@
+<!-- @dsCard group="Runs and records" height=360 subtitle="A run in a5s, and one in a7c" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>RunTimeline</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-cols">
+<div class="ds-group"><p class="label">a5s · a run of assistant</p>
+<ol class="timeline">
+<li><time>14:02:01</time><span class="node tone-idle" aria-hidden="true"></span><span>Ben Okafor: <q>Can we give them until the end of the month?</q></span></li>
+<li><time>14:02:03</time><span class="node tone-reads" aria-hidden="true"></span><span><code>get_record</code> Q-1001<span class="step-detail">reads · 120 ms</span></span></li>
+<li><time>14:02:04</time><span class="node tone-reads" aria-hidden="true"></span><span><code>search_records</code> extension policy<span class="step-detail">reads · 340 ms</span></span></li>
+<li><time>14:02:06</time><span class="node tone-changes" aria-hidden="true"></span><span><code>change_due_date</code> held for a yes<span class="step-detail">changes · waiting on Ana Ortiz</span></span></li>
+<li><time>14:05:40</time><span class="node tone-good" aria-hidden="true"></span><span>Ana Ortiz approved; the change was made<span class="step-detail">signed · in the ledger</span></span></li>
+</ol></div>
+<div class="ds-group"><p class="label">a7c · reorder-stock, proposed</p>
+<ol class="timeline">
+<li><time>09:12:04</time><span class="node tone-idle" aria-hidden="true"></span><span>An order arrived: O-5531<span class="step-detail">trigger · ERP orders</span></span></li>
+<li><time>09:12:05</time><span class="node tone-reads" aria-hidden="true"></span><span><code>forecast_stock</code> SKU 4471<span class="step-detail">reads · stock-forecast 3 · 210 ms</span></span></li>
+<li><time>09:12:06</time><span class="node tone-own" aria-hidden="true"></span><span>a7c's checks allowed it<span class="step-detail">own · policy, capabilities</span></span></li>
+<li><time>09:12:06</time><span class="node tone-changes" aria-hidden="true"></span><span><code>order_more</code> 400 cases, held for a yes<span class="step-detail">changes · waiting on Lena Park</span></span></li>
+<li><time>09:20:41</time><span class="node tone-good" aria-hidden="true"></span><span>Lena Park approved; the order was placed<span class="step-detail">signed · in the audit log</span></span></li>
+<li><time>09:20:43</time><span class="node tone-outside" aria-hidden="true"></span><span><code>email_supplier</code> the order<span class="step-detail">sends out · mail.supplier.example</span></span></li>
+</ol></div>
+</div>
+</div>
+</body>
+</html>
