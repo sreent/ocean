@@ -14,7 +14,7 @@ Proposed: no product draws it yet. Its look is [`css/components.css`](../css/com
 | Answer | The person answers what only they can: what the agent couldn't decide, or what breaks a rule | Question |
 | Change | Any line, by hand, as a form. The change stays theirs | EditSheet |
 | Sign off | Exactly what will happen, before it does. The person sends it | SignOff |
-| Track | How it stands comes to the person, and it can be taken back while it still can be | Status |
+| Track | How it stands comes to the person, and it can be taken back while it still can be. When the agent acted on its own, it says so at once | Status |
 
 ## The rules
 
@@ -22,7 +22,7 @@ Proposed: no product draws it yet. Its look is [`css/components.css`](../css/com
 2. **Every value has a source.** A value read off a record or a document gets a solid tag. One the agent worked out gets a dashed tag, so the person knows to check it. One the person changed gets the accent. Any line opens to its source.
 3. **Nothing is sent until the person sends it.** A draft is theirs alone: a write, not a change. The work log promises this while the agent works.
 4. **Their changes stay theirs.** A later check never overwrites them. The original is kept, with a way to restore it.
-5. **The person signs off.** Where sending vouches for something, such as a claim or a request for access, the person sends it, not the agent. SignOff shows:
+5. **The person signs off.** The person sends what the agent prepared, not the agent. Only at the ladder's top rung may an agent act on its own, and never where sending vouches for something or can't be taken back (below). SignOff shows:
    - exactly what will be sent;
    - what sending does, in the colour of what it does;
    - who decides next;
@@ -33,7 +33,26 @@ Proposed: no product draws it yet. Its look is [`css/components.css`](../css/com
 7. **The agent is marked as an agent.** It has its mark and its name, never a sparkle. "What it may do" opens its facts.
 8. **One thing to do, worded for the outcome.** Write "Submit claim", "Ask for the change" or "Withdraw it", never "Confirm" or "OK". The one thing to do waits until the questions are answered, and says so.
 
-Where a capability lets its agent act alone within limits (a5s's [autonomy ladder](../components/AutonomyLadder/README.md)), there's no sign-off. The agent acts, says so in the talk with a Status, and the person can take it back while that's still possible. The capability sets the rung, and the person's organisation allows it.
+## When the agent acts on its own
+
+At the top rung of the family's [autonomy ladder](products.md), Acts, an agent changes things by itself, within limits. The kit holds one line that no rung crosses, and says what the person sees when the agent does act.
+
+| The action | Who sends it | What the person sees |
+| --- | --- | --- |
+| Vouches for something in the person's name, such as "these expenses are accurate", an attestation or a signature | The person, at any rung | SignOff |
+| Can't be taken back, such as a payment, a message sent out of the organisation, or a deletion | The person, at any rung | SignOff |
+| Anything else its rung and limits allow, such as moving a meeting | The agent, at Acts | Status, at once |
+
+An agent can't promise something on a person's behalf. So the agent prepares a claim and the person submits it, however trusted the agent is.
+
+When the agent acts on its own, it's never silent. A Status comes at once, with:
+
+- what it did, in the colour of what it did;
+- that it acted on its own, why, and what allowed it ("You let it move your meetings");
+- until when it can be undone, with Undo;
+- "Ask me first next time", so a person can always take back autonomy for themselves.
+
+The capability sets the rung and its limits, and the organisation allows them. A person can always ask for less.
 
 ## What a capability gives the kit
 
@@ -41,7 +60,7 @@ A capability describes four things, and the kit draws the rest:
 
 1. **What the outcome needs, and where each value can come from:** its fields, and the records, documents, calendars or people that fill them.
 2. **The rules it checks, which become questions:** a cap, an overlap, a country, data that's sensitive.
-3. **What sending does, and who decides next:** what it does, in the grammar's colours (writes, changes, sends out), and who approves, by name.
+3. **What sending does, who decides next, and whether its agent may ever do it on its own:** what it does, in the grammar's colours (writes, changes, sends out); who approves, by name; and its rung, within the line above.
 4. **Its stages, and until when it can be taken back:** the stages of the record it makes, and its recall.
 
 The same four things, for four capabilities:
@@ -65,13 +84,14 @@ The same four things, for four capabilities:
 | Source | Where a value came from: solid when read, dashed when inferred, the accent when the person changed it |
 | EditSheet | A line, opened to change by hand, over the conversation. The person's change is marked as theirs and the original is kept |
 | SignOff | What will happen, exactly, before it does. The person sends it |
-| Status | How it stands, who it waits on, and until when it can be taken back |
+| Status | How it stands, who it waits on, and until when it can be taken back. When the agent acted on its own: what it did, what allowed it, and Undo |
 
-Three showcase pages put them together:
+Four showcase cards put them together:
 
 - **ExpenseClaim** is the reference flow: eight steps, from asking to submitted, on a phone.
 - **Capabilities** has a leave request, a change to a supplier's bank details and an access request, drafted with the same pieces.
 - **AppConversation** is an app made with a3t, at a desktop's size.
+- **OnItsOwn** draws the line: a meeting the agent moved on its own, beside a payment it never makes on its own.
 
 ## Two sizes, and a page
 

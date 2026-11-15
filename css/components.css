@@ -904,10 +904,18 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
 .commits { display: flex; align-items: flex-start; gap: var(--space-2); margin: 0; padding: var(--space-2) var(--space-3);
            border-radius: var(--radius-sm); background: var(--changes-bg); font-size: var(--text-xs); }
 .commits .badge { flex: none; }
+.commits.writes { background: var(--writes-bg); }
+.commits.outside { background: var(--outside-bg); }
 .vouch { margin: 0; color: var(--muted); font-size: var(--text-xs); }
 
 /* How it stands, brought to the person: where it is, who it waits on, what comes next, and how
    long it can still be taken back */
+/* What the agent did on its own, at the ladder's top rung: by its mark, at once, with Undo */
+.acted-head { display: flex; align-items: flex-start; gap: var(--space-2); }
+.acted-head .avatar { width: 1.6rem; height: 1.6rem; flex: none; }
+.acted-head .avatar .icon { width: 1rem; height: 1rem; }
+.acted-head strong { display: block; font-size: var(--text-md); }
+.acted-head p { margin: 0; color: var(--muted); font-size: var(--text-xs); }
 .status-mark { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 50%; background: var(--good-bg); color: var(--good); }
 .status-mark .icon { width: 1.4rem; height: 1.4rem; stroke-width: 2.4; }
 .track { display: grid; margin: 0; padding: 0; list-style: none; }

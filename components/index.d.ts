@@ -334,9 +334,13 @@ export interface StatusProps {
   title: string;
   about?: string;
   /** Its stages, in order: done, the one it's at now with who it waits on, and those to come. */
-  stages: { what: string; about?: string; state: "done" | "now" | "later" }[];
-  /** Until when it can be taken back, and how: "Recall it", "Withdraw it". */
+  stages?: { what: string; about?: string; state: "done" | "now" | "later" }[];
+  /** Until when it can be taken back, and how: "Recall it", "Withdraw it", or "Undo" once the agent acted on its own. */
   takeBack?: { until: string; label: string; onClick: () => void };
+  /** When the agent acted on its own, at the ladder's top rung: what it changed, what that did, why, and what allowed it.
+   *  Never for what vouches for something in the person's name, or can't be taken back: those come as a SignOff. */
+  actedAlone?: { changes: Change[]; does: { tone: Tone; toneWord: string; text: React.ReactNode }; why?: string;
+    allowedBy: string; onAskFirst: () => void };
 }
 /** How an outcome stands, brought to the person: where it is, who it waits on, and until when it can be taken back. Proposed. */
 export declare function Status(props: StatusProps): React.ReactElement;

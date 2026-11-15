@@ -3,6 +3,7 @@
 Autonomy is earned: the rung an agent works on, those its release allows beyond it, and how far it has come toward the next.
 
 - One ladder in the same words for the family: Observes, Suggests, Asks, Acts. A product shows the rungs it has: a5s's three, from Suggests, and a7c's four.
+- Whatever the rung, an agent never sends what vouches for something in a person's name, or what can't be taken back: a person signs those off. When it acts on its own, it says so at once, with Undo (the conversation kit, docs/conversation.md).
 - The rung it's on has the agent colour (`--agent-tone` on `--agent-tone-soft`). Rungs its release allows are dashed; rungs it doesn't are faded.
 - Under it, how far it has come toward the next rung, as graded samples, and who decides. The meter fills in the agent colour.
 - The rungs sit side by side where there's room and stack wherever they're narrow, by container query.

@@ -51,6 +51,8 @@ a5s and a7c both let agents earn autonomy. The family draws it as one ladder in 
 
 a5s keeps its level numbers. The words and the look are the family's.
 
+Whatever the rung, an agent never sends what vouches for something in a person's name, or what can't be taken back: a person signs those off. When it acts on its own, it says so at once, with Undo ([`conversation.md`](conversation.md)).
+
 ### Where it runs, as line
 
 Where something runs is told by line rather than colour, so it never competes with the grammar. Someone's own space is dashed, as everything not yet in force is. A team's is solid. Production is drawn in ink, twice as heavy.

@@ -37,6 +37,7 @@ const TEXT = [  // text, and what it's on: 4.5 to 1
   ["muted", "agent-tone-soft"], ["agent-tone", "agent-tone-soft"],  // the step an agent is on
   ["surface", "bad"], ["surface", "text"],  // the danger button; a hint
   ["text", "warn-bg"], ["warn", "surface"],  // a question that waits on the person, and its answers
+  ["text", "changes-bg"], ["text", "writes-bg"], ["text", "outside-bg"],  // what sending does, in its tone
   ["viewfinder-text", "viewfinder"], ["viewfinder-text", "viewfinder-line"], ["paper-ink", "paper"],  // capture
   ...["reads", "writes", "changes", "outside", "own", "good", "warn", "bad", "idle"].map((tone) => [tone, `${tone}-bg`]),
 ];

@@ -40,7 +40,7 @@ People needn't start from a form. They can say what they want done, and the app 
 1. **They state an outcome**, in their own words: "Claim my Singapore trip", "Pay the supplier once the goods arrive", "Every Monday, chase what's overdue". Or they start from a photo or a file.
 2. **The agent gathers what it can**, and shows its work as it goes, with where each piece came from.
 3. **It answers with a draft, exceptions first**: only what needs the person, as questions; the rest filled in, each value with its source; who decides; and its limits (the rung it acts on, its budget, its deadline). They answer, change any line, or ask why.
-4. **Before anything happens, they sign off**: exactly what will happen, what sending does, in the colour of what it does, who decides next, and who prepared it. They send it; the agent doesn't, wherever sending vouches for something.
+4. **Before anything happens, they sign off**: exactly what will happen, what sending does, in the colour of what it does, who decides next, and who prepared it. They send it, not the agent. At the ladder's top rung an agent may act on its own, and says so at once with Undo, but never where sending vouches for something or can't be taken back ([`conversation.md`](conversation.md)).
 5. **Status comes to them**: where it is, who it waits on, and until when it can be taken back. An outcome that repeats becomes a standing task, with its repeats and budget, as a5s's tasks are.
 
 What this needs of Ocean:
