@@ -32,3 +32,10 @@ Lines on a 24-unit square, as every page draws them: stroke 1.8, round caps and 
 | `photos` | Choosing from the person's photos |
 | `attach` | Attaching a file |
 | `send` | Sending what's typed, in a conversation |
+| `webhook` | A webhook, which starts a run |
+| `plug` | A connector, and a connector's event |
+| `sync` | A sync, into the world model |
+| `wait` | A wait |
+| `model` | A model, and an agent's model |
+| `code` | Code, in the sandbox |
+| `list` | A canvas as its list |

@@ -90,12 +90,13 @@ These meanings are the products' shared grammar, the same on every surface: badg
 - Decisions are a phone's width at most (28rem): a column on a phone, side by side where there's room.
 - On a wide screen a conversation is 44rem wide at most, and what's said in it 34rem, so its lines stay short enough to read. The agent's cards are a phone's width at most.
 - The ladder and the path stack wherever they're narrow, by container query rather than by the window.
+- Every canvas has its list: the same steps, in order, for the keyboard and for a phone. A narrow screen starts with the list.
 
 ## Shape and depth
 
 - `--radius-sm` (6px) for buttons, inputs, tiers and the marks of agents and services; `--radius-md` (10px) for cards, wells and popovers; `--radius-lg` (14px) for decisions and dialogs; `--radius-pill` for badges, chips and meters. People are circles, with their initials. A circle with a mark in it is a stage or a state (a tick, a clock), or what hangs from an agent on a canvas. A button is never a circle.
 - Cards rest on `--shadow` in light and on nothing in dark. What floats over the page, such as popovers, dialogs and decisions, takes `--shadow-raised`.
-- Line tells how something stands. Dashed is what isn't in force yet: an instance not in the settings yet, a rung beyond the current one, someone's own tier, a value an agent worked out until a person checks it. Faded to 0.42 is what a run didn't use.
+- Line tells how something stands. Dashed is what isn't in force yet: an instance not in the settings yet, a rung beyond the current one, someone's own tier, a value an agent worked out until a person checks it. Faded to 0.42 is what a run didn't use, with its words still readable in `--muted`.
 
 ## Motion
 
@@ -112,7 +113,7 @@ Two movements only, and only when the person hasn't asked for less motion. What 
 ## Iconography
 
 - Lines on a 24-unit square: stroke 1.8, round caps and joins, no fill, in `currentColor`, so an icon takes its text's colour. 1.15rem in the sidebar, 0.9 to 1.1rem in marks and badges.
-- The set is in `icons/`, 28 of them. The agent's mark is for agents alone. The shield with a tick (`audit`) is for what's signed and kept in the ledger, and for the product's own messages. The tool is for tools and services.
+- The set is in `icons/`, 35 of them. The agent's mark is for agents alone. The shield with a tick (`audit`) is for what's signed and kept in the ledger, and for the product's own messages. The tool is for tools and services.
 - No icon font and no emoji. A new icon is drawn the same way, on the same square.
 
 ## What it's held to

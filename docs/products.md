@@ -71,7 +71,8 @@ a5s already is Ocean. To take it from here rather than keep its own copy:
 - Give each state its shape: `StatusBadge`, the grades and the gates draw a tick, a clock, a cross or a pause where they draw a dot today.
 - Its fields' edges become `--line-control`, and `--outside` moves darker, both from `css/tokens.css` with no change of its own.
 - The studio's pieces (`studio/src/design`) can move here as the family's React components when a7c or a3t first needs them.
-- Its agent's map moves to FlowNode, laid out as n8n lays out a canvas, in place of the striped nodes it draws today.
+- Its agent's map moves to FlowNode, laid out as n8n lays out a canvas, in place of the striped nodes it draws today: on the agent's page, a run's page and the draft's designer alike.
+- Its designer takes Ocean's names for what it drew first: `flow-step denied` is `refused`, `.picker` is `.fd-palette`, and its list (`design-list`, `design-row-button`, `design-inline`, and the `flow-list` switch) is FlowList's (`flow-listing`, `flow-row`, `flow-inline`, and a choice of views in `flow-views`). It keeps none of Ocean's own rules in `studio.css`: not the React Flow section, `button.link`, `button.danger`, nor the eight pieces it copied before. A quieter button is Ocean's plain one.
 
 ### a7c
 
@@ -88,6 +89,8 @@ a7c's builder (`apps/web`) uses the system's fonts and colours today, with two c
 | lines at 20% of the text colour | `--line`; at 35%, `--line-strong` |
 | `.status` pills | Badge, with its shape: a tick for passed, a cross for failed |
 | `.react-flow__edge.reads`, dashed: a step that an expression reads | `.reads-from`, shown for the chosen step, so that `reads` keeps meaning what a tool does |
+| `@xyflow/react/dist/style.css` | `base.css`, with the canvas in `flow flow-canvas`: Ocean draws the rest |
+| Handles at the top and the foot of a step | `at-left` and `at-right`: steps run left to right |
 | `.box`, the steps on the canvas | FlowNode: a square, its icon in the colour of the step's risk, its name beneath |
 | `.dialog` | the browser's own dialog, in Confirm's look |
 
