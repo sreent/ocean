@@ -75,6 +75,8 @@ Drawn from the previews in `components/`, in light. This is the design: no produ
 ![a5s, a7c and a3t in one frame, told apart by their names and marks alone](docs/images/ocean-three-products.png)
 ![a3t's app designer, building an expense claim's form in someone's own space](docs/images/ocean-a3t-designer.png)
 ![The conversation kit's reference flow: an expense claim, from asking to submitted, in eight steps](docs/images/ocean-expense-claim.png)
-![The same claim in Microsoft Teams, drawn from its cards in teams/cards](docs/images/ocean-in-teams.png)
+![The same claim in Microsoft Teams, drawn from its cards in teams/cards, in Teams' own look: Teams draws its cards itself, so this one keeps Ocean's rules and words, not its colours or type](docs/images/ocean-in-teams.png)
+
+The last is Teams' look, not Ocean's: Teams draws its cards itself, in its own font and colours, so there the kit keeps Ocean's rules, words and order ([`docs/conversation.md`](docs/conversation.md)).
 
 IBM Plex is © IBM Corp., under the SIL Open Font License 1.1 ([`fonts/`](fonts)).

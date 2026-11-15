@@ -93,7 +93,7 @@ These meanings are the products' shared grammar, the same on every surface: badg
 
 ## Shape and depth
 
-- `--radius-sm` (6px) for buttons, inputs, tiers and the marks of agents and services; `--radius-md` (10px) for cards, wells and popovers; `--radius-lg` (14px) for decisions and dialogs; `--radius-pill` for badges, chips and meters. People are circles.
+- `--radius-sm` (6px) for buttons, inputs, tiers and the marks of agents and services; `--radius-md` (10px) for cards, wells and popovers; `--radius-lg` (14px) for decisions and dialogs; `--radius-pill` for badges, chips and meters. People are circles, with their initials. A circle with a mark in it is a stage or a state (a tick, a clock), or what hangs from an agent on a canvas. A button is never a circle.
 - Cards rest on `--shadow` in light and on nothing in dark. What floats over the page, such as popovers, dialogs and decisions, takes `--shadow-raised`.
 - Line tells how something stands. Dashed is what isn't in force yet: an instance not in the settings yet, a rung beyond the current one, someone's own tier, a value an agent worked out until a person checks it. Faded to 0.42 is what a run didn't use.
 
