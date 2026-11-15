@@ -165,8 +165,8 @@ export interface FlowNodeProps {
   title: string;
   /** What it does, in a few words, under its name. */
   detail?: string;
-  /** Its icon's colour: what the step does. */
-  tone?: Tone;
+  /** Its icon's colour: what the step does, or an agent's, for another agent hanging from one (drawn as agent-tone). */
+  tone?: Tone | "agent";
   /** A trigger is rounded where nothing comes in; an agent is wide; what hangs from an agent is round. */
   kind?: "trigger" | "step" | "agent" | "hanging";
   /** How it stood after the last run: done, waiting on someone, or failed. */

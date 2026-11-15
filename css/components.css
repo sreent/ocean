@@ -197,6 +197,10 @@ button.primary, a.button.primary {  /* the one action a page or form is for */
 button.primary:hover, a.button.primary:hover { background: var(--accent-strong); border-color: var(--accent-strong); }
 button:disabled { opacity: 0.55; cursor: default; }
 button.link { border: 0; background: none; padding: 0; color: var(--accent); font-weight: 500; }
+/* In a workbench (.wb), buttons are compact, until density is a layer of tokens. It's a default, which
+   a piece's own rule overrides: a step's box, a list's row, a badge or a link keeps its own size */
+.wb :where(button), .wb a:where(.button) { padding: 0.3rem 0.7rem; font-size: var(--text-md); }
+.wb :where(button, a.button) .icon { width: 1rem; height: 1rem; }
 
 input, select, textarea {  /* their edge is --line-control, 3 to 1, so a person sees where to type */
   padding: 0.4rem 0.6rem;
@@ -225,6 +229,7 @@ label { color: var(--muted); font-size: 0.9rem; }
   color: var(--idle);
 }
 
+button.badge { border: 0; cursor: pointer; }  /* a badge that opens what it counts, such as a draft's problems */
 .badge.reads { background: var(--reads-bg); color: var(--reads); }
 .badge.writes { background: var(--writes-bg); color: var(--writes); }
 .badge.changes { background: var(--changes-bg); color: var(--changes); }
@@ -598,14 +603,12 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
 .flow-step.dim .flow-name { color: var(--muted); }
 .flow-edges .refused { stroke: var(--bad); }
 .flow-step.refused .flow-box { border-color: var(--bad); color: var(--bad); }
-/* A step someone can choose is a button. Its icon keeps the canvas's size, whatever the workbench's
-   compact buttons do to theirs */
+/* Another agent hanging from an agent's tools, such as one its instance may ask: in the agent colour,
+   as agents are everywhere. Its class isn't .agent, which is the wide agent itself */
+.flow-step.agent-tone .flow-box { color: var(--agent-tone); }
+/* A step someone can choose is a button */
 button.flow-box { padding: 0; font: inherit; cursor: pointer; }
 button.flow-box:hover { background: var(--sunken); }
-.flow .flow-box > .icon { width: 2.4rem; height: 2.4rem; }
-.flow .flow-step.agent .flow-box > .icon { width: 2rem; height: 2rem; }
-.flow .flow-step.hanging .flow-box > .icon { width: 1.5rem; height: 1.5rem; }
-.flow .flow-state .icon { width: 0.85rem; height: 0.85rem; }
 /* Every canvas has its list: the same steps, in order, for the keyboard and for a phone. The choice
    of the two sits at the right of the canvas's foot, as a choice of views (.modes) */
 .flow-views { position: absolute; inset-inline-end: var(--space-4); bottom: var(--space-4); }
@@ -691,8 +694,6 @@ button.flow-row[aria-expanded="true"] { border-color: var(--focus); }
 .wb-saved { display: inline-flex; align-items: center; gap: 0.3rem; color: var(--muted); font-size: var(--text-sm); }
 .wb-saved .icon { width: 1rem; height: 1rem; color: var(--good); }
 .wb .modes { margin: 0; }
-.wb button, .wb .button { padding: 0.3rem 0.7rem; font-size: var(--text-md); }  /* compact, until density is a layer of tokens */
-.wb button .icon { width: 1rem; height: 1rem; }
 .wb-body { display: grid; grid-template-columns: minmax(0, 1fr) 24rem; min-height: 0; }
 .wb-body > .flow { min-height: 0; }
 .flow-tools { position: absolute; inset-inline-start: var(--space-4); bottom: var(--space-4); display: flex; gap: var(--space-1); }
@@ -708,13 +709,18 @@ button.flow-row[aria-expanded="true"] { border-color: var(--focus); }
 .wb-head .flow-box { width: 2.6rem; height: 2.6rem; margin: 0; border-width: 1px; box-shadow: none; }
 .wb-head .flow-box > .icon { width: 1.3rem; height: 1.3rem; }
 .wb-head .flow-step.hanging .flow-box { width: 2.6rem; height: 2.6rem; }
+.wb-head .flow-step.agent .flow-box { width: 2.6rem; padding: 0; justify-content: center; }  /* the agent, small, as its head */
 .wb-head .flow-box::before, .wb-head .flow-box::after { display: none; }
 .wb-head h2 { margin: 0; font-size: var(--text-lg); }
 .wb-head p { margin: 0; color: var(--faint); font-family: var(--font-mono); font-size: var(--text-xs); }
 .wb-head .badges { grid-column: 1 / -1; }
 .wb-field { display: grid; align-content: start; gap: 0.3rem; margin: 0; }
 .wb-field > .wb-label { color: var(--muted); font-size: var(--text-sm); font-weight: 500; }
-.wb-field input, .wb-field select { width: 100%; padding: 0.3rem 0.5rem; }
+.wb-field input:where(:not([type="checkbox"], [type="radio"])), .wb-field select, .wb-field textarea { width: 100%;
+  padding: 0.3rem 0.5rem; }  /* a field's box; a choice's box, in a fieldset of them, keeps its own size */
+.wb-field textarea { resize: vertical; line-height: 1.5; }
+fieldset.wb-field { min-width: 0; margin: 0; padding: 0; border: 0; }  /* a field of choices, its legend a label */
+.choices.inline { flex-direction: row; flex-wrap: wrap; gap: 0.35rem 0.85rem; }  /* short ones, such as days, in a row */
 .wb-hint { color: var(--faint); font-size: var(--text-xs); }
 .wb-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3); }
 .wb-input { display: grid; grid-template-columns: 4.6rem minmax(0, 1fr); gap: var(--space-2); align-items: center; }
@@ -729,8 +735,32 @@ button.flow-row[aria-expanded="true"] { border-color: var(--focus); }
            border-radius: var(--radius-md); background: var(--sunken); color: var(--muted); font-size: var(--text-sm); }
 .wb-well .icon { width: 1rem; height: 1rem; margin-top: 0.15rem; color: var(--own); }
 .wb-well strong { color: var(--text); }
+.wb-well ul { display: grid; gap: var(--space-1); margin: var(--space-1) 0 0; padding: 0; list-style: none; }
+/* What the last change made follow, at the top of the inspector until the next, which a screen
+   reader hears as it changes */
+.wb-well.notice { background: var(--accent-soft); color: var(--text); }
+.wb-well.notice .icon { color: var(--accent); }
+/* A part of the inspector, set apart by a line above it, its title an h2 */
+.wb-section { display: grid; gap: var(--space-3); padding-top: var(--space-3); border-top: 1px solid var(--line); }
+.wb-section > h2 { margin: 0; }
 .wb-actions { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); align-items: center; }
 .wb-body.whole { grid-template-columns: minmax(0, 1fr); }
+/* A product's page that is a workbench, such as a5s's draft: the whole window, the product's sidebar
+   shrunk to the rail, and beside it the work, its toolbar above its panes. On a phone the rail is a
+   row of icons above the work, and the page scrolls */
+body.app.workbench { display: block; height: 100vh; overflow: hidden; background: var(--page); }
+.wb.window { height: 100vh; grid-template-rows: minmax(0, 1fr); }
+.wb-main { grid-column: 2; display: grid; grid-template-rows: auto minmax(0, 1fr); min-width: 0; min-height: 0;
+           max-width: none; margin: 0; padding: 0; }  /* the page's main, without a page's margins */
+.wb-main > .wb-body { min-height: 0; }
+@media (max-width: 760px) {
+  body.app.workbench { height: auto; overflow: auto; }
+  .wb.window { display: flex; flex-direction: column; height: auto; }
+  .wb.window .wb-rail { flex-direction: row; padding: 0.4rem 0.6rem; overflow-x: auto;
+                        border-inline-end: 0; border-bottom: 1px solid var(--line); }
+  .wb.window .wb-rail .brand { padding: 0 var(--space-2) 0 0; }
+  .wb.window .wb-rail nav { flex-direction: row; flex: none; }
+}
 
 /* A step, opened: what came in, its settings, and what went out, side by side, from the last
    test, so a person sets a step with its data in view (n8n's way) */
@@ -824,6 +854,9 @@ button.fd-part { width: 100%; padding: 0.3rem 0.4rem; border: 0; background: tra
   .wb-body > .fd-palette { max-height: 14rem; border-inline-end: 0; border-bottom: 1px solid var(--line); }
   .wb-body > .flow { min-height: 26rem; }
   .wb-body > .wb-inspector { overflow: visible; border-inline-start: 0; border-top: 1px solid var(--line); }
+}
+@media (max-width: 760px) {
+  .wb-view, .flow-listing { padding: var(--space-4); }  /* a phone's width, given to the work */
 }
 
 /* A change request (proposed), for a3t: what it changes, in words, beside its checks and its decision */
@@ -938,7 +971,7 @@ button.fd-part { width: 100%; padding: 0.3rem 0.4rem; border: 0; background: tra
 .sheet-head strong { display: block; }
 .sheet-head span { color: var(--muted); font-size: var(--text-xs); }
 .sheet .wb-label { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); }
-.sheet .wb-field input, .sheet .wb-field select { width: 100%; }
+.sheet .wb-field input:where(:not([type="checkbox"], [type="radio"])), .sheet .wb-field select { width: 100%; }
 .sheet-note { margin: 0; color: var(--muted); font-size: var(--text-xs); text-align: center; }
 .was { display: flex; justify-content: space-between; gap: var(--space-2); color: var(--muted); font-size: var(--text-xs); }
 .attached { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); padding: var(--space-2) var(--space-3);
