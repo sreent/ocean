@@ -1,0 +1,38 @@
+<!-- @dsCard group="Issues" height=545 subtitle="The query language: a problem, suggestions, and asking in words" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>QueryBar</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="label">A problem, underlined, with its words beneath</p>
+<div class="query">
+<div class="query-row"><div class="query-field"><span class="query-mirror" aria-hidden="true">project: BACK State: <mark class="query-problem">Fixd</mark> updated: {This week}</span><input type="text" class="query-input" id="q1" role="combobox" aria-label="Search issues" aria-autocomplete="list" aria-expanded="false" aria-invalid="true" aria-describedby="q1-problems" value="project: BACK State: Fixd updated: {This week}" autocomplete="off" spellcheck="false" enterkeyhint="search"></div><button type="button" class="query-ask" aria-pressed="false"><span class="avatar agent small" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><span class="query-ask-words">Ask in words</span></button></div>
+<p class="query-problems" id="q1-problems"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg><strong>Unknown value “Fixd” for State</strong><span aria-hidden="true">·</span><span>Did you mean <button type="button" class="link">Fixed</button>?</span></p>
+</div></div>
+<div class="ds-group ds-pop-room"><p class="label">What it could be, as the person types</p>
+<div class="query">
+<div class="query-row"><div class="query-field"><span class="query-mirror" aria-hidden="true">project: BACK State: Fix</span><input type="text" class="query-input" id="q2" role="combobox" aria-label="Search issues" aria-autocomplete="list" aria-expanded="true" aria-controls="q2-options" aria-activedescendant="q2-o1" value="project: BACK State: Fix" autocomplete="off" spellcheck="false" enterkeyhint="search"></div><button type="button" class="query-ask" aria-pressed="false"><span class="avatar agent small" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><span class="query-ask-words">Ask in words</span></button></div>
+<ul class="popover options" id="q2-options" role="listbox" aria-label="Suggestions">
+<li role="option" id="q2-o1" aria-selected="true"><span><mark>Fix</mark>ed</span><span class="option-kind">State</span></li>
+<li role="option" id="q2-o2" aria-selected="false"><span><mark>Fix</mark>ed in build</span><span class="option-kind">field</span></li>
+<li role="option" id="q2-o3" aria-selected="false"><span><mark>Fix</mark> versions</span><span class="option-kind">field</span></li>
+<li role="option" id="q2-o4" aria-selected="false"><span>#<mark>fix</mark>-later</span><span class="option-kind">tag</span></li>
+</ul>
+</div></div>
+<div class="ds-group"><p class="label">Asked in words, and what the agent read it as</p>
+<div class="query">
+<div class="query-row"><div class="query-field words"><span class="query-mirror" aria-hidden="true">critical bugs nobody has picked up this week</span><input type="text" class="query-input" id="q3" role="combobox" aria-label="Ask in words" aria-autocomplete="list" aria-expanded="false" value="critical bugs nobody has picked up this week" autocomplete="off" spellcheck="false" enterkeyhint="search"></div><button type="button" class="query-ask" aria-pressed="true"><span class="avatar agent small" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><span class="query-ask-words">Ask in words</span></button></div>
+<p class="query-read"><span class="who" data-kind="agent"><span class="avatar agent small" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><span class="who-name">assistant</span></span><span>Interpreted as:</span><code>project: BACK Type: Bug Priority: Critical Assignee: Unassigned created: {This week}</code><button type="button" class="link">Edit</button></p>
+<p class="query-found">4 issues</p>
+</div></div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!-- @dsCard group="Issues" height=754 width=1340 subtitle="A command for 3 issues: typed, with a problem; asked in words, ready to apply" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CommandBar</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-cols">
+<div class="ds-group"><p class="label">Typed, with a problem</p>
+<dialog class="dialog command ds-in-place" open aria-labelledby="c1-title">
+<h2 id="c1-title">Apply a command</h2>
+<p class="command-to">To 3 issues: <span class="issue-id">BACK-12</span>, <span class="issue-id">BACK-15</span> and <span class="issue-id">BACK-19</span></p>
+<div class="query">
+<div class="query-row"><div class="query-field"><span class="query-mirror" aria-hidden="true">fixed for: anna Fix versions: <mark class="query-problem">2.5</mark></span><input type="text" class="query-input" id="c1" role="combobox" aria-label="Command" aria-autocomplete="list" aria-expanded="false" aria-invalid="true" aria-describedby="c1-problems" value="fixed for: anna Fix versions: 2.5" autocomplete="off" spellcheck="false" enterkeyhint="search"></div><button type="button" class="query-ask" aria-pressed="false"><span class="avatar agent small" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><span class="query-ask-words">Ask in words</span></button></div>
+<p class="query-problems" id="c1-problems"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg><strong>No version “2.5” in BACK</strong><span aria-hidden="true">·</span><span>Did you mean <button type="button" class="link">2.4.1</button>?</span></p>
+</div>
+<div class="command-preview" role="group" aria-label="What it changes">
+<p class="label">What it changes</p>
+<ul class="command-issues">
+<li><span class="issue-id">BACK-12</span><span class="command-summary">Login times out on slow networks</span><ul class="change-lines"><li><span class="change-field">State:</span> <del>In Progress</del> → <ins>Fixed</ins></li><li class="same">Assignee: Anna Schmidt, as it is</li></ul></li>
+<li><span class="issue-id">BACK-15</span><span class="command-summary">Retry failed webhook deliveries with backoff</span><ul class="change-lines"><li><span class="change-field">State:</span> <del>Open</del> → <ins>Fixed</ins></li><li><span class="change-field">Assignee:</span> <del>Ben Okafor</del> → <ins>Anna Schmidt</ins></li></ul></li>
+<li><span class="issue-id">BACK-19</span><span class="command-summary">Rate limits count per token, not per person</span><ul class="change-lines"><li><span class="change-field">State:</span> <del>In Review</del> → <ins>Fixed</ins></li><li><span class="change-field">Assignee:</span> <del>Priya Nair</del> → <ins>Anna Schmidt</ins></li></ul></li>
+</ul>
+</div>
+<label class="command-comment">A comment, if you want one<textarea placeholder="It goes on each of the 3 issues"></textarea></label>
+<div class="dialog-actions"><p class="command-hint">It applies once the problem is fixed.</p><button type="button">Cancel</button><button type="button" class="primary" disabled>Apply to 3 issues</button></div>
+</dialog></div>
+<div class="ds-group"><p class="label">Asked in words, ready to apply</p>
+<dialog class="dialog command ds-in-place" open aria-labelledby="c2-title">
+<h2 id="c2-title">Apply a command</h2>
+<p class="command-to">To 3 issues: <span class="issue-id">BACK-12</span>, <span class="issue-id">BACK-15</span> and <span class="issue-id">BACK-19</span></p>
+<div class="query">
+<div class="query-row"><div class="query-field words"><span class="query-mirror" aria-hidden="true">mark these fixed in 2.4.1 and give them to Anna</span><input type="text" class="query-input" id="c2" role="combobox" aria-label="Ask in words" aria-autocomplete="list" aria-expanded="false" value="mark these fixed in 2.4.1 and give them to Anna" autocomplete="off" spellcheck="false" enterkeyhint="search"></div><button type="button" class="query-ask" aria-pressed="true"><span class="avatar agent small" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><span class="query-ask-words">Ask in words</span></button></div>
+<p class="query-read"><span class="who" data-kind="agent"><span class="avatar agent small" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><span class="who-name">assistant</span></span><span>Interpreted as:</span><code>fixed Fix versions: 2.4.1 for: anna.schmidt</code><button type="button" class="link">Edit</button></p>
+</div>
+<div class="command-preview" role="group" aria-label="What it changes">
+<p class="label">What it changes</p>
+<ul class="command-issues">
+<li><span class="issue-id">BACK-12</span><span class="command-summary">Login times out on slow networks</span><ul class="change-lines"><li><span class="change-field">State:</span> <del>In Progress</del> → <ins>Fixed</ins></li><li><span class="change-field">Fix versions:</span> <ins>2.4.1</ins> <span class="same">added</span></li><li class="same">Assignee: Anna Schmidt, as it is</li></ul></li>
+<li><span class="issue-id">BACK-15</span><span class="command-summary">Retry failed webhook deliveries with backoff</span><ul class="change-lines"><li><span class="change-field">State:</span> <del>Open</del> → <ins>Fixed</ins></li><li><span class="change-field">Fix versions:</span> <ins>2.4.1</ins> <span class="same">added</span></li><li><span class="change-field">Assignee:</span> <del>Ben Okafor</del> → <ins>Anna Schmidt</ins></li></ul></li>
+<li><span class="issue-id">BACK-19</span><span class="command-summary">Rate limits count per token, not per person</span><ul class="change-lines"><li><span class="change-field">State:</span> <del>In Review</del> → <ins>Fixed</ins></li><li><span class="change-field">Fix versions:</span> <ins>2.4.1</ins> <span class="same">added</span></li><li><span class="change-field">Assignee:</span> <del>Priya Nair</del> → <ins>Anna Schmidt</ins></li></ul></li>
+</ul>
+</div>
+<label class="command-comment">A comment, if you want one<textarea>Fixed by the retry change in 2.4.1.</textarea></label>
+<div class="dialog-actions"><button type="button">Cancel</button><button type="button" class="primary">Apply to 3 issues</button></div>
+</dialog></div>
+</div>
+</div>
+</body>
+</html>

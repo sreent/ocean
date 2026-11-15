@@ -1,0 +1,67 @@
+<!-- @dsCard group="Issues" height=811 subtitle="BACK-12's links, by what they say, and one being added" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>IssueLinks</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<section class="card issue-links-box" aria-labelledby="links-title">
+<div class="issue-links">
+<div class="issue-links-head"><h2 id="links-title">Links</h2><button type="button" aria-expanded="true" aria-controls="add-link">Add link</button></div>
+<fieldset class="link-add" id="add-link">
+<legend>A link from BACK-12</legend>
+<div class="link-add-fields">
+<label>What it says<select><option>depends on</option><option>is required for</option><option>subtask of</option><option>parent for</option><option>duplicates</option><option selected>relates to</option></select></label>
+<label>To<input type="text" value="BACK-46" aria-describedby="add-link-found"></label>
+</div>
+<p class="link-found" id="add-link-found"><span class="issue-id">BACK-46</span><span>Tokens expire early on clock drift</span><span class="badge">Open</span></p>
+<div class="link-add-actions"><button type="button">Cancel</button><button type="button" class="primary">Link it</button></div>
+</fieldset>
+<div class="link-group">
+<h3 class="label">depends on · 2</h3>
+<ul class="link-list">
+<li><span class="issue-id">BACK-41</span><a href="#">Raise the gateway's read timeout</a><span class="badge">In Progress</span></li>
+<li class="resolved"><span class="issue-id">BACK-9</span><a href="#">Move sessions to the new store</a><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>Fixed</span></li>
+</ul>
+</div>
+<div class="link-group">
+<h3 class="label">is required for · 1</h3>
+<ul class="link-list">
+<li><span class="issue-id">BACK-42</span><a href="#">Release 2.4.1</a><span class="badge">Open</span></li>
+</ul>
+</div>
+<div class="link-group">
+<h3 class="label">subtask of · 1</h3>
+<ul class="link-list">
+<li><span class="issue-id">BACK-7</span><a href="#">Login and sessions</a><span class="badge">In Progress</span></li>
+</ul>
+</div>
+<div class="link-group">
+<h3 class="label">parent for · 2</h3>
+<ul class="link-list">
+<li class="resolved"><span class="issue-id">BACK-43</span><a href="#">Reproduce it on a throttled network</a><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>Done</span></li>
+<li><span class="issue-id">BACK-44</span><a href="#">Retry the token exchange once</a><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>In Review</span></li>
+</ul>
+</div>
+<div class="link-group">
+<h3 class="label">duplicates · 1</h3>
+<ul class="link-list">
+<li class="resolved"><span class="issue-id">BACK-8</span><a href="#">Sessions drop on slow mobile networks</a><span class="badge idle"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 6.5v11"/><path d="M15 6.5v11"/></svg>Obsolete</span></li>
+</ul>
+</div>
+<div class="link-group">
+<h3 class="label">relates to · 1</h3>
+<ul class="link-list">
+<li><span class="issue-id">BACK-19</span><a href="#">Rate limits count per token, not per person</a><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>In Review</span></li>
+</ul>
+</div>
+</div>
+</section>
+</div>
+</body>
+</html>

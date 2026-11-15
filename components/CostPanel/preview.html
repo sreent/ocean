@@ -1,0 +1,107 @@
+<!-- @dsCard group="Plans" height=676 subtitle="Customer portal 3.0: cost against plan, the indices in words, and the S-curve with its figures" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>CostPanel</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/charts.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<section class="card cost-box" aria-labelledby="cost-title">
+<div class="cost">
+<div class="cost-head"><h2 id="cost-title">Cost against plan</h2><p class="note">Customer portal 3.0 · as of 13 Nov, week 11 of 16</p></div>
+<div class="cost-top">
+<div class="cost-bars">
+<p class="label" id="cost-to-date">To date</p>
+<dl aria-labelledby="cost-to-date">
+<div class="cost-row"><dt>Planned</dt><dd class="cost-bar"><svg aria-hidden="true"><rect class="cost-fill s1" width="71%" height="100%" rx="3"/></svg></dd><dd class="cost-figure">€387,000</dd></div>
+<div class="cost-row"><dt>Earned</dt><dd class="cost-bar"><svg aria-hidden="true"><rect class="cost-fill s2" width="66.1%" height="100%" rx="3"/></svg></dd><dd class="cost-figure">€360,000</dd></div>
+<div class="cost-row"><dt>Actual</dt><dd class="cost-bar"><svg aria-hidden="true"><rect class="cost-fill s3" width="75%" height="100%" rx="3"/></svg></dd><dd class="cost-figure">€409,000</dd></div>
+</dl>
+<p class="label" id="cost-at-end">At completion</p>
+<dl aria-labelledby="cost-at-end">
+<div class="cost-row"><dt>Budget</dt><dd class="cost-bar"><svg aria-hidden="true"><rect class="cost-fill s1" width="88.1%" height="100%" rx="3"/></svg></dd><dd class="cost-figure">€480,000</dd></div>
+<div class="cost-row"><dt>Forecast</dt><dd class="cost-bar"><svg aria-hidden="true"><rect class="cost-fill forecast" x="0.75" y="0.75" width="100%" height="10.5" rx="3"/></svg></dd><dd class="cost-figure">€545,000</dd></div>
+</dl>
+<div class="cost-over"><span class="badge bad"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>€65,000 over budget</span></div>
+</div>
+<div class="cost-indices">
+<div class="cost-index"><p class="label">Cost performance, CPI</p><strong>0.88</strong><p>The work done so far cost 14% more than planned.</p><p class="note">€360,000 earned for €409,000 spent</p></div>
+<div class="cost-index"><p class="label">Schedule performance, SPI</p><strong>0.93</strong><p>3 days behind.</p><p class="note">€360,000 earned of €387,000 planned by now</p></div>
+</div>
+</div>
+<div class="cost-curve-box">
+<figure class="cost-curve">
+<svg viewBox="0 0 420 250" role="img" aria-labelledby="curve-title"><title id="curve-title">Planned value, earned value and actual cost, week by week; the figures are in the table beside it</title>
+<line class="cost-grid-line" x1="46" x2="314" y1="224" y2="224"/>
+<text x="38" y="228" text-anchor="end">€0</text>
+<line class="cost-grid-line" x1="46" x2="314" y1="188.7" y2="188.7"/>
+<text x="38" y="192.7" text-anchor="end">€100k</text>
+<line class="cost-grid-line" x1="46" x2="314" y1="153.3" y2="153.3"/>
+<text x="38" y="157.3" text-anchor="end">€200k</text>
+<line class="cost-grid-line" x1="46" x2="314" y1="118" y2="118"/>
+<text x="38" y="122" text-anchor="end">€300k</text>
+<line class="cost-grid-line" x1="46" x2="314" y1="82.7" y2="82.7"/>
+<text x="38" y="86.7" text-anchor="end">€400k</text>
+<line class="cost-grid-line" x1="46" x2="314" y1="47.3" y2="47.3"/>
+<text x="38" y="51.3" text-anchor="end">€500k</text>
+<line class="cost-grid-line" x1="46" x2="314" y1="12" y2="12"/>
+<text x="38" y="16" text-anchor="end">€600k</text>
+<line class="cost-axis" x1="54.5" x2="54.5" y1="224" y2="228"/>
+<text x="54.5" y="241" text-anchor="middle">Sep</text>
+<line class="cost-axis" x1="118.3" x2="118.3" y1="224" y2="228"/>
+<text x="118.3" y="241" text-anchor="middle">Oct</text>
+<line class="cost-axis" x1="184.3" x2="184.3" y1="224" y2="228"/>
+<text x="184.3" y="241" text-anchor="middle">Nov</text>
+<line class="cost-axis" x1="248.1" x2="248.1" y1="224" y2="228"/>
+<text x="248.1" y="241" text-anchor="middle">Dec</text>
+<line class="cost-axis" x1="314" x2="314" y1="224" y2="228"/>
+<text x="314" y="241" text-anchor="middle">Jan</text>
+<line class="cost-axis" x1="46" x2="314" y1="224" y2="224"/>
+<line class="cost-today" x1="209.8" x2="209.8" y1="12" y2="224"/>
+<text class="cost-today-label" x="214.8" y="22">Today</text>
+<path class="cost-line s1" d="M46 224L60.9 221.2L75.8 217.1L90.7 211.1L105.6 202.6L120.4 191.1L135.3 176.3L150.2 158.6L165.1 139.2L180 119.8L194.9 102.1L209.8 87.3L224.7 75.7L239.6 67.2L254.4 61.2L269.3 57.1L284.2 54.3"/>
+<path class="cost-line s3 forecast" d="M209.8 79.5L302.1 31.4"/>
+<path class="cost-line s2" d="M46 224L60.9 221.2L75.8 217.2L90.7 211.2L105.6 203L120.4 191.8L135.3 177.7L150.2 161L165.1 142.9L180 125.2L194.9 109.5L209.8 96.8"/>
+<path class="cost-line s3" d="M46 224L60.9 221.2L75.8 216.9L90.7 210.7L105.6 201.8L120.4 189.6L135.3 174L150.2 155.2L165.1 134.6L180 114L194.9 95.2L209.8 79.5"/>
+<circle class="cost-dot s1" cx="284.2" cy="54.4" r="4"/>
+<circle class="cost-dot s3" cx="302.1" cy="31.4" r="4"/>
+<circle class="cost-dot s3" cx="209.8" cy="79.5" r="4"/>
+<circle class="cost-dot s2" cx="209.8" cy="96.8" r="4"/>
+<text class="cost-label" x="201.8" y="70.5" text-anchor="end">Actual €409k</text>
+<text class="cost-label" x="217.8" y="112.8">Earned €360k</text>
+<text class="cost-label" x="292.2" y="58.4">Budget €480k</text>
+<text class="cost-label" x="310.1" y="35.4">Forecast €545k</text>
+</svg>
+<figcaption><ul class="cost-key">
+<li><svg width="22" height="10" aria-hidden="true"><path class="cost-line s1" d="M1 5H21"/></svg>Planned value</li>
+<li><svg width="22" height="10" aria-hidden="true"><path class="cost-line s2" d="M1 5H21"/></svg>Earned value</li>
+<li><svg width="22" height="10" aria-hidden="true"><path class="cost-line s3" d="M1 5H21"/></svg>Actual cost</li>
+<li><svg width="22" height="10" aria-hidden="true"><path class="cost-line s3 forecast" d="M1 5H21"/></svg>Forecast</li>
+</ul></figcaption>
+</figure>
+<table class="figures cost-figures">
+<caption>Week by week, to date and as planned</caption>
+<thead><tr><th scope="col">Week ending</th><th scope="col" class="num">Planned</th><th scope="col" class="num">Earned</th><th scope="col" class="num">Actual</th></tr></thead>
+<tbody>
+<tr><th scope="row">11 Sep</th><td class="num">€20k</td><td class="num">€19k</td><td class="num">€20k</td></tr>
+<tr><th scope="row">25 Sep</th><td class="num">€61k</td><td class="num">€60k</td><td class="num">€63k</td></tr>
+<tr><th scope="row">9 Oct</th><td class="num">€135k</td><td class="num">€131k</td><td class="num">€142k</td></tr>
+<tr><th scope="row">23 Oct</th><td class="num">€240k</td><td class="num">€229k</td><td class="num">€253k</td></tr>
+<tr><th scope="row">6 Nov</th><td class="num">€345k</td><td class="num">€324k</td><td class="num">€364k</td></tr>
+<tr><th scope="row">13 Nov, today</th><td class="num">€387k</td><td class="num">€360k</td><td class="num">€409k</td></tr>
+<tr><th scope="row">20 Nov</th><td class="num">€420k</td><td class="num"></td><td class="num"></td></tr>
+<tr><th scope="row">4 Dec</th><td class="num">€461k</td><td class="num"></td><td class="num"></td></tr>
+<tr><th scope="row">18 Dec, the end</th><td class="num">€480k</td><td class="num"></td><td class="num"></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+</body>
+</html>

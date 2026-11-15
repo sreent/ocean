@@ -242,3 +242,6 @@ dialog.dialog.ds-in-place { position: static; margin: 0; }
 /* The InTeams page: the window beside a column, and a row below */
 .ds-teams { display: grid; grid-template-columns: 880px minmax(0, 1fr); gap: var(--space-5); align-items: start; }
 .ds-teams-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); align-items: start; }
+
+/* Room under a popover drawn open, as it floats over what's below it on a page */
+.ds-pop-room { min-height: 15rem; }

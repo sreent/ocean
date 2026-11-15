@@ -1,0 +1,97 @@
+<!-- @dsCard group="Issues" height=552 subtitle="An issue's fields: what triage worked out, dashed until accepted; a value opened" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>FieldPanel</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-cols">
+<div class="ds-group"><p class="label">BACK-32, just reported: what triage worked out</p>
+<aside class="fields" aria-label="Fields of BACK-32">
+<dl class="fields-list">
+<div class="fields-row"><dt id="a-project">Project</dt><dd>
+<button type="button" class="fields-value" id="a-project-v" aria-labelledby="a-project a-project-v" aria-haspopup="listbox">Backend <span class="issue-id">BACK</span></button>
+</dd></div>
+<div class="fields-row"><dt id="a-type">Type</dt><dd>
+<button type="button" class="fields-value" id="a-type-v" aria-labelledby="a-type a-type-v" aria-haspopup="listbox">Bug</button>
+</dd></div>
+<div class="fields-row"><dt id="a-state">State</dt><dd>
+<button type="button" class="fields-value" id="a-state-v" aria-labelledby="a-state a-state-v" aria-haspopup="listbox"><span class="badge">Open</span></button>
+</dd></div>
+<div class="fields-row"><dt id="a-priority">Priority</dt><dd>
+<button type="button" class="fields-value proposed" id="a-priority-v" aria-labelledby="a-priority a-priority-v" aria-haspopup="listbox" aria-describedby="a-priority-why"><span class="priority" role="meter" aria-label="Priority" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" aria-valuetext="Major"><span class="priority-steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="priority-word">Major</span></span></button>
+<p class="fields-proposed" id="a-priority-why"><span class="avatar agent small" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><span><strong>triage</strong> worked it out from the summary</span><button type="button">Accept</button></p>
+</dd></div>
+<div class="fields-row"><dt id="a-sub">Subsystem</dt><dd>
+<button type="button" class="fields-value proposed" id="a-sub-v" aria-labelledby="a-sub a-sub-v" aria-haspopup="listbox" aria-describedby="a-sub-why">Storage</button>
+<p class="fields-proposed" id="a-sub-why"><span class="avatar agent small" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><span><strong>triage</strong> worked it out from 3 similar issues</span><button type="button">Accept</button></p>
+</dd></div>
+<div class="fields-row"><dt id="a-who">Assignee</dt><dd>
+<button type="button" class="fields-value proposed" id="a-who-v" aria-labelledby="a-who a-who-v" aria-haspopup="listbox" aria-describedby="a-who-why"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">KM</span><span class="who-name">Kofi Mensah</span></span></button>
+<p class="fields-proposed" id="a-who-why"><span class="avatar agent small" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><span><strong>triage</strong> worked it out from who fixed those</span><button type="button">Accept</button></p>
+</dd></div>
+<div class="fields-row"><dt id="a-fix">Fix versions</dt><dd>
+<button type="button" class="fields-value" id="a-fix-v" aria-labelledby="a-fix a-fix-v" aria-haspopup="listbox"><span class="empty">None yet</span></button>
+</dd></div>
+<div class="fields-row"><dt id="a-due">Due date</dt><dd>
+<button type="button" class="fields-value" id="a-due-v" aria-labelledby="a-due a-due-v" aria-haspopup="listbox"><span class="empty">No due date</span></button>
+</dd></div>
+<div class="fields-row"><dt id="a-est">Estimation</dt><dd>
+<input type="text" class="fields-value mono" id="a-est-v" aria-labelledby="a-est" value="1d 4h">
+</dd></div>
+</dl>
+<p class="fields-foot">Dashed values were worked out by an agent: check them, and accept each one you agree with.</p>
+</aside></div>
+<div class="ds-group"><p class="label">BACK-12, its state opened</p>
+<aside class="fields" aria-label="Fields of BACK-12">
+<dl class="fields-list">
+<div class="fields-row"><dt id="b-project">Project</dt><dd>
+<button type="button" class="fields-value" id="b-project-v" aria-labelledby="b-project b-project-v" aria-haspopup="listbox">Backend <span class="issue-id">BACK</span></button>
+</dd></div>
+<div class="fields-row"><dt id="b-type">Type</dt><dd>
+<button type="button" class="fields-value" id="b-type-v" aria-labelledby="b-type b-type-v" aria-haspopup="listbox">Bug</button>
+</dd></div>
+<div class="fields-row"><dt id="b-state">State</dt><dd>
+<button type="button" class="fields-value" id="b-state-v" aria-labelledby="b-state b-state-v" aria-haspopup="listbox" aria-expanded="true" aria-controls="b-state-options"><span class="badge">In Progress</span></button>
+<ul class="popover options" id="b-state-options" role="listbox" aria-label="State">
+<li role="option" aria-selected="false"><span class="badge">Open</span></li>
+<li role="option" aria-selected="true"><span class="badge">In Progress</span><span class="option-kind">now</span></li>
+<li role="option" aria-selected="false"><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>In Review</span></li>
+<li role="option" aria-selected="false"><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>Blocked</span></li>
+<li role="option" aria-selected="false"><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>Fixed</span><span class="option-kind">resolves it</span></li>
+<li role="option" aria-selected="false"><span class="badge idle"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 6.5v11"/><path d="M15 6.5v11"/></svg>Won't fix</span><span class="option-kind">resolves it</span></li>
+<li role="option" aria-selected="false"><span class="badge idle"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 6.5v11"/><path d="M15 6.5v11"/></svg>Duplicate</span><span class="option-kind">resolves it</span></li>
+</ul>
+</dd></div>
+<div class="fields-row"><dt id="b-priority">Priority</dt><dd>
+<button type="button" class="fields-value" id="b-priority-v" aria-labelledby="b-priority b-priority-v" aria-haspopup="listbox"><span class="priority" role="meter" aria-label="Priority" aria-valuemin="1" aria-valuemax="5" aria-valuenow="4" aria-valuetext="Critical"><span class="priority-steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="priority-word">Critical</span></span></button>
+</dd></div>
+<div class="fields-row"><dt id="b-sub">Subsystem</dt><dd>
+<button type="button" class="fields-value" id="b-sub-v" aria-labelledby="b-sub b-sub-v" aria-haspopup="listbox">Authentication</button>
+</dd></div>
+<div class="fields-row"><dt id="b-who">Assignee</dt><dd>
+<button type="button" class="fields-value" id="b-who-v" aria-labelledby="b-who b-who-v" aria-haspopup="listbox"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">AS</span><span class="who-name">Anna Schmidt</span></span></button>
+</dd></div>
+<div class="fields-row"><dt id="b-fix">Fix versions</dt><dd>
+<button type="button" class="fields-value mono" id="b-fix-v" aria-labelledby="b-fix b-fix-v" aria-haspopup="listbox"><span class="issue-id">2.4.1</span></button>
+</dd></div>
+<div class="fields-row"><dt id="b-due">Due date</dt><dd>
+<button type="button" class="fields-value" id="b-due-v" aria-labelledby="b-due b-due-v" aria-haspopup="listbox">20 Nov</button>
+</dd></div>
+<div class="fields-row"><dt id="b-est">Estimation</dt><dd>
+<input type="text" class="fields-value mono" id="b-est-v" aria-labelledby="b-est" value="2d 4h">
+</dd></div>
+<div class="fields-row"><dt id="b-spent">Spent time</dt><dd>
+<input type="text" class="fields-value mono" id="b-spent-v" aria-labelledby="b-spent" value="1d 2h">
+</dd></div>
+</dl>
+</aside></div>
+</div>
+</div>
+</body>
+</html>

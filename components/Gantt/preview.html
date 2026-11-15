@@ -1,0 +1,155 @@
+<!-- @dsCard group="Plans" height=591 width=1100 subtitle="Data center migration: the critical path in ink, the baseline beneath, a late task, today" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Gantt</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/charts.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<section class="gantt gantt-box" aria-labelledby="gantt-title">
+<h2 id="gantt-title" class="hidden">Data center migration, by day</h2>
+<div class="gantt-scroll" tabindex="0" role="group" aria-label="Data center migration, 2 Nov to 13 Dec">
+<div class="gantt-grid">
+<div class="gantt-side">
+<div class="gantt-side-head" aria-hidden="true"><span>Task</span><span>When</span><span>Done</span></div>
+<ol class="gantt-rows">
+<li class="gantt-row summary" data-depth="0"><span class="gantt-name">Plan the move</span><span class="gantt-when">2–13 Nov</span><span class="gantt-done">100%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Inventory the racks</span><span class="gantt-when">2–4 Nov</span><span class="gantt-done">100%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Map dependencies<span class="hidden">, after Inventory the racks, planned for 5–10 Nov</span></span><span class="gantt-when">5–11 Nov</span><span class="gantt-done">100%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Agree the cutover window<span class="hidden">, after Map dependencies, planned for 11–12 Nov</span></span><span class="gantt-when">12–13 Nov</span><span class="gantt-done">100%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Plan signed off<span class="hidden">, after Agree the cutover window, planned for 12 Nov</span></span><span class="gantt-when">13 Nov</span><span class="gantt-done">100%<span class="hidden"> done</span></span></li>
+<li class="gantt-row summary" data-depth="0"><span class="gantt-name">Build the new site</span><span class="gantt-when">9–27 Nov</span><span class="gantt-done">30%<span class="hidden"> done</span></span></li>
+<li class="gantt-row late" data-depth="1"><span class="gantt-name">Order the hardware<span class="hidden">, on the critical path, 3 days late: it was due 13 Nov, planned for 9–13 Nov</span></span><span class="gantt-when">9–18 Nov</span><span class="gantt-done">80%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Rack and cable<span class="hidden">, on the critical path, after Order the hardware, planned for 16–20 Nov</span></span><span class="gantt-when">19–25 Nov</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Set up the network<span class="hidden">, 3 days of slack, after Order the hardware, planned for 16–17 Nov</span></span><span class="gantt-when">19–20 Nov</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Burn-in tests<span class="hidden">, on the critical path, after Rack and cable and Set up the network, planned for 23–24 Nov</span></span><span class="gantt-when">26–27 Nov</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+<li class="gantt-row summary" data-depth="0"><span class="gantt-name">Move and cut over</span><span class="gantt-when">30 Nov–11 Dec</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Migrate storage<span class="hidden">, on the critical path, after Burn-in tests, planned for 25 Nov–1 Dec</span></span><span class="gantt-when">30 Nov–4 Dec</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Move the services<span class="hidden">, on the critical path, after Migrate storage, planned for 2–4 Dec</span></span><span class="gantt-when">7–9 Dec</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Cutover<span class="hidden">, on the critical path, after Move the services, planned for 7 Dec</span></span><span class="gantt-when">10 Dec</span><span class="gantt-done"></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Retire the old site<span class="hidden">, on the critical path, after Cutover, planned for 7–8 Dec</span></span><span class="gantt-when">10–11 Dec</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+</ol>
+</div>
+<svg class="gantt-chart" width="714" height="520" viewBox="0 0 714 520" aria-hidden="true">
+<rect class="gantt-weekend" x="85" y="40" width="34" height="480"/>
+<rect class="gantt-weekend" x="204" y="40" width="34" height="480"/>
+<rect class="gantt-weekend" x="323" y="40" width="34" height="480"/>
+<rect class="gantt-weekend" x="442" y="40" width="34" height="480"/>
+<rect class="gantt-weekend" x="561" y="40" width="34" height="480"/>
+<rect class="gantt-weekend" x="680" y="40" width="34" height="480"/>
+<line class="gantt-rule" x1="0" x2="714" y1="71.5" y2="71.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="103.5" y2="103.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="135.5" y2="135.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="167.5" y2="167.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="199.5" y2="199.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="231.5" y2="231.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="263.5" y2="263.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="295.5" y2="295.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="327.5" y2="327.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="359.5" y2="359.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="391.5" y2="391.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="423.5" y2="423.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="455.5" y2="455.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="487.5" y2="487.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="39.5" y2="39.5"/>
+<line class="gantt-rule" x1="118.5" x2="118.5" y1="0" y2="520"/>
+<line class="gantt-rule" x1="237.5" x2="237.5" y1="0" y2="520"/>
+<line class="gantt-rule" x1="356.5" x2="356.5" y1="0" y2="520"/>
+<line class="gantt-rule" x1="475.5" x2="475.5" y1="0" y2="520"/>
+<line class="gantt-rule" x1="594.5" x2="594.5" y1="0" y2="520"/>
+<text class="gantt-week" x="5" y="15">2 Nov</text>
+<text class="gantt-week" x="124" y="15">9 Nov</text>
+<text class="gantt-week" x="243" y="15">16 Nov</text>
+<text class="gantt-week" x="362" y="15">23 Nov</text>
+<text class="gantt-week" x="481" y="15">30 Nov</text>
+<text class="gantt-week" x="600" y="15">7 Dec</text>
+<text x="8.5" y="33" text-anchor="middle">2</text>
+<text x="25.5" y="33" text-anchor="middle">3</text>
+<text x="42.5" y="33" text-anchor="middle">4</text>
+<text x="59.5" y="33" text-anchor="middle">5</text>
+<text x="76.5" y="33" text-anchor="middle">6</text>
+<text x="93.5" y="33" text-anchor="middle">7</text>
+<text x="110.5" y="33" text-anchor="middle">8</text>
+<text x="127.5" y="33" text-anchor="middle">9</text>
+<text x="144.5" y="33" text-anchor="middle">10</text>
+<text x="161.5" y="33" text-anchor="middle">11</text>
+<text x="178.5" y="33" text-anchor="middle">12</text>
+<text x="195.5" y="33" text-anchor="middle">13</text>
+<text x="212.5" y="33" text-anchor="middle">14</text>
+<text x="229.5" y="33" text-anchor="middle">15</text>
+<text x="246.5" y="33" text-anchor="middle">16</text>
+<text x="263.5" y="33" text-anchor="middle">17</text>
+<text x="280.5" y="33" text-anchor="middle">18</text>
+<text x="297.5" y="33" text-anchor="middle">19</text>
+<text x="314.5" y="33" text-anchor="middle">20</text>
+<text x="331.5" y="33" text-anchor="middle">21</text>
+<text x="348.5" y="33" text-anchor="middle">22</text>
+<text x="365.5" y="33" text-anchor="middle">23</text>
+<text x="382.5" y="33" text-anchor="middle">24</text>
+<text x="399.5" y="33" text-anchor="middle">25</text>
+<text x="416.5" y="33" text-anchor="middle">26</text>
+<text x="433.5" y="33" text-anchor="middle">27</text>
+<text x="450.5" y="33" text-anchor="middle">28</text>
+<text x="467.5" y="33" text-anchor="middle">29</text>
+<text x="484.5" y="33" text-anchor="middle">30</text>
+<text x="501.5" y="33" text-anchor="middle">1</text>
+<text x="518.5" y="33" text-anchor="middle">2</text>
+<text x="535.5" y="33" text-anchor="middle">3</text>
+<text x="552.5" y="33" text-anchor="middle">4</text>
+<text x="569.5" y="33" text-anchor="middle">5</text>
+<text x="586.5" y="33" text-anchor="middle">6</text>
+<text x="603.5" y="33" text-anchor="middle">7</text>
+<text x="620.5" y="33" text-anchor="middle">8</text>
+<text x="637.5" y="33" text-anchor="middle">9</text>
+<text x="654.5" y="33" text-anchor="middle">10</text>
+<text x="671.5" y="33" text-anchor="middle">11</text>
+<text x="688.5" y="33" text-anchor="middle">12</text>
+<text x="705.5" y="33" text-anchor="middle">13</text>
+<path class="gantt-link" d="M49 86H52Q56 86 56 90V102Q56 106 52 106H48Q44 106 44 110V114Q44 118 48 118H48"/><path class="gantt-link-head" d="M53 118l-6 -3.5v7z"/>
+<path class="gantt-link" d="M168 118H171Q175 118 175 122V134Q175 138 171 138H167Q163 138 163 142V146Q163 150 167 150H167"/><path class="gantt-link-head" d="M172 150l-6 -3.5v7z"/>
+<path class="gantt-link" d="M202 150H205Q209 150 209 154V166Q209 170 205 170H183.5Q179.5 170 179.5 174V178Q179.5 182 183.5 182H183.5"/><path class="gantt-link-head" d="M188.5 182l-6 -3.5v7z"/>
+<path class="gantt-link critical" d="M287 246H290Q294 246 294 250V262Q294 266 290 266H286Q282 266 282 270V274Q282 278 286 278H286"/><path class="gantt-link-head critical" d="M291 278l-6 -3.5v7z"/>
+<path class="gantt-link" d="M287 246H290Q294 246 294 250V294Q294 298 290 298H286Q282 298 282 302V306Q282 310 286 310H286"/><path class="gantt-link-head" d="M291 310l-6 -3.5v7z"/>
+<path class="gantt-link critical" d="M406 278H409Q413 278 413 282V326Q413 330 409 330H405Q401 330 401 334V338Q401 342 405 342H405"/><path class="gantt-link-head critical" d="M410 342l-6 -3.5v7z"/>
+<path class="gantt-link" d="M321 310H324Q328 310 328 314V338Q328 342 332 342H405"/><path class="gantt-link-head" d="M410 342l-6 -3.5v7z"/>
+<path class="gantt-link critical" d="M440 342H443Q447 342 447 346V402Q447 406 451 406H473"/><path class="gantt-link-head critical" d="M478 406l-6 -3.5v7z"/>
+<path class="gantt-link critical" d="M559 406H562Q566 406 566 410V434Q566 438 570 438H592"/><path class="gantt-link-head critical" d="M597 438l-6 -3.5v7z"/>
+<path class="gantt-link critical" d="M644 438H647Q651 438 651 442V454Q651 458 647 458H642.5Q638.5 458 638.5 462V466Q638.5 470 642.5 470H642.5"/><path class="gantt-link-head critical" d="M647.5 470l-6 -3.5v7z"/>
+<path class="gantt-link critical" d="M661.5 470H664.5Q668.5 470 668.5 474V486Q668.5 490 664.5 490H643Q639 490 639 494V498Q639 502 643 502H643"/><path class="gantt-link-head critical" d="M648 502l-6 -3.5v7z"/>
+<path class="gantt-summary" d="M2 61V52H202V61"/>
+<g class="gantt-task"><rect class="gantt-base" x="2" y="96" width="47" height="4" rx="2"/><rect class="gantt-bar" x="2" y="80" width="47" height="12" rx="4"/><rect class="gantt-done-part" x="4" y="82" width="43" height="8" rx="2.5"/></g>
+<g class="gantt-task"><rect class="gantt-base" x="53" y="128" width="98" height="4" rx="2"/><rect class="gantt-bar" x="53" y="112" width="115" height="12" rx="4"/><rect class="gantt-done-part" x="55" y="114" width="111" height="8" rx="2.5"/></g>
+<g class="gantt-task"><rect class="gantt-base" x="155" y="160" width="30" height="4" rx="2"/><rect class="gantt-bar" x="172" y="144" width="30" height="12" rx="4"/><rect class="gantt-done-part" x="174" y="146" width="26" height="8" rx="2.5"/></g>
+<g class="gantt-task"><rect class="gantt-base" x="173.5" y="192" width="10" height="4" rx="2"/><path class="gantt-milestone" d="M195.5 174l8 8 -8 8 -8 -8z"/></g>
+<path class="gantt-summary" d="M121 221V212H440V221"/>
+<g class="gantt-task critical late"><rect class="gantt-base" x="121" y="256" width="81" height="4" rx="2"/><rect class="gantt-bar" x="121" y="240" width="166" height="12" rx="4"/><rect class="gantt-done-part" x="123" y="242" width="129.6" height="8" rx="2.5"/><line class="gantt-due" x1="204" x2="204" y1="236" y2="256"/><path class="gantt-late-mark" d="M303 242l8 8M311 242l-8 8"/><text class="gantt-late" x="316" y="250">3 days late</text></g>
+<g class="gantt-task critical"><rect class="gantt-base" x="240" y="288" width="81" height="4" rx="2"/><rect class="gantt-bar" x="291" y="272" width="115" height="12" rx="4"/></g>
+<g class="gantt-task"><rect class="gantt-base" x="240" y="320" width="30" height="4" rx="2"/><path class="gantt-slack" d="M324 310H406"/><path class="gantt-slack-end" d="M406 306v8"/><rect class="gantt-bar" x="291" y="304" width="30" height="12" rx="4"/></g>
+<g class="gantt-task critical"><rect class="gantt-base" x="359" y="352" width="30" height="4" rx="2"/><rect class="gantt-bar" x="410" y="336" width="30" height="12" rx="4"/></g>
+<path class="gantt-summary" d="M478 381V372H678V381"/>
+<g class="gantt-task critical"><rect class="gantt-base" x="393" y="416" width="115" height="4" rx="2"/><rect class="gantt-bar" x="478" y="400" width="81" height="12" rx="4"/></g>
+<g class="gantt-task critical"><rect class="gantt-base" x="512" y="448" width="47" height="4" rx="2"/><rect class="gantt-bar" x="597" y="432" width="47" height="12" rx="4"/></g>
+<g class="gantt-task critical"><rect class="gantt-base" x="598.5" y="480" width="10" height="4" rx="2"/><path class="gantt-milestone" d="M654.5 462l8 8 -8 8 -8 -8z"/></g>
+<g class="gantt-task critical"><rect class="gantt-base" x="597" y="512" width="30" height="4" rx="2"/><rect class="gantt-bar" x="648" y="496" width="30" height="12" rx="4"/></g>
+<line class="gantt-today" x1="230.9" x2="230.9" y1="34" y2="520"/>
+<text class="gantt-today-label" x="234.9" y="62">Today</text>
+</svg>
+</div>
+</div>
+<ul class="gantt-legend">
+<li><svg width="28" height="14" aria-hidden="true"><rect class="gantt-bar" x="1" y="1" width="26" height="12" rx="4"/><rect class="gantt-done-part" x="3" y="3" width="13" height="8" rx="2.5"/></svg>A task, what's done inside</li>
+<li><svg width="28" height="14" aria-hidden="true"><g class="gantt-task critical"><rect class="gantt-bar" x="1.5" y="1.5" width="25" height="11" rx="4"/></g></svg>The critical path: ink, twice as heavy</li>
+<li><svg width="28" height="14" aria-hidden="true"><rect class="gantt-base" x="1" y="5" width="26" height="4" rx="2"/></svg>The baseline, faded beneath</li>
+<li><svg width="28" height="14" aria-hidden="true"><path class="gantt-slack" d="M2 7H25"/><path class="gantt-slack-end" d="M25 3v8"/></svg>Slack: how far it can slip</li>
+<li><svg width="28" height="14" aria-hidden="true"><path class="gantt-milestone" d="M14 0l7 7 -7 7 -7 -7z"/></svg>A milestone</li>
+<li><svg width="28" height="14" aria-hidden="true"><line class="gantt-today" x1="14" x2="14" y1="0" y2="14"/></svg>Today</li>
+</ul>
+</section>
+</div>
+</body>
+</html>

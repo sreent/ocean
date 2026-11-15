@@ -1,0 +1,44 @@
+<!-- @dsCard group="Issues" height=586 subtitle="BACK-12's history: people, agents and a service, their changes and comments" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>IssueHistory</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<section class="card" aria-labelledby="history-title">
+<h2 id="history-title">History</h2>
+<ol class="history">
+<li><span class="avatar small" aria-hidden="true">PN</span><div class="history-body">
+<p class="history-head"><strong class="who-name">Priya Nair</strong> reported it · via the web · <time datetime="2026-11-09T10:02">Mon 9 Nov, 10:02</time></p>
+<div class="history-comment"><p>Since Friday's deploy, people on hotel Wi-Fi can't sign in: the login page waits 30 seconds, then gives up.</p></div>
+</div></li>
+<li><span class="avatar agent small" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><div class="history-body">
+<p class="history-head"><strong class="who-name">triage</strong> worked out 3 fields, for a person to accept · on its own · <time datetime="2026-11-09T10:02">Mon 9 Nov, 10:02</time></p>
+</div></li>
+<li><span class="avatar small" aria-hidden="true">AS</span><div class="history-body">
+<p class="history-head"><strong class="who-name">Anna Schmidt</strong> accepted 2 of them · via the web · <time datetime="2026-11-09T10:20">Mon 9 Nov, 10:20</time></p>
+<ul class="change-lines"><li><span class="change-field">Priority:</span> <del>Normal</del> → <ins>Critical</ins></li><li><span class="change-field">Assignee:</span> <del>Unassigned</del> → <ins>Anna Schmidt</ins></li></ul>
+</div></li>
+<li><span class="avatar agent small" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><div class="history-body">
+<p class="history-head"><strong class="who-name">claude-code</strong> for Anna Schmidt · via MCP · <time datetime="2026-11-12T16:40">Thu 12 Nov, 16:40</time></p>
+<ul class="change-lines"><li><span class="change-field">State:</span> <del>Open</del> → <ins>In Progress</ins></li></ul>
+<div class="history-comment"><p>Reproduced it on a network throttled to 3G: the token exchange waits on a 10-second timeout, then retries at once.</p><p>A fix that retries with backoff is in pull request 482.</p></div>
+</div></li>
+<li><span class="avatar service small" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg></span><div class="history-body">
+<p class="history-head"><strong class="who-name">ci-release</strong> · via the API · <time datetime="2026-11-13T18:05">Fri 13 Nov, 18:05</time></p>
+<ul class="change-lines"><li><span class="change-field">Fixed in build:</span> <ins><span class="mono">2.4.1-rc.3</span></ins> <span class="same">added</span></li></ul>
+</div></li>
+<li><span class="avatar small" aria-hidden="true">BO</span><div class="history-body">
+<p class="history-head"><strong class="who-name">Ben Okafor</strong> · via the assistant, asked in words · <time datetime="2026-11-15T13:58">13:58</time></p>
+<ul class="change-lines"><li><span class="change-field">Due date:</span> <del>18 Nov</del> → <ins>20 Nov</ins></li></ul>
+</div></li>
+</ol>
+</section>
+</div>
+</body>
+</html>

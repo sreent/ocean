@@ -31,11 +31,22 @@ export interface BadgeProps {
 /** What a tool does, or how something stands, in the colour that means it. */
 export declare function Badge(props: BadgeProps): React.ReactElement;
 
-export interface AvatarProps { name: string; kind: Kind }
+export interface AvatarProps {
+  name: string;
+  kind: Kind;
+  /** Proposed, for a4a's dense rows and cards: a smaller mark (`.avatar.small`). */
+  size?: "small";
+}
 /** A person's initials in a circle; an agent's mark in a lagoon square; a service's tool in a slate square. */
 export declare function Avatar(props: AvatarProps): React.ReactElement;
 
-export interface WhoProps { name: string; kind: Kind; about?: string }
+export interface WhoProps {
+  name: string;
+  kind: Kind;
+  about?: string;
+  /** Proposed, for a4a's dense rows and cards: a smaller mark (`.avatar.small`). */
+  size?: "small";
+}
 /** Someone, an agent or a service, by name, with a line about them. */
 export declare function Who(props: WhoProps): React.ReactElement;
 
@@ -344,3 +355,248 @@ export interface StatusProps {
 }
 /** How an outcome stands, brought to the person: where it is, who it waits on, and until when it can be taken back. Proposed. */
 export declare function Status(props: StatusProps): React.ReactElement;
+
+// a4a's pieces (proposed; docs/products.md): a4a (agenda) tracks issues, boards and plans. Its pieces'
+// look is css/components.css, from "a4a's pieces" on; its plans, load and cost take css/charts.css too.
+// a4a's React components emit the markup each piece's README gives.
+
+/** How an issue stands, by a4a's name for its state, and the meaning that state finds in the grammar:
+ * resolved (Fixed, Verified, Done) is `good`, with a tick; waiting on someone (In Review, Blocked) `warn`,
+ * with a clock; not needed (Won't fix, Duplicate, Obsolete) `idle`, with a pause. None is a plain fact,
+ * such as Open or In Progress. */
+export type IssueState = { name: string; tone?: "good" | "warn" | "idle" };
+
+/** Someone who did something or has it to do, as Who draws them. */
+export type Someone = { name: string; kind: Kind };
+
+/** A change to an issue's field, in the grammar of a change: from what to what, a value added, or one
+ * that stays as it is. */
+export type FieldChange =
+  | { field: string; from: React.ReactNode; to: React.ReactNode }
+  | { field: string; added: React.ReactNode }
+  | { field: string; value: React.ReactNode; same: true };
+
+export interface PriorityMeterProps {
+  /** From 1 (Minor) to 5 (Show-stopper): the steps it fills, and its aria-valuenow. */
+  level: 1 | 2 | 3 | 4 | 5;
+  /** Its word, always beside it: Show-stopper, Critical, Major, Normal or Minor. */
+  word: string;
+}
+/** How urgent an issue is: five steps in ink beside its word, never a colour. Proposed. */
+export declare function PriorityMeter(props: PriorityMeterProps): React.ReactElement;
+
+export interface IssueRowProps {
+  /** Its readable id, in Plex Mono: "BACK-12". */
+  id: string;
+  summary: string;
+  href: string;
+  state: IssueState;
+  priority: PriorityMeterProps;
+  /** Its type, as plain text: "Bug", "Feature", "Task". */
+  type: string;
+  /** None: "Unassigned". */
+  assignee?: Someone;
+  /** Tags, as chips. */
+  tags?: string[];
+  comments: number;
+  /** When it last changed: the moment, and as people read it, "2 minutes ago". */
+  updated: { at: string; label: string };
+  /** Its summary in --muted. */
+  resolved?: boolean;
+  /** Its box ticked: the row on --accent-soft. */
+  chosen?: boolean;
+  /** The issue that's open beside the list: aria-current, its summary in --accent. */
+  current?: boolean;
+}
+/** An issue in a row, dense: chosen, its id, summary and tags, how it stands, its priority, type, assignee, comments, and when it changed. Proposed. */
+export declare function IssueRow(props: IssueRowProps & { onChoose: (chosen: boolean) => void; onOpen: () => void }): React.ReactElement;
+
+export interface IssueListProps {
+  issues: IssueRowProps[];
+  /** What the list is, for screen readers: "Issues in BACK". */
+  label: string;
+  onChoose: (id: string, chosen: boolean) => void;
+  onChooseAll?: (chosen: boolean) => void;
+  onOpen: (id: string) => void;
+  /** With issues chosen, the bar above offers a command for them. */
+  onCommand?: (ids: string[]) => void;
+}
+/** Issues in rows, framed, one stop for the keyboard: arrows move, Space chooses, Enter opens. Stacks where it's narrow. Proposed. */
+export declare function IssueList(props: IssueListProps): React.ReactElement;
+
+/** A field's value an agent worked out that nobody has accepted yet: dashed until a person does. */
+export type Proposed = { by: string; from: string };
+
+export interface FieldPanelProps {
+  /** The issue's id, to name the panel: "Fields of BACK-32". */
+  issue: string;
+  fields: {
+    name: string;
+    value: React.ReactNode;
+    /** How it's changed: a choice from a list, a person, a version, a duration ("2d 4h"), a date, or text. */
+    kind: "choice" | "person" | "version" | "duration" | "date" | "text";
+    /** None yet: "No due date". */
+    empty?: string;
+    proposed?: Proposed;
+  }[];
+  onChange: (name: string, value: string) => void;
+  onAccept: (name: string) => void;
+}
+/** An issue's fields: labels in Ocean's label style, each value a control; an agent's, dashed until accepted. Proposed. */
+export declare function FieldPanel(props: FieldPanelProps): React.ReactElement;
+
+/** A problem in a query or a command: where it is, what's wrong, and the likely fix. */
+export type QueryProblem = { from: number; to: number; what: string; fix?: string };
+
+export interface QueryBarProps {
+  query: string;
+  problems?: QueryProblem[];
+  /** What it could be, as the person types: its label, what kind it is ("State", "field", "tag"), the letters typed. */
+  suggestions?: { label: string; kind: string; typed?: string }[];
+  /** The suggestion the arrows are on. */
+  active?: number;
+  /** Asking in words, which an agent reads. */
+  words?: boolean;
+  /** What the agent read the words as: "Interpreted as:" its query, by its mark and name. */
+  read?: { agent: string; query: string };
+  /** What it found: "4 issues". */
+  found?: string;
+  onChange: (query: string) => void;
+  onAsk: (words: boolean) => void;
+  /** Puts the query the agent made in the field, to change. */
+  onEdit?: () => void;
+}
+/** The query language in a field: problems underlined in --bad with their words, suggestions, and asking in words. Proposed. */
+export declare function QueryBar(props: QueryBarProps): React.ReactElement;
+
+export interface CommandBarProps {
+  /** The issues it applies to, by id. */
+  issues: string[];
+  command: string;
+  problems?: QueryProblem[];
+  words?: boolean;
+  read?: { agent: string; query: string };
+  /** What it changes on each issue, before anything does. */
+  preview: { id: string; summary: string; changes: FieldChange[] }[];
+  comment?: string;
+  onChange: (command: string) => void;
+  onAsk: (words: boolean) => void;
+  /** Its button says what happens: "Apply to 3 issues". It waits while a problem stands. */
+  onApply: (comment?: string) => void;
+  onCancel: () => void;
+}
+/** A command for the issues someone chose, in the browser's own dialog: what it changes on each, then one button. Proposed. */
+export declare function CommandBar(props: CommandBarProps): React.ReactElement;
+
+export type BoardCard = { id: string; summary: string; href: string; priority: PriorityMeterProps; assignee?: Someone; tags?: string[]; resolved?: boolean };
+
+export interface BoardProps {
+  sprint?: { name: string; dates: string; left?: string; goal?: string };
+  /** Each column: a state, how many it holds, and its limit. Over the limit, it says so in --warn. */
+  columns: { name: string; count: number; limit?: number }[];
+  /** Lanes, each with a card list per column; one lane with no name for a board without them. */
+  lanes: { id?: string; name?: string; count?: number; cells: BoardCard[][] }[];
+  /** A card on its way: where it was, and where it would land. */
+  dragging?: { id: string; to: { lane: number; column: number } };
+  onMove: (id: string, to: { lane: number; column: number }) => void;
+}
+/** An agile board: the sprint, columns with their limits, cards, lanes, and where a dragged card would land. Proposed. */
+export declare function Board(props: BoardProps): React.ReactElement;
+
+export type GanttRow = {
+  kind: "task" | "summary" | "milestone";
+  name: string;
+  /** 0 for a summary at the top; each level in, a step of indentation. */
+  depth: number;
+  start: string;
+  /** None for a milestone. */
+  end?: string;
+  /** What's done, from 0 to 1. */
+  done: number;
+  /** The plan as it was agreed: faded beneath. */
+  baseline?: { start: string; end?: string };
+  /** On the critical path: in ink, twice as heavy. */
+  critical?: boolean;
+  /** When it's due. Finishing after it, it's late: --bad, with how many days. */
+  due?: string;
+  /** The latest it may finish: its slack, dashed. */
+  slackTo?: string;
+  /** The rows it follows, finish to start. */
+  after?: number[];
+};
+export interface GanttProps {
+  /** What the plan is, for screen readers. */
+  label: string;
+  rows: GanttRow[];
+  from: string;
+  to: string;
+  today: string;
+  /** Each day's width, in px; 17 by default. */
+  dayWidth?: number;
+}
+/** A plan over time, as SVG drawn from attributes: the critical path in ink, baselines faded, a late task in words. Proposed. */
+export declare function Gantt(props: GanttProps): React.ReactElement;
+
+export interface LoadGridProps {
+  /** The working days shown; a week's first day after a weekend leaves a gap. */
+  days: { date: string; weekStart?: boolean }[];
+  /** Each person's capacity, in hours a day, and their hours booked each day, or "away". */
+  people: { who: Someone; capacity: number; hours: (number | "away")[] }[];
+  /** What levelling would move, before anything does. */
+  levelling?: { id: string; what: string; who: string; from: string; to: string; by: string }[];
+  /** Its button says what happens: "Level 4 tasks". */
+  onLevel?: () => void;
+}
+/** People's load by day, shaded in Ocean Blue by the share of their day; over capacity in --warn with its words. Proposed. */
+export declare function LoadGrid(props: LoadGridProps): React.ReactElement;
+
+/** A cost-performance index with its plain words, and the figures it comes from. */
+export type CostIndex = { value: number; words: string; from: string };
+
+export interface CostPanelProps {
+  /** The plan, and when the figures are from. */
+  about: string;
+  planned: number;
+  earned: number;
+  actual: number;
+  budget: number;
+  forecast: number;
+  cpi: CostIndex;
+  spi: CostIndex;
+  /** Week by week: what was planned, earned and spent, to date and as planned. */
+  weeks: { ending: string; planned: number; earned?: number; actual?: number }[];
+  currency: string;
+}
+/** Cost against plan: bars on one scale, the indices in words, and the S-curve with its figures beside it. Proposed. */
+export declare function CostPanel(props: CostPanelProps): React.ReactElement;
+
+export interface IssueLinksProps {
+  /** The issue the links are from. */
+  issue: string;
+  /** By what they say: "depends on", "is required for", "subtask of", "parent for", "duplicates", "relates to". */
+  groups: { phrase: string; links: { id: string; summary: string; href: string; state: IssueState; resolved?: boolean }[] }[];
+  /** Add link, open: what it says, which issue, and the issue found. */
+  adding?: { phrase: string; to: string; found?: { id: string; summary: string; state: IssueState } };
+  onAdd: () => void;
+  onLink: (phrase: string, to: string) => void;
+}
+/** An issue's links, grouped by what they say, each with its id, summary and state; and Add link. Proposed. */
+export declare function IssueLinks(props: IssueLinksProps): React.ReactElement;
+
+export interface IssueHistoryProps {
+  entries: {
+    who: Someone;
+    /** When an agent acts for a person: "for Anna Schmidt". */
+    for?: string;
+    /** Through what, in words: "via the web", "via MCP", "via the API", "via the assistant", or "on its own". */
+    via: string;
+    /** The moment, and as people read it: "13:58", "Mon 9 Nov, 10:02". */
+    at: { at: string; label: string };
+    /** What they did, in words, where no change says it: "reported it". */
+    did?: string;
+    changes?: FieldChange[];
+    comment?: React.ReactNode;
+  }[];
+}
+/** An issue's history in the ledger's spirit: who, for whom, through what, when, and each change in the grammar. Proposed. */
+export declare function IssueHistory(props: IssueHistoryProps): React.ReactElement;
