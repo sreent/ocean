@@ -64,7 +64,9 @@ a5s already is Ocean. To take it from here rather than keep its own copy:
 - Serve `css/tokens.css`, `css/components.css` and `fonts/` from a release of this repo, in place of the top of `app.css` and its fonts. Its pages' policy stays as it is, since the files are a5s's own.
 - Rename `--a5s` to `--own-message`. The chat's `li.a5s` keeps working.
 - Run `scripts/check.mjs` beside `tests/test_design.py`, or in its place.
-- Give the runs chart tokens. It draws its marks in four colours of its own (`studio.css`, `.runs-chart`), brighter than anything else in Ocean.
+- Draw the runs chart from `css/charts.css`: `--chart-done`, `--chart-short`, `--chart-failed` and `--chart-open` in place of its four colours of its own (`studio.css`, `.runs-chart`), the brightest in a5s and the only ones outside Ocean.
+- Give each state its shape: `StatusBadge`, the grades and the gates draw a tick, a clock, a cross or a pause where they draw a dot today.
+- Its fields' edges become `--line-control`, and `--outside` moves darker, both from `css/tokens.css` with no change of its own.
 - The studio's pieces (`studio/src/design`) can move here as the family's React components when a7c or a3t first needs them.
 - a5s's docs show its chat and tasks pages as they looked before Ocean. The screens in `docs/images` here are the studio's, as it looks now.
 
@@ -81,7 +83,7 @@ a7c's builder (`apps/web`) uses the system's fonts and colours today, with two c
 | `LinkText` | `--accent` |
 | `Highlight`: the chosen step | `--focus`, as `.map-node.chosen` |
 | lines at 20% of the text colour | `--line`; at 35%, `--line-strong` |
-| `.status` pills | Badge, with its dot |
+| `.status` pills | Badge, with its shape: a tick for passed, a cross for failed |
 | `.box`, the steps on the canvas | FlowNode: the map's node, its stripe in the colour of the step's risk |
 | `.react-flow__edge.reads`, dashed: a step that an expression reads | `.reads-from`, shown for the chosen step, so that `reads` keeps meaning what a tool does |
 | `.box`, the steps on the canvas | FlowNode: a square, its icon in the colour of the step's risk, its name beneath |

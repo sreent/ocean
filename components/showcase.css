@@ -40,6 +40,20 @@ body:has(dialog.ds-in-place[open]) { overflow: visible; }
 #root.ds-screen { width: 1440px; height: 900px; padding: 0; overflow: hidden; }
 #root.ds-screen > .wb { height: 900px; }
 
+/* Charts: swatches, bars of parts, legends and ramps, coloured by script from css/charts.css */
+.ds-swatches { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.ds-swatch { display: grid; justify-items: start; gap: 0.2rem; color: var(--muted); font-size: var(--text-xs); }
+.ds-swatch i { display: block; width: 3.2rem; height: 1.8rem; border-radius: var(--radius-sm); }
+.ds-bars { display: grid; gap: 0.4rem; }
+.ds-bar { display: grid; grid-template-columns: 3rem minmax(0, 1fr); align-items: center; gap: var(--space-2); font-size: var(--text-sm); }
+.ds-bar > div { display: flex; gap: 2px; height: 1.1rem; }
+.ds-bar i { flex: 1 1 0; min-width: 0; }
+.ds-legend { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); color: var(--muted); font-size: var(--text-sm); }
+.ds-legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.ds-legend i { width: 0.75rem; height: 0.75rem; border-radius: 2px; }
+.ds-ramp { display: flex; gap: 2px; }
+.ds-ramp i { flex: 1; height: 1.8rem; }
+
 /* The icon set */
 .ds-icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr)); gap: var(--space-2);
             margin: 0; padding: 0; list-style: none; }

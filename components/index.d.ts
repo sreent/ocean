@@ -13,7 +13,7 @@ export type Kind = "person" | "agent" | "service";
 /** The icons in icons/, each a few lines on a 24-unit square. */
 export type IconName = "chat" | "tasks" | "book" | "studio" | "decide" | "grade" | "settings" | "audit" | "admin"
   | "officer" | "agent" | "tool" | "clock" | "message" | "bell" | "report" | "shield" | "back" | "check" | "run"
-  | "people" | "trace";
+  | "people" | "trace" | "cross" | "pause";
 
 export interface IconProps { name: IconName; className?: string }
 /** An icon in `currentColor`. */
@@ -22,8 +22,9 @@ export declare function Icon(props: IconProps): React.ReactElement;
 export interface BadgeProps {
   /** The colour that means it. None: a plain fact. */
   tone?: Tone;
-  /** A dot before the word, for how something stands. */
-  dot?: boolean;
+  /** How something stands has its shape before its word: true for its tone's (a tick, a clock, a cross, a
+   * pause), or a named icon, such as `run` for what's running. a5s draws a dot today. */
+  shape?: boolean | IconName;
   /** Its word, always: the colour is never the only sign. */
   children: React.ReactNode;
 }

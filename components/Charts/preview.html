@@ -1,0 +1,55 @@
+<!-- @dsCard group="Charts" height=420 subtitle="Series, how runs ended, and the two ramps" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Charts</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/charts.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="label">Series, in order</p>
+<div class="ds-swatches">
+<span class="ds-swatch"><i data-var="--chart-1"></i>blue</span>
+<span class="ds-swatch"><i data-var="--chart-2"></i>orange</span>
+<span class="ds-swatch"><i data-var="--chart-3"></i>sea green</span>
+<span class="ds-swatch"><i data-var="--chart-4"></i>rose</span>
+<span class="ds-swatch"><i data-var="--chart-5"></i>sky</span>
+<span class="ds-swatch"><i data-var="--chart-6"></i>violet</span>
+<span class="ds-swatch"><i data-var="--chart-7"></i>gold</span>
+<span class="ds-swatch"><i data-var="--chart-8"></i>teal</span>
+<span class="ds-swatch"><i data-var="--chart-other"></i>Other</span>
+</div></div>
+<div class="ds-cols">
+<div class="ds-group"><p class="label">Orders by channel, the first five series</p>
+<div class="ds-bars">
+<div class="ds-bar"><span>North</span><div><i data-var="--chart-1" data-w="22"></i><i data-var="--chart-2" data-w="14"></i><i data-var="--chart-3" data-w="18"></i><i data-var="--chart-4" data-w="9"></i><i data-var="--chart-5" data-w="12"></i></div></div>
+<div class="ds-bar"><span>South</span><div><i data-var="--chart-1" data-w="16"></i><i data-var="--chart-2" data-w="20"></i><i data-var="--chart-3" data-w="8"></i><i data-var="--chart-4" data-w="14"></i><i data-var="--chart-5" data-w="10"></i></div></div>
+<div class="ds-bar"><span>East</span><div><i data-var="--chart-1" data-w="25"></i><i data-var="--chart-2" data-w="10"></i><i data-var="--chart-3" data-w="12"></i><i data-var="--chart-4" data-w="11"></i><i data-var="--chart-5" data-w="6"></i></div></div>
+<div class="ds-bar"><span>West</span><div><i data-var="--chart-1" data-w="12"></i><i data-var="--chart-2" data-w="18"></i><i data-var="--chart-3" data-w="15"></i><i data-var="--chart-4" data-w="7"></i><i data-var="--chart-5" data-w="16"></i></div></div>
+</div></div>
+<div class="ds-group"><p class="label">How runs ended, by day</p>
+<div class="ds-legend"><span><i data-var="--chart-done"></i>done</span><span><i data-var="--chart-short"></i>cut short</span><span><i data-var="--chart-failed"></i>failed</span><span><i data-var="--chart-open"></i>open</span></div>
+<div class="ds-bars">
+<div class="ds-bar"><span>Mon</span><div><i data-var="--chart-done" data-w="58"></i><i data-var="--chart-short" data-w="14"></i><i data-var="--chart-failed" data-w="8"></i><i data-var="--chart-open" data-w="12"></i></div></div>
+<div class="ds-bar"><span>Tue</span><div><i data-var="--chart-done" data-w="66"></i><i data-var="--chart-short" data-w="6"></i><i data-var="--chart-failed" data-w="4"></i><i data-var="--chart-open" data-w="14"></i></div></div>
+<div class="ds-bar"><span>Wed</span><div><i data-var="--chart-done" data-w="52"></i><i data-var="--chart-short" data-w="10"></i><i data-var="--chart-failed" data-w="16"></i><i data-var="--chart-open" data-w="12"></i></div></div>
+<div class="ds-bar"><span>Thu</span><div><i data-var="--chart-done" data-w="64"></i><i data-var="--chart-short" data-w="12"></i><i data-var="--chart-failed" data-w="9"></i><i data-var="--chart-open" data-w="7"></i></div></div>
+</div></div>
+</div>
+<div class="ds-cols">
+<div class="ds-group"><p class="label">Ocean Blue: least to most</p><div class="ds-ramp"><i data-var="--chart-seq-1"></i><i data-var="--chart-seq-2"></i><i data-var="--chart-seq-3"></i><i data-var="--chart-seq-4"></i><i data-var="--chart-seq-5"></i><i data-var="--chart-seq-6"></i><i data-var="--chart-seq-7"></i></div></div>
+<div class="ds-group"><p class="label">Ocean Orange-Blue: below, the middle, above</p><div class="ds-ramp"><i data-var="--chart-div-1"></i><i data-var="--chart-div-2"></i><i data-var="--chart-div-3"></i><i data-var="--chart-div-4"></i><i data-var="--chart-div-5"></i><i data-var="--chart-div-6"></i><i data-var="--chart-div-7"></i><i data-var="--chart-div-8"></i><i data-var="--chart-div-9"></i></div></div>
+</div>
+</div>
+</div>
+<script>
+for (const mark of document.querySelectorAll("[data-var]")) mark.style.background = `var(${mark.dataset.var})`;
+for (const part of document.querySelectorAll("[data-w]")) part.style.flexGrow = part.dataset.w;
+</script>
+</body>
+</html>

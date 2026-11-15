@@ -11,7 +11,9 @@ Ocean is the look a5s, a7c and a3t share: calm, with colour only where it means 
 | [`css/tokens.css`](css/tokens.css) | The tokens in two layers: the primitives (palette, type, spacing, radii), which a brand changes, and the meanings (what each colour is for, in light and dark), which everything else names |
 | [`css/components.css`](css/components.css) | The pieces' look: the frame, controls, badges, a decision, an agent's facts, the ladder of autonomy, a run as time, the map's nodes, and the family's additions |
 | [`fonts/`](fonts) | IBM Plex Sans (400 to 700) and Plex Mono (400, 500), with their licence |
-| [`icons/`](icons) | The 22 line icons, on a 24-unit square, in `currentColor` |
+| [`icons/`](icons) | The 24 line icons, on a 24-unit square, in `currentColor` |
+| [`css/charts.css`](css/charts.css) | The chart colours: eight series and Other, Ocean Blue, Ocean Orange-Blue, and how runs end, in light and dark |
+| [`charts/`](charts) | The same palettes for Tableau (`Preferences.tps`), and as data |
 | [`tokens.json`](tokens.json) | The tokens as data, built from `css/tokens.css`, for tools such as a Tailwind theme |
 | [`components/`](components) | Each piece: what it's for, what it takes, and a preview of it as pages draw it |
 | [`docs/design.md`](docs/design.md) | The brand book: voice, colour and its grammar, type, layout, icons, and what it's held to |

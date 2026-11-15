@@ -197,9 +197,9 @@ button.primary:hover, a.button.primary:hover { background: var(--accent-strong);
 button:disabled { opacity: 0.55; cursor: default; }
 button.link { border: 0; background: none; padding: 0; color: var(--accent); font-weight: 500; }
 
-input, select, textarea {
+input, select, textarea {  /* their edge is --line-control, 3 to 1, so a person sees where to type */
   padding: 0.4rem 0.6rem;
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line-control);
   border-radius: var(--radius-sm);
   background: var(--surface);
 }
@@ -232,6 +232,8 @@ label { color: var(--muted); font-size: 0.9rem; }
 .badge.good { background: var(--good-bg); color: var(--good); }
 .badge.warn { background: var(--warn-bg); color: var(--warn); }
 .badge.bad { background: var(--bad-bg); color: var(--bad); }
+/* How something stands has a shape as well as a colour: a tick, a clock, a cross, a pause */
+.badge .icon { width: 0.85rem; height: 0.85rem; margin-inline-start: -0.1rem; stroke-width: 2.4; }
 
 /* Tables */
 
@@ -693,7 +695,7 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
 .wb-input > .mono { color: var(--text); }
 /* An expression: a7c's CEL, in mono, with a chip for each value it reads, and what it gave in the last test */
 .expr { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; min-width: 0; padding: 0.28rem 0.5rem;
-        border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface);
+        border: 1px solid var(--line-control); border-radius: var(--radius-sm); background: var(--surface);
         font-family: var(--font-mono); font-size: var(--text-sm); }
 .expr-ref { padding: 0 0.4rem; border-radius: var(--radius-pill); background: var(--accent-soft); color: var(--accent); font-weight: 500; }
 .expr-gave { margin-inline-start: auto; color: var(--faint); font-size: var(--text-xs); }

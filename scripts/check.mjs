@@ -10,16 +10,22 @@
 // 3. The pieces name meanings, never a colour of their own.
 // 4. Nothing loads from outside: no address off the product in the CSS, and every face the
 //    tokens declare is a font file here.
+// 5. A chart's marks read on the card it sits on at 3 to 1: every status, Other, and the series
+//    a chart uses most, all eight in dark. In light, series 5, 7 and 8 are under it, and their
+//    marks are labelled in --text (css/charts.css).
 
 import { existsSync, readFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
-import { colour, contrast, faces, layers, ROOT, themes } from "./tokens.mjs";
+import { charts, colour, contrast, faces, layers, ROOT, themes } from "./tokens.mjs";
 
-const [tokensArg, piecesArg] = process.argv.slice(2);
+const [tokensArg, piecesArg, chartsArg] = process.argv.slice(2);
 const TOKENS = tokensArg ? pathToFileURL(tokensArg) : new URL("css/tokens.css", ROOT);
 const PIECES = piecesArg ? pathToFileURL(piecesArg) : new URL("css/components.css", ROOT);
-const files = { tokens: readFileSync(TOKENS, "utf8"), pieces: readFileSync(PIECES, "utf8") };
-const named = { tokens: TOKENS.pathname.split("/").slice(-2).join("/"), pieces: PIECES.pathname.split("/").slice(-2).join("/") };
+const CHARTS = chartsArg ? pathToFileURL(chartsArg) : new URL("css/charts.css", ROOT);
+const files = { tokens: readFileSync(TOKENS, "utf8"), pieces: readFileSync(PIECES, "utf8"),
+  charts: existsSync(CHARTS) ? readFileSync(CHARTS, "utf8") : "" };
+const short = (url) => url.pathname.split("/").slice(-2).join("/");
+const named = { tokens: short(TOKENS), pieces: short(PIECES), charts: short(CHARTS) };
 
 const TEXT = [  // text, and what it's on: 4.5 to 1
   ...["page", "surface", "sunken", "you", "agent", "own-message"].map((on) => ["text", on]),
@@ -39,7 +45,13 @@ const MARKS = [  // 3 to 1
   ["surface", "good"], ["surface", "warn"],  // a step's tick or clock, in its corner
   ["faint", "sunken"],  // a canvas's edges and the dots they join at: the order of the steps
   ["faint", "surface"], ["text", "surface"],  // a tier's line: dashed, solid, or production's ink
+  ...["surface", "page", "sunken"].map((on) => ["line-control", on]),  // a field's edge, where to type
 ];
+const CHART_MARKS = {  // on the card a chart sits on: 3 to 1
+  light: ["chart-1", "chart-2", "chart-3", "chart-4", "chart-6", "chart-other", "chart-done", "chart-short", "chart-failed", "chart-open"],
+  dark: ["chart-1", "chart-2", "chart-3", "chart-4", "chart-5", "chart-6", "chart-7", "chart-8", "chart-other",
+    "chart-done", "chart-short", "chart-failed", "chart-open"],
+};
 
 const problems = [];
 const check = (what, fn) => {
@@ -58,6 +70,18 @@ check("Colours that read less well than WCAG asks", () =>
       return ratio < least ? [`${name}: --${fg} on --${on} is ${ratio.toFixed(2)} to 1, under ${least}`] : [];
     }))));
 
+check("Chart marks that read less well than WCAG asks", () => {
+  if (!files.charts) return [`${named.charts} is missing`];
+  const marks = charts(files.charts);
+  const theme = themes(files.tokens);
+  return Object.entries(CHART_MARKS).flatMap(([mode, names]) => names.flatMap((name) => {
+    const value = marks[mode][name];
+    if (!/^#[0-9a-f]{6}$/i.test(value ?? "")) return [`${mode}: --${name} is ${value}, not a colour`];
+    const ratio = contrast(value.toLowerCase(), colour(theme[mode], "surface"));
+    return ratio < 3 ? [`${mode}: --${name} on --surface is ${ratio.toFixed(2)} to 1, under 3`] : [];
+  }));
+});
+
 check("Meanings that name a colour, not a primitive", () => {
   const { light, dark } = layers(files.tokens);
   return Object.entries({ ...light, ...dark }).filter(([, value]) => value.includes("#"))
@@ -72,7 +96,7 @@ check("Pieces with a colour of their own", () =>
     (/#[0-9a-fA-F]{3,8}\b/.test(line) ? [`${named.pieces}:${i + 1}: ${line.trim()}`] : [])));
 
 check("Anything loaded from outside", () =>
-  ["tokens", "pieces"].flatMap((part) => lines(files[part]).flatMap((line, i) =>
+  ["tokens", "pieces", "charts"].flatMap((part) => lines(files[part]).flatMap((line, i) =>
     (/https?:|\/\/|@import/.test(line) ? [`${named[part]}:${i + 1}: ${line.trim()}`] : []))));
 
 check("Faces without their font file", () =>
@@ -87,6 +111,6 @@ if (problems.length) {
   console.error(problems.join("\n\n"));
   process.exit(1);
 }
-const pairs = (TEXT.length + MARKS.length) * 2;
-console.log(`Ocean holds: ${pairs} pairs read well in light and dark, the meanings name only primitives, ` +
-  `the pieces name only meanings, and nothing loads from outside (${faces(files.tokens).length} faces, all here).`);
+const pairs = (TEXT.length + MARKS.length) * 2 + CHART_MARKS.light.length + CHART_MARKS.dark.length;
+console.log(`Ocean holds: ${pairs} pairs read well in light and dark, charts' among them, the meanings name only ` +
+  `primitives, the pieces name only meanings, and nothing loads from outside (${faces(files.tokens).length} faces, all here).`);

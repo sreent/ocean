@@ -7,7 +7,7 @@
 
 import { execSync } from "node:child_process";
 import { copyFileSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
-import { faces, layers, read, ROOT, source, themes } from "./tokens.mjs";
+import { charts, faces, layers, read, ROOT, source, themes } from "./tokens.mjs";
 
 const HUES = {
   ocean: "Ocean's blue: what someone can do",
@@ -26,7 +26,8 @@ const MEANINGS = {
   muted: "Quieter text: notes, a line under a name, a step's detail. On page, surface, sunken and agent-tone-soft.",
   faint: "Labels, times, ids beside a name. On page and surface. Also a tier's line.",
   line: "Hairlines: between rows, around cards.",
-  "line-strong": "Controls' borders and the map's edges. Never the only sign of anything.",
+  "line-strong": "Buttons' borders, whose words show them, and decoration such as a canvas's dot grid. Never the only sign of anything.",
+  "line-control": "A field's edge (input, select, text area, an expression): 3 to 1 on surface, page and sunken, so a person sees where to type.",
   page: "The page behind the cards.",
   surface: "Cards, the sidebar, controls. Also text on agent-tone, service-tone, bad and text (a hint).",
   sunken: "Wells inside a card, such as a decision's changes; rows and buttons under the pointer.",
@@ -48,7 +49,7 @@ const MEANINGS = {
   "writes-bg": "Behind a writes badge.",
   changes: "Changes a record, or a system others rely on. Coral means this and failure, nothing else. On changes-bg and sunken.",
   "changes-bg": "Behind a changes badge.",
-  outside: "Crosses the organisation's edge: reads content from outside, or sends data out. On outside-bg.",
+  outside: "Crosses the organisation's edge: reads content from outside, or sends data out. On outside-bg. Darker than accent in light and lighter in dark, so the two differ for colour-blind readers too.",
   "outside-bg": "Behind an outside badge.",
   own: "The product's own doing: its checks, its own tools, its signed approvals. On own-bg.",
   "own-bg": "Behind an own badge.",
@@ -124,6 +125,19 @@ function tokensJson() {
     const at = (mode) => `{${source(theme[mode], name)}}`;
     if (!MEANINGS[name]) throw new Error(`--${name} has no usage note in build.mjs`);
     colours.push({ name, value: { light: at("light"), dark: at("dark") }, usage: MEANINGS[name] });
+  }
+  // The chart colours (css/charts.css), each with its light and dark value
+  const chart = charts();
+  const SERIES = ["blue", "orange", "sea green", "rose", "sky", "violet", "gold", "teal"];
+  const RUNS = { "chart-done": "Runs that ended done.", "chart-short": "Runs cut short, such as by their budget.",
+    "chart-failed": "Runs that failed.", "chart-open": "Runs still open." };
+  for (const name of Object.keys(chart.light)) {
+    const [, kind, n] = /^chart-(seq|div)?-?(\d+)?/.exec(name) ?? [];
+    const usage = RUNS[name] ?? (name === "chart-other" ? "Any series past the eighth, folded into one: Ocean's mist."
+      : kind === "seq" ? `Ocean Blue, step ${n} of 7, from least to most.`
+        : kind === "div" ? `Ocean Orange-Blue, step ${n} of 9, from the orange end to the blue; 5 is the middle.`
+          : `Series ${n}, ${SERIES[n - 1]}.${["5", "7", "8"].includes(n) ? " Under 3 to 1 on white: label its marks in text." : ""}`);
+    colours.push({ name, value: { light: chart.light[name].toLowerCase(), dark: chart.dark[name].toLowerCase() }, usage });
   }
   const families = {
     sans: primitives["font-sans"].replaceAll("'", "\""),
