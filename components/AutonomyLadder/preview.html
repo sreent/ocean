@@ -1,0 +1,47 @@
+<!-- @dsCard group="Agents and decisions" height=460 subtitle="a5s's three rungs; a7c's four, proposed" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AutonomyLadder</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="label">a5s · assistant-finance</p>
+<div class="ladder-box">
+<ol class="ladder" aria-label="Autonomy">
+<li><span class="lvl">level 0</span><strong>Suggests</strong><p>Reads and drafts. A person does the rest.</p></li>
+<li aria-current="step"><span class="lvl">level 1 · now</span><strong>Asks</strong><p>Changes wait for a person's yes.</p></li>
+<li class="beyond"><span class="lvl">level 2</span><strong>Acts</strong><p>One type of change on its own, within limits, sampled and graded.</p></li>
+</ol>
+<p class="note">Due-date changes toward level 2: 36 of 50 graded samples. The part's owner decides.</p>
+<div class="meter" role="meter" aria-label="Due-date changes toward level 2" aria-valuemin="0" aria-valuemax="50" aria-valuenow="36"><span data-width="72%"></span></div>
+</div></div>
+<div class="ds-group"><p class="label">a7c · yield-watch, at production (proposed)</p>
+<div class="ladder-box">
+<ol class="ladder" aria-label="Autonomy">
+<li><span class="lvl">observe</span><strong>Observes</strong><p>Reads, and changes nothing.</p></li>
+<li><span class="lvl">suggest</span><strong>Suggests</strong><p>Proposes in its case; a person acts.</p></li>
+<li aria-current="step"><span class="lvl">act after approval · now</span><strong>Asks</strong><p>Acts once a person approves.</p></li>
+<li class="beyond"><span class="lvl">act</span><strong>Acts</strong><p>Acts on its own, within its tier's limits.</p></li>
+</ol>
+<p class="note">Holding a line toward act: 18 of 40 findings confirmed by what happened next. The tier's admin decides.</p>
+<div class="meter" role="meter" aria-label="Toward act" aria-valuemin="0" aria-valuemax="40" aria-valuenow="18"><span data-width="45%"></span></div>
+</div></div>
+</div>
+</div>
+<script>
+for (const node of document.querySelectorAll("[data-at]")) {
+  const [x, y] = node.dataset.at.split(" ");
+  node.style.left = `${x}px`;
+  node.style.top = `${y}px`;
+}
+for (const box of document.querySelectorAll("[data-height]")) box.style.height = `${box.dataset.height}px`;
+for (const bar of document.querySelectorAll("[data-width]")) bar.style.width = bar.dataset.width;
+</script>
+</body>
+</html>

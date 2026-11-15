@@ -1,0 +1,131 @@
+# Across a5s, a7c and a3t
+
+a5s, a7c and a3t are three platforms about the same thing: work that people, agents and automations do under rules, where the record of who did what matters as much as the work. a7c automates work as workflows on a canvas, as n8n does, and lets agents find and fix what goes wrong. a5s runs agents, and shows people what each may do and did. a3t builds apps without code: forms, views, pages and processes, under governance (its code is in the `sreent/joget` repository). Ocean began in a5s. These are the rules for the three to look like one family, and what each changes to get there. [`platforms.md`](platforms.md) says how Ocean looks where people build, where they decide, and where they use what was built.
+
+## The family's rules
+
+1. One palette and one grammar. Coral is a change to a record in every product, and an agent is a lagoon square in every product.
+2. A product is told apart by its name and its mark (its first two characters on the accent square), never by a colour of its own: any hue it took would collide with a meaning.
+3. One frame: a sidebar of the pages someone may use, under the same four headings, Work, Build, Decide and Oversee, with the page beside it.
+4. The palette is closed. A new state finds its meaning, and a new meaning is added to Ocean, for all three.
+5. One brand change, in one place. An organisation's colours replace the primitives in `css/tokens.css`, and all three products take them.
+6. The same checks: `scripts/check.mjs` in each product's CI, and axe on every page.
+
+## The same words, the same look
+
+Each product's words, and what Ocean draws them with. An empty cell is a word the product doesn't have yet.
+
+| What | a5s | a7c | a3t | Ocean |
+| --- | --- | --- | --- | --- |
+| A step that reads | a tool that reads | risk `read` | `record.read` | `--reads`, Badge |
+| A step that writes what nobody relies on yet | writes, such as a draft | a draft; a proposal in a case | a working copy in someone's own space | `--writes` |
+| A step that changes a record | changes a record | risk `change` | `record.update`, `record.delete`, a deploy to Prod | `--changes` |
+| A step that crosses the edge | sends outside; reads outside content | risk `send-out`; outside content read | `record.export`; a connection out | `--outside` |
+| The product's own doing | a5s's own; a5s's checks | a7c's checks and policies | the platform's own (actor `system`) | `--own` |
+| Going well | active, done | passed | healthy, merged, deployed | `--good` |
+| Waiting on someone | waiting on you, held | ask: waiting for a person | in review, waiting for approval | `--warn` |
+| Failed | failed, refused | failed, denied | failed, denied, rolled back | `--bad` |
+| Paused | paused | none, not needed | frozen | `--idle` |
+| A person | a person | a person | a user | Who, round |
+| An agent | an agent | an agent; the copilot | | Who, the lagoon square |
+| A service | | a skill's service identity | a service account | Who, the service square (proposed) |
+| How far an agent may go | levels 0 to 2 | observe, suggest, act after approval, act | | AutonomyLadder |
+| Where it runs | the sandbox; an instance | personal, team and production tiers | a personal Sandbox; a team's Preview, Staging and Prod | TierBadge (proposed) |
+| The way to work | draft, publish, sign, deploy, watch | draft, tests, promotion up the tiers | working copy, change request, preview, release, Prod | JourneyPath |
+| A decision | a decision; a version of the settings | an approval; a promotion | a change request's approval; a deploy's | ApprovalCard |
+| What must pass first | what stops a release | a promotion's gates; test cases | a change request's checks | GateList (proposed) |
+| Steps on a canvas | the agent's map | the builder's canvas | the process designer | FlowNode, the map's node |
+| Where a value comes from | a traced value | a finding's evidence | a record's history | Traced |
+| The record of who did what | the ledger, the audit trail | the audit log | the sealed audit log | AuditEntry (proposed) |
+
+### Autonomy, as one ladder
+
+a5s and a7c both let agents earn autonomy. The family draws it as one ladder in the same words, and a product shows the rungs it has.
+
+| Rung | What the agent does | a5s | a7c |
+| --- | --- | --- | --- |
+| Observes | Reads, and changes nothing | | observe |
+| Suggests | Reads and drafts; a person does the rest | level 0 | suggest |
+| Asks | Changes wait for a person's yes | level 1 | act after approval |
+| Acts | Changes on its own, within limits, sampled and graded | level 2 | act |
+
+a5s keeps its level numbers. The words and the look are the family's.
+
+### Where it runs, as line
+
+Where something runs is told by line rather than colour, so it never competes with the grammar. Someone's own space is dashed, as everything not yet in force is. A team's is solid. Production is drawn in ink, twice as heavy.
+
+## What each product changes
+
+### a5s
+
+a5s already is Ocean. To take it from here rather than keep its own copy:
+
+- Serve `css/tokens.css`, `css/components.css` and `fonts/` from a release of this repo, in place of the top of `app.css` and its fonts. Its pages' policy stays as it is, since the files are a5s's own.
+- Rename `--a5s` to `--own-message`. The chat's `li.a5s` keeps working.
+- Run `scripts/check.mjs` beside `tests/test_design.py`, or in its place.
+- Give the runs chart tokens. It draws its marks in four colours of its own (`studio.css`, `.runs-chart`), brighter than anything else in Ocean.
+- The studio's pieces (`studio/src/design`) can move here as the family's React components when a7c or a3t first needs them.
+- a5s's docs show its chat and tasks pages as they looked before Ocean. The screens in `docs/images` here are the studio's, as it looks now.
+
+### a7c
+
+a7c's builder (`apps/web`) uses the system's fonts and colours today, with two colours of its own. Taking Ocean is mostly a swap of values in `apps/web/src/styles.css`:
+
+| a7c today | Ocean |
+| --- | --- |
+| `system-ui, sans-serif` | `--font-sans`, with `fonts/` served by the control plane |
+| `#b00020`: alerts, faulty steps, failed | `--bad`, and Badge `bad` for a failed case or gate |
+| `#1b6e2a`: passed | `--good`, and Badge `good` |
+| `Canvas`, `CanvasText` | `--surface`, `--text` |
+| `LinkText` | `--accent` |
+| `Highlight`: the chosen step | `--focus`, as `.map-node.chosen` |
+| lines at 20% of the text colour | `--line`; at 35%, `--line-strong` |
+| `.status` pills | Badge, with its dot |
+| `.box`, the steps on the canvas | FlowNode: the map's node, its stripe in the colour of the step's risk |
+| `.react-flow__edge.reads`, dashed: a step that an expression reads | `.uses`, so that `reads` keeps meaning what a tool does |
+| `.dialog` | the browser's own dialog, in Confirm's look |
+
+Then the frame (Shell) around its pages, the GateList on a promotion, and the ladder on each agent's skills. a7c's risks map one to one: `read` to `--reads`, `change` to `--changes`, `send-out` to `--outside`.
+
+### a3t
+
+a3t has no pages yet: its code (`sreent/joget`) is the governance kernel so far. Its plan, React 19 with Tailwind and shadcn/ui on Radix, takes Ocean without forking a component: give Tailwind Ocean's meanings as its theme's colours, and shadcn's components follow.
+
+```css
+@import "@sreent/ocean/tokens.css";
+@import "@sreent/ocean/components.css";
+
+@theme inline {
+  --color-background: var(--page);
+  --color-foreground: var(--text);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--text);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--text);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--accent-text);
+  --color-secondary: var(--sunken);
+  --color-secondary-foreground: var(--text);
+  --color-muted: var(--sunken);
+  --color-muted-foreground: var(--muted);
+  --color-accent: var(--sunken);
+  --color-accent-foreground: var(--text);
+  --color-destructive: var(--bad);
+  --color-border: var(--line);
+  --color-input: var(--line-strong);
+  --color-ring: var(--focus);
+  /* and the grammar, for utilities such as text-changes and bg-changes-bg */
+  --color-changes: var(--changes);
+  --color-changes-bg: var(--changes-bg);
+}
+```
+
+- Name shadcn's colours through Tailwind's theme, as above, and never by declaring shadcn's own variables on `:root`: its `--accent` and `--muted` are backgrounds, while Ocean's are a blue and a text colour of the same names.
+- Ocean's `--radius-sm`, `--radius-md` and `--radius-lg` take the place of Tailwind's, and `--font-sans` and `--font-mono` already have Tailwind's names.
+- The apps people build in a3t take the same tokens. An app's own branding is a change of primitives inside its frame, held to the same checks.
+- Its change requests are ApprovalCards with a GateList, its environments are TierBadges, and its sealed audit log is AuditEntry.
+
+## Where Ocean lives
+
+This repo is Ocean's one source. a5s copies its files from a release, since its pages serve only their own files. a7c and a3t depend on it by commit, as `"@sreent/ocean": "github:sreent/ocean#<commit>"`, and import `@sreent/ocean/tokens.css` and `@sreent/ocean/components.css`. Each product runs `node scripts/check.mjs` in CI, against its own `tokens.css` where it changes the brand.

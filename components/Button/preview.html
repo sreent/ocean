@@ -1,0 +1,30 @@
+<!-- @dsCard group="Actions" height=250 subtitle="Primary, plain, link, danger, disabled, a choice of views" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Button</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="label">What a page is for, and the rest</p>
+<div class="ds-row"><button type="button" class="primary">Approve</button><button type="button">Ask why</button><button type="button" class="link">Open the run</button><a class="button" href="#">See its settings</a></div></div>
+<div class="ds-group"><p class="label">What can't be undone, and what can't be done yet</p>
+<div class="ds-row"><button type="button" class="danger">Delete this draft</button><button type="button" class="primary" disabled>Publish it</button></div></div>
+<div class="ds-group"><p class="label">A choice of views</p>
+<div class="modes" role="group" aria-label="How to change it"><button type="button" aria-pressed="true">Forms</button><button type="button" aria-pressed="false">The whole text</button></div></div>
+</div>
+</div>
+<script>
+for (const button of document.querySelectorAll(".modes button")) {
+  button.addEventListener("click", () => {
+    for (const other of document.querySelectorAll(".modes button")) other.setAttribute("aria-pressed", String(other === button));
+  });
+}
+</script>
+</body>
+</html>

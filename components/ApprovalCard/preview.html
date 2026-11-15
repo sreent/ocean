@@ -1,0 +1,58 @@
+<!-- @dsCard group="Agents and decisions" height=540 subtitle="An agent asks in a5s; a person asks in a3t" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ApprovalCard</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-cols">
+<section class="approval" aria-label="assistant asks to change a due date">
+<div class="approval-stripe changes"></div>
+<div class="approval-body">
+<div class="who"><span class="avatar agent" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><span><h3 class="approval-title">assistant asks to change a due date</h3><span class="who-about">for Ben Okafor · billing · 2 minutes ago</span></span></div>
+<dl class="approval-changes">
+<div class="pair"><dt>Question</dt><dd>Q-1001</dd></div>
+<div class="pair"><dt>Due</dt><dd><del>15 Nov</del> → <ins>30 Nov</ins></dd></div>
+</dl>
+<p class="approval-why"><strong>Why: </strong>the customer asked in chat on 12 Nov, and billing allows one extension of up to 30 days.</p>
+<div class="approval-actions"><button type="button" class="primary">Approve</button><button type="button">Decline</button></div>
+<p class="approval-signed"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3l7.5 3v6c0 4.5-3.2 7.8-7.5 9-4.3-1.2-7.5-4.5-7.5-9V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg>Your decision is signed and kept in the ledger.</p>
+</div>
+</section>
+<section class="approval" aria-label="Ana Ortiz asks to put expenses 1.4.0 in Prod">
+<div class="approval-stripe changes"></div>
+<div class="approval-body">
+<div class="who"><span class="avatar" aria-hidden="true">AO</span><span><h3 class="approval-title">Ana Ortiz asks to put expenses 1.4.0 in Prod</h3><span class="who-about">a3t · change request 18 · finance · 1 hour ago</span></span></div>
+<dl class="approval-changes">
+<div class="pair"><dt>App</dt><dd>expenses</dd></div>
+<div class="pair"><dt>Version</dt><dd><del>1.3.2</del> → <ins>1.4.0</ins></dd></div>
+<div class="pair"><dt>May export</dt><dd><del>Finance leads</del> → <ins>Finance leads, Auditors</ins></dd></div>
+</dl>
+<p class="approval-why"><strong>Why: </strong>the auditors asked for the year's claims, and the change request passed its checks.</p>
+<div class="approval-actions"><button type="button" class="primary">Approve</button><button type="button">Decline</button></div>
+<p class="approval-signed"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3l7.5 3v6c0 4.5-3.2 7.8-7.5 9-4.3-1.2-7.5-4.5-7.5-9V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg>Your decision is signed and kept in the audit log.</p>
+</div>
+</section>
+</div>
+</div>
+<script>
+for (const card of document.querySelectorAll(".approval")) {
+  for (const [button, word] of [[card.querySelector(".approval-actions .primary"), "approved"],
+                                [card.querySelector(".approval-actions button:not(.primary)"), "declined"]]) {
+    button?.addEventListener("click", () => {
+      const done = document.createElement("p");
+      done.className = "approval-done";
+      done.setAttribute("role", "status");
+      done.textContent = `You ${word} it.`;
+      card.querySelector(".approval-actions").replaceWith(done);
+    });
+  }
+}
+</script>
+</body>
+</html>

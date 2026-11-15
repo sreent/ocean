@@ -1,0 +1,63 @@
+/* The previews' own layout (components/<piece>/preview.html): rows and stacks around the pieces,
+   and the frame in a box. Not for pages. */
+
+:root { font: var(--text-base)/1.5 var(--font-sans); }  /* as css/tokens.css sets it for pages */
+[data-theme="light"] { color-scheme: light; }
+[data-theme="dark"] { color-scheme: dark; }
+body { min-height: 0; display: block; }
+#root { padding: var(--space-4); }
+
+.ds-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5); }
+.ds-stack { display: grid; gap: var(--space-5); }
+.ds-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 1fr)); gap: var(--space-5);
+           align-items: start; }
+.ds-cols > *, .ds-stack > * { min-width: 0; }
+.ds-group { display: grid; gap: var(--space-2); align-content: start; }
+.ds-group > .label { margin: 0; }
+.ds-group > .note { margin: 0; }
+.ds-group > .modes { justify-self: start; }
+
+/* The frame, in a box rather than the whole window */
+.ds-app { display: grid; grid-template-columns: 236px minmax(0, 1fr); min-height: 30rem; overflow: hidden;
+          border: 1px solid var(--line); border-radius: var(--radius-md);
+          background: linear-gradient(to right, var(--surface) 235px, var(--line) 235px 236px, var(--page) 236px); }
+.ds-app .sidebar { position: static; height: auto; }
+.ds-app .page { min-height: 0; }
+body:has(dialog.ds-in-place[open]) { overflow: visible; }
+.ds-canvas-wide { width: 928px; }
+.ds-app main { padding: var(--space-6) var(--space-8) var(--space-8); }
+@media (max-width: 760px) { .ds-app { display: flex; flex-direction: column; background: var(--page); } }
+
+/* Three products' frames, side by side */
+.ds-products { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); }
+.ds-product { display: grid; grid-template-rows: auto 1fr; overflow: hidden; border: 1px solid var(--line);
+              border-radius: var(--radius-md); background: var(--surface); }
+.ds-product .sidebar { position: static; height: auto; min-height: 27rem; }
+.ds-product-name { margin: 0; padding: var(--space-2) var(--space-4); border-bottom: 1px solid var(--line);
+                   background: var(--sunken); color: var(--muted); font-size: var(--text-sm); }
+
+/* The icon set */
+.ds-icons { display: grid; grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr)); gap: var(--space-2);
+            margin: 0; padding: 0; list-style: none; }
+.ds-icons li { display: grid; justify-items: center; gap: var(--space-1); padding: var(--space-3) var(--space-1);
+               border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+.ds-icons .icon { width: 1.5rem; height: 1.5rem; }
+.ds-icons code { color: var(--muted); font-size: var(--text-xs); }
+
+/* A dialog, as it looks once open, drawn in place */
+dialog.dialog.ds-in-place { position: static; margin: 0; }
+
+/* The cover */
+#root.ds-cover { position: relative; width: 960px; height: 288px; padding: 0; overflow: hidden; background: var(--page); }
+.ds-cover svg { position: absolute; inset: 0; width: 960px; height: 288px; }
+.ds-cover .ground { fill: var(--page); }
+.ds-cover .tint { fill: var(--ocean-200); }
+.ds-cover .ocean { fill: var(--ocean-600); }
+.ds-cover .deep { fill: var(--ocean-800); }
+.ds-cover .lagoon { fill: var(--lagoon-700); }
+.ds-cover .coral { fill: var(--coral-700); }
+.ds-cover .kelp { fill: var(--kelp-300); }
+.ds-cover-name { position: absolute; left: 48px; bottom: 44px; max-width: 420px; }
+.ds-cover-name h1 { margin: 0; color: var(--text); font-size: 120px; font-weight: 700; line-height: 0.92;
+                    letter-spacing: -0.02em; }
+.ds-cover-name p { margin: var(--space-3) 0 0; color: var(--muted); font-size: 14px; line-height: 1.45; }

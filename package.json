@@ -1,0 +1,29 @@
+{
+  "name": "@sreent/ocean",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Ocean: the look a5s, a7c and a3t share. Tokens in two layers, IBM Plex, the icons and the pieces' CSS, with the checks they're held to.",
+  "type": "module",
+  "exports": {
+    "./tokens.css": "./css/tokens.css",
+    "./components.css": "./css/components.css",
+    "./tokens.json": "./tokens.json",
+    "./fonts/*": "./fonts/*",
+    "./icons/*": "./icons/*"
+  },
+  "files": [
+    "css",
+    "fonts",
+    "icons",
+    "tokens.json",
+    "scripts/check.mjs",
+    "scripts/tokens.mjs"
+  ],
+  "scripts": {
+    "check": "node scripts/check.mjs",
+    "build": "node scripts/build.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

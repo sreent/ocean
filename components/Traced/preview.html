@@ -1,0 +1,40 @@
+<!-- @dsCard group="Agents and decisions" height=290 subtitle="A traced value, opened; and a finding's evidence" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Traced</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group">
+<p>The due date it read: <button type="button" class="traced" aria-expanded="true" aria-controls="trail" id="value"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 15.8a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4z"/><path d="M18 3.8a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4z"/><path d="M7.6 16.4l8.8-8.8"/></svg>15 Nov<span class="hidden"> (where it comes from)</span></button></p>
+<div class="popover" id="trail" role="dialog" aria-label="Where it comes from">
+<span class="label">Where it comes from</span>
+<ol class="trail">
+<li><span><strong>Q-1001</strong>, in billing, as its system holds it</span></li>
+<li><span>Read at 14:02 by run <code>r-8f3a2c</code>, for Ben Okafor</span></li>
+<li><span>Unchanged since: checked again before the reply</span></li>
+</ol>
+</div>
+</div>
+<p>a7c, a finding's evidence: yield on line 3 fell to <button type="button" class="traced"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 15.8a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4z"/><path d="M18 3.8a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4z"/><path d="M7.6 16.4l8.8-8.8"/></svg>92.1%<span class="hidden"> (where it comes from)</span></button> after the change of supplier.</p>
+</div>
+</div>
+<script>
+const value = document.getElementById("value");
+const trail = document.getElementById("trail");
+value.addEventListener("click", () => {
+  trail.hidden = !trail.hidden;
+  value.setAttribute("aria-expanded", String(!trail.hidden));
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !trail.hidden) { trail.hidden = true; value.setAttribute("aria-expanded", "false"); value.focus(); }
+});
+</script>
+</body>
+</html>
