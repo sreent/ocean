@@ -84,5 +84,20 @@ dialog.dialog.ds-in-place { position: static; margin: 0; }
 #root.ds-screen > .ds-app { height: 900px; min-height: 0; border: 0; border-radius: 0; }
 #root.ds-screen > .ds-app .page { overflow: auto; }
 #root.ds-screen > .ds-app main { max-width: 76rem; padding: var(--space-6) var(--space-8) var(--space-8); }
-.ds-talk { display: flex; flex-direction: column; gap: var(--space-5); min-height: 100%; }
-.ds-talk .convo { flex: 1; width: 100%; }
+
+/* The conversation kit: a phone's frame around a conversation, and pages of them */
+.ds-phone { width: 100%; max-width: 22.5rem; height: 41rem; overflow: hidden; border: 1px solid var(--line-strong);
+            border-radius: 20px; background: var(--page); }
+.ds-phone > .talk, .ds-phone > .capture { height: 100%; }
+.say.photo .receipt.mini { width: 8.5rem; padding: var(--space-2); font-size: 0.5rem; line-height: 1.5; }
+.ds-flow-page { display: grid; gap: var(--space-6); padding: var(--space-4) var(--space-4) var(--space-6); }
+.ds-flow-head h1 { margin: 0 0 var(--space-1); font-size: var(--text-xl); }
+.ds-flow-head .note { max-width: 46rem; margin: 0; }
+.ds-flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-8) var(--space-5); margin: 0; padding: 0;
+           list-style: none; }
+.ds-flow-step { display: grid; grid-template-rows: auto auto 1fr; gap: var(--space-3); align-content: start; }
+.ds-flow-step h2 { display: flex; align-items: center; gap: var(--space-2); margin: 0; font-size: var(--text-md); }
+.ds-flow-step .note { margin: 0; }
+.ds-flow-n { display: grid; place-items: center; width: 1.5rem; height: 1.5rem; flex: none; border-radius: 50%;
+             background: var(--accent); color: var(--accent-text); font-size: var(--text-xs); font-weight: 650; }
+.ds-caps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); align-items: start; }

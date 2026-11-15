@@ -61,6 +61,7 @@ These meanings are the products' shared grammar, the same on every surface: badg
 - Agents are rounded squares (`--radius-sm`) in `--agent-tone`, with the agent's mark in `--surface`. People never are, so a page shows at a glance whether a person or an agent did something.
 - Services, such as a7c's skills' identities and a3t's service accounts, are rounded squares in `--service-tone`, with the tool's mark. They act, but they don't decide for themselves, so they're never the agent colour.
 - The product's own doing is `--own`. In a conversation, its messages sit on `--own-message`, an agent's on `--agent`, and yours on `--you`.
+- Wherever an agent speaks or acts, it's marked by its mark and its name, never by a sparkle. A sparkle says magic, and an agent answers for what it does ([`conversation.md`](conversation.md)).
 
 ## Charts
 
@@ -94,11 +95,11 @@ These meanings are the products' shared grammar, the same on every surface: badg
 
 - `--radius-sm` (6px) for buttons, inputs, tiers and the marks of agents and services; `--radius-md` (10px) for cards, wells and popovers; `--radius-lg` (14px) for decisions and dialogs; `--radius-pill` for badges, chips and meters. People are circles.
 - Cards rest on `--shadow` in light and on nothing in dark. What floats over the page, such as popovers, dialogs and decisions, takes `--shadow-raised`.
-- Line tells how something stands. Dashed is what isn't in force yet: an instance not in the settings yet, a rung beyond the current one, someone's own tier. Faded to 0.42 is what a run didn't use.
+- Line tells how something stands. Dashed is what isn't in force yet: an instance not in the settings yet, a rung beyond the current one, someone's own tier, a value an agent worked out until a person checks it. Faded to 0.42 is what a run didn't use.
 
 ## Motion
 
-One movement only: what opens over the page, such as a popover, a dialog or a hint, rises 4px into place over 120ms, easing out, and only when the person hasn't asked for less motion.
+Two movements only, and only when the person hasn't asked for less motion. What opens over the page, such as a popover, a dialog, a hint or a sheet, rises 4px into place over 120ms, easing out. The work an agent has under way turns until it's done.
 
 ## States
 
@@ -111,7 +112,7 @@ One movement only: what opens over the page, such as a popover, a dialog or a hi
 ## Iconography
 
 - Lines on a 24-unit square: stroke 1.8, round caps and joins, no fill, in `currentColor`, so an icon takes its text's colour. 1.15rem in the sidebar, 0.9 to 1.1rem in marks and badges.
-- The set is in `icons/`, 24 of them. The agent's mark is for agents alone. The shield with a tick (`audit`) is for what's signed and kept in the ledger, and for the product's own messages. The tool is for tools and services.
+- The set is in `icons/`, 28 of them. The agent's mark is for agents alone. The shield with a tick (`audit`) is for what's signed and kept in the ledger, and for the product's own messages. The tool is for tools and services.
 - No icon font and no emoji. A new icon is drawn the same way, on the same square.
 
 ## What it's held to

@@ -28,3 +28,7 @@ Lines on a 24-unit square, as every page draws them: stroke 1.8, round caps and 
 | `trace` | A value traced to its record |
 | `cross` | Failed: how something stands, in a badge |
 | `pause` | Paused: how something stands, in a badge |
+| `camera` | Taking a photo: a receipt, or any paper an outcome needs |
+| `photos` | Choosing from the person's photos |
+| `attach` | Attaching a file |
+| `send` | Sending what's typed, in a conversation |

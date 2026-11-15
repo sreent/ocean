@@ -43,6 +43,12 @@ const MEANINGS = {
   "agent-tone-soft": "Behind an agent's node and the rung of autonomy it's on.",
   "service-tone": "Family addition (proposed): a service identity's mark, such as a7c's skills' and a3t's service accounts'. Neutral, never the agent colour.",
   "service-tone-soft": "Family addition (proposed): behind a service identity's node.",
+  viewfinder: "A camera's view, as when photographing a receipt: its own dark, the same in either theme.",
+  "viewfinder-line": "Edges and the status pill on a camera's view.",
+  "viewfinder-text": "Text and controls on a camera's view.",
+  "viewfinder-mark": "The frame that finds a document on a camera's view: the accent's light step, in either theme.",
+  paper: "A document as photographed, such as a receipt: white in either theme.",
+  "paper-ink": "The print on a photographed document.",
   reads: "What a tool does: reads. On reads-bg, page and surface.",
   "reads-bg": "Behind a reads badge.",
   writes: "Writes what nobody relies on yet: a draft, a proposal, a working copy. On writes-bg.",
@@ -198,10 +204,11 @@ put("project/README.md", `${unlinked(untitled(read("docs/design.md")))}
 - What the family adds (services, tiers, gates, the canvas, the workbench, the ledger's lines) is proposed: no product draws it yet.
 `);
 put("project/platforms.md", unlinked(read("docs/platforms.md")));
+put("project/conversation.md", unlinked(read("docs/conversation.md")));
 put("project/products.md", unlinked(read("docs/products.md")));
 put("project/tokens.json", `${JSON.stringify({ ...tokens, meta: {
   source: "github", repo: "sreent/ocean", ref: `${git("rev-parse --abbrev-ref HEAD")}@${git("rev-parse --short HEAD")}`,
-  paths: { tokens: ["css/tokens.css"], fonts: ["fonts"], assets: ["icons", "docs/images"], docs: ["docs/design.md", "docs/products.md"] },
+  paths: { tokens: ["css/tokens.css"], fonts: ["fonts"], assets: ["icons", "docs/images"], docs: ["docs/design.md", "docs/products.md", "docs/platforms.md", "docs/conversation.md"] },
   pulled: "from sreent/a5s (src/a5s/core/webchat/app.css, studio/src/design)", synced: new Date().toISOString().slice(0, 10),
 } }, null, 2)}\n`);
 for (const { file } of faces()) copy(file, `project/${file}`);

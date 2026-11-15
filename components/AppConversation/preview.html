@@ -1,4 +1,4 @@
-<!-- @dsCard group="Conversation" height=900 width=1440 subtitle="An a3t app: an outcome asked for, and the card it answers with" page -->
+<!-- @dsCard group="Conversation" height=900 width=1440 subtitle="An a3t app at a desktop's size: the talk, and the draft pinned beside it" page -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,49 +22,66 @@
 <div class="me"><span class="avatar">BO</span><span>Ben Okafor</span></div>
 </aside>
 <div class="page">
-<main>
-<div class="ds-talk">
-<ol class="convo">
-<li class="you"><div class="said-you">Claim my Bangkok trip last week. It was for the Harbour project.</div><span class="faint">10:42</span></li>
-<li>
-<div class="from"><span class="avatar agent" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><strong>Expenses</strong><span>10:42</span></div>
-<section class="outcome" aria-label="Claim your Bangkok trip">
-<div class="approval-stripe changes"></div>
-<div class="outcome-body">
-<div><h3 class="outcome-title">Claim your Bangkok trip, 10 to 13 Nov</h3><p class="note">For the Harbour project · THB 18,420 · from 4 receipts</p></div>
-<ol class="outcome-steps">
-<li><span>Read your receipts from 10 to 13 Nov <span class="badge reads">reads</span><span class="step-detail">4 found: in your inbox, and on your card's statement</span></span></li>
-<li><span>Fill a claim with them <span class="badge writes">writes</span><span class="step-detail">A draft only you see, until you send it</span></span></li>
-<li><span>Send it to Priya Nair to approve <span class="badge changes">changes</span><span class="step-detail">It submits your claim</span></span></li>
-<li><span>Finance pays it into your account <span class="badge changes">changes</span><span class="step-detail">Once Priya approves; Finance does, not this app</span></span></li>
+<div class="talk-wide">
+<section class="talk" aria-label="A conversation with Expenses">
+<header class="talk-head">
+<span class="avatar agent" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span>
+<span class="talk-who"><strong>Expenses</strong><span>This app's agent: it prepares your claims, and tracks them</span></span>
+<button type="button" class="link">What it may do</button>
+</header>
+<div class="talk-body">
+<span class="talk-day">Today</span>
+<p class="say you">Claim my expenses from last week's Singapore trip</p>
+<p class="say agent">On it. Your calendar shows the trip, 4 to 6 Nov, and I can see the card payments and emailed receipts from those days. Any paper receipts? Take a photo and I'll match it to a card payment.</p>
+<div class="say you photo"><div class="receipt mini" role="img" aria-label="The photo of the receipt"><p class="center"><strong>RESTAURANT</strong></p><hr><p><span>TOTAL</span><span>186.00</span></p></div></div>
+<section class="worklog" aria-label="Put your claim together">
+<h3>Put your claim together</h3>
+<ol>
+<li><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg><span>Read your receipt<span>Restaurant, 5 Nov · SGD 186.00</span></span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg><span>Found the trip in your calendar<span>Supplier visit, Singapore, 4 to 6 Nov</span></span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg><span>Matched 4 card payments<span>Card ••4417</span></span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg><span>Found 2 receipts in your email<span>A Grab ride, the hotel's folio</span></span></li>
+<li><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg><span>Checked the travel policy<span>The hotel is over its cap</span></span></li>
 </ol>
-<div class="outcome-needs">
-<p class="label">What it needs from you</p>
-<div class="wb-pair">
-<label class="wb-field "><span class="wb-label">Project code</span><select><option>Harbour (HB-204)</option></select></label>
-<label class="wb-field "><span class="wb-label">Trip</span><input type="text" value="Client workshop, Bangkok"></label>
-</div>
-<table class="figures"><thead><tr><th scope="col">Date</th><th scope="col">What</th><th scope="col" class="num">THB</th></tr></thead>
-<tbody>
-<tr><td>10 Nov</td><td><button type="button" class="traced"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 15.8a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4z"/><path d="M18 3.8a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4z"/><path d="M7.6 16.4l8.8-8.8"/></svg>Flight, BKK return<span class="hidden"> (from its receipt)</span></button></td><td class="num">12,900</td></tr>
-<tr><td>10 Nov</td><td>Taxi from the airport</td><td class="num">680</td></tr>
-<tr><td>11 Nov</td><td>Hotel, 2 nights</td><td class="num">4,200</td></tr>
-<tr><td>13 Nov</td><td>Taxi to the airport</td><td class="num">640</td></tr>
-</tbody></table>
-<p class="wb-hint">Each line comes from a receipt: open one to see which.</p>
-</div>
-<dl class="outcome-who"><dt>Who decides</dt><dd>Priya Nair, your manager</dd><dt>What it may do</dt><dd>Draft and send your claim. It can't approve it, or pay it.</dd></dl>
-<div class="outcome-actions"><button type="button" class="primary">Send it to Priya</button><button type="button">Change it</button><button type="button" class="link">Open it as a page</button></div>
-</div>
+<p class="promise"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3l7.5 3v6c0 4.5-3.2 7.8-7.5 9-4.3-1.2-7.5-4.5-7.5-9V6z"/></svg>Nothing is sent until you confirm it.</p>
 </section>
-</li>
-</ol>
-<div class="composer">
-<div class="composer-box"><textarea aria-label="Say what you need" placeholder="Say what you need: a claim, a change, a question"></textarea><button type="button" class="primary">Send</button></div>
-<div class="chips"><span class="chip">Claim a trip</span><span class="chip">Where's my claim?</span><span class="chip">Change my bank account</span></div>
+<p class="say agent">Ready. Two things need you first: what the dinner was for, and the hotel, which is over its cap.</p>
 </div>
+<footer class="talk-foot">
+<button type="button" class="round" aria-label="Take a photo"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M3.5 8h4l1.5-2.5h6L16.5 8h4v11h-17z"/><path d="M12 10.5a3.25 3.25 0 1 0 0 6.5 3.25 3.25 0 0 0 0-6.5z"/></svg></button>
+<input type="text" aria-label="Your message" placeholder="Type a correction, or ask why">
+<button type="button" class="round primary" aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 19.5v-15"/><path d="M5.5 11L12 4.5l6.5 6.5"/></svg></button>
+</footer>
+</section>
+<aside class="talk-pinned" aria-label="Your claim, as it stands">
+<div class="talk-pinned-head"><p class="label">Your claim, as it stands</p><button type="button" class="link">Open it as a page</button></div>
+<section class="draft" aria-label="Your claim, a draft">
+<div class="draft-head"><div><strong>Singapore trip · 4 to 6 Nov</strong><p>Draft · 4 expenses · only you see it</p></div><div class="draft-total"><span>Total</span><strong>SGD 777.10</strong></div></div>
+<span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>Needs you: 2</span>
+<div class="question">
+<strong><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>Dinner, 5 Nov · SGD 186.00</strong>
+<p>Client entertainment, or a team meal? It sets the expense type, and who approves it.</p>
+<div class="replies"><button type="button">Client entertainment</button><button type="button">Team meal</button></div>
 </div>
-</main>
+<div class="question">
+<strong><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>Hotel, 2 nights · SGD 540.00</strong>
+<p>SGD 20 a night over the SGD 250 cap.</p>
+<div class="replies"><button type="button">Claim SGD 500</button><button type="button">Add a reason</button></div>
+</div>
+<div class="filled-head"><div>Filled in for you<span>Each with where it came from</span></div><button type="button" class="link" aria-expanded="true">Hide</button></div>
+<ul class="filled">
+<li><span>Taxi to the hotel, 4 Nov</span><span class="source">Receipt</span><span class="num">32.40</span></li>
+<li><span>Taxi to the office, 5 Nov</span><span class="source">Card</span><span class="num">18.70</span></li>
+<li><span>Purpose: supplier visit</span><span class="source inferred">Inferred</span><span class="num"></span></li>
+<li><span>Cost centre: Singapore operations</span><span class="source">Profile</span><span class="num"></span></li>
+<li><span>Approver: Priya Nair</span><span class="source">Profile</span><span class="num"></span></li>
+</ul>
+<p class="filled-note">Dashed tags are inferred: check them.</p>
+<button type="button" class="primary" disabled>Submit claim</button>
+<p class="draft-hint">Answer the 2 questions to submit.</p>
+</section>
+</aside>
+</div>
 </div>
 </div>
 </div>

@@ -13,7 +13,7 @@ export type Kind = "person" | "agent" | "service";
 /** The icons in icons/, each a few lines on a 24-unit square. */
 export type IconName = "chat" | "tasks" | "book" | "studio" | "decide" | "grade" | "settings" | "audit" | "admin"
   | "officer" | "agent" | "tool" | "clock" | "message" | "bell" | "report" | "shield" | "back" | "check" | "run"
-  | "people" | "trace" | "cross" | "pause";
+  | "people" | "trace" | "cross" | "pause" | "camera" | "photos" | "attach" | "send";
 
 export interface IconProps { name: IconName; className?: string }
 /** An icon in `currentColor`. */
@@ -208,3 +208,135 @@ export interface ShellProps {
 }
 /** The frame every page sits in. a5s draws it with shell.js; proposed as a component for a7c and a3t. */
 export declare function Shell(props: ShellProps): React.ReactElement;
+
+// The conversation kit (proposed; docs/conversation.md): an agent's work toward an outcome, in a
+// conversation, for any capability. Its look is css/components.css, from .talk on.
+
+/** Where a value came from: read off a record or a document, worked out by the agent, or the person's. */
+export type SourceKind = "read" | "inferred" | "yours";
+
+export interface SourceProps {
+  /** Where, in a word or two: "Receipt", "Card", "Email", "Record", "Profile", "Calendar", "Inferred", "Changed by you". */
+  label: string;
+  kind?: SourceKind;
+}
+/** Where a value came from, beside it: solid when read, dashed when inferred, in the accent when the person changed it. Proposed. */
+export declare function Source(props: SourceProps): React.ReactElement;
+
+/** Something said in the conversation, by the person or the agent, or a card the agent answers with. */
+export type Said = { by: "you" | "agent"; text: React.ReactNode } | { card: React.ReactNode };
+
+export interface TalkProps {
+  /** The agent who answers: its name, under its mark, and what it serves. */
+  agent: { name: string; about?: string };
+  said: Said[];
+  /** Quick answers, after the last thing said; the one most people will take is the primary. */
+  replies?: { label: string; icon?: IconName; primary?: boolean; onClick: () => void }[];
+  placeholder?: string;
+  onSend: (text: string) => void;
+  /** A photo or a file: an outcome can start from either. */
+  onAttach?: (from: "camera" | "photos" | "file") => void;
+  /** What it may do: the agent's facts. */
+  onAbout?: () => void;
+}
+/** The conversation: the agent, marked by its mark and name, what's said, quick answers, and the composer. Proposed. */
+export declare function Talk(props: TalkProps): React.ReactElement;
+
+export interface CaptureProps {
+  /** What to photograph: "a receipt". */
+  what: string;
+  /** What it found, as it finds it: "Receipt found. Hold still…". */
+  found?: string;
+  /** It takes the photo by itself once the document is in the frame. */
+  auto?: boolean;
+  onTake: (photo: Blob) => void;
+  onChoose?: (from: "photos" | "file") => void;
+  onClose: () => void;
+}
+/** The camera, for paper an outcome needs, in its own dark in either theme. Proposed. */
+export declare function Capture(props: CaptureProps): React.ReactElement;
+
+export interface WorkLogProps {
+  title: string;
+  /** Each step: what the agent did, where it found it, and whether it's done. */
+  steps: { what: string; from: string; done: boolean }[];
+  /** What isn't done yet that matters to this outcome: "Nothing is sent until you confirm it." */
+  promise: string;
+}
+/** The agent's work while it happens, with where each piece came from. Proposed. */
+export declare function WorkLog(props: WorkLogProps): React.ReactElement;
+
+export interface QuestionProps {
+  /** The line it's about, and its figure: "Hotel, 2 nights · SGD 540.00". */
+  about: string;
+  /** Why it's asked, and what the answer sets, in a sentence. */
+  why: React.ReactNode;
+  /** The answers, the likely ones first; or a field, when it needs words, such as a reason. */
+  answers: string[] | { field: string };
+  /** Once answered, what the person chose: it folds to a line with a tick. */
+  answered?: string;
+  onAnswer: (answer: string) => void;
+}
+/** What only the person can answer: what the agent couldn't decide, or what breaks a rule. It waits on them, in --warn. Proposed. */
+export declare function Question(props: QuestionProps): React.ReactElement;
+
+/** A value the agent filled in, with where it came from; it opens to its evidence, and can be changed. */
+export type Filled = { what: string; source: SourceProps; figure?: string; evidence?: React.ReactNode };
+
+export interface DraftProps {
+  /** What the outcome is: "Singapore trip · 4 to 6 Nov". */
+  title: string;
+  /** How it stands, and whose: "Draft · 4 expenses · only you see it". */
+  state: string;
+  /** Its key figure: a total, a balance, a date. */
+  figure?: { label: string; value: string };
+  /** What needs the person, first. */
+  questions: QuestionProps[];
+  /** The rest, folded until opened. */
+  filled: Filled[];
+  /** Its one thing to do, which waits until the questions are answered. */
+  action: { label: string; onClick: () => void };
+}
+/** What the agent prepared, before anything happens: exceptions first, the rest folded with its sources. Proposed. */
+export declare function Draft(props: DraftProps): React.ReactElement;
+
+export interface EditSheetProps {
+  /** The line: "Taxi · 5 Nov · card ••4417". */
+  line: string;
+  /** Each field with its source; `tied` when it matches evidence, so changing it asks why; `was`, once the person changed it. */
+  fields: { label: string; value: string; source: SourceProps; tied?: boolean; was?: string }[];
+  onSave: (values: Record<string, string>) => void;
+  onRestore?: (label: string) => void;
+  onClose: () => void;
+}
+/** A line, opened to change by hand, over the conversation: the person's change marked theirs, the original kept. Proposed. */
+export declare function EditSheet(props: EditSheetProps): React.ReactElement;
+
+export interface SignOffProps {
+  title: string;
+  /** Each line as it will be sent, the person's changes marked. */
+  lines: { what: React.ReactNode; figure?: string; yours?: boolean }[];
+  total?: { label: string; value: string };
+  /** Who decides next, the evidence, and who prepared it: "assistant, which can't approve or pay". */
+  facts: [string, React.ReactNode][];
+  /** What sending it does, in the colour of what it does. */
+  does: { tone: "writes" | "changes" | "outside"; toneWord: string; text: React.ReactNode };
+  /** What the person vouches for, when sending it vouches for something. */
+  vouch?: string;
+  /** The one thing to do, worded for this outcome: "Submit claim", "Ask for the change". */
+  action: { label: string; onClick: () => void };
+  onChange: () => void;
+}
+/** What will happen, exactly, before it does; the person signs off on it, and sends it. Proposed. */
+export declare function SignOff(props: SignOffProps): React.ReactElement;
+
+export interface StatusProps {
+  title: string;
+  about?: string;
+  /** Its stages, in order: done, the one it's at now with who it waits on, and those to come. */
+  stages: { what: string; about?: string; state: "done" | "now" | "later" }[];
+  /** Until when it can be taken back, and how: "Recall it", "Withdraw it". */
+  takeBack?: { until: string; label: string; onClick: () => void };
+}
+/** How an outcome stands, brought to the person: where it is, who it waits on, and until when it can be taken back. Proposed. */
+export declare function Status(props: StatusProps): React.ReactElement;

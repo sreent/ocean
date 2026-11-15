@@ -36,6 +36,8 @@ const TEXT = [  // text, and what it's on: 4.5 to 1
   ["text", "accent-soft"], ["changes", "sunken"],  // a traced value; a change, on a decision
   ["muted", "agent-tone-soft"], ["agent-tone", "agent-tone-soft"],  // the step an agent is on
   ["surface", "bad"], ["surface", "text"],  // the danger button; a hint
+  ["text", "warn-bg"], ["warn", "surface"],  // a question that waits on the person, and its answers
+  ["viewfinder-text", "viewfinder"], ["viewfinder-text", "viewfinder-line"], ["paper-ink", "paper"],  // capture
   ...["reads", "writes", "changes", "outside", "own", "good", "warn", "bad", "idle"].map((tone) => [tone, `${tone}-bg`]),
 ];
 const MARKS = [  // 3 to 1
@@ -46,6 +48,7 @@ const MARKS = [  // 3 to 1
   ["faint", "sunken"],  // a canvas's edges and the dots they join at: the order of the steps
   ["faint", "surface"], ["text", "surface"],  // a tier's line: dashed, solid, or production's ink
   ...["surface", "page", "sunken"].map((on) => ["line-control", on]),  // a field's edge, where to type
+  ["viewfinder-mark", "viewfinder-line"],  // the frame that finds a document, on a camera's view
 ];
 const CHART_MARKS = {  // on the card a chart sits on: 3 to 1
   light: ["chart-1", "chart-2", "chart-3", "chart-4", "chart-6", "chart-other", "chart-done", "chart-short", "chart-failed", "chart-open"],

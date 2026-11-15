@@ -69,6 +69,12 @@
   --agent-tone-soft: var(--lagoon-100);
   --service-tone: var(--mist-600);       /* a service identity's mark: neutral (family addition) */
   --service-tone-soft: var(--mist-100);
+  --viewfinder: var(--deep-900);         /* a camera's view: its own dark, the same in either theme */
+  --viewfinder-line: var(--deep-700);
+  --viewfinder-text: var(--deep-50);
+  --viewfinder-mark: var(--ocean-400);   /* the frame that finds a document, on the camera's view */
+  --paper: var(--mist-0);                /* a document as photographed: white, the same in either theme */
+  --paper-ink: var(--mist-900);
   /* what a tool does, and how something stands */
   --reads: var(--mist-600);      --reads-bg: var(--mist-100);
   --writes: var(--amber-700);    --writes-bg: var(--amber-100);
