@@ -356,7 +356,7 @@ export interface StatusProps {
 /** How an outcome stands, brought to the person: where it is, who it waits on, and until when it can be taken back. Proposed. */
 export declare function Status(props: StatusProps): React.ReactElement;
 
-// a4a's pieces (proposed; docs/products.md): a4a (agenda) tracks issues, boards and plans. Its pieces'
+// a4a's pieces (proposed; docs/products.md): a4a tracks issues, boards and plans. Its pieces'
 // look is css/components.css, from "a4a's pieces" on; its plans, load and cost take css/charts.css too.
 // a4a's React components emit the markup each piece's README gives.
 

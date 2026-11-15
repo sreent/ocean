@@ -150,7 +150,7 @@ a3t has no pages yet: its code (`sreent/joget`) is the governance kernel so far.
 
 ### a4a
 
-a4a (agenda) is new, and starts on Ocean. Its web app is React 19 with Tailwind v4, which takes Ocean as a3t's does (above), and its components emit Ocean's markup and classes, so its pages have no look of their own:
+a4a is new, and starts on Ocean. Its web app is React 19 with Tailwind v4, which takes Ocean as a3t's does (above), and its components emit Ocean's markup and classes, so its pages have no look of their own:
 
 ```css
 @import "@sreent/ocean/tokens.css";
