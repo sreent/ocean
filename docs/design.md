@@ -11,7 +11,7 @@ Write from the reader's side, in plain words, the way the pages already do.
 - Before what can't be undone, ask a question that names the thing, and say what goes with it: "Delete the draft of scout?" "Its folder and its test cases go with it, and nobody can bring them back." The safe answer comes first and has the focus.
 - A decision gives its reason after **Why:**, in the words code worked out when it was asked for, never the agent's own.
 - Each page and each card has one thing to do, and only that is the primary button.
-- Name people by name, and roles in words ("Owner of billing") with the id beside them in `--faint`. Agents go by their id in lower case ("assistant", "watcher"), and are "it".
+- Name people by name, and roles in words ("Owner of billing") with the id beside them in `--faint`. Agents go by their id in lower case ("assistant", "watcher"), and are "it". An app's own agent goes by the app's name ("Expenses").
 - Product names are lower case: a5s, a7c, a3t.
 - Headings are sentence case and say what's there: "How it's wired", "What you see of it, and why".
 - A status line starts with a capital, whatever the server's words.
@@ -65,7 +65,7 @@ These meanings are the products' shared grammar, the same on every surface: badg
 
 ## Charts
 
-`css/charts.css` holds the chart colours, light and dark, and `charts/Preferences.tps` the same for Tableau.
+`css/charts.css` holds the chart colours, light and dark, and `charts/palettes.json` the same as data, for tools that can't read CSS.
 
 - Series take `--chart-1` to `--chart-8` in order, never cycled; past eight, the rest fold into `--chart-other`. Series 1 is Ocean's blue, and no series is coral, so no line reads as a failure.
 - A chart of how things stood takes `--chart-done`, `--chart-short`, `--chart-failed` and `--chart-open` and nothing else, with their words. Never a series colour for a state, nor a state's colour for a series.
@@ -88,7 +88,7 @@ These meanings are the products' shared grammar, the same on every surface: badg
 - Cards are padded 1.25rem 1.5rem and sit 1rem apart. Two side by side need 24rem each.
 - Under 760px the sidebar becomes a row of each page's icon, and screen readers still say each page's name.
 - Decisions are a phone's width at most (28rem): a column on a phone, side by side where there's room.
-- A conversation's lines stay short enough to read: 46rem, or 85% of the page, at most.
+- On a wide screen a conversation is 44rem wide at most, and what's said in it 34rem, so its lines stay short enough to read. The agent's cards are a phone's width at most.
 - The ladder and the path stack wherever they're narrow, by container query rather than by the window.
 
 ## Shape and depth
@@ -119,9 +119,10 @@ Two movements only, and only when the person hasn't asked for less motion. What 
 
 `scripts/check.mjs` holds every product to what a5s's tests began:
 
-- Every colour that carries text reads against what it sits on at 4.5 to 1, as WCAG's AA asks, and focus rings and the marks of agents and services at 3 to 1, in light and in dark. A brand that reads less well fails before anyone sees it.
+- Every colour that carries text reads against what it sits on at 4.5 to 1, as WCAG's AA asks, and every mark at 3 to 1: focus rings, the marks of agents and services, a step's icon and the canvas's curves, a field's edge, a chart's marks, and the camera's frame. In light and in dark. A brand that reads less well fails before anyone sees it.
 - The meanings name only primitives, so a brand is one change in one place, and the pieces name only meanings.
 - Nothing loads from outside: no address off the product in the CSS, and every face is a font file here.
+- The chart palettes as data agree with `css/charts.css`, and the Teams cards are Adaptive Cards made only of what Teams draws.
 
 Each product's browser tests hold its pages to the rest:
 

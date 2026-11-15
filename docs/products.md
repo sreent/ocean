@@ -33,9 +33,10 @@ Each product's words, and what Ocean draws them with. An empty cell is a word th
 | Where it runs | the sandbox; an instance | personal, team and production tiers | a personal Sandbox; a team's Preview, Staging and Prod | TierBadge (proposed) |
 | The way to work | draft, publish, sign, deploy, watch | draft, tests, promotion up the tiers | working copy, change request, preview, release, Prod | JourneyPath |
 | A decision | a decision; a version of the settings | an approval; a promotion | a change request's approval; a deploy's | ApprovalCard |
+| What someone asks for, in a conversation | the chat; a task | a workflow's ask of a person | an app, in conversation | The conversation kit: Talk, Draft, Question, SignOff, Status (proposed) |
 | What must pass first | what stops a release | a promotion's gates; test cases | a change request's checks | GateList (proposed) |
 | Steps on a canvas | the agent's map | the builder's canvas | the process designer | FlowNode, the map's node |
-| Where a value comes from | a traced value | a finding's evidence | a record's history | Traced |
+| Where a value comes from | a traced value | a finding's evidence | a record's history | Traced; in a conversation, Source |
 | The record of who did what | the ledger, the audit trail | the audit log | the sealed audit log | AuditEntry (proposed) |
 
 ### Autonomy, as one ladder
@@ -64,13 +65,13 @@ Where something runs is told by line rather than colour, so it never competes wi
 a5s already is Ocean. To take it from here rather than keep its own copy:
 
 - Serve `css/tokens.css`, `css/components.css` and `fonts/` from a release of this repo, in place of the top of `app.css` and its fonts. Its pages' policy stays as it is, since the files are a5s's own.
-- Rename `--a5s` to `--own-message`. The chat's `li.a5s` keeps working.
+- Its chat moves to the conversation kit's Talk ([`conversation.md`](conversation.md)), and its own messages take `--own-message` in place of `--a5s`. Ocean doesn't carry the chat's own styles (`#conversation`, `#compose`).
 - Run `scripts/check.mjs` beside `tests/test_design.py`, or in its place.
 - Draw the runs chart from `css/charts.css`: `--chart-done`, `--chart-short`, `--chart-failed` and `--chart-open` in place of its four colours of its own (`studio.css`, `.runs-chart`), the brightest in a5s and the only ones outside Ocean.
 - Give each state its shape: `StatusBadge`, the grades and the gates draw a tick, a clock, a cross or a pause where they draw a dot today.
 - Its fields' edges become `--line-control`, and `--outside` moves darker, both from `css/tokens.css` with no change of its own.
 - The studio's pieces (`studio/src/design`) can move here as the family's React components when a7c or a3t first needs them.
-- a5s's docs show its chat and tasks pages as they looked before Ocean. The screens in `docs/images` here are the studio's, as it looks now.
+- Its agent's map moves to FlowNode, laid out as n8n lays out a canvas, in place of the striped nodes it draws today.
 
 ### a7c
 
@@ -83,10 +84,9 @@ a7c's builder (`apps/web`) uses the system's fonts and colours today, with two c
 | `#1b6e2a`: passed | `--good`, and Badge `good` |
 | `Canvas`, `CanvasText` | `--surface`, `--text` |
 | `LinkText` | `--accent` |
-| `Highlight`: the chosen step | `--focus`, as `.map-node.chosen` |
+| `Highlight`: the chosen step | `--focus`, as FlowNode's chosen step |
 | lines at 20% of the text colour | `--line`; at 35%, `--line-strong` |
 | `.status` pills | Badge, with its shape: a tick for passed, a cross for failed |
-| `.box`, the steps on the canvas | FlowNode: the map's node, its stripe in the colour of the step's risk |
 | `.react-flow__edge.reads`, dashed: a step that an expression reads | `.reads-from`, shown for the chosen step, so that `reads` keeps meaning what a tool does |
 | `.box`, the steps on the canvas | FlowNode: a square, its icon in the colour of the step's risk, its name beneath |
 | `.dialog` | the browser's own dialog, in Confirm's look |
@@ -134,7 +134,7 @@ a3t has no pages yet: its code (`sreent/joget`) is the governance kernel so far.
   --color-accent-foreground: var(--text);
   --color-destructive: var(--bad);
   --color-border: var(--line);
-  --color-input: var(--line-strong);
+  --color-input: var(--line-control);
   --color-ring: var(--focus);
   /* and the grammar, for utilities such as text-changes and bg-changes-bg */
   --color-changes: var(--changes);
@@ -145,8 +145,9 @@ a3t has no pages yet: its code (`sreent/joget`) is the governance kernel so far.
 - Name shadcn's colours through Tailwind's theme, as above, and never by declaring shadcn's own variables on `:root`: its `--accent` and `--muted` are backgrounds, while Ocean's are a blue and a text colour of the same names.
 - Ocean's `--radius-sm`, `--radius-md` and `--radius-lg` take the place of Tailwind's, and `--font-sans` and `--font-mono` already have Tailwind's names.
 - The apps people build in a3t take the same tokens. An app's own branding is a change of primitives inside its frame, held to the same checks.
-- Its change requests are ApprovalCards with a GateList, its environments are TierBadges, and its sealed audit log is AuditEntry.
+- Its change requests are ApprovalCards with a GateList (ChangeRequest draws one), its environments are TierBadges, its sealed audit log is AuditEntry, and its designer is AppDesigner.
+- Its apps are used in conversation with the conversation kit: in their own frame (AppConversation), and in Microsoft Teams (InTeams), where Teams draws the kit's cards from `teams/cards`.
 
 ## Where Ocean lives
 
-This repo is Ocean's one source. a5s copies its files from a release, since its pages serve only their own files. a7c and a3t depend on it by commit, as `"@sreent/ocean": "github:sreent/ocean#<commit>"`, and import `@sreent/ocean/tokens.css` and `@sreent/ocean/components.css`. Each product runs `node scripts/check.mjs` in CI, against its own `tokens.css` where it changes the brand.
+This repo is Ocean's one source. a5s copies its files from a release, since its pages serve only their own files. a7c and a3t depend on it by commit, as `"@sreent/ocean": "github:sreent/ocean#<commit>"`, and import `@sreent/ocean/tokens.css` and `@sreent/ocean/components.css`, with `@sreent/ocean/charts.css` where they draw charts. A Teams app takes the kit's cards from `@sreent/ocean/teams/cards`. Each product runs `node scripts/check.mjs` in CI, against its own `tokens.css` where it changes the brand.

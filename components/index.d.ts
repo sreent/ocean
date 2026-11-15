@@ -223,8 +223,8 @@ export interface SourceProps {
 /** Where a value came from, beside it: solid when read, dashed when inferred, in the accent when the person changed it. Proposed. */
 export declare function Source(props: SourceProps): React.ReactElement;
 
-/** Something said in the conversation, by the person or the agent, or a card the agent answers with. */
-export type Said = { by: "you" | "agent"; text: React.ReactNode } | { card: React.ReactNode };
+/** Something said in the conversation, by the person, the agent or the product itself ("own"), or a card the agent answers with. */
+export type Said = { by: "you" | "agent" | "own"; text: React.ReactNode } | { card: React.ReactNode };
 
 export interface TalkProps {
   /** The agent who answers: its name, under its mark, and what it serves. */

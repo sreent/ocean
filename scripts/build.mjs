@@ -3,7 +3,7 @@
 // - tokens.json: the tokens as data, for tools such as a Tailwind theme (docs/products.md): each
 //   colour by theme, as an alias of its primitive; the type; the spacing, radii, shadows and sizes.
 // - dist/design-system/: this repo as a claude.ai Design System (docs/, components/, fonts/),
-//   with the icons and screens to upload beside it.
+//   with the icons and screens to upload beside it, and the Teams cards to download.
 
 import { execSync } from "node:child_process";
 import { copyFileSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
@@ -38,7 +38,7 @@ const MEANINGS = {
   focus: "The keyboard's ring: 2px solid, 2px off the element. 3 to 1 on surface.",
   you: "Your own messages in a conversation.",
   agent: "An agent's messages in a conversation.",
-  "own-message": "The product's own messages in a conversation. a5s calls it --a5s today (family rename).",
+  "own-message": "The product's own word in a conversation, beside the agent's and the person's.",
   "agent-tone": "What sets an agent apart from a person: its square mark, its node, the rung it's on. 3 to 1 on surface, and surface on it.",
   "agent-tone-soft": "Behind an agent's node and the rung of autonomy it's on.",
   "service-tone": "Family addition (proposed): a service identity's mark, such as a7c's skills' and a3t's service accounts'. Neutral, never the agent colour.",
@@ -201,7 +201,8 @@ put("project/README.md", `${unlinked(untitled(read("docs/design.md")))}
 ## Not synced
 
 - Every preview is a static rendition: plain markup, styled by \`components/bundle.css\`, which is this repo's \`css/components.css\`. The React pieces stay in a5s (\`studio/src/design\`) and aren't built here.
-- What the family adds (services, tiers, gates, the canvas, the workbench, the ledger's lines) is proposed: no product draws it yet.
+- What the family adds (services, tiers, gates, the canvas, the workbench, the ledger's lines, the conversation kit and its Teams cards) is proposed: no product draws it yet.
+- The screens are drawn from the previews, not taken from a product.
 `);
 put("project/platforms.md", unlinked(read("docs/platforms.md")));
 put("project/conversation.md", unlinked(read("docs/conversation.md")));

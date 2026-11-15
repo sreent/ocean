@@ -11,6 +11,8 @@ The conversation kit's reference flow: an expense claim, from asking to submitte
 7. Confirm and submit: exactly what will be sent, what submitting does, and who did what.
 8. Submitted: status comes to the person, and the claim can be recalled until the approver opens it.
 
+The same claim in Microsoft Teams is InTeams.
+
 What Ocean changes in the first sketch:
 
 - The agent is marked by its mark and its name, never a sparkle, with a way to what it may do.

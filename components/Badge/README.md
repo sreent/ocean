@@ -8,6 +8,6 @@ What a tool does, or how something stands, in the colour that means it.
 - A badge with no tone is a plain fact that needs no colour, such as "hands over billing". Chips (`.chip`) are plain facts beside badges: a model, a level.
 - Coral is a change to a record or a failure, and nothing else.
 
-**Takes:** `tone`, `shape`, and its word. a5s draws a dot in place of the shape today.
+**Takes:** `tone`, `shape`, and its word.
 
 **In a5s:** `studio/src/design/controls.tsx`; the badges the studio draws for tools and states come from `studio/src/ui.tsx`. The preview is a static rendition.

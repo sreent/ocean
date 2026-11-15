@@ -9,4 +9,4 @@ An app made with a3t, used in conversation at a desktop's size: the conversation
 - It opens as a page too. Every outcome an a3t app prepares is also a record in the app, with its form, for anyone who'd rather fill it in.
 - The composer takes the next thing: a correction, a question, or another outcome.
 
-The preview is a static rendition, at a desktop's size.
+The same app in Microsoft Teams is InTeams. The preview is a static rendition, at a desktop's size.
