@@ -1,0 +1,214 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "msteams": {
+    "width": "Full"
+  },
+  "refresh": {
+    "action": {
+      "type": "Action.Execute",
+      "title": "Refresh",
+      "verb": "status"
+    },
+    "userIds": [
+      "<Ben Okafor's Teams user id>"
+    ]
+  },
+  "body": [
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "Icon",
+              "name": "CheckmarkCircle",
+              "size": "Medium",
+              "color": "Good",
+              "style": "Filled"
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Claim submitted",
+              "wrap": true,
+              "weight": "Bolder",
+              "size": "Medium"
+            },
+            {
+              "type": "TextBlock",
+              "text": "SGD 777.10 · Singapore trip, 4 to 6 Nov",
+              "wrap": true,
+              "isSubtle": true,
+              "size": "Small",
+              "spacing": "None"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "Icon",
+              "name": "CheckmarkCircle",
+              "size": "xSmall",
+              "color": "Good",
+              "style": "Filled"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Submitted",
+              "wrap": true
+            },
+            {
+              "type": "TextBlock",
+              "text": "Today, 10:42",
+              "wrap": true,
+              "isSubtle": true,
+              "size": "Small",
+              "spacing": "None"
+            }
+          ]
+        }
+      ],
+      "spacing": "Small"
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "Icon",
+              "name": "Clock",
+              "size": "xSmall",
+              "color": "Warning",
+              "style": "Regular"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "With Priya Nair",
+              "wrap": true
+            },
+            {
+              "type": "TextBlock",
+              "text": "Waiting for her review",
+              "wrap": true,
+              "isSubtle": true,
+              "size": "Small",
+              "spacing": "None"
+            }
+          ]
+        }
+      ],
+      "spacing": "Small"
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "Icon",
+              "name": "Circle",
+              "size": "xSmall",
+              "color": "Subtle",
+              "style": "Regular"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Approved",
+              "wrap": true,
+              "isSubtle": true
+            }
+          ]
+        }
+      ],
+      "spacing": "Small"
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "Icon",
+              "name": "Circle",
+              "size": "xSmall",
+              "color": "Subtle",
+              "style": "Regular"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Paid",
+              "wrap": true,
+              "isSubtle": true
+            }
+          ]
+        }
+      ],
+      "spacing": "Small"
+    },
+    {
+      "type": "TextBlock",
+      "text": "You can recall it until Priya opens it.",
+      "wrap": true,
+      "isSubtle": true,
+      "size": "Small",
+      "spacing": "Medium",
+      "separator": true
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "Recall it",
+      "verb": "recall"
+    }
+  ]
+}

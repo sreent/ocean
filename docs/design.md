@@ -33,6 +33,8 @@ Write from the reader's side, in plain words, the way the pages already do.
 - Name meanings in every rule: `--text` on `--surface`, a badge's `--changes` on `--changes-bg`. Never a primitive, never a colour of a page's own.
 - The page is `--page`. Cards and the sidebar are `--surface`, with a 1px `--line` around them. Wells inside a card are `--sunken`.
 - `--accent` is for what someone can do: links, the primary button, the current page. What's chosen sits on `--accent-soft`, in `--accent`, at 600.
+- A field's edge (an input, a select, a text area, an expression) is `--line-control`, 3 to 1 on what it sits on, so a person sees where to type. Buttons keep `--line-strong`: their words show them.
+- `--outside` sits darker than `--accent` in light and lighter in dark, so the organisation's edge and what someone can do differ by more than hue.
 - Dark follows the device, with the same meanings over the deep neutrals.
 
 ### The grammar
@@ -48,6 +50,7 @@ These meanings are the products' shared grammar, the same on every surface: badg
 | The product's own doing: its checks, its own tools | `--own` | | |
 
 - Coral means a change to a record, or a failure, and nothing else. Amber means written but not yet relied on, or waiting on someone.
+- How something stands has a shape before its word as well as a colour: a tick for `--good`, a clock for `--warn`, a cross for `--bad`, a pause for `--idle`. The tones are near one lightness, so the shape is what tells them apart for colour-blind readers.
 - Say it in words too. A badge always carries its word ("changes due dates", "waiting on you"), so colour is never the only sign.
 - Each tone has a `-bg` partner for badges: `--changes` on `--changes-bg`.
 - The palette is closed. A product never adds a colour for a new state: it finds the meaning that fits, or the family adds one for all three products.
@@ -58,6 +61,16 @@ These meanings are the products' shared grammar, the same on every surface: badg
 - Agents are rounded squares (`--radius-sm`) in `--agent-tone`, with the agent's mark in `--surface`. People never are, so a page shows at a glance whether a person or an agent did something.
 - Services, such as a7c's skills' identities and a3t's service accounts, are rounded squares in `--service-tone`, with the tool's mark. They act, but they don't decide for themselves, so they're never the agent colour.
 - The product's own doing is `--own`. In a conversation, its messages sit on `--own-message`, an agent's on `--agent`, and yours on `--you`.
+- Wherever an agent speaks or acts, it's marked by its mark and its name, never by a sparkle. A sparkle says magic, and an agent answers for what it does ([`conversation.md`](conversation.md)).
+
+## Charts
+
+`css/charts.css` holds the chart colours, light and dark, and `charts/Preferences.tps` the same for Tableau.
+
+- Series take `--chart-1` to `--chart-8` in order, never cycled; past eight, the rest fold into `--chart-other`. Series 1 is Ocean's blue, and no series is coral, so no line reads as a failure.
+- A chart of how things stood takes `--chart-done`, `--chart-short`, `--chart-failed` and `--chart-open` and nothing else, with their words. Never a series colour for a state, nor a state's colour for a series.
+- In light, series 5, 7 and 8 are under 3 to 1 on white: label their marks in `--text`, and keep the figures beside the chart as a table. Scatter plots and maps use the first five series in light, four in dark.
+- One measure from least to most is Ocean Blue (`--chart-seq-1` to `-7`); above and below a middle is Ocean Orange-Blue (`--chart-div-1` to `-9`).
 
 ## Type
 
@@ -82,11 +95,11 @@ These meanings are the products' shared grammar, the same on every surface: badg
 
 - `--radius-sm` (6px) for buttons, inputs, tiers and the marks of agents and services; `--radius-md` (10px) for cards, wells and popovers; `--radius-lg` (14px) for decisions and dialogs; `--radius-pill` for badges, chips and meters. People are circles.
 - Cards rest on `--shadow` in light and on nothing in dark. What floats over the page, such as popovers, dialogs and decisions, takes `--shadow-raised`.
-- Line tells how something stands. Dashed is what isn't in force yet: an instance not in the settings yet, a rung beyond the current one, someone's own tier. Faded to 0.42 is what a run didn't use.
+- Line tells how something stands. Dashed is what isn't in force yet: an instance not in the settings yet, a rung beyond the current one, someone's own tier, a value an agent worked out until a person checks it. Faded to 0.42 is what a run didn't use.
 
 ## Motion
 
-One movement only: what opens over the page, such as a popover, a dialog or a hint, rises 4px into place over 120ms, easing out, and only when the person hasn't asked for less motion.
+Two movements only, and only when the person hasn't asked for less motion. What opens over the page, such as a popover, a dialog, a hint or a sheet, rises 4px into place over 120ms, easing out. The work an agent has under way turns until it's done.
 
 ## States
 
@@ -99,7 +112,7 @@ One movement only: what opens over the page, such as a popover, a dialog or a hi
 ## Iconography
 
 - Lines on a 24-unit square: stroke 1.8, round caps and joins, no fill, in `currentColor`, so an icon takes its text's colour. 1.15rem in the sidebar, 0.9 to 1.1rem in marks and badges.
-- The set is in `icons/`, 22 of them. The agent's mark is for agents alone. The shield with a tick (`audit`) is for what's signed and kept in the ledger, and for the product's own messages. The tool is for tools and services.
+- The set is in `icons/`, 28 of them. The agent's mark is for agents alone. The shield with a tick (`audit`) is for what's signed and kept in the ledger, and for the product's own messages. The tool is for tools and services.
 - No icon font and no emoji. A new icon is drawn the same way, on the same square.
 
 ## What it's held to

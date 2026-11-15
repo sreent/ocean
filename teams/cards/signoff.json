@@ -1,0 +1,343 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "msteams": {
+    "width": "Full"
+  },
+  "body": [
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Singapore trip · 4 to 6 Nov",
+              "wrap": true,
+              "weight": "Bolder",
+              "size": "Medium"
+            },
+            {
+              "type": "TextBlock",
+              "text": "4 expenses",
+              "wrap": true,
+              "isSubtle": true,
+              "size": "Small",
+              "spacing": "None"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "Badge",
+              "text": "Ready",
+              "style": "Good",
+              "appearance": "Tint",
+              "shape": "Rounded",
+              "icon": "Checkmark"
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        }
+      ]
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Taxi to the hotel, 4 Nov",
+              "wrap": true
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        },
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "32.40",
+              "wrap": true,
+              "horizontalAlignment": "Right"
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        }
+      ],
+      "spacing": "Small",
+      "separator": true
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Taxi to the supplier's site, 5 Nov",
+              "wrap": true
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        },
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "Badge",
+              "text": "Changed by you",
+              "style": "Accent",
+              "appearance": "Tint",
+              "shape": "Rounded"
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        },
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "18.70",
+              "wrap": true,
+              "horizontalAlignment": "Right"
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        }
+      ],
+      "spacing": "Small",
+      "separator": true
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Dinner, 5 Nov · team meal",
+              "wrap": true
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        },
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "186.00",
+              "wrap": true,
+              "horizontalAlignment": "Right"
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        }
+      ],
+      "spacing": "Small",
+      "separator": true
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Hotel, 2 nights · a reason added",
+              "wrap": true
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        },
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "540.00",
+              "wrap": true,
+              "horizontalAlignment": "Right"
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        }
+      ],
+      "spacing": "Small",
+      "separator": true
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Total",
+              "wrap": true,
+              "weight": "Bolder"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "SGD 777.10",
+              "wrap": true,
+              "weight": "Bolder",
+              "horizontalAlignment": "Right"
+            }
+          ]
+        }
+      ],
+      "spacing": "Small",
+      "separator": true
+    },
+    {
+      "type": "FactSet",
+      "spacing": "Medium",
+      "facts": [
+        {
+          "title": "Purpose",
+          "value": "Supplier visit"
+        },
+        {
+          "title": "Approver",
+          "value": "Priya Nair, your manager"
+        },
+        {
+          "title": "Evidence",
+          "value": "3 receipts, 1 card payment"
+        },
+        {
+          "title": "Prepared by",
+          "value": "Expenses, which can't submit, approve or pay"
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "style": "attention",
+      "roundedCorners": true,
+      "spacing": "Medium",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "Badge",
+                  "text": "Changes",
+                  "style": "Attention",
+                  "appearance": "Tint",
+                  "shape": "Rounded"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Submitting sends your claim to Priya Nair. You can recall it until she opens it.",
+                  "wrap": true,
+                  "size": "Small"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "By submitting, you confirm these expenses are accurate, and were for work.",
+      "wrap": true,
+      "isSubtle": true,
+      "size": "Small",
+      "spacing": "Medium"
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "Icon",
+              "name": "ShieldCheckmark",
+              "size": "xSmall",
+              "color": "Default"
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Your submission is signed and kept in the audit log.",
+              "wrap": true,
+              "isSubtle": true,
+              "size": "Small"
+            }
+          ]
+        }
+      ],
+      "spacing": "Small"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "Submit claim",
+      "verb": "submit",
+      "style": "positive"
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Make a change",
+      "data": {
+        "msteams": {
+          "type": "task/fetch"
+        },
+        "open": "change"
+      }
+    }
+  ]
+}

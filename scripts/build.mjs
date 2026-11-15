@@ -7,7 +7,7 @@
 
 import { execSync } from "node:child_process";
 import { copyFileSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
-import { faces, layers, read, ROOT, source, themes } from "./tokens.mjs";
+import { charts, faces, layers, read, ROOT, source, themes } from "./tokens.mjs";
 
 const HUES = {
   ocean: "Ocean's blue: what someone can do",
@@ -26,7 +26,8 @@ const MEANINGS = {
   muted: "Quieter text: notes, a line under a name, a step's detail. On page, surface, sunken and agent-tone-soft.",
   faint: "Labels, times, ids beside a name. On page and surface. Also a tier's line.",
   line: "Hairlines: between rows, around cards.",
-  "line-strong": "Controls' borders and the map's edges. Never the only sign of anything.",
+  "line-strong": "Buttons' borders, whose words show them, and decoration such as a canvas's dot grid. Never the only sign of anything.",
+  "line-control": "A field's edge (input, select, text area, an expression): 3 to 1 on surface, page and sunken, so a person sees where to type.",
   page: "The page behind the cards.",
   surface: "Cards, the sidebar, controls. Also text on agent-tone, service-tone, bad and text (a hint).",
   sunken: "Wells inside a card, such as a decision's changes; rows and buttons under the pointer.",
@@ -42,13 +43,19 @@ const MEANINGS = {
   "agent-tone-soft": "Behind an agent's node and the rung of autonomy it's on.",
   "service-tone": "Family addition (proposed): a service identity's mark, such as a7c's skills' and a3t's service accounts'. Neutral, never the agent colour.",
   "service-tone-soft": "Family addition (proposed): behind a service identity's node.",
+  viewfinder: "A camera's view, as when photographing a receipt: its own dark, the same in either theme.",
+  "viewfinder-line": "Edges and the status pill on a camera's view.",
+  "viewfinder-text": "Text and controls on a camera's view.",
+  "viewfinder-mark": "The frame that finds a document on a camera's view: the accent's light step, in either theme.",
+  paper: "A document as photographed, such as a receipt: white in either theme.",
+  "paper-ink": "The print on a photographed document.",
   reads: "What a tool does: reads. On reads-bg, page and surface.",
   "reads-bg": "Behind a reads badge.",
   writes: "Writes what nobody relies on yet: a draft, a proposal, a working copy. On writes-bg.",
   "writes-bg": "Behind a writes badge.",
   changes: "Changes a record, or a system others rely on. Coral means this and failure, nothing else. On changes-bg and sunken.",
   "changes-bg": "Behind a changes badge.",
-  outside: "Crosses the organisation's edge: reads content from outside, or sends data out. On outside-bg.",
+  outside: "Crosses the organisation's edge: reads content from outside, or sends data out. On outside-bg. Darker than accent in light and lighter in dark, so the two differ for colour-blind readers too.",
   "outside-bg": "Behind an outside badge.",
   own: "The product's own doing: its checks, its own tools, its signed approvals. On own-bg.",
   "own-bg": "Behind an own badge.",
@@ -125,6 +132,19 @@ function tokensJson() {
     if (!MEANINGS[name]) throw new Error(`--${name} has no usage note in build.mjs`);
     colours.push({ name, value: { light: at("light"), dark: at("dark") }, usage: MEANINGS[name] });
   }
+  // The chart colours (css/charts.css), each with its light and dark value
+  const chart = charts();
+  const SERIES = ["blue", "orange", "sea green", "rose", "sky", "violet", "gold", "teal"];
+  const RUNS = { "chart-done": "Runs that ended done.", "chart-short": "Runs cut short, such as by their budget.",
+    "chart-failed": "Runs that failed.", "chart-open": "Runs still open." };
+  for (const name of Object.keys(chart.light)) {
+    const [, kind, n] = /^chart-(seq|div)?-?(\d+)?/.exec(name) ?? [];
+    const usage = RUNS[name] ?? (name === "chart-other" ? "Any series past the eighth, folded into one: Ocean's mist."
+      : kind === "seq" ? `Ocean Blue, step ${n} of 7, from least to most.`
+        : kind === "div" ? `Ocean Orange-Blue, step ${n} of 9, from the orange end to the blue; 5 is the middle.`
+          : `Series ${n}, ${SERIES[n - 1]}.${["5", "7", "8"].includes(n) ? " Under 3 to 1 on white: label its marks in text." : ""}`);
+    colours.push({ name, value: { light: chart.light[name].toLowerCase(), dark: chart.dark[name].toLowerCase() }, usage });
+  }
   const families = {
     sans: primitives["font-sans"].replaceAll("'", "\""),
     mono: primitives["font-mono"].replaceAll("'", "\""),
@@ -175,11 +195,23 @@ const copy = (from, to) => {
 const git = (args) => { try { return execSync(`git ${args}`, { cwd: ROOT, encoding: "utf8" }).trim(); } catch { return ""; } };
 
 const untitled = (md) => md.replace(/^# [^\n]*\n+/, "");
-put("project/README.md", untitled(read("docs/design.md")));
-put("project/products.md", read("docs/products.md"));
+// Links between the docs point into this repo; in the design system, the sections stand alone
+const unlinked = (md) => md.replace(/\[([^\]]+)\]\((?!https?:)[^)]+\)/g, "$1");
+put("project/README.md", `${unlinked(untitled(read("docs/design.md")))}
+## Not synced
+
+- Every preview is a static rendition: plain markup, styled by \`components/bundle.css\`, which is this repo's \`css/components.css\`. The React pieces stay in a5s (\`studio/src/design\`) and aren't built here.
+- What the family adds (services, tiers, gates, the canvas, the workbench, the ledger's lines) is proposed: no product draws it yet.
+`);
+put("project/platforms.md", unlinked(read("docs/platforms.md")));
+put("project/conversation.md", unlinked(read("docs/conversation.md")));
+// The conversation kit's cards for Microsoft Teams, to download
+put("project/assets/Teams/README.md", unlinked(read("teams/README.md")));
+for (const card of readdirSync(new URL("teams/cards/", ROOT)).filter((f) => f.endsWith(".json"))) copy(`teams/cards/${card}`, `project/assets/Teams/${card}`);
+put("project/products.md", unlinked(read("docs/products.md")));
 put("project/tokens.json", `${JSON.stringify({ ...tokens, meta: {
   source: "github", repo: "sreent/ocean", ref: `${git("rev-parse --abbrev-ref HEAD")}@${git("rev-parse --short HEAD")}`,
-  paths: { tokens: ["css/tokens.css"], fonts: ["fonts"], assets: ["icons", "docs/images"], docs: ["docs/design.md", "docs/products.md"] },
+  paths: { tokens: ["css/tokens.css"], fonts: ["fonts"], assets: ["icons", "docs/images"], docs: ["docs/design.md", "docs/products.md", "docs/platforms.md", "docs/conversation.md"] },
   pulled: "from sreent/a5s (src/a5s/core/webchat/app.css, studio/src/design)", synced: new Date().toISOString().slice(0, 10),
 } }, null, 2)}\n`);
 for (const { file } of faces()) copy(file, `project/${file}`);

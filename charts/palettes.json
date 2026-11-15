@@ -1,0 +1,171 @@
+{
+  "categorical": {
+    "names": [
+      "blue",
+      "orange",
+      "sea green",
+      "rose",
+      "sky",
+      "violet",
+      "gold",
+      "teal"
+    ],
+    "light": [
+      "#1a4f91",
+      "#d97805",
+      "#08a97f",
+      "#934f71",
+      "#64b9e1",
+      "#866ab1",
+      "#d0b302",
+      "#43c8c5"
+    ],
+    "dark": [
+      "#3b82d6",
+      "#b36101",
+      "#02af84",
+      "#aa487c",
+      "#02a3d6",
+      "#7b60a4",
+      "#aa920e",
+      "#0c9593"
+    ],
+    "other": {
+      "light": "#5f7387",
+      "dark": "#8aa0b6"
+    }
+  },
+  "sequential": {
+    "light": [
+      "#8abaf4",
+      "#64a0e8",
+      "#4086d8",
+      "#286cbe",
+      "#19549d",
+      "#113e75",
+      "#0b2a4f"
+    ],
+    "dark": [
+      "#174f95",
+      "#2163b4",
+      "#3479cc",
+      "#4f90de",
+      "#6da7ec",
+      "#90bef4",
+      "#b8d4f7"
+    ]
+  },
+  "diverging": {
+    "light": [
+      "#793e11",
+      "#a95a11",
+      "#d97805",
+      "#eea86b",
+      "#f0efec",
+      "#8abaf4",
+      "#5897e2",
+      "#2d71c4",
+      "#1a4f91"
+    ],
+    "dark": [
+      "#f5be8e",
+      "#e58c3a",
+      "#bd660e",
+      "#8c4912",
+      "#3b3b3b",
+      "#1c5cab",
+      "#3b82d6",
+      "#6fa8ec",
+      "#accef7"
+    ]
+  },
+  "status": {
+    "light": {
+      "done": "#057342",
+      "short": "#b47308",
+      "failed": "#86281f",
+      "open": "#4f5c6c"
+    },
+    "dark": {
+      "done": "#79c497",
+      "short": "#ffd890",
+      "failed": "#d97465",
+      "open": "#acbdce"
+    }
+  },
+  "surfaces": {
+    "light": "#ffffff",
+    "dark": "#0f2133"
+  },
+  "comparison": {
+    "tableau10": {
+      "names": [
+        "blue",
+        "orange",
+        "red",
+        "teal",
+        "green",
+        "yellow",
+        "purple",
+        "pink",
+        "brown",
+        "grey"
+      ],
+      "light": [
+        "#4e79a7",
+        "#f28e2b",
+        "#e15759",
+        "#76b7b2",
+        "#59a14f",
+        "#edc948",
+        "#b07aa1",
+        "#ff9da7",
+        "#9c755f",
+        "#bab0ac"
+      ]
+    },
+    "previous": {
+      "names": [
+        "blue",
+        "orange",
+        "sea green",
+        "violet",
+        "coral",
+        "sky",
+        "gold",
+        "teal"
+      ],
+      "light": [
+        "#2b46a2",
+        "#f7912f",
+        "#36bf94",
+        "#9570cc",
+        "#d85b56",
+        "#4aabe0",
+        "#dbae00",
+        "#01967e"
+      ],
+      "other": "#6e7b90",
+      "sequential": [
+        "#97bae3",
+        "#78a0d4",
+        "#5b85c4",
+        "#4069b3",
+        "#294da2",
+        "#123780",
+        "#002654"
+      ],
+      "diverging": [
+        "#923f02",
+        "#c4661a",
+        "#f7912f",
+        "#fec897",
+        "#f0efec",
+        "#c4d6ee",
+        "#92b0dc",
+        "#5e82c6",
+        "#3153ae"
+      ]
+    }
+  }
+}

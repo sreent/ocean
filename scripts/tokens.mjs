@@ -26,6 +26,13 @@ export function layers(css = read("css/tokens.css")) {
   };
 }
 
+/** css/charts.css as two themes: its light values, and its dark ones over them. */
+export function charts(css = read("css/charts.css")) {
+  const dark = css.indexOf(DARK);
+  const light = declared(dark < 0 ? css : css.slice(0, dark));
+  return { light, dark: { ...light, ...(dark < 0 ? {} : declared(css.slice(dark))) } };
+}
+
 /** Each theme as every token's value in it: the primitives, then the meanings over them. */
 export function themes(css) {
   const { primitives, light, dark } = layers(css);

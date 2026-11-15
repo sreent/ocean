@@ -27,12 +27,13 @@
   --coral-100: #fde7e3;  --coral-300: #ff9b8c;  --coral-700: #b83a2e;  --coral-900: #3d1d1a;
   --kelp-100: #e0f2e7;   --kelp-300: #79d8a0;   --kelp-700: #1c7547;   --kelp-900: #12301f;
   --amber-100: #fdf0d5;  --amber-300: #f0c36a;  --amber-700: #8f5a00;  --amber-900: #33290f;
-  --violet-100: #efe9fb; --violet-300: #c3aaff; --violet-700: #6741b8; --violet-900: #2a2147;
+  --violet-100: #efe9fb; --violet-200: #dccdff; --violet-300: #c3aaff; --violet-700: #6741b8;
+  --violet-800: #4a2690; --violet-900: #2a2147;
   --sand-100: #fdf5e2;   --sand-900: #3a3220;
   /* the mist and the deep: Ocean's neutrals, from page to ink */
   --mist-0: #ffffff;   --mist-50: #f3f6f9;  --mist-100: #ecf1f5; --mist-200: #dbe3ea;
-  --mist-300: #c3cfda; --mist-500: #5f7387; --mist-600: #4a5d72; --mist-900: #0f2236;
-  --deep-50: #e4edf6;  --deep-200: #a9bdd2; --deep-300: #8aa0b6; --deep-500: #2a4560;
+  --mist-300: #c3cfda; --mist-400: #7d8ca0; --mist-500: #5f7387; --mist-600: #4a5d72; --mist-900: #0f2236;
+  --deep-50: #e4edf6;  --deep-200: #a9bdd2; --deep-300: #8aa0b6; --deep-400: #5a7590; --deep-500: #2a4560;
   --deep-600: #1e3449; --deep-700: #1a2d40; --deep-800: #0f2133; --deep-850: #0c1b2a;
   --deep-900: #0a1724;
 
@@ -52,6 +53,7 @@
   --faint: var(--mist-500);
   --line: var(--mist-200);
   --line-strong: var(--mist-300);
+  --line-control: var(--mist-400);  /* a field's edge: 3 to 1 on what it sits on, so a person sees where to type */
   --page: var(--mist-50);
   --surface: var(--mist-0);
   --sunken: var(--mist-100);
@@ -67,11 +69,17 @@
   --agent-tone-soft: var(--lagoon-100);
   --service-tone: var(--mist-600);       /* a service identity's mark: neutral (family addition) */
   --service-tone-soft: var(--mist-100);
+  --viewfinder: var(--deep-900);         /* a camera's view: its own dark, the same in either theme */
+  --viewfinder-line: var(--deep-700);
+  --viewfinder-text: var(--deep-50);
+  --viewfinder-mark: var(--ocean-400);   /* the frame that finds a document, on the camera's view */
+  --paper: var(--mist-0);                /* a document as photographed: white, the same in either theme */
+  --paper-ink: var(--mist-900);
   /* what a tool does, and how something stands */
   --reads: var(--mist-600);      --reads-bg: var(--mist-100);
   --writes: var(--amber-700);    --writes-bg: var(--amber-100);
   --changes: var(--coral-700);   --changes-bg: var(--coral-100);
-  --outside: var(--violet-700);  --outside-bg: var(--violet-100);
+  --outside: var(--violet-800);  --outside-bg: var(--violet-100);  /* apart from the accent by lightness too */
   --own: var(--lagoon-700);      --own-bg: var(--lagoon-100);
   --good: var(--kelp-700);       --good-bg: var(--kelp-100);
   --warn: var(--amber-700);      --warn-bg: var(--amber-100);
@@ -91,6 +99,7 @@
     --faint: var(--deep-300);
     --line: var(--deep-600);
     --line-strong: var(--deep-500);
+    --line-control: var(--deep-400);
     --page: var(--deep-900);
     --surface: var(--deep-800);
     --sunken: var(--deep-850);
@@ -109,7 +118,7 @@
     --reads: var(--deep-200);      --reads-bg: var(--deep-700);
     --writes: var(--amber-300);    --writes-bg: var(--amber-900);
     --changes: var(--coral-300);   --changes-bg: var(--coral-900);
-    --outside: var(--violet-300);  --outside-bg: var(--violet-900);
+    --outside: var(--violet-200);  --outside-bg: var(--violet-900);
     --own: var(--lagoon-300);      --own-bg: var(--lagoon-900);
     --good: var(--kelp-300);       --good-bg: var(--kelp-900);
     --warn: var(--amber-300);      --warn-bg: var(--amber-900);

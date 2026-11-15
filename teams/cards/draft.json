@@ -1,0 +1,568 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "msteams": {
+    "width": "Full"
+  },
+  "body": [
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Singapore trip · 4 to 6 Nov",
+              "wrap": true,
+              "weight": "Bolder",
+              "size": "Medium"
+            },
+            {
+              "type": "TextBlock",
+              "text": "Draft · 4 expenses · only you see it",
+              "wrap": true,
+              "isSubtle": true,
+              "size": "Small",
+              "spacing": "None"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Total",
+              "wrap": true,
+              "isSubtle": true,
+              "size": "Small",
+              "horizontalAlignment": "Right"
+            },
+            {
+              "type": "TextBlock",
+              "text": "SGD 777.10",
+              "wrap": true,
+              "weight": "Bolder",
+              "size": "Medium",
+              "horizontalAlignment": "Right",
+              "spacing": "None"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Badge",
+      "text": "Needs you: 2",
+      "style": "Warning",
+      "appearance": "Tint",
+      "shape": "Rounded",
+      "icon": "Clock",
+      "spacing": "Medium"
+    },
+    {
+      "type": "Container",
+      "id": "dinner",
+      "style": "warning",
+      "showBorder": true,
+      "roundedCorners": true,
+      "spacing": "Small",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "Icon",
+                  "name": "Clock",
+                  "size": "xSmall",
+                  "color": "Warning"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Dinner, 5 Nov · SGD 186.00",
+                  "wrap": true,
+                  "weight": "Bolder",
+                  "color": "Warning"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "TextBlock",
+          "text": "Client entertainment, or a team meal? It sets the expense type, and who approves it.",
+          "wrap": true,
+          "spacing": "Small"
+        },
+        {
+          "type": "ActionSet",
+          "actions": [
+            {
+              "type": "Action.Execute",
+              "title": "Client entertainment",
+              "verb": "answer",
+              "data": {
+                "line": "dinner-2026-11-05",
+                "answer": "client"
+              }
+            },
+            {
+              "type": "Action.Execute",
+              "title": "Team meal",
+              "verb": "answer",
+              "data": {
+                "line": "dinner-2026-11-05",
+                "answer": "team"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "hotel",
+      "style": "warning",
+      "showBorder": true,
+      "roundedCorners": true,
+      "spacing": "Small",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "Icon",
+                  "name": "Clock",
+                  "size": "xSmall",
+                  "color": "Warning"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Hotel, 2 nights · SGD 540.00",
+                  "wrap": true,
+                  "weight": "Bolder",
+                  "color": "Warning"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "TextBlock",
+          "text": "SGD 20 a night over the SGD 250 cap.",
+          "wrap": true,
+          "spacing": "Small"
+        },
+        {
+          "type": "ActionSet",
+          "actions": [
+            {
+              "type": "Action.Execute",
+              "title": "Claim SGD 500",
+              "verb": "answer",
+              "data": {
+                "line": "hotel-2026-11-04",
+                "answer": "cap"
+              }
+            },
+            {
+              "type": "Action.ShowCard",
+              "title": "Add a reason",
+              "card": {
+                "type": "AdaptiveCard",
+                "body": [
+                  {
+                    "type": "Input.Text",
+                    "id": "reason",
+                    "label": "A reason, for your approver",
+                    "isMultiline": true,
+                    "isRequired": true
+                  }
+                ],
+                "actions": [
+                  {
+                    "type": "Action.Execute",
+                    "title": "Save",
+                    "verb": "reason",
+                    "data": {
+                      "line": "hotel-2026-11-04"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Filled in for you",
+              "wrap": true,
+              "weight": "Bolder"
+            },
+            {
+              "type": "TextBlock",
+              "text": "2 taxis, the purpose, the cost centre",
+              "wrap": true,
+              "isSubtle": true,
+              "size": "Small",
+              "spacing": "None"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "ActionSet",
+              "id": "showFilled",
+              "isVisible": true,
+              "actions": [
+                {
+                  "type": "Action.ToggleVisibility",
+                  "title": "Show",
+                  "targetElements": [
+                    "filled",
+                    "showFilled",
+                    "hideFilled"
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "ActionSet",
+              "id": "hideFilled",
+              "isVisible": false,
+              "actions": [
+                {
+                  "type": "Action.ToggleVisibility",
+                  "title": "Hide",
+                  "targetElements": [
+                    "filled",
+                    "showFilled",
+                    "hideFilled"
+                  ]
+                }
+              ]
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        }
+      ],
+      "spacing": "Medium",
+      "separator": true
+    },
+    {
+      "type": "Container",
+      "id": "filled",
+      "isVisible": false,
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Taxi to the hotel, 4 Nov",
+                  "wrap": true
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "Badge",
+                  "text": "Receipt",
+                  "style": "Subtle",
+                  "appearance": "Tint",
+                  "shape": "Rounded"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            },
+            {
+              "type": "Column",
+              "width": "56px",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "32.40",
+                  "wrap": true,
+                  "horizontalAlignment": "Right"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            }
+          ],
+          "spacing": "Small",
+          "separator": true
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Taxi to the office, 5 Nov",
+                  "wrap": true
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "Badge",
+                  "text": "Card",
+                  "style": "Subtle",
+                  "appearance": "Tint",
+                  "shape": "Rounded"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            },
+            {
+              "type": "Column",
+              "width": "56px",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "18.70",
+                  "wrap": true,
+                  "horizontalAlignment": "Right"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            }
+          ],
+          "spacing": "Small",
+          "separator": true
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Purpose: supplier visit",
+                  "wrap": true
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "Badge",
+                  "text": "Inferred",
+                  "style": "Subtle",
+                  "appearance": "Tint",
+                  "shape": "Rounded"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            },
+            {
+              "type": "Column",
+              "width": "56px",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "",
+                  "wrap": true,
+                  "horizontalAlignment": "Right"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            }
+          ],
+          "spacing": "Small",
+          "separator": true
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Cost centre: Singapore operations",
+                  "wrap": true
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "Badge",
+                  "text": "Profile",
+                  "style": "Subtle",
+                  "appearance": "Tint",
+                  "shape": "Rounded"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            },
+            {
+              "type": "Column",
+              "width": "56px",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "",
+                  "wrap": true,
+                  "horizontalAlignment": "Right"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            }
+          ],
+          "spacing": "Small",
+          "separator": true
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "Approver: Priya Nair",
+                  "wrap": true
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            },
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "Badge",
+                  "text": "Profile",
+                  "style": "Subtle",
+                  "appearance": "Tint",
+                  "shape": "Rounded"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            },
+            {
+              "type": "Column",
+              "width": "56px",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "",
+                  "wrap": true,
+                  "horizontalAlignment": "Right"
+                }
+              ],
+              "verticalContentAlignment": "Center"
+            }
+          ],
+          "spacing": "Small",
+          "separator": true
+        },
+        {
+          "type": "TextBlock",
+          "text": "Inferred values are worked out, not read: check them.",
+          "wrap": true,
+          "isSubtle": true,
+          "size": "Small",
+          "spacing": "Small"
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "Answer the 2 questions to submit.",
+      "wrap": true,
+      "isSubtle": true,
+      "size": "Small",
+      "spacing": "Medium"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Execute",
+      "title": "Submit claim",
+      "verb": "submit",
+      "style": "positive",
+      "isEnabled": false
+    },
+    {
+      "type": "Action.Submit",
+      "title": "Change a line",
+      "data": {
+        "msteams": {
+          "type": "task/fetch"
+        },
+        "open": "change"
+      }
+    },
+    {
+      "type": "Action.OpenUrl",
+      "title": "Open as a page",
+      "url": "https://expenses.example.com/claims/1142"
+    }
+  ]
+}

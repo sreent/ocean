@@ -1,0 +1,133 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "Taxi · 5 Nov · card ••4417",
+      "wrap": true,
+      "isSubtle": true,
+      "size": "Small"
+    },
+    {
+      "type": "Input.ChoiceSet",
+      "id": "type",
+      "label": "Expense type · from the card",
+      "style": "compact",
+      "value": "taxi",
+      "choices": [
+        {
+          "title": "Taxi",
+          "value": "taxi"
+        },
+        {
+          "title": "Train",
+          "value": "train"
+        },
+        {
+          "title": "Meal",
+          "value": "meal"
+        }
+      ]
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "Input.Date",
+              "id": "date",
+              "label": "Date · from the card",
+              "value": "2026-11-05"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "Input.Text",
+              "id": "amount",
+              "label": "Amount · from the card",
+              "value": "SGD 18.70"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "The date and amount match the card payment. If you change them, you'll be asked why.",
+      "wrap": true,
+      "isSubtle": true,
+      "size": "Small"
+    },
+    {
+      "type": "Input.Text",
+      "id": "description",
+      "label": "Description · changed by you",
+      "value": "Taxi to the supplier's site"
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Was “Taxi to the office” · inferred",
+              "wrap": true,
+              "isSubtle": true,
+              "size": "Small"
+            }
+          ],
+          "verticalContentAlignment": "Center"
+        },
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "ActionSet",
+              "actions": [
+                {
+                  "type": "Action.Execute",
+                  "title": "Restore",
+                  "verb": "restore",
+                  "data": {
+                    "field": "description"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "TextBlock",
+      "text": "The policy is checked again when you save. Your changes are never overwritten.",
+      "wrap": true,
+      "isSubtle": true,
+      "size": "Small",
+      "spacing": "Medium"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "Save changes",
+      "style": "positive",
+      "data": {
+        "line": "taxi-2026-11-05"
+      }
+    }
+  ]
+}

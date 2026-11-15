@@ -35,19 +35,20 @@ As Ocean is today: cards on `--page`, text at 15px, at most 76rem wide, one thin
 
 ### The runtime, in conversation
 
-People needn't start from a form. They can say what they want done, and the app answers in the conversation, with Ocean's pieces drawn as cards in it.
+People needn't start from a form. They can say what they want done, and the app answers in the conversation, with Ocean's pieces drawn as cards in it. The conversation kit draws this, for any capability ([`conversation.md`](conversation.md)).
 
-1. **They state an outcome**, in their own words: "Claim my Bangkok trip", "Pay the supplier once the goods arrive", "Every Monday, chase what's overdue".
-2. **The app answers with an outcome card**: the outcome as it understood it, in their words; the steps it will take, each with what it does (reads, writes, changes, sends out); only what it still needs from them, as fields already filled where it could, each traced to where it came from; who must approve; and its limits: the rung it acts on, its budget, its deadline. They change it, or confirm it.
-3. **The work shows as it happens**, as a run's timeline in the conversation, and stops at a decision card where a person must say yes.
-4. **The result is a card** with what was done, the record it made or changed, and its line in the ledger. An outcome that repeats becomes a standing task, with its repeats and budget, as a5s's tasks are.
+1. **They state an outcome**, in their own words: "Claim my Singapore trip", "Pay the supplier once the goods arrive", "Every Monday, chase what's overdue". Or they start from a photo or a file.
+2. **The agent gathers what it can**, and shows its work as it goes, with where each piece came from.
+3. **It answers with a draft, exceptions first**: only what needs the person, as questions; the rest filled in, each value with its source; who decides; and its limits (the rung it acts on, its budget, its deadline). They answer, change any line, or ask why.
+4. **Before anything happens, they sign off**: exactly what will happen, what sending does, in the colour of what it does, who decides next, and who prepared it. They send it, not the agent. At the ladder's top rung an agent may act on its own, and says so at once with Undo, but never where sending vouches for something or can't be taken back ([`conversation.md`](conversation.md)).
+5. **Status comes to them**: where it is, who it waits on, and until when it can be taken back. An outcome that repeats becomes a standing task, with its repeats and budget, as a5s's tasks are.
 
 What this needs of Ocean:
 
 - **Every piece a person acts on has two sizes**: a card in a conversation, a phone's width at most, with one thing to do; and a page. The same piece in two frames: a card opens as its page, and a page's piece can be sent as a card. The decision card is already this.
 - **The agent asks for pieces, never draws them.** It sends a description naming pieces from a catalogue (outcome, form, record, list, chart, decision, choices, timeline) with their data, and the app draws them with Ocean. No markup or style from a model reaches a page: the pages' policy stays as it is, and every action a card offers passes the same checks as a page's, because AI proposes and policy decides.
 - **Chat isn't for everything.** Long lists, comparing records, bulk changes and audits are pages. The conversation is for intent, exceptions, quick inputs and decisions, and moves to a page whenever a page is better.
-- The outcome card is the trust piece of an agentic app: it's where a person sees what will change before anything does. It shows the grammar at its plainest.
+- The draft and the sign-off are the trust pieces of an agentic app: where a person sees what will change before anything does. They show the grammar at its plainest.
 
 ## Seven kits
 
@@ -56,10 +57,10 @@ What this needs of Ocean:
 | Foundations | Tokens in layers (primitives, meanings, density), type, icons, motion, the chart palette | From a5s; density and charts are new |
 | Core | Button, Field (input, select, combobox, checkbox, radio, switch, each with its label, hint and problem), Tabs, Table, Menu, Popover, Dialog, Drawer, Toast, Hint, Badge, Who, Card, Empty state, Loading, Page head, Shell | Buttons, badges, dialogs, hints, plain fields and tables from a5s; the rest to draw |
 | Trust | ApprovalCard, GateList, TierBadge, JourneyPath, AuditEntry, Traced, Confirm, PermissionDiff, VersionDiff | Drawn, but for the two diffs, which come from a7c's merge panel and a3t's permission diffs |
-| Agents | Conversation, Composer, ToolCall, AgentFacts, AutonomyLadder, RunTimeline, Grading | From a5s; ToolCall from a7c's copilot panel |
+| Agents | ToolCall, AgentFacts, AutonomyLadder, RunTimeline, Grading | From a5s; ToolCall from a7c's copilot panel |
 | Workbench | Canvas, FlowNode, Edge, Picker, Inspector, ExpressionField, DataView, RunLog, Tests, Versions, Toolbar, Problems | FlowNode from a5s's map; the rest from a7c's builder (`apps/web/src/builder`), restyled |
 | Runtime | Form (pages, sections, repeating rows), RecordList, RecordPage, TaskInbox, Dashboard | To draw, for a3t |
-| Conversation | Composer (an outcome in words, with suggestions and files), OutcomeCard, FormCard, RecordCard, ListCard, ChartCard, Choices, ProgressCard, ResultCard, and the catalogue they're asked for by | To draw; Conversation, ApprovalCard and RunTimeline from a5s are its start |
+| Conversation | Talk (with its composer), Capture, WorkLog, Draft, Question, Source, EditSheet, SignOff, Status ([`conversation.md`](conversation.md)); RecordCard, ListCard and ChartCard, for answers that show rather than ask; and the catalogue they're asked for by | Drawn, proposed, but for the three cards and the catalogue; Talk starts from a5s's chat |
 
 Each kit belongs to Ocean, in this repo. The product that draws a kit most leads it: a7c the workbench, a5s the agents and the conversation, a3t the runtime.
 
@@ -80,4 +81,4 @@ Each kit belongs to Ocean, in this repo. The product that draws a kit most leads
 2. Core, as far as a5s's pages need, so a5s takes Ocean from here first with no change but the fixes.
 3. The workbench, from a7c's builder: the proof that a workflow canvas reads as Ocean.
 4. Trust's two diffs, and the runtime, as a3t starts its pages.
-5. The conversation: the catalogue and its cards, first in a5s's chat, where agents already talk to people, then in a3t's apps.
+5. The conversation: its kit is drawn ([`conversation.md`](conversation.md)); next, the catalogue and the cards that show a record, a list or a chart, first in a5s's chat, where agents already talk to people, then in a3t's apps.
