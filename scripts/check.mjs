@@ -46,7 +46,8 @@ const TEXT = [  // text, and what it's on: 4.5 to 1
 const MARKS = [  // 3 to 1
   ["focus", "surface"], ["agent-tone", "surface"], ["surface", "agent-tone"],
   ["service-tone", "surface"], ["surface", "service-tone"],  // a service's mark (the family's)
-  ...["reads", "writes", "changes", "outside", "own", "idle"].map((tone) => [tone, "surface"]),  // a step's icon on a canvas
+  ...["reads", "writes", "changes", "outside", "own", "idle", "bad"].map((tone) => [tone, "surface"]),  // a step's icon on a canvas
+  ...["good", "bad", "accent"].map((tone) => [tone, "sunken"]),  // a run's path, a refused call, what an expression reads
   ["surface", "good"], ["surface", "warn"],  // a step's tick or clock, in its corner
   ["faint", "sunken"],  // a canvas's edges and the dots they join at: the order of the steps
   ["faint", "surface"], ["text", "surface"],  // a tier's line: dashed, solid, or production's ink
