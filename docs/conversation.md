@@ -2,7 +2,7 @@
 
 For outcomes, not apps. Someone says what they want done. An agent prepares it in a conversation, and the person answers what only they can, checks it, changes any line, and sends it. Status then comes to them. The kit works for any capability: an expense claim, leave, a change to a supplier's bank details, access to reports. A capability with no screens of its own gets its whole interface from here.
 
-Proposed: no product draws it yet. Its look is [`css/components.css`](../css/components.css), from `.talk` on; its pieces' props are in [`components/index.d.ts`](../components/index.d.ts); each piece has a preview in [`components/`](../components).
+Proposed: no product draws it yet. Its look is [`css/components.css`](../css/components.css), from `.talk` on; its pieces' props are in [`components/index.d.ts`](../components/index.d.ts); each piece has a preview in [`components/`](../components). Its cards for Microsoft Teams are in [`teams/cards`](../teams/cards).
 
 ## Seven moments
 
@@ -76,7 +76,7 @@ The same four things, for four capabilities:
 
 | Piece | What it is |
 | --- | --- |
-| Talk | The conversation: the agent, by its mark and name; what's said; quick answers; and the composer, for words, a photo or a file |
+| Talk | The conversation: the agent, by its mark and name; what the person, the agent and the product say; quick answers; and the composer, for words, a photo or a file |
 | Capture | The camera, for paper an outcome needs. It takes the photo by itself once the document is in the frame, in its own dark in either theme |
 | WorkLog | The agent's work while it happens, with where each piece came from, and a promise |
 | Draft | What the agent prepared: what it is, how it stands and whose, its key figure, the questions first, the rest folded |
@@ -126,6 +126,7 @@ All of them are meanings from [`css/tokens.css`](../css/tokens.css), held to the
 - **What sending does:** the effect colours, usually `--changes` on `--changes-bg`; `--writes` or `--outside` where that's what it does.
 - **The person's change:** `--accent` on `--accent-soft`.
 - **The agent:** `--agent-tone`, in its mark.
+- **The product's own word:** `--own-message`, by its shield in `--own`.
 - **The camera:** `--viewfinder`, `--viewfinder-line`, `--viewfinder-text` and `--viewfinder-mark`. The document is `--paper` and `--paper-ink`. All of these stay the same in either theme.
 - **A stage:** done in `--good` with a tick; the one now in `--warn` with a clock.
 

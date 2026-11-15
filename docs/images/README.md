@@ -1,8 +1,10 @@
 # Screens
 
-How Ocean looks in a5s's studio today, as its browser tests saw it: light, 1440px wide. Use them for how the pieces sit together on a page, never as artwork.
+How Ocean looks, drawn from the design system's own previews in `components/`, in light, each at its preview's width. They show how the pieces sit together. No product draws all of this yet, so they're the design, not screenshots of a product. When a preview changes, render its picture again.
 
-- `a5s-studio-catalogue.png`: the catalogue of agents. Each card leads with what the agent does, its mark in the agent colour, chips and badges for what it may do, and where it runs.
-- `a5s-studio-agent.png`: an agent's page. The map of how it's wired: what starts its runs, the agent, a5s's checks, and its tools, each striped in the colour of what it does.
-- `a5s-studio-run.png`: a run's page. Its figures as tiles, and its path through its agent's map, with what it didn't use faded.
-- `a5s-studio-dashboard.png`: an instance's page. Its figures, runs by day, and how runs ended as badges. The chart's colours are its own, not yet Ocean's.
+- `ocean-agent-map.png` (FlowNode): a7c's steps after a test, and a5s's assistant wired as an agent, as n8n lays out a canvas. Each step's icon is in the colour of what it does, and the agent's model, checks and tools hang below it.
+- `ocean-a7c-builder.png` (Workbench): a7c's builder, with the whole window given to the canvas.
+- `ocean-three-products.png` (Products): a5s, a7c and a3t in one frame, told apart by their names and marks alone.
+- `ocean-a3t-designer.png` (AppDesigner): a3t's app designer, building an expense claim's form in someone's own space.
+- `ocean-expense-claim.png` (ExpenseClaim): the conversation kit's reference flow, an expense claim from asking to submitted.
+- `ocean-in-teams.png` (InTeams): the same claim in Microsoft Teams, drawn from its cards in `teams/cards`.

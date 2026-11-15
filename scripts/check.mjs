@@ -13,8 +13,10 @@
 // 5. A chart's marks read on the card it sits on at 3 to 1: every status, Other, and the series
 //    a chart uses most, all eight in dark. In light, series 5, 7 and 8 are under it, and their
 //    marks are labelled in --text (css/charts.css).
+// 6. In this repo, the chart palettes as data (charts/palettes.json) agree with css/charts.css, and
+//    the Teams cards (teams/cards) are Adaptive Cards of version 1.5, made only of what Teams draws.
 
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import { charts, colour, contrast, faces, layers, ROOT, themes } from "./tokens.mjs";
 
@@ -48,6 +50,7 @@ const MARKS = [  // 3 to 1
   ["surface", "good"], ["surface", "warn"],  // a step's tick or clock, in its corner
   ["faint", "sunken"],  // a canvas's edges and the dots they join at: the order of the steps
   ["faint", "surface"], ["text", "surface"],  // a tier's line: dashed, solid, or production's ink
+  ["own", "own-message"],  // the shield beside the product's own word, in a conversation
   ...["surface", "page", "sunken"].map((on) => ["line-control", on]),  // a field's edge, where to type
   ["viewfinder-mark", "viewfinder-line"],  // the frame that finds a document, on a camera's view
 ];
@@ -111,10 +114,61 @@ check("Faces without their font file", () =>
     return head === "wOF2" ? [] : [`${family} ${weight}: ${url} isn't WOFF2`];
   }));
 
+// This repo's own files, beside its CSS: checked when no product's files are given
+const OWN = !tokensArg && !piecesArg && !chartsArg;
+
+check("Chart palettes as data that differ from css/charts.css", () => {
+  if (!OWN) return [];
+  const data = JSON.parse(readFileSync(new URL("charts/palettes.json", ROOT), "utf8"));
+  const marks = charts(files.charts);
+  const theme = themes(files.tokens);
+  const found = [];
+  const same = (what, mode, values, names) => names.forEach((name, i) => {
+    const want = (marks[mode][name] ?? "").toLowerCase();
+    if ((values[i] ?? "").toLowerCase() !== want) found.push(`${what}, ${mode}: ${values[i]}, where --${name} is ${want}`);
+  });
+  const ends = ["done", "short", "failed", "open"];
+  for (const mode of ["light", "dark"]) {
+    same("categorical", mode, data.categorical[mode], [1, 2, 3, 4, 5, 6, 7, 8].map((i) => `chart-${i}`));
+    same("other", mode, [data.categorical.other[mode]], ["chart-other"]);
+    same("sequential", mode, data.sequential[mode], [1, 2, 3, 4, 5, 6, 7].map((i) => `chart-seq-${i}`));
+    same("diverging", mode, data.diverging[mode], [1, 2, 3, 4, 5, 6, 7, 8, 9].map((i) => `chart-div-${i}`));
+    same("status", mode, ends.map((end) => data.status[mode][end]), ends.map((end) => `chart-${end}`));
+    if (data.surfaces[mode].toLowerCase() !== colour(theme[mode], "surface")) {
+      found.push(`surfaces, ${mode}: ${data.surfaces[mode]}, where --surface is ${colour(theme[mode], "surface")}`);
+    }
+  }
+  return found;
+});
+
+// What Teams draws in a card (Adaptive Cards 1.5, and Teams' own Badge, Icon and CompoundButton), as far as the kit has used
+// or vetted it; a card element beyond these is checked in Teams before it's added here
+const TEAMS_DRAWS = new Set(["AdaptiveCard", "TextBlock", "RichTextBlock", "TextRun", "Image", "ColumnSet", "Column", "Container",
+  "FactSet", "ActionSet", "Table", "TableRow", "TableCell", "Badge", "Icon", "CompoundButton", "Input.Text", "Input.Date", "Input.Time", "Input.Number", "Input.ChoiceSet", "Input.Toggle",
+  "Action.Execute", "Action.Submit", "Action.OpenUrl", "Action.ShowCard", "Action.ToggleVisibility"]);
+check("Teams cards Teams can't draw", () => {
+  const dir = new URL("teams/cards/", ROOT);
+  if (!OWN || !existsSync(dir)) return [];
+  return readdirSync(dir).filter((file) => file.endsWith(".json")).flatMap((file) => {
+    let card;
+    try { card = JSON.parse(readFileSync(new URL(file, dir), "utf8")); } catch (error) { return [`${file}: ${error.message}`]; }
+    const found = card.type === "AdaptiveCard" && card.version === "1.5" ? [] : [`${file}: not an Adaptive Card of version 1.5`];
+    const walk = (node) => {
+      if (Array.isArray(node)) return node.forEach(walk);
+      if (!node || typeof node !== "object") return;
+      if (typeof node.type === "string" && !TEAMS_DRAWS.has(node.type)) found.push(`${file}: ${node.type}`);
+      for (const [key, value] of Object.entries(node)) if (key !== "data" && key !== "msteams") walk(value);  // an action's own data is the app's
+    };
+    walk(card);
+    return found;
+  });
+});
+
 if (problems.length) {
   console.error(problems.join("\n\n"));
   process.exit(1);
 }
 const pairs = (TEXT.length + MARKS.length) * 2 + CHART_MARKS.light.length + CHART_MARKS.dark.length;
 console.log(`Ocean holds: ${pairs} pairs read well in light and dark, charts' among them, the meanings name only ` +
-  `primitives, the pieces name only meanings, and nothing loads from outside (${faces(files.tokens).length} faces, all here).`);
+  `primitives, the pieces name only meanings, and nothing loads from outside (${faces(files.tokens).length} faces, all here)` +
+  (OWN ? ". The chart palettes as data agree, and the Teams cards are drawable." : "."));

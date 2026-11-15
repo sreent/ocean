@@ -7,7 +7,7 @@
    end) is Ocean Orange-Blue, grey in the middle. --chart-done, --chart-short, --chart-failed and
    --chart-open are how runs end, told apart by lightness as well as hue, and always with their
    word. In light, sky, gold and teal (5, 7, 8) are under 3 to 1 on white: label their marks in
-   --text. charts/ has the same palettes for Tableau. */
+   --text. charts/palettes.json has the same, as data. */
 :root {
   --chart-1: #1a4f91;  /* blue */
   --chart-2: #d97805;  /* orange */

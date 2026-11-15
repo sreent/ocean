@@ -1,27 +1,29 @@
 # Ocean
 
-Ocean is the look a5s, a7c and a3t share: calm, with colour only where it means something, so a page makes plain what an agent or an automation may do, what it did, and who decides. It began in [a5s](https://github.com/sreent/a5s), and this repo is now its one source.
+Ocean is the look a5s, a7c and a3t share: calm, with colour only where it means something, so a page makes plain what an agent or an automation may do, what it did, and who decides. It began in [a5s](https://github.com/sreent/a5s), and this repo is now its one source. It includes the conversation kit, for outcomes people ask for in a conversation, in the products' own apps and in Microsoft Teams.
 
-![An agent's page in a5s's studio, in Ocean: the sidebar, and the map of how the agent is wired, its tools striped by what they do](docs/images/a5s-studio-agent.png)
+![a7c's steps after a test, and a5s's assistant wired as an agent, on Ocean's canvas: each step's icon in the colour of what it does, and the agent's model, checks and tools hanging below it](docs/images/ocean-agent-map.png)
 
 ## What's here
 
 | Path | What |
 | --- | --- |
 | [`css/tokens.css`](css/tokens.css) | The tokens in two layers: the primitives (palette, type, spacing, radii), which a brand changes, and the meanings (what each colour is for, in light and dark), which everything else names |
-| [`css/components.css`](css/components.css) | The pieces' look: the frame, controls, badges, a decision, an agent's facts, the ladder of autonomy, a run as time, the map's nodes, the family's additions, and the conversation kit |
+| [`css/components.css`](css/components.css) | The pieces' look: the frame, controls, badges, a decision, an agent's facts, the ladder of autonomy, a run as time, the canvas and the workbench, and the conversation kit |
+| [`css/charts.css`](css/charts.css) | The chart colours: eight series and Other, Ocean Blue, Ocean Orange-Blue, and how runs end, in light and dark |
 | [`fonts/`](fonts) | IBM Plex Sans (400 to 700) and Plex Mono (400, 500), with their licence |
 | [`icons/`](icons) | The 28 line icons, on a 24-unit square, in `currentColor` |
-| [`css/charts.css`](css/charts.css) | The chart colours: eight series and Other, Ocean Blue, Ocean Orange-Blue, and how runs end, in light and dark |
-| [`charts/`](charts) | The same palettes for Tableau (`Preferences.tps`), and as data |
+| [`charts/palettes.json`](charts/palettes.json) | The chart palettes as data, for tools that can't read CSS |
 | [`tokens.json`](tokens.json) | The tokens as data, built from `css/tokens.css`, for tools such as a Tailwind theme |
-| [`components/`](components) | Each piece: what it's for, what it takes, and a preview of it as pages draw it |
+| [`components/`](components) | Each piece: what it's for, what it takes, and a preview of it as pages draw it; and showcase pages of the products |
+| [`teams/`](teams) | The conversation kit's cards for Microsoft Teams, as Adaptive Card JSON, and what Teams decides rather than Ocean |
 | [`docs/design.md`](docs/design.md) | The brand book: voice, colour and its grammar, type, layout, icons, and what it's held to |
 | [`docs/products.md`](docs/products.md) | Across a5s, a7c and a3t: the same words, the same look, and what each product changes |
 | [`docs/platforms.md`](docs/platforms.md) | Where people build, decide and use: the workbench, pages and the runtime, the kits each needs, and the plan for rebuilding Ocean here |
-| [`teams/`](teams) | The conversation kit's cards for Microsoft Teams, as Adaptive Card JSON, and what Teams decides rather than Ocean |
-| [`docs/conversation.md`](docs/conversation.md) | The conversation kit, for outcomes rather than apps: its seven moments, its rules, what a capability gives it, and its pieces |
-| [`scripts/check.mjs`](scripts/check.mjs) | The checks: contrast in light and dark, meanings that name only primitives, nothing loaded from outside |
+| [`docs/conversation.md`](docs/conversation.md) | The conversation kit, for outcomes rather than apps: its seven moments, its rules, what a capability gives it, its pieces, and how it works in Microsoft Teams |
+| [`docs/images/`](docs/images) | How Ocean looks, drawn from the previews |
+| [`scripts/check.mjs`](scripts/check.mjs) | The checks: contrast in light and dark, meanings that name only primitives, nothing loaded from outside, the chart palettes in step, and the Teams cards |
+| [`scripts/build.mjs`](scripts/build.mjs) | The build: `tokens.json`, and the files of the design system on claude.ai |
 
 ## Using it
 
@@ -36,6 +38,8 @@ Load the two stylesheets, tokens first, and name meanings in your own styles:
 .note { color: var(--muted); }
 .held { background: var(--changes-bg); color: var(--changes); }
 ```
+
+A page that draws charts loads `css/charts.css` after the tokens. In Microsoft Teams, Teams draws the cards itself, so a Teams app takes the conversation kit's cards from [`teams/cards`](teams/cards) instead of the stylesheets.
 
 a5s serves the files itself, from a release. a7c and a3t take them as a dependency, pinned to a commit:
 
@@ -63,12 +67,14 @@ node scripts/build.mjs
 
 The build writes `tokens.json`, and `dist/design-system/` for the Ocean design system on claude.ai.
 
-## How it looks today
+## How it looks
 
-The studio in a5s, in Ocean: an agent's runs over time, a run's path through its agent's map, and the catalogue of agents.
+Drawn from the previews in `components/`, in light. This is the design: no product draws all of it yet.
 
-![An instance's page: its figures, runs by day, and how runs ended](docs/images/a5s-studio-dashboard.png)
-![A run's page: what started it, and its path through the agent's map](docs/images/a5s-studio-run.png)
-![The catalogue of agents, each card led by what it does](docs/images/a5s-studio-catalogue.png)
+![a7c's builder: the whole window given to the canvas, as n8n's editor is](docs/images/ocean-a7c-builder.png)
+![a5s, a7c and a3t in one frame, told apart by their names and marks alone](docs/images/ocean-three-products.png)
+![a3t's app designer, building an expense claim's form in someone's own space](docs/images/ocean-a3t-designer.png)
+![The conversation kit's reference flow: an expense claim, from asking to submitted, in eight steps](docs/images/ocean-expense-claim.png)
+![The same claim in Microsoft Teams, drawn from its cards in teams/cards](docs/images/ocean-in-teams.png)
 
 IBM Plex is © IBM Corp., under the SIL Open Font License 1.1 ([`fonts/`](fonts)).

@@ -4,7 +4,8 @@
    did it. Every rule names meanings, never a colour of its own.
 
    Pulled from a5s: its pages' look (src/a5s/core/webchat/app.css, after its tokens), then the
-   studio's pieces any page can use (studio/src/studio.css), then the family's additions. */
+   studio's pieces any page can use (studio/src/studio.css), then the family's additions, and the
+   conversation kit last. */
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
@@ -246,37 +247,6 @@ pre.entries { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 0.75rem
               overflow: auto; padding: 0.6rem; background: var(--sunken); border: 1px solid var(--line);
               border-radius: 8px; }
 
-/* The chat */
-
-#conversation { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.75rem; }
-
-#conversation > li {
-  max-width: min(46rem, 85%);  /* lines short enough to read */
-  padding: 0.6rem 0.85rem;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--agent);
-  box-shadow: var(--shadow);
-}
-
-#conversation > li.you { align-self: flex-end; background: var(--you); border-color: transparent; }
-#conversation > li.a5s, #conversation > li.own { background: var(--own-message); }
-#conversation > li strong:first-child { font-weight: 600; }
-#conversation > li time { color: var(--muted); font-size: 0.8rem; }
-#conversation > li div { white-space: pre-wrap; overflow-wrap: anywhere; margin-top: 0.2rem; }
-#conversation > li > .avatar { display: inline-grid; width: 1.35rem; height: 1.35rem; margin-right: 0.4rem;
-                               vertical-align: -0.35rem; }
-#conversation > li > .avatar .icon { width: 0.9rem; height: 0.9rem; }
-.avatar.own { border-radius: var(--radius-sm); background: var(--own); color: var(--surface); }
-.welcome { max-width: 36rem; margin: 3rem auto 1rem; text-align: center; color: var(--muted); }
-.welcome .avatar { width: 2.6rem; height: 2.6rem; margin: 0 auto var(--space-3); }
-.welcome .avatar .icon { width: 1.5rem; height: 1.5rem; }
-.welcome-name { margin: 0 0 var(--space-1); color: var(--text); font-size: var(--text-lg); font-weight: 600; }
-body.app header label { color: var(--muted); }
-#compose { display: flex; gap: 0.5rem; align-items: flex-end; width: 100%; max-width: 50rem; margin: 0 auto; }
-#compose textarea { flex: 1; min-height: 2.6rem; max-height: 12rem; }
-#name { display: flex; gap: 0.5rem; align-items: end; margin-bottom: 1rem; }
-
 /* The settings: forms for what people change most, or the whole version as written */
 
 .modes { display: inline-flex; margin: 0.25rem 0 1rem; border: 1px solid var(--line-strong);
@@ -324,6 +294,7 @@ article { background: var(--surface); border: 1px solid var(--line); border-radi
 /* People are round; agents are rounded squares, in the agent colour, wherever they appear */
 .avatar.agent { border-radius: var(--radius-sm); background: var(--agent-tone); color: var(--surface); }
 .avatar.agent .icon { width: 1.1rem; height: 1.1rem; }
+.avatar.own { border-radius: var(--radius-sm); background: var(--own); color: var(--surface); }  /* the product's own doing, with its shield */
 .who { display: inline-flex; align-items: center; gap: var(--space-2); min-width: 0; }
 .who-name { display: block; font-weight: 600; }
 .who-about { display: block; color: var(--muted); font-size: var(--text-sm); }
@@ -490,8 +461,7 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
 }
 @keyframes rise { from { opacity: 0; translate: 0 4px; } to { opacity: 1; translate: 0 0; } }
 
-/* From the studio (studio/src/studio.css): mono text, a page's heading, chips, and the map's
-   nodes, which a7c's builder and a3t's designer draw their steps with too */
+/* From the studio (studio/src/studio.css): mono text, a page's heading, and chips */
 
 .mono { font-family: var(--font-mono); font-size: 0.85em; }
 
@@ -515,29 +485,6 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
         border: 1px solid var(--line); background: var(--sunken); color: var(--muted); font-size: 0.78rem;
         white-space: nowrap; }
 .badges { display: inline-flex; flex-wrap: wrap; gap: 0.3rem; }
-.badge .dot { width: 0.45rem; height: 0.45rem; border-radius: 50%; background: currentColor; }
-
-.map-node { display: flex; align-items: center; gap: 0.6rem; width: 15rem; padding: 0.55rem 0.75rem;
-            background: var(--surface); border: 1px solid var(--line-strong); border-left-width: 4px;
-            border-radius: 10px; box-shadow: var(--shadow); color: var(--text); }
-.map-node .map-icon { width: 1.25rem; height: 1.25rem; color: var(--muted); }
-.map-text { min-width: 0; }
-.map-title { font-weight: 600; font-size: 0.86rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.map-detail { font-size: 0.74rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.map-node.agent { border-color: var(--agent-tone); background: var(--agent-tone-soft); }  /* agents, as everywhere */
-.map-node.agent .map-icon { color: var(--agent-tone); }
-.map-node.checks { border-color: var(--own); }
-.map-node.checks .map-icon { color: var(--own); }
-.map-node.changes { border-left-color: var(--changes); }
-.map-node.outside { border-left-color: var(--outside); }
-.map-node.writes { border-left-color: var(--writes); }
-.map-node.reads { border-left-color: var(--reads); }
-.map-node.own { border-left-color: var(--own); }
-.map-node.denied { border-left-color: var(--bad); }
-.map-node.dim { opacity: 0.42; }
-.map-count { flex: none; margin-left: auto; padding: 0.05rem 0.45rem; border-radius: 999px; font-size: 0.72rem;
-             font-weight: 600; font-variant-numeric: tabular-nums; background: var(--accent-soft); color: var(--accent); }
-.map-count.bad { background: var(--bad-bg); color: var(--bad); }
 
 /* The family's additions: what a7c and a3t need that a5s hasn't drawn yet, on the same
    meanings (docs/products.md). Proposed: no product draws these yet. */
@@ -612,7 +559,7 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
 .flow-state.warn { background: var(--warn); }
 .flow-state.bad { background: var(--bad); }
 .flow-state .icon { width: 0.85rem; height: 0.85rem; stroke-width: 2.6; }
-.map-problems { position: absolute; top: -0.55rem; right: -0.55rem; min-width: 1.3rem; padding: 0 0.35rem;
+.flow-problems { position: absolute; top: -0.55rem; right: -0.55rem; min-width: 1.3rem; padding: 0 0.35rem;
                 border-radius: var(--radius-pill); background: var(--bad); color: var(--surface); font-size: var(--text-xs);
                 font-weight: 650; line-height: 1.3rem; text-align: center; font-variant-numeric: tabular-nums; }
 /* A word on an edge: the condition a step runs on, as a7c writes it */
@@ -805,6 +752,8 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
 .say.you { justify-self: end; border-bottom-right-radius: 4px; background: var(--you); }
 .say.agent { justify-self: start; border: 1px solid var(--line); border-bottom-left-radius: 4px; background: var(--agent); }
 .say.photo { padding: var(--space-2); background: var(--viewfinder); }
+.say.own { justify-self: center; display: flex; gap: 0.4rem; max-width: 100%; background: var(--own-message); font-size: var(--text-sm); }  /* the product's own word */
+.say.own .icon { width: 1rem; height: 1rem; flex: none; margin-top: 0.15rem; color: var(--own); }
 .replies { display: flex; flex-wrap: wrap; gap: var(--space-2); }
 .replies button { border-radius: var(--radius-pill); }
 .talk-foot { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3);
@@ -839,7 +788,7 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
 .draft-total { text-align: end; }
 .draft-total span { display: block; color: var(--faint); font-size: var(--text-xs); }
 .draft-total strong { font-size: var(--text-lg); font-variant-numeric: tabular-nums; }
-.draft > .badge, .draft .needs { justify-self: start; }
+.draft > .badge { justify-self: start; }
 .draft > button { justify-content: center; }
 .draft-hint { margin: -0.4rem 0 0; color: var(--muted); font-size: var(--text-xs); text-align: center; }
 /* A question only the person can answer: what the agent couldn't decide, or what breaks a rule */

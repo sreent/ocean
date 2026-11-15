@@ -64,7 +64,7 @@
   --focus: var(--ocean-500);
   --you: var(--ocean-100);   /* your own messages */
   --agent: var(--mist-0);    /* an agent's messages */
-  --own-message: var(--sand-100);  /* the product's own messages (a5s's --a5s) */
+  --own-message: var(--sand-100);  /* the product's own word in a conversation */
   --agent-tone: var(--lagoon-700);       /* what marks an agent apart from a person */
   --agent-tone-soft: var(--lagoon-100);
   --service-tone: var(--mist-600);       /* a service identity's mark: neutral (family addition) */
