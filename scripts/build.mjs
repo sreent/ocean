@@ -189,8 +189,16 @@ const copy = (from, to) => {
 const git = (args) => { try { return execSync(`git ${args}`, { cwd: ROOT, encoding: "utf8" }).trim(); } catch { return ""; } };
 
 const untitled = (md) => md.replace(/^# [^\n]*\n+/, "");
-put("project/README.md", untitled(read("docs/design.md")));
-put("project/products.md", read("docs/products.md"));
+// Links between the docs point into this repo; in the design system, the sections stand alone
+const unlinked = (md) => md.replace(/\[([^\]]+)\]\((?!https?:)[^)]+\)/g, "$1");
+put("project/README.md", `${unlinked(untitled(read("docs/design.md")))}
+## Not synced
+
+- Every preview is a static rendition: plain markup, styled by \`components/bundle.css\`, which is this repo's \`css/components.css\`. The React pieces stay in a5s (\`studio/src/design\`) and aren't built here.
+- What the family adds (services, tiers, gates, the canvas, the workbench, the ledger's lines) is proposed: no product draws it yet.
+`);
+put("project/platforms.md", unlinked(read("docs/platforms.md")));
+put("project/products.md", unlinked(read("docs/products.md")));
 put("project/tokens.json", `${JSON.stringify({ ...tokens, meta: {
   source: "github", repo: "sreent/ocean", ref: `${git("rev-parse --abbrev-ref HEAD")}@${git("rev-parse --short HEAD")}`,
   paths: { tokens: ["css/tokens.css"], fonts: ["fonts"], assets: ["icons", "docs/images"], docs: ["docs/design.md", "docs/products.md"] },
