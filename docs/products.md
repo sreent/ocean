@@ -67,7 +67,7 @@ a5s takes Ocean from here, at a commit (its `deploy/ocean.sh`, pinned in `src/a5
 
 - Done: its chat's own messages take `--own-message`; its runs chart takes `--chart-done`, `--chart-short`, `--chart-failed` and `--chart-open`; its fields' edges and `--outside` come from `css/tokens.css`.
 - Done: its agent's map is FlowNode on React Flow, laid out as n8n lays out a canvas, on the agent's page, a run's page and the draft's designer alike, with React Flow's `base.css` and Ocean's names: `refused`, `.fd-palette`, FlowList's `flow-listing`, `flow-row`, `flow-inline` and `flow-views`, and an agent its instance may ask as `agent-tone`. Its draft is a workbench in a window (`wb window`, `wb-main`), and its inspector says what each change made follow (`wb-well notice`), its parts set apart (`wb-section`).
-- It keeps none of Ocean's rules in `studio.css`, and adds no piece of its own there: what it needs is drawn here first.
+- Done: it keeps none of Ocean's rules in `studio.css` or `app.css`, and adds no piece of its own there: what it needs is drawn here first. Its `tests/test_design.py` fails if either styles a selector Ocean's pieces or charts style. What `studio.css` still holds are its pages' own compositions, below.
 - To do: its chat moves to the conversation kit's Talk ([`conversation.md`](conversation.md)); Ocean doesn't carry the chat's own styles (`#conversation`, `#compose`) meanwhile.
 - To do: each state gets its shape: `StatusBadge`, the grades and the gates draw a tick, a clock, a cross or a pause where they draw a dot today.
 - To do: run `scripts/check.mjs` beside `tests/test_design.py`, or in its place.
