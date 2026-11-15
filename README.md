@@ -19,6 +19,7 @@ Ocean is the look a5s, a7c and a3t share: calm, with colour only where it means 
 | [`docs/design.md`](docs/design.md) | The brand book: voice, colour and its grammar, type, layout, icons, and what it's held to |
 | [`docs/products.md`](docs/products.md) | Across a5s, a7c and a3t: the same words, the same look, and what each product changes |
 | [`docs/platforms.md`](docs/platforms.md) | Where people build, decide and use: the workbench, pages and the runtime, the kits each needs, and the plan for rebuilding Ocean here |
+| [`teams/`](teams) | The conversation kit's cards for Microsoft Teams, as Adaptive Card JSON, and what Teams decides rather than Ocean |
 | [`docs/conversation.md`](docs/conversation.md) | The conversation kit, for outcomes rather than apps: its seven moments, its rules, what a capability gives it, and its pieces |
 | [`scripts/check.mjs`](scripts/check.mjs) | The checks: contrast in light and dark, meanings that name only primitives, nothing loaded from outside |
 

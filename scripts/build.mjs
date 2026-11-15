@@ -205,6 +205,9 @@ put("project/README.md", `${unlinked(untitled(read("docs/design.md")))}
 `);
 put("project/platforms.md", unlinked(read("docs/platforms.md")));
 put("project/conversation.md", unlinked(read("docs/conversation.md")));
+// The conversation kit's cards for Microsoft Teams, to download
+put("project/assets/Teams/README.md", unlinked(read("teams/README.md")));
+for (const card of readdirSync(new URL("teams/cards/", ROOT)).filter((f) => f.endsWith(".json"))) copy(`teams/cards/${card}`, `project/assets/Teams/${card}`);
 put("project/products.md", unlinked(read("docs/products.md")));
 put("project/tokens.json", `${JSON.stringify({ ...tokens, meta: {
   source: "github", repo: "sreent/ocean", ref: `${git("rev-parse --abbrev-ref HEAD")}@${git("rev-parse --short HEAD")}`,

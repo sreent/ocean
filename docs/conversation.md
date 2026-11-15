@@ -86,18 +86,37 @@ The same four things, for four capabilities:
 | SignOff | What will happen, exactly, before it does. The person sends it |
 | Status | How it stands, who it waits on, and until when it can be taken back. When the agent acted on its own: what it did, what allowed it, and Undo |
 
-Four showcase cards put them together:
+Five showcase cards put them together:
 
 - **ExpenseClaim** is the reference flow: eight steps, from asking to submitted, on a phone.
 - **Capabilities** has a leave request, a change to a supplier's bank details and an access request, drafted with the same pieces.
 - **AppConversation** is an app made with a3t, at a desktop's size.
 - **OnItsOwn** draws the line: a meeting the agent moved on its own, beside a payment it never makes on its own.
+- **InTeams** draws the claim in Microsoft Teams, from its cards in [`teams/cards`](../teams/cards).
 
 ## Two sizes, and a page
 
 - **On a phone,** the agent's cards sit in the talk, a phone's width at most. The latest draft is the live one, posted again as it changes.
 - **On a wide screen,** the draft pins beside the talk and stays the live one, changing as the person answers.
 - **Every outcome opens as a page too:** a record with its form, for anyone who'd rather fill it in, and for what a conversation is bad at, such as long lists, comparing records and bulk changes ([`platforms.md`](platforms.md)).
+
+## In Microsoft Teams
+
+In Teams, the agent is a Teams app: a chat, with tabs beside it. Teams draws its cards (Adaptive Cards) itself, in its own font and theme, with five tones, and Ocean can't style inside them. So what carries over to Teams is the kit's rules, words and order. Ocean's look returns wherever Teams shows a page of ours: a tab, Stageview, or a dialog with a web page in it. The cards are in [`teams/cards`](../teams/cards), and the InTeams page draws them.
+
+| The kit | In Teams |
+| --- | --- |
+| Talk | The app's chat. Its icon is the agent's mark and its name is the agent's; Teams adds its "AI generated" label, in words. Quick answers become suggested actions: at most three pills above the compose box |
+| Capture | Teams' own camera and attach. The app receives the photo |
+| WorkLog | Teams' informative updates while the agent works. Where each value came from moves into the card |
+| Draft, Question, Source | One card, updated in place as the person answers. Questions in `warning`, with the clock; each value's source in a word |
+| EditSheet | A Teams dialog, with the line's form |
+| SignOff | A card, with its one action worded for the outcome |
+| Status | The same card, updated as it moves, and a line in Teams' activity feed |
+| The approver | Their own card. Only they see Approve and Decline |
+| A wide screen | No pinned draft in a chat: "Open as a page" opens it in Stageview |
+
+The grammar keeps its words, and takes a Teams tone where one means the same: waiting on someone is `warning`, with the clock; done is `good`, with the tick; a change or a failure is `attention`; the person's change is `accent`. Writes, reads, sends out and the product's own have no tone in Teams, so the words carry them alone.
 
 ## Its colours
 
