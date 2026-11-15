@@ -748,18 +748,17 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
 .talk-head .link { font-size: var(--text-xs); }
 .talk-body { display: grid; align-content: start; gap: var(--space-3); min-height: 0; overflow: auto; padding: var(--space-4) var(--space-3); }
 .talk-day { justify-self: center; color: var(--faint); font-size: var(--text-xs); }
-.say { max-width: 88%; margin: 0; padding: 0.5rem 0.75rem; border-radius: 12px; font-size: var(--text-md); line-height: 1.45; }
-.say.you { justify-self: end; border-bottom-right-radius: 4px; background: var(--you); }
-.say.agent { justify-self: start; border: 1px solid var(--line); border-bottom-left-radius: 4px; background: var(--agent); }
+.say { max-width: 88%; margin: 0; padding: 0.5rem 0.75rem; border-radius: var(--radius-md); font-size: var(--text-md); line-height: 1.45; }
+.say.you { justify-self: end; border-bottom-right-radius: var(--radius-sm); background: var(--you); }
+.say.agent { justify-self: start; border: 1px solid var(--line); border-bottom-left-radius: var(--radius-sm); background: var(--agent); }
 .say.photo { padding: var(--space-2); background: var(--viewfinder); }
 .say.own { justify-self: center; display: flex; gap: 0.4rem; max-width: 100%; background: var(--own-message); font-size: var(--text-sm); }  /* the product's own word */
 .say.own .icon { width: 1rem; height: 1rem; flex: none; margin-top: 0.15rem; color: var(--own); }
 .replies { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-.replies button { border-radius: var(--radius-pill); }
 .talk-foot { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3);
              border-top: 1px solid var(--line); background: var(--surface); }
-.talk-foot input { flex: 1; min-width: 0; border-radius: var(--radius-pill); }
-.round { display: grid; place-items: center; width: 2.2rem; height: 2.2rem; flex: none; padding: 0; border-radius: 50%; }
+.talk-foot input { flex: 1; min-width: 0; }
+.round { display: grid; place-items: center; width: 2.2rem; height: 2.2rem; flex: none; padding: 0; }  /* an icon button: --radius-sm, as every button */
 .round .icon { width: 1.05rem; height: 1.05rem; }
 
 /* The work while it happens: each step ticked when done, where each piece came from, the one
@@ -797,7 +796,7 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
 .question > strong { display: flex; align-items: center; gap: 0.35rem; color: var(--warn); font-size: var(--text-sm); }
 .question > strong .icon { width: 1rem; height: 1rem; flex: none; }
 .question p { margin: 0; font-size: var(--text-sm); }
-.question .replies button { border-color: var(--warn); background: var(--surface); color: var(--warn); font-size: var(--text-sm); }
+.question .replies button { font-size: var(--text-sm); }
 .question-answer { display: flex; gap: var(--space-2); align-items: flex-start; }
 .question-answer textarea { flex: 1; min-height: 3.4rem; font-size: var(--text-sm); }
 .answered { display: grid; grid-template-columns: 1.2rem minmax(0, 1fr) auto; gap: var(--space-2); align-items: start; font-size: var(--text-sm); }

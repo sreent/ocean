@@ -57,7 +57,7 @@
     },
     {
       "type": "Badge",
-      "text": "Needs you: 2",
+      "text": "2 waiting on you",
       "style": "Warning",
       "appearance": "Tint",
       "shape": "Rounded",
