@@ -1,6 +1,6 @@
 # Ocean
 
-Ocean is the one look a5s, a7c and a3t share. It's calm, with colour only where it means something, and it makes plain what an agent or an automation may do, what it did, and who decides. It takes a hint of the sea: deep blues for what someone can do, lagoon teal for agents, coral for any change to a record, and kelp green for what's going well. The palette isn't anyone's brand. An organisation's own colours replace the primitives, in one place, for all three products at once.
+Ocean is the one look a5s, a7c, a3t and a4a share. It's calm, with colour only where it means something, and it makes plain what an agent or an automation may do, what it did, and who decides. It takes a hint of the sea: deep blues for what someone can do, lagoon teal for agents, coral for any change to a record, and kelp green for what's going well. The palette isn't anyone's brand. An organisation's own colours replace the primitives, in one place, for every product at once.
 
 ## Voice
 
@@ -12,7 +12,7 @@ Write from the reader's side, in plain words, the way the pages already do.
 - A decision gives its reason after **Why:**, in the words code worked out when it was asked for, never the agent's own.
 - Each page and each card has one thing to do, and only that is the primary button.
 - Name people by name, and roles in words ("Owner of billing") with the id beside them in `--faint`. Agents go by their id in lower case ("assistant", "watcher"), and are "it". An app's own agent goes by the app's name ("Expenses").
-- Product names are lower case: a5s, a7c, a3t.
+- Product names are lower case: a5s, a7c, a3t, a4a.
 - Headings are sentence case and say what's there: "How it's wired", "What you see of it, and why".
 - A status line starts with a capital, whatever the server's words.
 - Times as people read them: today's alone, older ones with their day, "2 minutes ago" on a card. The ledger gives its times to the second, in UTC.
@@ -53,7 +53,7 @@ These meanings are the products' shared grammar, the same on every surface: badg
 - How something stands has a shape before its word as well as a colour: a tick for `--good`, a clock for `--warn`, a cross for `--bad`, a pause for `--idle`. The tones are near one lightness, so the shape is what tells them apart for colour-blind readers.
 - Say it in words too. A badge always carries its word ("changes due dates", "waiting on you"), so colour is never the only sign.
 - Each tone has a `-bg` partner for badges: `--changes` on `--changes-bg`.
-- The palette is closed. A product never adds a colour for a new state: it finds the meaning that fits, or the family adds one for all three products.
+- The palette is closed. A product never adds a colour for a new state: it finds the meaning that fits, or the family adds one for every product.
 
 ### People, agents and services
 

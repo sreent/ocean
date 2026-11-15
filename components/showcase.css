@@ -28,10 +28,10 @@ body:has(dialog.ds-in-place[open]) { overflow: visible; }
 .ds-app main { padding: var(--space-6) var(--space-8) var(--space-8); }
 @media (max-width: 760px) { .ds-app { display: flex; flex-direction: column; background: var(--page); } }
 
-/* Three products' frames, side by side */
-.ds-products { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); }
-.ds-product { display: grid; grid-template-rows: auto 1fr; overflow: hidden; border: 1px solid var(--line);
-              border-radius: var(--radius-md); background: var(--surface); }
+/* The products' frames, side by side */
+.ds-products { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-4); }
+.ds-product { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 0; overflow: hidden; border: 1px solid var(--line);
+              border-radius: var(--radius-md); background: var(--surface); }  /* each frame's rows in line with the others' */
 .ds-product .sidebar { position: static; height: auto; min-height: 27rem; }
 .ds-product-name { margin: 0; padding: var(--space-2) var(--space-4); border-bottom: 1px solid var(--line);
                    background: var(--sunken); color: var(--muted); font-size: var(--text-sm); }

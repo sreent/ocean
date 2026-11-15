@@ -2,7 +2,7 @@
   "name": "@sreent/ocean",
   "version": "0.1.0",
   "private": true,
-  "description": "Ocean: the look a5s, a7c and a3t share. Tokens in two layers, IBM Plex, the icons, the pieces' CSS and the chart colours, the conversation kit's cards for Microsoft Teams, and the checks they're held to.",
+  "description": "Ocean: the look a5s, a7c, a3t and a4a share. Tokens in two layers, IBM Plex, the icons, the pieces' CSS and the chart colours, the conversation kit's cards for Microsoft Teams, and the checks they're held to.",
   "type": "module",
   "exports": {
     "./tokens.css": "./css/tokens.css",
