@@ -1,0 +1,101 @@
+<!-- @dsCard group="Pages" height=900 width=1440 subtitle="a3t's change request: what it changes, who gains access, its checks" page -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ChangeRequest</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root" class="ds-screen">
+<div class="ds-app">
+<aside class="sidebar">
+<a class="brand" href="#"><span class="mark">a3</span><span>a3t</span></a>
+<nav aria-label="a3t's pages">
+<div class="group">Work</div>
+<a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M10 6.5h10"/><path d="M10 12h10"/><path d="M10 17.5h10"/><path d="M4 6.5l1.5 1.5 2.5-2.5"/><path d="M4 12l1.5 1.5 2.5-2.5"/><path d="M4 17.5l1.5 1.5 2.5-2.5"/></svg><span>Tasks</span></a>
+<a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5 4.5h10.5a3 3 0 0 1 3 3V20H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h10.5"/></svg><span>Apps</span></a>
+<div class="group">Build</div>
+<a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/><path d="M3 20a6 6 0 0 1 12 0"/></svg><span>My space</span></a>
+<a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M3.5 6.5h5v5h-5z"/><path d="M15.5 3.5h5v5h-5z"/><path d="M15.5 15.5h5v5h-5z"/><path d="M8.5 9h3.5v-3h3.5"/><path d="M12 9v9h3.5"/></svg><span>Working copies</span></a>
+<div class="group">Decide</div>
+<a href="#" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M8 12.2l2.7 2.7L16.2 9.4"/></svg><span>Change requests</span></a>
+<a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M8 5.5l10 6.5-10 6.5z"/></svg><span>Deployments</span></a>
+<div class="group">Oversee</div>
+<a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3l7.5 3v6c0 4.5-3.2 7.8-7.5 9-4.3-1.2-7.5-4.5-7.5-9V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg><span>Audit log</span></a>
+<a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16.5 4.3a3.5 3.5 0 0 1 0 6.4"/><path d="M18.5 14.5a6 6 0 0 1 2.5 5.5"/></svg><span>Access</span></a>
+<a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 10.5h12v9.5H6z"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/><path d="M12 14.5v2"/></svg><span>Tokens</span></a>
+</nav>
+<div class="me"><span class="avatar">LP</span><span>Lena Park</span></div>
+</aside>
+<div class="page">
+<main>
+<div class="page-head">
+<nav class="crumbs" aria-label="Where this is"><span><a href="#">Change requests</a><span class="sep">/</span></span></nav>
+<div class="title-row"><h1>Add project codes to expense claims</h1><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>in review</span></div>
+<p class="about">Change request 18, from Ana Ortiz's working copy, into finance/expenses: from release 1.3.2 to 1.4.0.</p>
+<div class="meta"><span class="tier team"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16.5 4.3a3.5 3.5 0 0 1 0 6.4"/><path d="M18.5 14.5a6 6 0 0 1 2.5 5.5"/></svg>preview-18</span><span>Opened an hour ago</span><span>Reviewed by Lena Park and a security admin</span></div>
+</div>
+<section class="card"><div class="journey-box">
+<ol class="journey" aria-label="From a working copy to Prod">
+<li class="done"><span class="journey-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg></span><span><strong>Edit it in your space</strong><span class="hidden">, done</span><span class="journey-about">A working copy of expenses, with sample data.</span></span></li>
+<li class="done"><span class="journey-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg></span><span><strong>Ask for the change</strong><span class="hidden">, done</span><span class="journey-about">Change request 18, with its diff.</span></span></li>
+<li class="done"><span class="journey-mark" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg></span><span><strong>Pass its checks</strong><span class="hidden">, done</span><span class="journey-about">Every check passed but one review.</span></span></li>
+<li class="now" aria-current="step"><span class="journey-mark" aria-hidden="true">4</span><span><strong>Have it reviewed</strong><span class="hidden">, to do now</span><span class="journey-about">1 of 2 approvals: a security admin reviews who may export.</span></span></li>
+<li class="later"><span class="journey-mark" aria-hidden="true">5</span><span><strong>Release it to Prod</strong><span class="hidden"></span><span class="journey-about">A release manager deploys 1.4.0. Rolling back takes a minute.</span></span></li>
+</ol>
+<div class="journey-next"><button type="button">Open the preview</button></div>
+</div></section>
+<div class="cr-body">
+<div>
+<section class="card"><h2>What it changes</h2>
+<ul class="changes-list">
+<li><span class="chip">added</span><span><strong>Project code</strong>, a lookup of Projects, on the claim form and on expense_claim</span></li>
+<li><span class="chip">added</span><span>A column for it in My claims and To approve</span></li>
+<li><span class="chip">changed</span><span>A receipt is needed over THB 1,000, not <del>2,000</del></span></li>
+<li><span class="chip">changed</span><span>Claims over THB 50,000 go to Finance after the manager</span></li>
+</ul></section>
+<section class="card"><h2>Who gains or loses access</h2>
+<p class="note">The permission diff, in words: what the reviewers decide on.</p>
+<ul class="changes-list">
+<li><span class="badge reads">sees</span><span><strong>Approver</strong> can now see Project code.</span></li>
+<li><span class="badge writes">changes</span><span><strong>Requester</strong> can now change Project code, on their own claims while they're drafted.</span></li>
+<li><span class="badge outside">exports</span><span><strong>Auditor</strong> can now export Expense claim. It widens who may take data out, so a security admin reviews it.</span></li>
+</ul></section>
+<section class="card"><h2>Its data</h2>
+<ul class="changes-list">
+<li><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>safe</span><span>Adds the column project_code to expense_claim, empty on the 1,284 claims made before it. Nothing is dropped.</span></li>
+</ul></section>
+</div>
+<div>
+<section class="card"><h2>Checks</h2>
+<ul class="gates">
+<li><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>passed</span><span><span class="gate-name">Definitions</span><span class="gate-about">No broken links between forms, views and processes</span></span></li>
+<li><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>passed</span><span><span class="gate-name">Lint</span><span class="gate-about">Every field has a label, in English and Thai</span></span></li>
+<li><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>passed</span><span><span class="gate-name">Tests</span><span class="gate-about">40 of 40 scenarios</span></span></li>
+<li><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>waiting</span><span><span class="gate-name">Guardrails</span><span class="gate-about">Exports by auditors need a security admin</span></span></li>
+<li><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>passed</span><span><span class="gate-name">Preview</span><span class="gate-about">preview-18 runs, with sample data</span></span></li>
+</ul></section>
+<section class="approval" aria-label="Ana Ortiz asks to merge change request 18">
+<div class="approval-stripe changes"></div>
+<div class="approval-body">
+<div class="who"><span class="avatar" aria-hidden="true">AO</span><span><h3 class="approval-title">Ana Ortiz asks to merge it into expenses</h3><span class="who-about">1 of 2 approvals · Lena Park, you, are the second</span></span></div>
+<dl class="approval-changes">
+<div class="pair"><dt>Release</dt><dd><del>1.3.2</del> → <ins>1.4.0</ins></dd></div>
+<div class="pair"><dt>May export</dt><dd><del>Finance</del> → <ins>Finance, Auditor</ins></dd></div>
+</dl>
+<p class="approval-why"><strong>Why: </strong>the auditors asked for the year's claims, and the change passed its checks.</p>
+<div class="approval-actions"><button type="button" class="primary">Approve</button><button type="button">Request changes</button></div>
+<p class="approval-signed"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3l7.5 3v6c0 4.5-3.2 7.8-7.5 9-4.3-1.2-7.5-4.5-7.5-9V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg>Your decision is signed and kept in the audit log.</p>
+</div>
+</section>
+</div>
+</div>
+</main>
+</div>
+</div>
+</div>
+</body>
+</html>

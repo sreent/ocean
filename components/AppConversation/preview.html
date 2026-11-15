@@ -1,0 +1,72 @@
+<!-- @dsCard group="Conversation" height=900 width=1440 subtitle="An a3t app: an outcome asked for, and the card it answers with" page -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AppConversation</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root" class="ds-screen">
+<div class="ds-app">
+<aside class="sidebar">
+<a class="brand" href="#"><span class="mark">Ex</span><span>Expenses</span></a>
+<nav aria-label="Expenses' pages">
+<div class="group">Work</div>
+<a href="#" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 5.5h16v10.5H9l-5 4z"/></svg><span>Ask</span></a>
+<a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 3.5h9l3 3v14H6z"/><path d="M9 12.5h6"/><path d="M9 16h6"/><path d="M9 9h3"/></svg><span>My claims</span></a>
+<a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M8 12.2l2.7 2.7L16.2 9.4"/></svg><span>To approve</span></a>
+</nav>
+<div class="me"><span class="avatar">BO</span><span>Ben Okafor</span></div>
+</aside>
+<div class="page">
+<main>
+<div class="ds-talk">
+<ol class="convo">
+<li class="you"><div class="said-you">Claim my Bangkok trip last week. It was for the Harbour project.</div><span class="faint">10:42</span></li>
+<li>
+<div class="from"><span class="avatar agent" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><strong>Expenses</strong><span>10:42</span></div>
+<section class="outcome" aria-label="Claim your Bangkok trip">
+<div class="approval-stripe changes"></div>
+<div class="outcome-body">
+<div><h3 class="outcome-title">Claim your Bangkok trip, 10 to 13 Nov</h3><p class="note">For the Harbour project · THB 18,420 · from 4 receipts</p></div>
+<ol class="outcome-steps">
+<li><span>Read your receipts from 10 to 13 Nov <span class="badge reads">reads</span><span class="step-detail">4 found: in your inbox, and on your card's statement</span></span></li>
+<li><span>Fill a claim with them <span class="badge writes">writes</span><span class="step-detail">A draft only you see, until you send it</span></span></li>
+<li><span>Send it to Priya Nair to approve <span class="badge changes">changes</span><span class="step-detail">It submits your claim</span></span></li>
+<li><span>Finance pays it into your account <span class="badge changes">changes</span><span class="step-detail">Once Priya approves; Finance does, not this app</span></span></li>
+</ol>
+<div class="outcome-needs">
+<p class="label">What it needs from you</p>
+<div class="wb-pair">
+<label class="wb-field "><span class="wb-label">Project code</span><select><option>Harbour (HB-204)</option></select></label>
+<label class="wb-field "><span class="wb-label">Trip</span><input type="text" value="Client workshop, Bangkok"></label>
+</div>
+<table class="figures"><thead><tr><th scope="col">Date</th><th scope="col">What</th><th scope="col" class="num">THB</th></tr></thead>
+<tbody>
+<tr><td>10 Nov</td><td><button type="button" class="traced"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 15.8a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4z"/><path d="M18 3.8a2.2 2.2 0 1 0 0 4.4 2.2 2.2 0 0 0 0-4.4z"/><path d="M7.6 16.4l8.8-8.8"/></svg>Flight, BKK return<span class="hidden"> (from its receipt)</span></button></td><td class="num">12,900</td></tr>
+<tr><td>10 Nov</td><td>Taxi from the airport</td><td class="num">680</td></tr>
+<tr><td>11 Nov</td><td>Hotel, 2 nights</td><td class="num">4,200</td></tr>
+<tr><td>13 Nov</td><td>Taxi to the airport</td><td class="num">640</td></tr>
+</tbody></table>
+<p class="wb-hint">Each line comes from a receipt: open one to see which.</p>
+</div>
+<dl class="outcome-who"><dt>Who decides</dt><dd>Priya Nair, your manager</dd><dt>What it may do</dt><dd>Draft and send your claim. It can't approve it, or pay it.</dd></dl>
+<div class="outcome-actions"><button type="button" class="primary">Send it to Priya</button><button type="button">Change it</button><button type="button" class="link">Open it as a page</button></div>
+</div>
+</section>
+</li>
+</ol>
+<div class="composer">
+<div class="composer-box"><textarea aria-label="Say what you need" placeholder="Say what you need: a claim, a change, a question"></textarea><button type="button" class="primary">Send</button></div>
+<div class="chips"><span class="chip">Claim a trip</span><span class="chip">Where's my claim?</span><span class="chip">Change my bank account</span></div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</div>
+</body>
+</html>

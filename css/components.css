@@ -633,8 +633,9 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
 .flow-agent-text { display: grid; }
 .flow-agent-text strong { color: var(--text); }
 .flow-agent-text span { color: var(--muted); font-size: var(--text-xs); }
-.flow-slots { position: absolute; inset-inline: var(--space-4); bottom: -0.38rem; display: flex; justify-content: space-between; }
-.flow-slot { display: grid; justify-items: center; gap: 0.35rem; width: 3.5rem; }
+.flow-slots { position: absolute; inset-inline: var(--space-4); top: 100%; display: flex; justify-content: space-between;
+              translate: 0 -0.38rem; }  /* on its foot, their names beneath it */
+.flow-slot { display: grid; justify-items: center; gap: 0.2rem; width: 3.5rem; }
 .flow-slot::before { content: ""; width: 0.6rem; height: 0.6rem; rotate: 45deg; border: 2px solid var(--agent-tone);
                      background: var(--surface); }
 .flow-slot span { color: var(--muted); font-size: var(--text-xs); }
@@ -686,7 +687,7 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
 .wb-head h2 { margin: 0; font-size: var(--text-lg); }
 .wb-head p { margin: 0; color: var(--faint); font-family: var(--font-mono); font-size: var(--text-xs); }
 .wb-head .badges { grid-column: 1 / -1; }
-.wb-field { display: grid; gap: 0.3rem; margin: 0; }
+.wb-field { display: grid; align-content: start; gap: 0.3rem; margin: 0; }
 .wb-field > .wb-label { color: var(--muted); font-size: var(--text-sm); font-weight: 500; }
 .wb-field input, .wb-field select { width: 100%; padding: 0.3rem 0.5rem; }
 .wb-hint { color: var(--faint); font-size: var(--text-xs); }
@@ -740,3 +741,85 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
                font-size: var(--text-xs); overflow-wrap: anywhere; }
 .ledger-seal .icon { width: 0.9rem; height: 0.9rem; flex: none; }
 @container (max-width: 34rem) { .ledger li { grid-template-columns: minmax(0, 1fr); } }
+
+/* The app designer (proposed), for a3t: a palette of fields, the form as people will see it, and the
+   chosen field's settings, its permissions among them, on the workbench's frame */
+.wb-body.designer { grid-template-columns: 15rem minmax(0, 1fr) 24rem; }
+.fd-palette { display: grid; align-content: start; gap: var(--space-3); overflow: auto; padding: var(--space-4);
+              border-inline-end: 1px solid var(--line); background: var(--surface); }
+.fd-palette input { width: 100%; }
+.fd-group { display: grid; gap: 0.15rem; }
+.fd-group .label { margin: 0 0 0.2rem; }
+.fd-part { display: flex; align-items: center; gap: var(--space-2); padding: 0.3rem 0.4rem; border-radius: var(--radius-sm);
+           color: var(--text); font-size: var(--text-md); }
+.fd-part:hover { background: var(--sunken); }
+.fd-type { display: grid; place-items: center; width: 1.7rem; height: 1.7rem; flex: none; border: 1px solid var(--line);
+           border-radius: var(--radius-sm); background: var(--sunken); color: var(--muted); font-size: var(--text-xs); font-weight: 650; }
+.fd-type .icon { width: 1rem; height: 1rem; }
+.fd-canvas { overflow: auto; padding: var(--space-6); background: var(--sunken); }
+.fd-sheet { display: grid; gap: var(--space-4); max-width: 40rem; margin: 0 auto; padding: var(--space-6);
+            border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); box-shadow: var(--shadow); }
+.fd-sheet h2 { margin: 0; font-size: var(--text-xl); }
+.fd-sheet .note { margin: 0; }
+.fd-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); align-items: start; }
+.fd-field { position: relative; display: grid; gap: 0.3rem; padding: var(--space-2); margin: calc(-1 * var(--space-2));
+            border: 1px dashed transparent; border-radius: var(--radius-sm); }
+.fd-field:hover { border-color: var(--line-strong); }
+.fd-field.chosen { border: 2px solid var(--focus); }
+.fd-field > .wb-label { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+.fd-field input, .fd-field select { width: 100%; }
+.fd-masked { color: var(--muted); font-family: var(--font-mono); }
+.fd-drop { height: 0; border-top: 2px dashed var(--accent); }  /* where a dragged field would land */
+.fd-sheet table.figures { margin: 0; }
+
+/* A change request (proposed), for a3t: what it changes, in words, beside its checks and its decision */
+.cr-body { display: grid; grid-template-columns: minmax(0, 1fr) 24rem; gap: var(--space-4); align-items: start; }
+.cr-body > div { display: grid; gap: var(--space-4); min-width: 0; }
+.cr-body .card { margin: 0; }
+.changes-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.changes-list li { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: var(--space-3); align-items: baseline;
+                   padding: var(--space-2) 0; border-bottom: 1px solid var(--line); }
+.changes-list li:last-child { border-bottom: 0; }
+.changes-list .badge, .changes-list .chip { justify-self: start; }
+@container (max-width: 40rem) { .cr-body { grid-template-columns: minmax(0, 1fr); } }
+
+/* The runtime, in conversation (proposed): what someone said, and the app's answer as cards, an
+   outcome first, a phone's width at most, with the one thing to do */
+.convo { display: grid; align-content: start; gap: var(--space-4); max-width: 46rem; margin: 0 auto; padding: 0;
+         list-style: none; }
+.convo > li { display: grid; gap: var(--space-2); }
+.convo > li.you { justify-items: end; }
+.convo .said-you { max-width: 34rem; padding: 0.6rem 0.85rem; border-radius: 12px; background: var(--you); }
+.convo .from { display: flex; align-items: center; gap: var(--space-2); color: var(--muted); font-size: var(--text-sm); }
+.convo .from strong { color: var(--text); }
+.convo .avatar { width: 1.5rem; height: 1.5rem; }
+.convo .avatar .icon { width: 0.95rem; height: 0.95rem; }
+.outcome { max-width: 34rem; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-lg);
+           background: var(--surface); box-shadow: var(--shadow-raised); }
+.outcome-body { display: grid; gap: var(--space-4); padding: var(--space-4) var(--space-5) var(--space-5); }
+.outcome-title { margin: 0; color: var(--text); font-size: var(--text-lg); font-weight: 600; }
+.outcome-body > p { margin: 0; }
+.outcome-steps { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; counter-reset: step; }
+.outcome-steps li { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); gap: var(--space-2); align-items: baseline;
+                    counter-increment: step; }
+.outcome-steps li::before { content: counter(step); display: grid; place-items: center; width: 1.4rem; height: 1.4rem;
+                            border-radius: 50%; background: var(--sunken); color: var(--muted); font-size: var(--text-xs); font-weight: 650; }
+.outcome-steps .step-detail { display: block; color: var(--muted); font-size: var(--text-sm); }
+.outcome-needs { display: grid; gap: var(--space-3); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md);
+                 background: var(--sunken); }
+.outcome-needs .wb-field input, .outcome-needs .wb-field select { background: var(--surface); }
+.outcome-needs table.figures { margin: 0; background: var(--surface); border-radius: var(--radius-sm); }
+.outcome-needs .traced { font-weight: 500; }
+.outcome-who { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: var(--space-1) var(--space-3); margin: 0;
+               font-size: var(--text-sm); }
+.outcome-who dt { color: var(--muted); }
+.outcome-who dd { margin: 0; }
+.outcome-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+.composer { display: grid; gap: var(--space-2); max-width: 46rem; margin: 0 auto; width: 100%; }
+.composer-box { display: flex; gap: var(--space-2); align-items: flex-end; padding: var(--space-2); border: 1px solid var(--line-control);
+                border-radius: var(--radius-lg); background: var(--surface); }
+.composer-box textarea { flex: 1; min-height: 2.4rem; border: 0; resize: none; }
+.composer .chips { justify-content: center; }
+.num, table.figures .num { text-align: end; font-variant-numeric: tabular-nums; }
+.convo .faint { font-size: var(--text-xs); }
+.wb-break { flex-basis: 100%; height: 0; }  /* the toolbar's second row: the views */

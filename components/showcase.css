@@ -79,3 +79,10 @@ dialog.dialog.ds-in-place { position: static; margin: 0; }
 .ds-cover-name h1 { margin: 0; color: var(--text); font-size: 120px; font-weight: 700; line-height: 0.92;
                     letter-spacing: -0.02em; }
 .ds-cover-name p { margin: var(--space-3) 0 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
+
+/* A whole page in the frame, at a desktop's size */
+#root.ds-screen > .ds-app { height: 900px; min-height: 0; border: 0; border-radius: 0; }
+#root.ds-screen > .ds-app .page { overflow: auto; }
+#root.ds-screen > .ds-app main { max-width: 76rem; padding: var(--space-6) var(--space-8) var(--space-8); }
+.ds-talk { display: flex; flex-direction: column; gap: var(--space-5); min-height: 100%; }
+.ds-talk .convo { flex: 1; width: 100%; }
