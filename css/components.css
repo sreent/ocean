@@ -678,9 +678,9 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
    what; for whom; what it did, in the colour of what it did; and its seal */
 .ledger-box { container-type: inline-size; }
 .ledger { margin: 0; padding: 0; list-style: none; }
-.ledger li { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-1) var(--space-4);
+.ledger > li { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: var(--space-1) var(--space-4);
              padding: var(--space-3) 0; border-bottom: 1px solid var(--line); }
-.ledger li:last-child { border-bottom: 0; }
+.ledger > li:last-child { border-bottom: 0; }
 .ledger time { padding-top: 0.2rem; color: var(--faint); font-family: var(--font-mono); font-size: var(--text-xs); }
 .ledger-body { display: grid; gap: var(--space-1); min-width: 0; }
 .ledger-what { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
@@ -688,7 +688,7 @@ button.danger.primary { background: var(--bad); border-color: var(--bad); color:
 .ledger-seal { display: flex; align-items: center; gap: 0.35rem; color: var(--faint); font-family: var(--font-mono);
                font-size: var(--text-xs); overflow-wrap: anywhere; }
 .ledger-seal .icon { width: 0.9rem; height: 0.9rem; flex: none; }
-@container (max-width: 34rem) { .ledger li { grid-template-columns: minmax(0, 1fr); } }
+@container (max-width: 34rem) { .ledger > li { grid-template-columns: minmax(0, 1fr); } }
 
 /* The app designer (proposed), for a3t: a palette of fields, the form as people will see it, and the
    chosen field's settings, its permissions among them, on the workbench's frame */
@@ -1355,7 +1355,7 @@ table.figures.cost-figures th, table.figures.cost-figures td { padding: 0.3rem 0
 .link-add legend { padding: 0 0.3rem; font-weight: 600; }
 .link-add-fields { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: var(--space-2) var(--space-3); }
 .link-add label { display: grid; gap: 0.25rem; }
-.link-add select, .link-add input { width: 100%; }
+.link-add select, .link-add input:not([type="checkbox"]):not([type="radio"]) { width: 100%; }
 .link-found { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem var(--space-2); margin: 0; }
 .link-add-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
 .issue-links-box { container-type: inline-size; }
