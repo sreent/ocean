@@ -197,6 +197,8 @@ a4a is new, and starts on Ocean. Its web app is React 19 with Tailwind v4, which
 | A row of an import that isn't imported | `bad`, with a cross and its words: "Not imported" |
 | Unread, in the inbox | a dot in `--accent` and the words at 650; a count beside the sidebar's link |
 | Watching an issue | a toggle, pressed as a mode is, with how many watch |
+| Voting for an issue | Watching's toggle, pressed while you've voted, with how many voted |
+| Reactions to a description or a comment | small toggles, an emoji and how many each, pressed while one is yours; who reacted in its title; a fixed set of eight to add from |
 | A comment the requester of a help desk request sees | `outside`, framed and with its words: "public: sent to Jane Doe" |
 | A request's first response, due / overdue / answered in time | `warn` with a clock / `bad` with a cross / `good` with a tick; answered late is a plain fact |
 | An agent acting as itself, with a token of its own | its lagoon square and its id, for no one: "claude · via MCP" |

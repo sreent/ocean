@@ -1899,6 +1899,20 @@ button.watch[aria-pressed="true"], button.watch[aria-pressed="true"]:hover { bor
                font-weight: 600; line-height: 1.35rem; text-align: center; font-variant-numeric: tabular-nums; }
 button.watch[aria-pressed="true"] .watch-count { background: var(--surface); color: var(--accent); }
 
+/* Votes for an issue: Watching's toggle, pressed while you've voted, with how many beside its word.
+   Reactions to what's written: a row of small toggles, each an emoji and how many, pressed while one
+   is yours (who reacted is its title); the fixed set to add from opens under the last */
+.reactions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); min-width: 0; }
+button.reaction { min-height: 1.75rem; padding: 0 0.55rem; border-radius: var(--radius-pill); font-size: var(--text-sm);
+                  font-variant-numeric: tabular-nums; gap: 0.3rem; }
+button.reaction[aria-pressed="true"], button.reaction[aria-pressed="true"]:hover { border-color: var(--accent); background: var(--accent-soft);
+                                                                                   color: var(--accent); font-weight: 600; }
+.reaction-add { position: relative; display: inline-flex; }
+.reaction-menu { position: absolute; top: calc(100% + 0.25rem); inset-inline-start: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 0.15rem;
+                 width: max-content; max-width: min(21rem, 80vw); padding: 0.25rem; border: 1px solid var(--line); border-radius: var(--radius);
+                 background: var(--surface); box-shadow: var(--shadow-raised); }
+.reaction-menu > button.reaction { border-color: transparent; }
+
 /* A person named in what's written ("@anna"): their name, a link to them, in --accent at 500; and the
    people offered after an "@" as someone types, in a popover under the field, from its start */
 .prose a.mention { font-weight: 500; text-decoration: none; }
