@@ -2525,7 +2525,7 @@ body.lone { padding: max(var(--space-6), env(safe-area-inset-top)) max(var(--spa
   .sidebar nav a, .brand { min-width: 44px; min-height: 44px; justify-content: center; }
   .crumbs a { min-width: 44px; min-height: 44px; }
   .meta > a { display: inline-flex; align-items: center; min-height: 44px; }  /* a link among a page's facts stands alone */
-  .issue-summary, .board-card-summary { display: inline-block; min-width: 44px; padding-block: 12px; margin-block: -12px; }
+  .issue-summary, .board-card-summary, a.inbox-summary { display: inline-block; min-width: 44px; padding-block: 12px; margin-block: -12px; }
   .board-card-head > button.issue-id { min-height: 0; padding-block: 13px; margin-block: -13px; }
   .issue-pick { width: 44px; height: 44px; margin: calc((1rem - 44px) / 2); }  /* in its 1rem column */
 }

@@ -38,4 +38,6 @@ What reached someone, and why: issues assigned to them, mentions, a new help des
 </ol>
 ```
 
+On a touch screen an issue's summary, a link, grows its target to 44px without changing its look, as an issue list's does.
+
 **In a4a:** Inbox, under Work, and its count in the sidebar. The preview is a static rendition, in the frame.
