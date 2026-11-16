@@ -1114,3 +1114,71 @@ export interface WorkflowBarProps {
 }
 /** What a person can do to an issue by its workflows: its state machine's moves and its project's actions, as buttons. Proposed. */
 export declare function WorkflowBar(props: WorkflowBarProps): React.ReactElement;
+export interface BacklogProps {
+  /** In rank order: each issue's id, summary, state and story points. */
+  issues: { id: string; summary: string; state?: string; points?: number | null }[];
+  /** The board's open sprints, to drop an issue on. */
+  sprints: { name: string; issues: number; dates?: string }[];
+  /** The sprint being planned: each row has a button that puts its issue there. */
+  target?: string;
+  onRank: (issue: string, place: { after?: string; before?: string }) => void;
+  onToSprint: (issue: string, sprint: string) => void;
+  /** What the last move did, said where a screen reader hears it. */
+  said?: string;
+}
+/** A board's backlog in rank order: rows to drag or move with Alt and an arrow, and sprints to drop them on. Proposed, for a4a. */
+export declare function Backlog(props: BacklogProps): React.ReactElement;
+
+export interface VelocityProps {
+  unit: string;
+  sprints: { name: string; committed: number; done: number; finished: boolean }[];
+  /** Done per sprint over the last three that are over; none before one is. */
+  average: number | null;
+}
+/** Committed and done per sprint as pairs of bars, the average of the last three dashed, and the figures as a table. Proposed, for a4a. */
+export declare function Velocity(props: VelocityProps): React.ReactElement;
+
+export interface SprintLoadProps {
+  sprint: string;
+  from: string | null;
+  to: string | null;
+  /** Each person, or none for the issues nobody has yet. */
+  people: { name: string | null; issues: number; points: number | null; loadHours: number; capacityHours: number | null }[];
+  totals: { issues: number; points: number | null; loadHours: number; capacityHours: number | null };
+}
+/** A sprint's load against its people's capacity: a meter each, over in --warn with its words. Proposed, for a4a. */
+export declare function SprintLoad(props: SprintLoadProps): React.ReactElement;
+
+export interface TimerProps {
+  seconds: number;
+  running: boolean;
+  /** The issue your running timer is on, when it isn't this one. */
+  elsewhere?: string;
+  onStart: () => void;
+  onPause: () => void;
+  onStop: () => void;
+  onDiscard: () => void;
+}
+/** A person's timer on an issue: its time, and start, pause, stop and log, discard. Proposed, for a4a. */
+export declare function Timer(props: TimerProps): React.ReactElement;
+
+export interface TimesheetProps {
+  week: string;
+  /** Each day's name and the hours worked that day (0: off). */
+  days: { name: string; hours: number }[];
+  rows: { issue: string; summary: string; type: string | null; minutes: number[]; entries: number[] }[];
+  totals: number[];
+  onSet: (issue: string, type: string | null, day: number, minutes: number) => void;
+}
+/** A person's week of time: a field per issue, type and day, each day's total against its hours. Proposed, for a4a. */
+export declare function Timesheet(props: TimesheetProps): React.ReactElement;
+
+export interface WorkWeekProps {
+  /** Hours on each weekday, Sunday first; none for the plan's working days. */
+  week: number[] | null;
+  capacity: number;
+  canChange: boolean;
+  onSave: (week: number[] | null) => void;
+}
+/** A person's working week: seven fields, Monday first, and its total. Proposed, for a4a. */
+export declare function WorkWeek(props: WorkWeekProps): React.ReactElement;

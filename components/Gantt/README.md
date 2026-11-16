@@ -15,7 +15,9 @@ A plan over time: its tasks in a list beside it, by indentation, and across the 
 - A task's name can open it: a link inside `.gantt-name`, which reads as a name and is underlined under the pointer.
 - Where it's narrow, the list keeps its names and the chart scrolls under it, in its own frame, which a4a scrolls to today when it opens; the dates and what's done stay for screen readers.
 
-**Takes:** `rows` (each `kind`: `task`, `summary` or `milestone`; `name`, `href`, `depth`, `start`, `end`, `done`, `baseline`, `critical`, `due`, `slackTo`, `after`, `whatIf`), `from`, `to`, `today`, `dayWidth`.
+- **Days a task's assignee is away** while it's on (a4a, D43) are shaded behind its bar, a day wide each, in `--sunken` and edged in dashes of `--line-control`, so they aren't taken for a weekend (`rect.gantt-away`); half a day is the dashed edge alone (`.gantt-away.half`). Each says "Away", or "Away in the morning", in its title, and never why.
+
+**Takes:** `rows` (each `kind`: `task`, `summary` or `milestone`; `name`, `href`, `depth`, `start`, `end`, `done`, `baseline`, `critical`, `due`, `slackTo`, `after`, `whatIf`, `away`), `from`, `to`, `today`, `dayWidth`.
 
 **Markup:** the list and the chart share their rows: a head 40px tall, then 32px a row, in the list (`height`) and in the chart (row r's top is `40 + 32r`).
 
