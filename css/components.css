@@ -1909,7 +1909,7 @@ button.reaction[aria-pressed="true"], button.reaction[aria-pressed="true"]:hover
                                                                                    color: var(--accent); font-weight: 600; }
 .reaction-add { position: relative; display: inline-flex; }
 .reaction-menu { position: absolute; top: calc(100% + 0.25rem); inset-inline-start: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: 0.15rem;
-                 width: max-content; max-width: min(18rem, 80vw); padding: 0.25rem; border: 1px solid var(--line); border-radius: var(--radius);
+                 width: max-content; max-width: min(21rem, 80vw); padding: 0.25rem; border: 1px solid var(--line); border-radius: var(--radius);
                  background: var(--surface); box-shadow: var(--shadow-raised); }
 .reaction-menu > button.reaction { border-color: transparent; }
 
