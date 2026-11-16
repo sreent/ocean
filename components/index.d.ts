@@ -691,3 +691,122 @@ export interface IssueHistoryProps {
 }
 /** An issue's history in the ledger's spirit: who, for whom, through what, when, and each change in the grammar. Proposed. */
 export declare function IssueHistory(props: IssueHistoryProps): React.ReactElement;
+
+/** How a sprint stands against its ideal, in the words its badge takes. */
+export type BurndownVerdict = "on_track" | "ahead" | "done" | "behind" | "ended" | "not_started" | "empty";
+
+export interface BurndownProps {
+  sprint: { name: string; goal?: string; startDate: string; endDate: string; board: string };
+  /** By hours of estimate, or by how many issues. */
+  by: "estimate" | "count";
+  /** Committed at the start of the first working day, and left now (or at the end). */
+  start: number;
+  remaining: number;
+  /** Each working day: what was left at its end (null for days to come), the ideal, and what it did. */
+  days: { date: string; remaining: number | null; ideal: number; completed: number; added: number; removed: number; logged: number }[];
+  /** How it stands: a badge, and the sentence saying it against the ideal as today began. */
+  status: { verdict: BurndownVerdict; words: string };
+  /** Each change to its scope or progress, in order: added, taken out, deleted, resolved, reopened, estimate changed. */
+  changes: { date: string; issue: string; summary: string; kind: "added" | "removed" | "deleted" | "resolved" | "reopened" | "estimate"; amount: number }[];
+  today: string;
+  /** In a dashboard's widget: the words, the facts and the chart, with its figures folded beneath. */
+  compact?: boolean;
+}
+/** A sprint's burndown: what's left, solid, against the ideal, dashed; scope changes in --changes; its figures beside it. Proposed. */
+export declare function Burndown(props: BurndownProps): React.ReactElement;
+
+/** How a state stands, which is its band's colour: --chart-done, --chart-short, --chart-failed or --chart-open. */
+export type Standing = "done" | "waiting" | "failed" | "open";
+
+export interface CumulativeFlowProps {
+  /** The workflow's states in order; a state's tone says whether it waits on someone (warn) or failed (bad). */
+  states: { name: string; resolved: boolean; tone?: "warn" | "bad" | "good" | "idle" }[];
+  /** Each day's end: how many issues were in each state, in the order of `states`. */
+  days: { date: string; counts: number[]; total: number }[];
+  today: string;
+  compact?: boolean;
+}
+/** Issues in each state at each day's end, stacked, each band in the colour of how its state stands. Proposed. */
+export declare function CumulativeFlow(props: CumulativeFlowProps): React.ReactElement;
+
+export interface DistributionProps {
+  /** Equal buckets, in days: each one's start, end and how many fell in it. */
+  buckets: { from: number; to: number; count: number }[];
+  /** By nearest rank, in days; null when there are none. */
+  percentiles: { p50: number | null; p85: number | null; p95: number | null };
+  average: number | null;
+  /** The slowest, each with how long it took. */
+  issues: { id: string; summary: string; days: number; reopened?: boolean }[];
+  /** Those resolved without ever starting, left out and said so. */
+  notStarted?: string[];
+  compact?: boolean;
+}
+/** How many took how long, in columns of the first series, with the half and 85% marked in ink. Proposed. */
+export declare function Distribution(props: DistributionProps): React.ReactElement;
+
+export interface CreatedResolvedProps {
+  interval: "day" | "week" | "month";
+  /** Each period: created, resolved and reopened in it, and open at its end. */
+  buckets: { from: string; to: string; created: number; resolved: number; reopened: number; open: number }[];
+  totals: { created: number; resolved: number; reopened: number };
+  compact?: boolean;
+}
+/** What came in against what got done, period by period: created in the first series, resolved in the second. Proposed. */
+export declare function CreatedResolved(props: CreatedResolvedProps): React.ReactElement;
+
+export interface TimeReportProps {
+  totalMinutes: number;
+  entries: number;
+  from: string;
+  to: string;
+  /** The bars, by how the time is grouped. */
+  groups: { by: "person" | "project" | "week"; rows: { label: string; who?: Someone; minutes: number }[] };
+  onGroup?: (by: "person" | "project" | "week") => void;
+  /** Each issue's time here and all told, against its estimate (none: "No estimate"). */
+  byIssue: { id: string; summary: string; minutes: number; spentMinutes: number; estimateMinutes: number | null }[];
+  /** Each person's minutes per week, weeks beginning on Monday. */
+  weeks: string[];
+  matrix: { who: Someone; minutes: number[] }[];
+  compact?: boolean;
+}
+/** Time logged as bars on one scale with their figures, spent against estimate as meters, and each person's weeks. Proposed. */
+export declare function TimeReport(props: TimeReportProps): React.ReactElement;
+
+/** A dashboard's widget: a report with its parameters, a search's count or list, or a note. */
+export type DashboardWidget = { id: string; title?: string; width: "half" | "full" } & (
+  | { kind: "report"; report: "burndown" | "flow" | "created-resolved" | "cycle-time" | "time"; body: React.ReactNode }
+  | { kind: "search"; show: "count" | "list"; count?: number; issues?: { id: string; summary: string; state: IssueState }[] }
+  | { kind: "note"; text: React.ReactNode }
+);
+
+export interface DashboardProps {
+  widgets: DashboardWidget[];
+  /** Arranging: each widget moves earlier or later, goes wide or half, or goes, from its head's buttons. */
+  arranging?: boolean;
+  onMove?: (id: string, by: -1 | 1) => void;
+  onWidth?: (id: string, width: "half" | "full") => void;
+  onRemove?: (id: string) => void;
+  /** A widget being made, dashed until it's on the dashboard. */
+  adding?: React.ReactNode;
+}
+/** A person's widgets in two columns where there's room and one where there isn't, arranged without dragging. Proposed. */
+export declare function Dashboard(props: DashboardProps): React.ReactElement;
+
+export interface MappingTableProps {
+  /** Each column of the file: its name, a few of its values, how many rows have one, what it becomes, and whether that was found from its header. */
+  columns: { name: string; samples: string[]; filled: number; target: string; found: boolean }[];
+  /** What a column may become, grouped: what every issue has, the project's fields, links, or left out. */
+  targets: { group: string; options: { value: string; label: string }[] }[];
+  onTarget?: (column: number, target: string) => void;
+  /** For a mapped field of options, people or sprints: each value in the file and what it becomes; `empty` is what leaving it means. */
+  values?: { label: string; items: { value: string; count: number; to: string | null; found: boolean }[]; choices: { value: string; label: string }[]; empty: string }[];
+  onValue?: (label: string, value: string, to: string | null) => void;
+  /** What a check would do, or what the run did. */
+  counts?: { created: number; updated: number; unchanged: number; skipped: number; failed: number; comments: number; links: number; planned: boolean };
+  /** Row by row: an error leaves the row out, a warning imports it without the value. */
+  problems?: { row: number; key?: string; level: "error" | "warning"; message: string; hint?: string; column?: string }[];
+  /** A run's progress, said in words too. */
+  progress?: { done: number; total: number; phase: "issues" | "links" };
+}
+/** Bringing a file of issues in: its columns and values mapped, a check's counts, problems row by row, and the run's progress. Proposed. */
+export declare function MappingTable(props: MappingTableProps): React.ReactElement;
