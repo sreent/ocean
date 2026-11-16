@@ -180,6 +180,8 @@ a4a is new, and starts on Ocean. Its web app is React 19 with Tailwind v4, which
 | Priority: Show-stopper, Critical, Major, Normal, Minor | PriorityMeter: five steps beside the word, never a colour |
 | Tags | chips, with no colour |
 | A file anyone uploaded | an image shows in place; any other file, SVG and HTML included, by its kind, and downloads |
+| A text file, or sound or video, shown in place | once opened, under its row: text in Plex Mono on `--sunken`, in a frame of its own, with which part of how much ("The first 64 KB of 1.2 MB"); sound and video in the browser's own player |
+| A character that turns text around, in a file shown in place | its code on `--warn-bg`: `U+202E` |
 | A version of an article against the one before | lines added on `--changes-bg` with a `+`, removed struck through with a `−` |
 | An issue's id, a version, a duration | Plex Mono: `BACK-12`, `2.4.1`, `2d 4h` |
 | The critical path | told by line, as production is: in ink, twice as heavy |

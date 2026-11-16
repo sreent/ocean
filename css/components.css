@@ -1945,6 +1945,17 @@ a.attachment-name:hover { text-decoration: underline; }
 .attachment-list.compact .attachment-thumb .icon { width: 0.95rem; height: 0.95rem; }
 .attachment-list.compact .attachment-kind { display: none; }
 .attachment-list.compact .attachment-name { font-size: var(--text-sm); }
+/* A file shown in place, under its row once opened: text as it's written, in a frame of its own
+   that scrolls both ways (a long line never widens the page), or the browser's own player */
+.attachment-preview { grid-column: 1 / -1; display: grid; gap: var(--space-2); min-width: 0; }
+.attachment-text { max-height: 24rem; margin: 0; padding: var(--space-3); overflow: auto; border: 1px solid var(--line); border-radius: var(--radius-sm);
+                   background: var(--sunken); color: var(--text); font-family: var(--font-mono); font-size: var(--text-sm); line-height: 1.5;
+                   white-space: pre; tab-size: 4; }
+.attachment-text:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.attachment-mark { padding: 0 0.2em; border-radius: var(--radius-sm); background: var(--warn-bg); color: var(--text); }  /* a direction-changing character, by its code */
+.attachment-preview audio { display: block; width: 100%; }
+.attachment-preview video { display: block; width: 100%; max-height: 28rem; border-radius: var(--radius-sm); background: var(--sunken); }
+.attachment-preview-about { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.1rem var(--space-3); margin: 0; color: var(--muted); font-size: var(--text-sm); }
 @container (max-width: 26rem) {  /* narrow: its actions under its name */
   .attachment { grid-template-columns: 3rem minmax(0, 1fr); }
   .attachment-actions { grid-column: 2; justify-content: flex-start; }

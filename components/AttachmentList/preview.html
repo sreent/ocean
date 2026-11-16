@@ -1,4 +1,4 @@
-<!-- @dsCard group="Issues" height=980 subtitle="An issue's files, with one on its way and one refused; a comment's own; and files chosen to go with a comment" -->
+<!-- @dsCard group="Issues" height=1420 subtitle="An issue's files, with one on its way and one refused; files shown in place; a comment's own; and files chosen to go with a comment" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,6 +11,7 @@
 <body>
 <div id="root">
 <div class="ds-cols">
+<div class="ds-stack">
 <div class="ds-group"><p class="label">An issue's files</p>
 <section class="card attachments" aria-labelledby="files-title">
   <div class="section-head"><h2 id="files-title">Files</h2><p class="note">3 files, 2.4 MB of 100 MB</p></div>
@@ -57,16 +58,49 @@
   <div class="attachment-drop">
     <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M19.5 11.5l-7.8 7.8a5 5 0 0 1-7.1-7.1l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.4 8.4a1.6 1.6 0 0 1-2.3-2.3l7.6-7.6"/></svg>
     <p>Drop files here to attach them, or <button type="button" class="link">choose files</button></p>
-    <p class="note">Up to 20 MB each. Images show here; everything else downloads.</p>
+    <p class="note">Up to 20 MB each. Images, text, sound and video show here; everything else downloads.</p>
   </div>
 </section>
+</div>
+<div class="ds-group"><p class="label">Shown in place: a log, and a voice note</p>
+<section class="card attachments" aria-labelledby="shown-title">
+  <div class="section-head"><h2 id="shown-title">Files</h2><p class="note">2 files, 1.3 MB of 100 MB</p></div>
+  <ul class="attachment-list">
+    <li class="attachment">
+      <span class="attachment-thumb" aria-hidden="true"><svg viewBox="0 0 24 24" class="icon"><path d="M19.5 11.5l-7.8 7.8a5 5 0 0 1-7.1-7.1l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.4 8.4a1.6 1.6 0 0 1-2.3-2.3l7.6-7.6"/></svg><span class="attachment-kind">log</span></span>
+      <div class="attachment-what">
+        <a class="attachment-name" href="#download">okta-callback.log</a>
+        <span class="attachment-about"><span>1.2 MB</span><time datetime="2026-11-12T16:40">Thu 12 Nov, 16:40</time></span>
+      </div>
+      <div class="attachment-actions"><button type="button" class="small" aria-expanded="true" aria-controls="shown-log" aria-label="Hide okta-callback.log">Hide</button><button type="button" class="danger small">Delete</button></div>
+      <div class="attachment-preview" id="shown-log">
+<pre class="attachment-text" tabindex="0" aria-label="okta-callback.log, the first 64 KB">2026-11-12 16:40:02.118 INFO  GET /api/v1/auth/oidc/callback?code=…&amp;state=7f3a 302
+2026-11-12 16:40:02.341 WARN  state cookie missing: SameSite=Lax dropped on the cross-site POST back
+2026-11-12 16:40:02.342 ERROR sign-in failed: no state to match (user-agent Safari/18.1)
+2026-11-12 16:40:02.343 DEBUG redirect_uri=https://a4a.example.com/api/v1/auth/oidc/callback
+2026-11-12 16:40:07.910 INFO  POST /api/v1/auth/login 401 {"login":"diego<span class="attachment-mark">U+202E</span>gnp.exe"}</pre>
+        <p class="attachment-preview-about"><span>The first 64 KB of 1.2 MB.</span><button type="button" class="link">Show the end</button><a href="#download">Download it</a></p>
+      </div>
+    </li>
+    <li class="attachment">
+      <span class="attachment-thumb" aria-hidden="true"><svg viewBox="0 0 24 24" class="icon"><path d="M19.5 11.5l-7.8 7.8a5 5 0 0 1-7.1-7.1l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.4 8.4a1.6 1.6 0 0 1-2.3-2.3l7.6-7.6"/></svg><span class="attachment-kind">ogg</span></span>
+      <div class="attachment-what">
+        <a class="attachment-name" href="#download">what-safari-does.ogg</a>
+        <span class="attachment-about"><span>96 KB</span><time datetime="2026-11-13T09:20">Fri 13 Nov, 09:20</time></span>
+      </div>
+      <div class="attachment-actions"><button type="button" class="small" aria-expanded="true" aria-controls="shown-voice" aria-label="Hide what-safari-does.ogg">Hide</button></div>
+      <div class="attachment-preview" id="shown-voice"><audio controls preload="none" aria-label="what-safari-does.ogg"></audio></div>
+    </li>
+  </ul>
+</section>
+</div>
 </div>
 <div class="ds-stack">
 <div class="ds-group"><p class="label">Under a file dragged over it</p>
 <div class="card"><div class="attachment-drop" data-over="true">
   <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M19.5 11.5l-7.8 7.8a5 5 0 0 1-7.1-7.1l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.4 8.4a1.6 1.6 0 0 1-2.3-2.3l7.6-7.6"/></svg>
   <p>Drop 2 files to add them</p>
-  <p class="note">Up to 20 MB each. Images show here; everything else downloads.</p>
+  <p class="note">Up to 20 MB each. Images, text, sound and video show here; everything else downloads.</p>
 </div></div>
 </div>
 <div class="ds-group"><p class="label">A comment's own files, under its words</p>

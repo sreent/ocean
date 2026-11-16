@@ -10,10 +10,15 @@ Files on something: an issue, a comment or an article. Each is a row with its pi
 - Beside the section's heading, how many there are and the room they take: "3 files, 2.4 MB of 100 MB".
 - Under a comment's words the list is compact (`.compact`): smaller marks, no kind, and no who or when, which the comment already says.
 - Where it's narrow, a row's actions go under its name.
+- **Shown in place.** Text (a log, code, CSV, JSON, Markdown as written), sound and video a browser plays open under their row with Show, in the row's actions (`aria-expanded`, and Hide once open); nothing opens by itself, so a long list stays quiet. The preview spans the row (`.attachment-preview`):
+  - Text is as it's written, in Plex Mono on `--sunken`, in a frame of its own that scrolls both ways (`pre.attachment-text`, reachable by the keyboard), so a long line never widens the page. Under it, in `--muted`, which part and of how much ("The first 64 KB of 1.2 MB"), Show the end (or the start), and Download it (`.attachment-preview-about`). A character that changes the direction text reads in, which could make a line say what it doesn't, shows as its code on `--warn-bg` (`.attachment-mark`: `U+202E`).
+  - Sound and video play in the browser's own player, the full width of the row; video no taller than 28rem.
+  - HTML and SVG are text too, and show as their source: as what they say, never as a page or a picture.
+  - Images still open as themselves; PDFs and everything else download.
 
 In a comment's composer, files chosen to go with it are chips that can be taken away (`.chip.removable`), each with the attach mark, its name and size, before the one thing to do, Comment.
 
-**Takes:** `label`, `about`, `files` (each `id`, `name`, `href`, `size`, `image`, `kind`, `who`, `at`, `note`, `onDelete`), `uploading` (each `name`, `done`, `words`, `error`, `onStop`), `onAdd`, `addAbout`, `compact`.
+**Takes:** `label`, `about`, `files` (each `id`, `name`, `href`, `size`, `image`, `kind`, `who`, `at`, `note`, `onDelete`, and to show it in place `preview`, `open`, `onToggle`), `uploading` (each `name`, `done`, `words`, `error`, `onStop`), `onAdd`, `addAbout`, `compact`.
 
 **Markup:**
 
@@ -44,12 +49,30 @@ In a comment's composer, files chosen to go with it are chips that can be taken 
   <div class="attachment-drop">
     <svg class="icon" aria-hidden="true"><!-- attach --></svg>
     <p>Drop files here to attach them, or <button type="button" class="link">choose files</button></p>
-    <p class="note">Up to 20 MB each. Images show here; everything else downloads.</p>
+    <p class="note">Up to 20 MB each. Images, text, sound and video show here; everything else downloads.</p>
     <input type="file" multiple hidden>
   </div>
 </section>
 ```
 
 Under a comment: `<ul class="attachment-list compact">…</ul>`, each row as above without its `.attachment-about`'s who and when.
+
+A file shown in place, its preview the row's last child:
+
+```html
+<li class="attachment">
+  <span class="attachment-thumb" aria-hidden="true"><svg class="icon"><!-- attach --></svg><span class="attachment-kind">log</span></span>
+  <div class="attachment-what"><a class="attachment-name" href="…?download=1" download>server.log</a><span class="attachment-about">…</span></div>
+  <div class="attachment-actions"><button type="button" class="small" aria-expanded="true" aria-controls="p1" aria-label="Hide server.log">Hide</button>…</div>
+  <div class="attachment-preview" id="p1">
+    <pre class="attachment-text" tabindex="0" aria-label="server.log, the first 64 KB">2026-11-16 09:10:02 ERROR the cache went away
+user <span class="attachment-mark">U+202E</span>gnp.exe</pre>
+    <p class="attachment-preview-about"><span>The first 64 KB of 1.2 MB.</span><button type="button" class="link">Show the end</button><a href="…?download=1" download>Download it</a></p>
+  </div>
+</li>
+<li class="attachment">…
+  <div class="attachment-preview" id="p2"><audio controls preload="metadata" src="…" aria-label="voice-note.ogg"></audio></div>
+</li>
+```
 
 **In a4a:** an issue's files, under its description, its comments' files included; a comment's own files under its words in the history; and an article's files. The preview is a static rendition.
