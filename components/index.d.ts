@@ -1191,3 +1191,21 @@ export interface NoticeProps {
 }
 /** A word about the app itself, above every page: offline, or a new version ready (a4a's installed app). */
 export declare function Notice(props: NoticeProps): React.ReactElement | null;
+
+
+export interface AppFrameProps {
+  /** The app's title: its badge says the widget is the app's. */
+  app: string;
+  /** The widget's title: the card's heading, and the frame's. */
+  title: string;
+  /** Where its frame loads from. */
+  src: string;
+  /** The height it asks for, kept between 80 and 800. */
+  height: number;
+  /** What it last said, as text. */
+  said?: string | null;
+  /** What it asks the page to open, and the answers. */
+  ask?: { to: string; onOpen: () => void; onStay: () => void } | null;
+}
+/** An app's widget on a page: someone else's code, in a sandboxed frame of its own, named as an app's. Proposed. */
+export declare function AppFrame(props: AppFrameProps): React.ReactElement;

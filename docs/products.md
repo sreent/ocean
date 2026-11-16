@@ -243,6 +243,8 @@ For its agile boards and time tracking it brought [Backlog](../components/Backlo
 
 For a4a installed on a phone it brought [Notice](../components/Notice/README.md), a word about the app itself above every page, and taught the frame a phone's ways: the page reaching the screen's edges and kept clear of the notch and the home indicator, everything to tap 44px on a touch screen, a board's columns a phone's width with a swipe settling on each, and the issue row's box a label that's its target.
 
+For its apps it brought [AppFrame](../components/AppFrame/README.md): an app's widget on a page, in a sandboxed frame of its own and named as an app's, with what it said and an ask when it wants to open something, the page never moved without the person; and an app's card for the admin's list, with what it may do in the words its consent showed.
+
 ## Where Ocean lives
 
 This repo is Ocean's one source. a5s copies its files from a release, since its pages serve only their own files. a7c, a3t and a4a depend on it by commit, as `"@sreent/ocean": "github:sreent/ocean#<commit>"`, and import `@sreent/ocean/tokens.css` and `@sreent/ocean/components.css`, with `@sreent/ocean/charts.css` where they draw charts. A Teams app takes the kit's cards from `@sreent/ocean/teams/cards`. Each product runs `node scripts/check.mjs` in CI, against its own `tokens.css` where it changes the brand.
