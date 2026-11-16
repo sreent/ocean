@@ -201,7 +201,7 @@ put("project/README.md", `${unlinked(untitled(read("docs/design.md")))}
 ## Not synced
 
 - Every preview is a static rendition: plain markup, styled by \`components/bundle.css\`, which is this repo's \`css/components.css\`. The React pieces stay in a5s (\`studio/src/design\`) and aren't built here.
-- What the family adds (services, tiers, gates, the canvas, the workbench, the ledger's lines, the conversation kit and its Teams cards) is proposed: no product draws it yet.
+- What the family adds (services, tiers, gates, the canvas, the workbench, the ledger's lines, the conversation kit and its Teams cards, and a4a's issues, boards and plans) is proposed: no product draws it yet.
 - The screens are drawn from the previews, not taken from a product.
 `);
 put("project/platforms.md", unlinked(read("docs/platforms.md")));

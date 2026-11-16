@@ -1,0 +1,58 @@
+<!-- @dsCard group="Plans" height=812 width=1100 subtitle="Two weeks of the migration's people: load by day, over capacity, and what levelling would move, within slack" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>LoadGrid</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/charts.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<section class="load load-box" aria-labelledby="load-title">
+<h2 id="load-title">Who's booked, and how much</h2>
+<p class="note" id="load-about">Hours booked against each person's capacity, 16 to 27 Nov. Weekends are the gap between the weeks.</p>
+<div class="load-scroll" tabindex="0" role="group" aria-label="Hours booked, 16 to 27 Nov">
+<table class="load-grid" aria-labelledby="load-title" aria-describedby="load-about">
+<thead><tr><th scope="col" class="load-who">Person</th><th scope="col">Mon <span>16 Nov</span></th><th scope="col">Tue <span>17 Nov</span></th><th scope="col">Wed <span>18 Nov</span></th><th scope="col">Thu <span>19 Nov</span></th><th scope="col">Fri <span>20 Nov</span></th><th scope="col" class="week-start">Mon <span>23 Nov</span></th><th scope="col">Tue <span>24 Nov</span></th><th scope="col">Wed <span>25 Nov</span></th><th scope="col">Thu <span>26 Nov</span></th><th scope="col">Fri <span>27 Nov</span></th></tr></thead>
+<tbody>
+<tr><th scope="row" class="load-who"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">AS</span><span><span class="who-name">Anna Schmidt</span><span class="who-about">8h a day</span></span></span></th><td class="load-cell" data-load="3">6h</td><td class="load-cell" data-load="4">8h</td><td class="load-cell" data-load="4">7h</td><td class="load-cell over"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>10h<span>of 8h</span><span class="hidden">, over</span></td><td class="load-cell over"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>10h<span>of 8h</span><span class="hidden">, over</span></td><td class="load-cell week-start" data-load="2">4h</td><td class="load-cell" data-load="3">6h</td><td class="load-cell" data-load="2">3h</td><td class="load-cell" data-load="1">2h</td><td class="load-cell" data-load="0">0h</td></tr>
+<tr><th scope="row" class="load-who"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">BO</span><span><span class="who-name">Ben Okafor</span><span class="who-about">8h a day</span></span></span></th><td class="load-cell" data-load="2">4h</td><td class="load-cell" data-load="3">6h</td><td class="load-cell" data-load="4">8h</td><td class="load-cell" data-load="4">8h</td><td class="load-cell" data-load="3">5h</td><td class="load-cell week-start" data-load="3">6h</td><td class="load-cell" data-load="4">8h</td><td class="load-cell" data-load="3">6h</td><td class="load-cell over"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>11h<span>of 8h</span><span class="hidden">, over</span></td><td class="load-cell over"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>9h<span>of 8h</span><span class="hidden">, over</span></td></tr>
+<tr><th scope="row" class="load-who"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">KM</span><span><span class="who-name">Kofi Mensah</span><span class="who-about">8h a day</span></span></span></th><td class="load-cell" data-load="1">2h</td><td class="load-cell" data-load="2">3h</td><td class="load-cell" data-load="1">2h</td><td class="load-cell" data-load="4">8h</td><td class="load-cell" data-load="4">8h</td><td class="load-cell week-start" data-load="4">8h</td><td class="load-cell" data-load="4">8h</td><td class="load-cell" data-load="4">8h</td><td class="load-cell" data-load="2">4h</td><td class="load-cell" data-load="0">0h</td></tr>
+<tr><th scope="row" class="load-who"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">LP</span><span><span class="who-name">Lena Park</span><span class="who-about">6h a day</span></span></span></th><td class="load-cell" data-load="4">6h</td><td class="load-cell" data-load="4">6h</td><td class="load-cell" data-load="3">4h</td><td class="load-cell off">away</td><td class="load-cell off">away</td><td class="load-cell week-start" data-load="2">3h</td><td class="load-cell" data-load="2">2h</td><td class="load-cell" data-load="2">2h</td><td class="load-cell" data-load="0">0h</td><td class="load-cell" data-load="0">0h</td></tr>
+<tr><th scope="row" class="load-who"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">PN</span><span><span class="who-name">Priya Nair</span><span class="who-about">8h a day</span></span></span></th><td class="load-cell" data-load="4">7h</td><td class="load-cell" data-load="3">5h</td><td class="load-cell" data-load="3">5h</td><td class="load-cell" data-load="2">4h</td><td class="load-cell" data-load="2">4h</td><td class="load-cell week-start" data-load="2">4h</td><td class="load-cell" data-load="2">4h</td><td class="load-cell" data-load="4">8h</td><td class="load-cell" data-load="4">8h</td><td class="load-cell" data-load="3">6h</td></tr>
+</tbody>
+</table>
+</div>
+<ul class="load-key" aria-label="What the shades mean">
+<li>Share of the day booked:</li>
+<li><span class="load-cell" data-load="1"></span>a quarter</li>
+<li><span class="load-cell" data-load="2"></span>half</li>
+<li><span class="load-cell" data-load="3"></span>three quarters</li>
+<li><span class="load-cell" data-load="4"></span>all of it</li>
+<li><span class="load-cell over"></span>over it, with the hours</li>
+</ul>
+<section class="levelling" aria-labelledby="level-title">
+<h3 id="level-title">Levelling would move 4 tasks</h3>
+<p class="note">So nobody is booked over their day. None is on the critical path, so the plan still ends on 11 Dec. Nothing moves until you level them.</p>
+<div class="modes" role="group" aria-label="How far levelling may move tasks"><button type="button" aria-pressed="true">Within slack</button><button type="button" aria-pressed="false">Allow delay</button></div>
+<p class="note">Within slack, a task only moves as far as it may without moving the plan's finish.</p>
+<div class="levelling-status" aria-live="polite"></div>
+<ul class="levelling-list">
+<li><span class="issue-id">BACK-34</span><span class="levelling-what">Mirror the backups to the new site <span class="who-about">· Anna Schmidt</span></span><ul class="change-lines"><li><del>19–20 Nov</del> → <ins>23–24 Nov</ins></li></ul><span class="levelling-by">2 days later</span></li>
+<li><span class="issue-id">BACK-49</span><span class="levelling-what">Patch the old site's switches <span class="who-about">· Anna Schmidt</span></span><ul class="change-lines"><li><del>20 Nov</del> → <ins>25 Nov</ins></li></ul><span class="levelling-by">3 days later</span></li>
+<li><span class="issue-id">BACK-40</span><span class="levelling-what">Test the failover between sites <span class="who-about">· Ben Okafor</span></span><ul class="change-lines"><li><del>26–27 Nov</del> → <ins>30 Nov–1 Dec</ins></li></ul><span class="levelling-by">2 days later</span></li>
+<li><span class="issue-id">BACK-50</span><span class="levelling-what">Clear out the old monitoring <span class="who-about">· Ben Okafor</span></span><ul class="change-lines"><li><del>27 Nov</del> → <ins>2 Dec</ins></li></ul><span class="levelling-by">3 days later</span></li>
+</ul>
+<details><summary>2 more tasks follow their predecessors, and move with them</summary><ul class="levelling-list">
+<li><span class="issue-id">BACK-41</span><span class="levelling-what">Switch the backups' schedule <span class="who-about">· Kofi Mensah</span></span><ul class="change-lines"><li><del>23 Nov</del> → <ins>25 Nov</ins></li></ul><span class="levelling-by">2 days later</span></li>
+<li><span class="issue-id">BACK-51</span><span class="levelling-what">Check the failover's alerts <span class="who-about">· Priya Nair</span></span><ul class="change-lines"><li><del>30 Nov</del> → <ins>2 Dec</ins></li></ul><span class="levelling-by">2 days later</span></li>
+</ul></details>
+<div class="levelling-actions"><button type="button" class="primary">Level 4 tasks</button><p class="note">Each moves within its slack, and its history says levelling moved it.</p></div>
+</section>
+</section>
+</div>
+</body>
+</html>

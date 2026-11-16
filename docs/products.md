@@ -1,44 +1,44 @@
-# Across a5s, a7c and a3t
+# Across a5s, a7c, a3t and a4a
 
-a5s, a7c and a3t are three platforms about the same thing: work that people, agents and automations do under rules, where the record of who did what matters as much as the work. a7c automates work as workflows on a canvas, as n8n does, and lets agents find and fix what goes wrong. a5s runs agents, and shows people what each may do and did. a3t builds apps without code: forms, views, pages and processes, under governance (its code is in the `sreent/joget` repository). Ocean began in a5s. These are the rules for the three to look like one family, and what each changes to get there. [`platforms.md`](platforms.md) says how Ocean looks where people build, where they decide, and where they use what was built.
+a5s, a7c, a3t and a4a are four platforms about the same thing: work that people, agents and automations do under rules, where the record of who did what matters as much as the work. a7c automates work as workflows on a canvas, as n8n does, and lets agents find and fix what goes wrong. a5s runs agents, and shows people what each may do and did. a3t builds apps without code: forms, views, pages and processes, under governance (its code is in the `sreent/joget` repository). a4a (agenda) tracks the work itself, as YouTrack does: projects of issues with their fields, a query language and a command language, agile boards, and plans over time with their people's load, their cost and their baselines; its assistant and its triage are agents, and so are agents outside it, such as Claude Code, which act on issues through its MCP server. Ocean began in a5s. These are the rules for the four to look like one family, and what each changes to get there. [`platforms.md`](platforms.md) says how Ocean looks where people build, where they decide, and where they use what was built.
 
 ## The family's rules
 
 1. One palette and one grammar. Coral is a change to a record in every product, and an agent is a lagoon square in every product.
 2. A product is told apart by its name and its mark (its first two characters on the accent square), never by a colour of its own: any hue it took would collide with a meaning.
 3. One frame: a sidebar of the pages someone may use, under the same four headings, Work, Build, Decide and Oversee, with the page beside it.
-4. The palette is closed. A new state finds its meaning, and a new meaning is added to Ocean, for all three.
-5. One brand change, in one place. An organisation's colours replace the primitives in `css/tokens.css`, and all three products take them.
+4. The palette is closed. A new state finds its meaning, and a new meaning is added to Ocean, for every product.
+5. One brand change, in one place. An organisation's colours replace the primitives in `css/tokens.css`, and every product takes them.
 6. The same checks: `scripts/check.mjs` in each product's CI, and axe on every page.
-7. One source, so one truth. A product takes its look from this repo, at a commit, and anything new or changed in it is made here first, never in a product's own stylesheets: a piece a product needs is drawn here, for the three, and the product takes the commit that has it.
+7. One source, so one truth. A product takes its look from this repo, at a commit, and anything new or changed in it is made here first, never in a product's own stylesheets: a piece a product needs is drawn here, for every product, and the product takes the commit that has it.
 
 ## The same words, the same look
 
-Each product's words, and what Ocean draws them with. An empty cell is a word the product doesn't have yet.
+Each product's words, and what Ocean draws them with. An empty cell is a word the product doesn't have yet. a4a's own words, such as priority and the critical path, are under [a4a](#a4a).
 
-| What | a5s | a7c | a3t | Ocean |
-| --- | --- | --- | --- | --- |
-| A step that reads | a tool that reads | risk `read` | `record.read` | `--reads`, Badge |
-| A step that writes what nobody relies on yet | writes, such as a draft | a draft; a proposal in a case | a working copy in someone's own space | `--writes` |
-| A step that changes a record | changes a record | risk `change` | `record.update`, `record.delete`, a deploy to Prod | `--changes` |
-| A step that crosses the edge | sends outside; reads outside content | risk `send-out`; outside content read | `record.export`; a connection out | `--outside` |
-| The product's own doing | a5s's own; a5s's checks | a7c's checks and policies | the platform's own (actor `system`) | `--own` |
-| Going well | active, done | passed | healthy, merged, deployed | `--good` |
-| Waiting on someone | waiting on you, held | ask: waiting for a person | in review, waiting for approval | `--warn` |
-| Failed | failed, refused | failed, denied | failed, denied, rolled back | `--bad` |
-| Paused | paused | none, not needed | frozen | `--idle` |
-| A person | a person | a person | a user | Who, round |
-| An agent | an agent | an agent; the copilot | | Who, the lagoon square |
-| A service | | a skill's service identity | a service account | Who, the service square (proposed) |
-| How far an agent may go | levels 0 to 2 | observe, suggest, act after approval, act | | AutonomyLadder |
-| Where it runs | the sandbox; an instance | personal, team and production tiers | a personal Sandbox; a team's Preview, Staging and Prod | TierBadge (proposed) |
-| The way to work | draft, publish, sign, deploy, watch | draft, tests, promotion up the tiers | working copy, change request, preview, release, Prod | JourneyPath |
-| A decision | a decision; a version of the settings | an approval; a promotion | a change request's approval; a deploy's | ApprovalCard |
-| What someone asks for, in a conversation | the chat; a task | a workflow's ask of a person | an app, in conversation | The conversation kit: Talk, Draft, Question, SignOff, Status (proposed) |
-| What must pass first | what stops a release | a promotion's gates; test cases | a change request's checks | GateList (proposed) |
-| Steps on a canvas | the agent's map | the builder's canvas | the process designer | FlowNode, the map's node |
-| Where a value comes from | a traced value | a finding's evidence | a record's history | Traced; in a conversation, Source |
-| The record of who did what | the ledger, the audit trail | the audit log | the sealed audit log | AuditEntry (proposed) |
+| What | a5s | a7c | a3t | a4a | Ocean |
+| --- | --- | --- | --- | --- | --- |
+| A step that reads | a tool that reads | risk `read` | `record.read` | an agent's search of issues, over MCP | `--reads`, Badge |
+| A step that writes what nobody relies on yet | writes, such as a draft | a draft; a proposal in a case | a working copy in someone's own space | a field an agent worked out, until a person accepts it | `--writes` |
+| A step that changes a record | changes a record | risk `change` | `record.update`, `record.delete`, a deploy to Prod | a change to an issue; a command applied; levelling | `--changes` |
+| A step that crosses the edge | sends outside; reads outside content | risk `send-out`; outside content read | `record.export`; a connection out | | `--outside` |
+| The product's own doing | a5s's own; a5s's checks | a7c's checks and policies | the platform's own (actor `system`) | | `--own` |
+| Going well | active, done | passed | healthy, merged, deployed | Fixed, Verified, Done | `--good` |
+| Waiting on someone | waiting on you, held | ask: waiting for a person | in review, waiting for approval | In Review, Blocked; a column over its limit; someone booked over their day | `--warn` |
+| Failed | failed, refused | failed, denied | failed, denied, rolled back | late: a task finishing after its due date | `--bad` |
+| Paused | paused | none, not needed | frozen | Won't fix, Duplicate, Obsolete | `--idle` |
+| A person | a person | a person | a user | a person: an assignee, a reporter | Who, round |
+| An agent | an agent | an agent; the copilot | | the assistant; triage; an agent over MCP, such as claude-code | Who, the lagoon square |
+| A service | | a skill's service identity | a service account | a script with an API token | Who, the service square (proposed) |
+| How far an agent may go | levels 0 to 2 | observe, suggest, act after approval, act | | | AutonomyLadder |
+| Where it runs | the sandbox; an instance | personal, team and production tiers | a personal Sandbox; a team's Preview, Staging and Prod | | TierBadge (proposed) |
+| The way to work | draft, publish, sign, deploy, watch | draft, tests, promotion up the tiers | working copy, change request, preview, release, Prod | | JourneyPath |
+| A decision | a decision; a version of the settings | an approval; a promotion | a change request's approval; a deploy's | | ApprovalCard |
+| What someone asks for, in a conversation | the chat; a task | a workflow's ask of a person | an app, in conversation | the assistant; asking in words | The conversation kit: Talk, Draft, Question, SignOff, Status (proposed) |
+| What must pass first | what stops a release | a promotion's gates; test cases | a change request's checks | | GateList (proposed) |
+| Steps on a canvas | the agent's map | the builder's canvas | the process designer | | FlowNode, the map's node |
+| Where a value comes from | a traced value | a finding's evidence | a record's history | a field an agent worked out | Traced; in a conversation, Source |
+| The record of who did what | the ledger, the audit trail | the audit log | the sealed audit log | an issue's history | AuditEntry (proposed) |
 
 ### Autonomy, as one ladder
 
@@ -150,6 +150,43 @@ a3t has no pages yet: its code (`sreent/joget`) is the governance kernel so far.
 - Its change requests are ApprovalCards with a GateList (ChangeRequest draws one), its environments are TierBadges, its sealed audit log is AuditEntry, and its designer is AppDesigner.
 - Its apps are used in conversation with the conversation kit: in their own frame (AppConversation), and in Microsoft Teams (InTeams), where Teams draws the kit's cards from `teams/cards`.
 
+### a4a
+
+a4a is new, and starts on Ocean. Its web app is React 19 with Tailwind v4, which takes Ocean as a3t's does (above), and its components emit Ocean's markup and classes:
+
+```css
+@import "@sreent/ocean/tokens.css";
+@import "@sreent/ocean/components.css";
+@import "@sreent/ocean/charts.css";
+```
+
+- Tailwind's theme names Ocean's meanings, as a3t's does, and never a colour of a4a's own. Its plans are SVG drawn from their attributes and styled by Ocean's classes, so its pages' policy runs no inline style.
+- The palette stays closed: a4a's states find their meanings in the grammar, below, and add no colour.
+- Its agents are agents wherever they act: the assistant, triage, and agents outside it over MCP, such as claude-code, each by the agent's square and its lower-case id, never a sparkle. One acting for a person says so: "claude-code for Anna Schmidt · via MCP". A script with an API token is a service.
+- Asking in words, for a search or a command, is marked by the agent's mark and name, and answers "Interpreted as:" with the query it made, before anything happens.
+- A value an agent worked out is dashed until a person accepts it, and the issue's history says who did.
+- Done: it keeps no rules of its own. Its one stylesheet imports Ocean, maps Tailwind's theme to Ocean's meanings, and lets React's root hold the frame (`#root`). How its pages place Ocean's pieces is Ocean's too (Layout, below), and Tailwind places only structure, such as a grid's columns. Its `apps/web/scripts/check-design.mjs`, part of `pnpm test`, fails on any other rule, and on any utility that would carry a look or space a piece.
+
+| a4a's word | Ocean |
+| --- | --- |
+| Fixed, Verified, Done | Badge `good`, with a tick |
+| In Review, Blocked | Badge `warn`, with a clock: waiting on someone |
+| Won't fix, Duplicate, Obsolete | Badge `idle`, with a pause: not needed |
+| Open, In Progress | Badge with no tone: a plain fact |
+| A task finishing after its due date | `bad`, with a cross and its words: "3 days late" |
+| A column over its limit | `warn`, with its words: "3 of 2, 1 over the limit" |
+| Someone booked over their day | `warn`, with its words: "10h of 8h" |
+| A command's change to an issue | `changes`, in the grammar of a change: "State: Open → Fixed" |
+| Priority: Show-stopper, Critical, Major, Normal, Minor | PriorityMeter: five steps beside the word, never a colour |
+| Tags | chips, with no colour |
+| An issue's id, a version, a duration | Plex Mono: `BACK-12`, `2.4.1`, `2d 4h` |
+| The critical path | told by line, as production is: in ink, twice as heavy |
+| A baseline | faded beneath, as what's no longer in force |
+| Load, a day's share booked | Ocean Blue's steps (`--chart-seq-*`), with its hours |
+| Planned value, earned value, actual cost | the series' colours in order, with the figures beside them as a table |
+
+It brought these pieces to Ocean, each with the markup its components emit in its README: [IssueList](../components/IssueList/README.md), [FieldPanel](../components/FieldPanel/README.md), [PriorityMeter](../components/PriorityMeter/README.md), [QueryBar](../components/QueryBar/README.md), [CommandBar](../components/CommandBar/README.md), [Board](../components/Board/README.md), [Gantt](../components/Gantt/README.md), [LoadGrid](../components/LoadGrid/README.md), [CostPanel](../components/CostPanel/README.md), [IssueLinks](../components/IssueLinks/README.md) and [IssueHistory](../components/IssueHistory/README.md); and for its pages, [Layout](../components/Layout/README.md) (a stack, a cluster, a main column with an aside, forms, prose, what went wrong), [Directory](../components/Directory/README.md), [PlanPage](../components/PlanPage/README.md), [Settings](../components/Settings/README.md), [NavList](../components/NavList/README.md), [AgentSetup](../components/AgentSetup/README.md), [FieldValues](../components/FieldValues/README.md) and [Webhooks](../components/Webhooks/README.md). Where its pages put the family's pieces to new uses (an approval as a triage suggestion, the conversation on a page of its own, the ledger in a card), those pieces' READMEs say how. IssueHistory keeps AuditEntry's spirit, with times as people read them, where the ledger keeps them to the second. In dense rows and on cards, people, agents and services take a smaller mark, `.avatar.small`.
+
 ## Where Ocean lives
 
-This repo is Ocean's one source. a5s copies its files from a release, since its pages serve only their own files. a7c and a3t depend on it by commit, as `"@sreent/ocean": "github:sreent/ocean#<commit>"`, and import `@sreent/ocean/tokens.css` and `@sreent/ocean/components.css`, with `@sreent/ocean/charts.css` where they draw charts. A Teams app takes the kit's cards from `@sreent/ocean/teams/cards`. Each product runs `node scripts/check.mjs` in CI, against its own `tokens.css` where it changes the brand.
+This repo is Ocean's one source. a5s copies its files from a release, since its pages serve only their own files. a7c, a3t and a4a depend on it by commit, as `"@sreent/ocean": "github:sreent/ocean#<commit>"`, and import `@sreent/ocean/tokens.css` and `@sreent/ocean/components.css`, with `@sreent/ocean/charts.css` where they draw charts. A Teams app takes the kit's cards from `@sreent/ocean/teams/cards`. Each product runs `node scripts/check.mjs` in CI, against its own `tokens.css` where it changes the brand.

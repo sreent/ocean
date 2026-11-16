@@ -1,0 +1,49 @@
+<!-- @dsCard group="Settings" height=395 subtitle="A state's values in order: each its place, name, badge, ticks and own Save; one archived; one just saved" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>FieldValues</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<section class="card" aria-labelledby="v-title">
+<h2 id="v-title">State</h2>
+<h3>Its values (4)</h3>
+<ol class="value-rows" aria-label="Values of State">
+  <li class="value-row">
+    <span class="value-order"><button type="button" class="round" aria-label="Move Open up" disabled><svg viewBox="0 0 24 24" aria-hidden="true" class="icon up"><path d="M6 9.5l6 6 6-6"/></svg></button><button type="button" class="round" aria-label="Move Open down"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 9.5l6 6 6-6"/></svg></button></span>
+    <input class="value-name" value="Open" aria-label="Name of Open">
+    <span class="value-tone"><select aria-label="How Open shows"><option selected>A plain fact</option><option>Going well</option><option>Waiting on someone</option><option>Failed or late</option><option>Not needed</option></select><span class="badge">Open</span></span>
+    <span class="value-more"><label class="choice"><input type="checkbox"><span>Resolves</span></label><label class="choice"><input type="checkbox"><span>Archived</span></label><span class="cluster"><button type="button" class="small" disabled>Save</button><button type="button" class="danger small">Delete</button></span></span>
+    <p class="outcome" role="status"></p>
+  </li>
+  <li class="value-row">
+    <span class="value-order"><button type="button" class="round" aria-label="Move In Review up"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon up"><path d="M6 9.5l6 6 6-6"/></svg></button><button type="button" class="round" aria-label="Move In Review down"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 9.5l6 6 6-6"/></svg></button></span>
+    <input class="value-name" value="In Review" aria-label="Name of In Review">
+    <span class="value-tone"><select aria-label="How In Review shows"><option>A plain fact</option><option>Going well</option><option selected>Waiting on someone</option><option>Failed or late</option><option>Not needed</option></select><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>In Review</span></span>
+    <span class="value-more"><label class="choice"><input type="checkbox"><span>Resolves</span></label><label class="choice"><input type="checkbox"><span>Archived</span></label><span class="cluster"><button type="button" class="small">Save</button><button type="button" class="danger small">Delete</button></span></span>
+    <p class="outcome" role="status">Saved.</p>
+  </li>
+  <li class="value-row">
+    <span class="value-order"><button type="button" class="round" aria-label="Move Fixed up"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon up"><path d="M6 9.5l6 6 6-6"/></svg></button><button type="button" class="round" aria-label="Move Fixed down"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 9.5l6 6 6-6"/></svg></button></span>
+    <input class="value-name" value="Fixed" aria-label="Name of Fixed">
+    <span class="value-tone"><select aria-label="How Fixed shows"><option>A plain fact</option><option selected>Going well</option><option>Waiting on someone</option><option>Failed or late</option><option>Not needed</option></select><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>Fixed</span></span>
+    <span class="value-more"><label class="choice"><input type="checkbox" checked><span>Resolves</span></label><label class="choice"><input type="checkbox"><span>Archived</span></label><span class="chip mono" title="Only in this project">WEB only</span><span class="cluster"><button type="button" class="small" disabled>Save</button><button type="button" class="danger small">Delete</button></span></span>
+    <p class="outcome" role="status"></p>
+  </li>
+  <li class="value-row dimmed">
+    <span class="value-order"><button type="button" class="round" aria-label="Move Obsolete up"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon up"><path d="M6 9.5l6 6 6-6"/></svg></button><button type="button" class="round" aria-label="Move Obsolete down" disabled><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 9.5l6 6 6-6"/></svg></button></span>
+    <input class="value-name" value="Obsolete" aria-label="Name of Obsolete">
+    <span class="value-tone"><select aria-label="How Obsolete shows"><option>A plain fact</option><option>Going well</option><option>Waiting on someone</option><option>Failed or late</option><option selected>Not needed</option></select><span class="badge idle"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 6.5v11"/><path d="M15 6.5v11"/></svg>Obsolete</span></span>
+    <span class="value-more"><label class="choice"><input type="checkbox" checked><span>Resolves</span></label><label class="choice"><input type="checkbox" checked><span>Archived</span></label><span class="cluster"><button type="button" class="small" disabled>Save</button><button type="button" class="danger small">Delete</button></span></span>
+    <p class="outcome" role="status"></p>
+  </li>
+</ol>
+</section>
+</div>
+</body>
+</html>

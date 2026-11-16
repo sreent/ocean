@@ -1,4 +1,4 @@
-<!-- @dsCard group="Agents and decisions" height=406 subtitle="a5s's three rungs; a7c's four, proposed" -->
+<!-- @dsCard group="Agents and decisions" height=656 subtitle="a5s's three rungs; a7c's four, proposed; a4a's, chosen with a radio each" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -32,6 +32,14 @@
 <p class="note">Holding a line toward act: 18 of 40 findings confirmed by what happened next. The tier's admin decides.</p>
 <div class="meter" role="meter" aria-label="Toward act" aria-valuemin="0" aria-valuemax="40" aria-valuenow="18"><span data-width="45%"></span></div>
 </div></div>
+<div class="ds-cols">
+<div class="ds-group"><p class="label">a4a · how far triage may go in a project, chosen</p>
+<fieldset class="ladder-choice"><legend class="label">How far triage may go with new issues</legend><div class="ladder-box"><ol class="ladder"><li><label class="rung"><span class="lvl">off</span><span class="rung-name"><input type="radio" value="off" name="triage-mode"><strong>Off</strong></span><p>Only when someone asks, on an issue. New issues wait for a person.</p></label></li><li aria-current="step"><label class="rung"><span class="lvl">suggest · now</span><span class="rung-name"><input type="radio" value="suggest" checked name="triage-mode"><strong>Suggests</strong></span><p>Reads each new issue and suggests its fields, tags and duplicates. A person applies them.</p></label></li><li class="beyond"><label class="rung"><span class="lvl">auto</span><span class="rung-name"><input type="radio" value="auto" name="triage-mode"><strong>Acts</strong></span><p>Fills a new issue's empty fields on its own, and says so in its history. It never changes what a person chose.</p></label></li></ol></div><p class="note ladder-note">Whatever the rung, triage never changes a value a person chose, and everything it does is in the issue’s history.</p></fieldset>
+</div>
+<div class="ds-group"><p class="label">a4a · the assistant in a conversation, two rungs side by side</p>
+<fieldset class="ladder-choice"><legend class="label">When it would change something</legend><div class="ladder-box"><ol class="ladder two"><li aria-current="step"><label class="rung"><span class="lvl">ask · now</span><span class="rung-name"><input type="radio" value="ask" checked name="assistant-mode"><strong>Asks</strong></span><p>Each change waits for your yes, with exactly what it would do.</p></label></li><li class="beyond"><label class="rung"><span class="lvl">auto</span><span class="rung-name"><input type="radio" value="auto" name="assistant-mode"><strong>Acts</strong></span><p>Changes what you ask on its own, and says so at once.</p></label></li></ol></div><p class="note ladder-note">It never deletes. Each visit starts at Asks.</p></fieldset>
+</div>
+</div>
 </div>
 </div>
 <script>
