@@ -261,7 +261,9 @@ export interface ShellProps {
   /** The product's name, in lower case; its mark is its first two characters. */
   product: string;
   /** The pages this person may use, under Work, Build, Decide and Oversee. */
-  pages: { group: "Work" | "Build" | "Decide" | "Oversee"; name: string; href: string; icon: IconName; current?: boolean }[];
+  pages: { group: "Work" | "Build" | "Decide" | "Oversee"; name: string; href: string; icon: IconName; current?: boolean;
+    /** Proposed, for a4a's inbox: a count beside the link (`.nav-count`), such as what's unread; none when it's 0. */
+    count?: number }[];
   /** Who's signed in. */
   you?: string;
   children: React.ReactNode;
@@ -687,10 +689,75 @@ export interface IssueHistoryProps {
     did?: string;
     changes?: FieldChange[];
     comment?: React.ReactNode;
+    /** On a help desk request: a comment its requester sees, the team's reply to them or theirs. Framed in `--outside`, with its words. */
+    public?: "reply" | "theirs";
   }[];
+  /** On a help desk request, the composer's choice, made before anything is sent: an internal note or a reply to the requester. */
+  composer?: { requester?: string; visibility: "internal" | "public"; onVisibility: (v: "internal" | "public") => void };
 }
 /** An issue's history in the ledger's spirit: who, for whom, through what, when, and each change in the grammar. Proposed. */
 export declare function IssueHistory(props: IssueHistoryProps): React.ReactElement;
+
+export interface MentionFieldProps {
+  value: string;
+  onChange: (text: string) => void;
+  /** The people it offers after an "@": those whose login or name starts with what's typed. */
+  people: { login: string; name: string; kind: Kind }[];
+}
+/** A text area that offers people after an "@", under the field (`.composer`); the arrows choose, Enter or Tab takes one. Proposed, for a4a. */
+export declare function MentionField(props: MentionFieldProps): React.ReactElement;
+
+export interface InboxProps {
+  /** By issue, the issue with the latest news first. */
+  issues: {
+    id: string;
+    summary: string;
+    /** None once the issue is deleted: it then says so, and doesn't link. */
+    href?: string;
+    state?: IssueState;
+    notifications: {
+      who: Someone;
+      /** What it means to this person: "Anna Schmidt mentioned you", "Ben Okafor assigned it to you". */
+      what: string;
+      at: { at: string; label: string };
+      unread: boolean;
+      changes?: FieldChange[];
+      said?: React.ReactNode[];
+    }[];
+  }[];
+  onRead: (issue: string, read: boolean) => void;
+}
+/** What reached someone, by issue: unread by a dot and weight; each issue's own Mark read. Its count is the Shell's, beside its link. Proposed, for a4a. */
+export declare function Inbox(props: InboxProps): React.ReactElement;
+
+export interface WatchToggleProps {
+  watching: boolean;
+  /** How many watch it, heard as words: "3 people watch it". */
+  count: number;
+  onToggle: () => void;
+}
+/** Watch an issue: a toggle, pressed while you do, its word "Watch" either way. Who watches, and why, is a side card of people. Proposed, for a4a. */
+export declare function WatchToggle(props: WatchToggleProps): React.ReactElement;
+
+export interface HelpDeskProps {
+  /** Whose help desk it is: "Backend platform". */
+  project: string;
+  /** The form: the project's own words above it. */
+  form?: { intro?: React.ReactNode; onSend: (fields: { name: string; email: string; summary: string; description: string }) => void };
+  /** After sending: where the link went, or the link itself where no email goes. */
+  sent?: { email: string; tracking?: string };
+  /** A request's own page: its state, what was asked, and the public conversation, never anything internal. */
+  request?: {
+    summary: string;
+    state: { name: string; resolved: boolean };
+    asked: { at: string; text: React.ReactNode };
+    messages: { from: "you" | "team"; name: string; at: string; text: React.ReactNode }[];
+    emailed: boolean;
+    onReply: (text: string) => void;
+  };
+}
+/** A help desk's lone pages for people outside: its form, the page after it, and a request's own page. Proposed, for a4a. */
+export declare function HelpDesk(props: HelpDeskProps): React.ReactElement;
 
 export interface AttachmentListProps {
   /** The section's heading: "Files". */
