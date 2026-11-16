@@ -966,16 +966,31 @@ export interface RuleProps {
   /** "change": when something happens to an issue; "schedule": every hour or day; "guard": refuses a change that breaks it. */
   kind: "change" | "schedule" | "guard";
   /** The rule as a sentence, in its parts: When … (or how often), if …, then …. The query, command or requirement in each is mono, as written. */
-  sentence: { when: string; if?: { words: string; code: string }; then: { words: string; code?: string } };
+  sentence: {
+    when: string;
+    if?: { words: string; code: string };
+    /** A further condition on related issues: "all of its parent's subtasks match" and its query. */
+    and?: { words: string; code: string };
+    then: { words: string; code?: string };
+    /** The issues it acts on, after the command: " to its parent". */
+    to?: string;
+    /** Whom it tells, and what: "its parent's watchers", "All its subtasks are done." */
+    tell?: { who: string; words: string };
+    /** Where it calls, by the address's origin alone. */
+    call?: string;
+  };
   on: boolean;
+  /** What it does besides changing issues: "tells people" is a plain fact; "calls out" is `outside`. */
+  does?: ("changes" | "refuses" | "tells" | "calls")[];
   /** What no longer reads in it, such as a value renamed since: it does nothing until they're fixed. */
   problems?: { part: string; what: string; fix?: string }[];
   /** What it did last, or when it next runs: "Last acted 2 minutes ago, on BACK-12". */
   said?: React.ReactNode;
   onPreview: () => void;
-  onEdit: () => void;
+  /** Absent for a rule that calls out, for anyone but an administrator: it says why instead. */
+  onEdit?: () => void;
   onToggle: () => void;
-  onDelete: () => void;
+  onDelete?: () => void;
 }
 /** A workflow rule read as a sentence, what it does and how it stands as badges, and what it did last. Proposed. */
 export declare function Rule(props: RuleProps): React.ReactElement;
@@ -983,8 +998,8 @@ export declare function Rule(props: RuleProps): React.ReactElement;
 export interface RuleFormProps {
   /** Each part's word and what fills it in: a choice, a query or command field (QueryBar's), a message. */
   clauses: { word: "When" | "if" | "then"; about?: string; field: React.ReactNode }[];
-  /** What it would do now, as a dry run gives it; for a guard, the issues that already break it. */
-  preview?: { matching: number; note: string; sample: { id: string; summary: string; changes: FieldChange[] }[] };
+  /** What it would do now, as a dry run gives it; for a guard, the issues that already break it. A rule acting on related issues says, for each, which issue it acts for and whom it would tell. */
+  preview?: { matching: number; note: string; sample: { id: string; summary: string; changes: FieldChange[]; for?: string; tells?: string[] }[] };
   onSave: () => void;
 }
 /** A rule's form, said as the rule is: a row for each word, the word beside its fields where there's room. Proposed. */

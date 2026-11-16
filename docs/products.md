@@ -198,7 +198,7 @@ a4a is new, and starts on Ocean. Its web app is React 19 with Tailwind v4, which
 | A comment the requester of a help desk request sees | `outside`, framed and with its words: "public: sent to Jane Doe" |
 | A request's first response, due / overdue / answered in time | `warn` with a clock / `bad` with a cross / `good` with a tick; answered late is a plain fact |
 | A workflow rule, on / off / needing a fix | `good` with a tick / `idle` with a pause, the whole card in `--muted` / `bad` with a cross, and what no longer reads in it |
-| What a rule does: changes issues / refuses a change (a guard) | `changes`, in the grammar of a change / `own`, the product's own check |
+| What a rule does: changes issues / refuses a change (a guard) / tells people / calls a webhook | `changes`, in the grammar of a change / `own`, the product's own check / a plain fact / `outside`, since what it knows leaves the product |
 | A rule's run: applied / nothing to change / failed or refused | `good` / `idle` / `bad`, with what it changed, or why not |
 | A pull request: open / merged / closed without merging | `warn` with a clock: waiting on review / `good` with a tick / `idle` with a pause |
 | The command a commit gave an issue (`BACK-12 #Fixed`) | applied as its author, `good`, with what it changed; not applied, `bad`, with why in words |

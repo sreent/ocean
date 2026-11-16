@@ -8,6 +8,14 @@ A workflow rule, read as a sentence: when something happens to an issue (or on a
 - **The form** (`.rule-form`) says the rule the same way, a row for each word (`.rule-clause`): the word in its column and, beside it, what fills it in (`.rule-clause-body`): what sets it off, a choice; the query and the command, each Ocean's QueryBar field with its problems underlined and its suggestions; a guard's message. Where it's narrow, as on a phone, each word sits over its fields.
 - **Its preview** is the command bar's (`.command-preview`): how many issues match it now, and what its command would change on a few of them, as a dry run gives it; for a guard, the issues that already break it.
 - **What rules did** is a table (`table.figures.rule-runs`): when, which rule, the issue, how it went as a badge with its shape (applied `good`; nothing to change and skipped `idle`; failed and refused `bad`), and what it changed in the grammar of a change, or why not. It is too much to squeeze onto a phone, so there it scrolls sideways in its frame.
+- **Across issues, and beyond a change.** A rule can ask something of related issues, act on them, tell people, and call out. The sentence says each where it falls, in the same words:
+  - a further condition follows the query, with its query in mono: "**if** it matches `#Resolved` and all of its parent's subtasks match `#Resolved`" (or its parent, any of its subtasks, the issues it depends on);
+  - the issues it acts on follow the command: "**then** apply `State Fixed` to its parent";
+  - whom it tells, then its words in quotes: "tell its parent's watchers and @anna “All its subtasks are done.”" (no full stop after a quote that ends one);
+  - where it calls, by the address's origin alone, in mono: "call `https://pager.example.com`".
+- **Their badges**, beside "changes issues": "tells people", a plain fact; and "calls out", `outside`, since what it knows of an issue leaves the product. A rule that calls out is an administrator's: anyone else who manages it sees Preview it and Turn it off, and a note that says why.
+- **Their rows in the form**, each in the clause it belongs to: under **if**, "and" with a choice of the related issues (and, for a link, which one) and their own query field; under **then**, "acting on" with a choice of the issues, the command, "And tell" as a `choice-group` of who, people by login, and the words they're told; and, for administrators, "And call a webhook".
+- **Their preview**: each issue it would act on, "· for" the issue that set it off, and whom it would tell, under what it would change.
 
 **Takes:** `name`, `kind` (`change`, `schedule` or `guard`), `sentence` (its words, and the query, command or requirement in them), `on`, `problems` (each `part` and `what`), `said` (what it did last, or when it next runs), `onPreview`, `onEdit`, `onToggle`, `onDelete`; the form takes the same, with `preview` (`matching`, `sample` of `{ id, summary, changes }`, `note`).
 

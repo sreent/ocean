@@ -50,6 +50,24 @@
       <p class="error-note" role="note"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg><strong>Its query no longer reads: Unknown value “Payments” for Subsystem</strong><span>It does nothing until it's fixed. Did you mean Billing?</span></p>
       <div class="cluster"><button type="button">Preview it</button><button type="button">Edit it</button><button type="button">Turn it off</button><span class="grow"></span><button type="button" class="danger small">Delete it</button></div>
     </li>
+    <li class="card rule-card">
+      <div class="rule-head">
+        <h3 class="rule-name">Done subtasks fix their parent</h3>
+        <span class="badges"><span class="badge changes">changes issues</span><span class="badge">tells people</span><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>on</span></span>
+      </div>
+      <p class="rule-sentence"><span class="rule-word">When</span> an issue's State changes, <span class="rule-word">if</span> it matches <code>#Resolved</code> and all of its parent's subtasks match <code>#Resolved</code>, <span class="rule-word">then</span> apply <code>State Fixed</code> to its parent and tell its parent's watchers “All its subtasks are done.”</p>
+      <p class="rule-said">Last acted 5 minutes ago, on <a class="issue-id" href="#">BACK-40</a>: State.</p>
+      <div class="cluster"><button type="button">Preview it</button><button type="button">Edit it</button><button type="button">Turn it off</button><span class="grow"></span><button type="button" class="danger small">Delete it</button></div>
+    </li>
+    <li class="card rule-card">
+      <div class="rule-head">
+        <h3 class="rule-name">Show-stoppers page the on-call</h3>
+        <span class="badges"><span class="badge outside">calls out</span><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>on</span></span>
+      </div>
+      <p class="rule-sentence"><span class="rule-word">When</span> an issue is created, <span class="rule-word">if</span> it matches <code>Priority: Show-stopper</code>, <span class="rule-word">then</span> call <span class="mono">https://pager.example.com</span>.</p>
+      <p class="rule-said">It hasn't acted yet.</p>
+      <div class="cluster"><button type="button">Preview it</button><button type="button">Turn it off</button><span class="grow"></span><span class="note">It calls a webhook, so an administrator changes it.</span></div>
+    </li>
     <li class="card rule-card off">
       <div class="rule-head">
         <h3 class="rule-name">An answer clears needs-info</h3>
