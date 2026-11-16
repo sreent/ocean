@@ -2299,8 +2299,8 @@ a.code-title:hover { text-decoration: underline; }
 .work-week { display: grid; grid-template-columns: repeat(7, minmax(3.5rem, 1fr)); gap: var(--space-2); }
 .work-week input { width: 100%; text-align: end; font-family: var(--font-mono); }
 @media (max-width: 520px) { .work-week { grid-template-columns: repeat(4, minmax(3.5rem, 1fr)); } }
-.gantt-away { fill: var(--sunken); }  /* a day the task's assignee is away: never why */
-.gantt-away.half { fill: none; stroke: var(--line-control); stroke-dasharray: 3 2; }
+.gantt-away { fill: var(--sunken); stroke: var(--line-control); stroke-dasharray: 2 2; }  /* a day the task's assignee is away, edged so it isn't a weekend: never why */
+.gantt-away.half { fill: none; }
 
 /* Placing pieces on a page (components/Layout): a stack, a cluster, and a page's main column
    with an aside. They only place: each spaces its children by its gap, and takes away their own
