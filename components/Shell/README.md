@@ -10,6 +10,8 @@ The frame every page sits in: a sidebar of the pages someone may use, and the pa
 - A page before the frame, such as signing in or setting up, is one card in the middle of the page: `body.lone` holding `main.card.lone-card` (Layout).
 - The sidebar leaves out only the pages that would refuse someone. Each page still checks for itself who may use it.
 - Under 760px the sidebar becomes a row of each page's icon, and screen readers still say each page's name.
+- On a phone the page reaches the screen's edges (`viewport-fit=cover`): the row of pages sits under the status bar, clear of rounded corners, and the page's foot clear of the home indicator (`env(safe-area-inset-*)`). On a touch screen (`pointer: coarse`) each page's icon, and everything else to tap, is 44px at the least.
+- A word about the app itself, offline or a new version ready, sits above the page: [Notice](../Notice/README.md).
 - A page's head: the way back as crumbs, its title as its one h1 with badges beside it, what it is in `--muted`, and its facts in a row.
 
 **Takes:** the product's name; the pages this person may use, each with its heading, name, address and icon; who's signed in; and the page.

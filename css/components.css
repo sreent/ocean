@@ -2453,6 +2453,11 @@ button.editor-tool[aria-pressed="true"] { border-color: var(--accent-soft); back
          padding-bottom: calc(2.5rem + env(safe-area-inset-bottom)); }
   footer { padding-bottom: max(0.7rem, env(safe-area-inset-bottom)); }
   html { scroll-padding-block: 4rem 5rem; }
+  /* A board on a phone: a column most of the screen wide, the next one showing at the edge, and a swipe
+     settling on a column's start */
+  .board-cols, .board-cells { grid-auto-columns: min(82vw, 22rem); }
+  .board-scroll { scroll-snap-type: x proximity; }
+  .board-cols > * { scroll-snap-align: start; }
 }
 body.lone { padding: max(var(--space-6), env(safe-area-inset-top)) max(var(--space-6), env(safe-area-inset-right))
                      max(var(--space-6), env(safe-area-inset-bottom)) max(var(--space-6), env(safe-area-inset-left)); }

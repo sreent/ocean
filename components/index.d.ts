@@ -1114,3 +1114,12 @@ export interface WorkflowBarProps {
 }
 /** What a person can do to an issue by its workflows: its state machine's moves and its project's actions, as buttons. Proposed. */
 export declare function WorkflowBar(props: WorkflowBarProps): React.ReactElement;
+
+export interface NoticeProps {
+  /** The app is offline: what's shown may be out of date. */
+  offline?: boolean;
+  /** A new version waits; taking it reloads the app into it. */
+  onNewVersion?: () => void;
+}
+/** A word about the app itself, above every page: offline, or a new version ready (a4a's installed app). */
+export declare function Notice(props: NoticeProps): React.ReactElement | null;
