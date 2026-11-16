@@ -106,7 +106,7 @@
     {
       "type": "Action.Execute",
       "$when": "${canAct}",
-      "title": "Assign to me",
+      "title": "${words.assignToMe}",
       "verb": "assign",
       "data": {
         "issue": "${id}"
@@ -115,7 +115,7 @@
     {
       "type": "Action.ShowCard",
       "$when": "${canMove}",
-      "title": "Move to…",
+      "title": "${words.moveTo}",
       "card": {
         "type": "AdaptiveCard",
         "version": "1.5",
@@ -123,7 +123,7 @@
           {
             "type": "Input.ChoiceSet",
             "id": "state",
-            "label": "State",
+            "label": "${stateField}",
             "value": "${state}",
             "choices": [
               {
@@ -137,7 +137,7 @@
         "actions": [
           {
             "type": "Action.Execute",
-            "title": "Move",
+            "title": "${words.move}",
             "verb": "state",
             "data": {
               "issue": "${id}"
@@ -148,7 +148,7 @@
     },
     {
       "type": "Action.OpenUrl",
-      "title": "Open in a4a",
+      "title": "${words.openInA4a}",
       "url": "${url}"
     }
   ]
