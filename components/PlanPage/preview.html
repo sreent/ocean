@@ -1,0 +1,51 @@
+<!-- @dsCard group="Plans" height=694 width=1100 subtitle="A plan's timeline: its views, the plan at a glance, a what-if asked and answered, and what it assumed" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PlanPage</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="stack">
+<div class="modes plan-views" role="group" aria-label="Data center migration's plan"><button type="button" aria-pressed="true">Timeline</button><button type="button" aria-pressed="false">Resources</button><button type="button" aria-pressed="false">Costs</button></div>
+<div class="cluster"><label for="pp-compare">Compare with</label><select id="pp-compare"><option>Plan of record, saved 25 Oct</option><option>No baseline</option></select><button type="button">Save a baseline</button><button type="button" aria-expanded="true">What if…</button></div>
+<ul class="plan-facts">
+<li>Ends <strong>17 Dec</strong>, 7 days later than Plan of record (8 Dec)</li>
+<li>8 tasks on the critical path</li>
+<li>Nothing is late</li>
+<li><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>MIG-14 has 1 day to spare before it's due, 15 Dec</span></li>
+</ul>
+<section class="card whatif" aria-labelledby="pp-whatif">
+<h2 id="pp-whatif">What if…</h2>
+<p class="note">Change one task and see where the finish would go. Nothing is saved.</p>
+<form class="whatif-form">
+<div class="form-field"><label for="pp-task">Task</label><select id="pp-task"><option>MIG-7 Storage and backup design</option></select></div>
+<div class="form-field"><label for="pp-kind">What changes</label><select id="pp-kind"><option>It starts later</option><option>It has a new estimate</option><option>Someone else does it</option></select></div>
+<div class="form-field"><label for="pp-days">Working days later</label><input id="pp-days" type="number" min="1" value="2"></div>
+<button type="submit" class="primary">Show what changes</button>
+</form>
+<div aria-live="polite"><div class="whatif-result">
+<p class="whatif-lead">If MIG-7 starts 2 days later, the plan ends 2 days later.</p>
+<ul class="change-lines">
+<li><span class="change-field">Ends:</span> <del>17 Dec</del> → <ins>21 Dec</ins></li>
+<li><span class="change-field">Against Plan of record:</span> <del>7 days later</del> → <ins>9 days later</ins></li>
+</ul>
+<div class="badges"><span class="badge bad"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>MIG-14 would be 1 day late: it's due 15 Dec</span></div>
+<h3>9 tasks would move</h3>
+<ul class="levelling-list">
+<li><span class="issue-id">MIG-7</span><span class="levelling-what">Storage and backup design</span><ul class="change-lines"><li><del>16–19 Nov</del> → <ins>18–23 Nov</ins></li></ul><span class="levelling-by">2 days later</span></li>
+<li><span class="issue-id">MIG-8</span><span class="levelling-what">Security review of the design</span><ul class="change-lines"><li><del>20–24 Nov</del> → <ins>24–26 Nov</ins></li></ul><span class="levelling-by">2 days later</span></li>
+<li><span class="issue-id">MIG-14</span><span class="levelling-what">Cut over DNS and traffic</span><ul class="change-lines"><li><del>14 Dec</del> → <ins>16 Dec</ins></li></ul><span class="levelling-by">2 days later</span></li>
+</ul>
+<p class="note cluster">Nothing is saved: this only shows what would happen.<button type="button" class="link">Clear the what-if</button></p>
+</div></div>
+</section>
+<details class="plan-notes"><summary>3 things a4a assumed to draw this plan</summary><ul><li>MIG-5 has no estimate; planned as 1 day</li><li>MIG-9 has no estimate; planned as 1 day</li><li>MIG-15 has no estimate; planned as 1 day</li></ul></details>
+</div>
+</div>
+</body>
+</html>

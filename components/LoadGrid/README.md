@@ -8,9 +8,12 @@ People's load, day by day: a row for each person and a column for each working d
 - A day with no hours says "0h" on the card. A day someone is away is `--sunken`, with "away". Weekends are a gap between the weeks.
 - Each person's capacity is beside their name: "8h a day", "6h a day".
 - Levelling is proposed before it's done: each task it would move, with its id, who it's for, its dates in the grammar of a change (from, struck through, to, in `--changes`) and how far it moves, "2 days later". One primary button says what happens: "Level 4 tasks". Nothing moves until a person levels them.
-- The grid scrolls sideways in its frame where it's narrow, the names staying in view. Levelling's rows stack.
+- Levelling has two modes, a choice of views (`.modes`) beneath its words: within slack, the default, where no task moves past the latest it may finish, so the plan's finish holds; or allowing delay, where a task may move past its slack, and the finish with it. A note beneath says which; each mode is proposed afresh.
+- What levelling just did, or that the plan has moved on since it proposed, is a status line that's always there (`.levelling-status`, `aria-live="polite"`), so what lands in it is heard; empty, it takes no room. Levelled: a `good` badge and its words. Refused because the plan changed since (a 409): a `warn` badge, "Nothing was levelled", and the new proposal beneath, for the person to decide again. Nothing is levelled on its own.
+- The tasks that only follow the ones it moves are folded beneath the list (`<details>`), in the same grammar. A finish that moves is a change line, "The plan ends: ~~17 Dec~~ → **21 Dec**"; a due date it would miss, a `bad` badge with its words, "MIG-14 would be 1 day late: it's due 15 Dec".
+- The grid scrolls sideways in its frame where it's narrow, the names staying in view. The list of moves (`.levelling-list`) stacks by its own width, so it lists a what-if's moves too, wherever they're shown.
 
-**Takes:** `days` (each date, and whether it starts a week), `people` (each `name`, `capacity`, `hours` per day, or `away`), `levelling` (each `id`, `what`, `who`, `from`, `to`, `by`), `onLevel`.
+**Takes:** `days` (each date, and whether it starts a week), `people` (each `name`, `capacity`, `hours` per day, or `away`), `levelling` (each `id`, `what`, `who`, `from`, `to`, `by`), `following` (the same, for the tasks that only follow them), `mode` (`within_slack` or `allow_delay`), `status`, `onMode`, `onLevel`.
 
 **Markup:** `data-load` is `ceil(hours ÷ capacity × 4)`, from 1 to 4, and 0 for no hours; over capacity, the cell is `.over` instead.
 
@@ -34,10 +37,14 @@ People's load, day by day: a row for each person and a column for each working d
   <section class="levelling" aria-labelledby="lv-title">
     <h3 id="lv-title">Levelling would move 4 tasks</h3>
     <p class="note">So nobody is booked over their day. Nothing moves until you level them.</p>
+    <div class="modes" role="group" aria-label="How far levelling may move tasks"><button type="button" aria-pressed="true">Within slack</button><button type="button" aria-pressed="false">Allow delay</button></div>
+    <p class="note">Within slack, a task only moves as far as it may without moving the plan's finish.</p>
+    <div class="levelling-status" aria-live="polite"><!-- <p><span class="badge good">…</span><span class="note">…</span></p>, once something lands --></div>
     <ul class="levelling-list">
       <li><span class="issue-id">BACK-34</span><span class="levelling-what">Mirror the backups to the new site <span class="who-about">· Anna Schmidt</span></span>
         <ul class="change-lines"><li><del>19–20 Nov</del> → <ins>23–24 Nov</ins></li></ul><span class="levelling-by">2 days later</span></li>
     </ul>
+    <details><summary>3 more tasks follow their predecessors, and move with them</summary><ul class="levelling-list">…</ul></details>
     <div class="levelling-actions"><button type="button" class="primary">Level 4 tasks</button><p class="note">…</p></div>
   </section>
 </section>

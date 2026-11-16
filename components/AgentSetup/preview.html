@@ -1,0 +1,57 @@
+<!-- @dsCard group="Agents and decisions" height=576 subtitle="The steps to connect an agent, a token shown once, words to copy, and the tools it gets" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AgentSetup</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-cols">
+<section class="card" aria-labelledby="a-connect">
+  <h2 id="a-connect">Connect an agent</h2>
+  <ol class="steps">
+    <li>
+      <h3>Create a token for it</h3>
+      <div class="secret" role="status">
+        <p><strong>Copy it now.</strong> This is the only time a4a shows the token claude-code: it keeps only a fingerprint of it.</p>
+        <code>a4a_9Kd2mQ7xT4vB8nR1cL6wZ3pH5jY0sF2g</code>
+        <div class="cluster"><span class="copy"><button type="button">Copy the token</button><span class="copy-said" role="status">Copied the token.</span></span><button type="button" class="link">I've kept it</button></div>
+      </div>
+    </li>
+    <li>
+      <h3>Add a4a to the agent</h3>
+      <div class="modes" role="group" aria-label="Which agent"><button type="button" aria-pressed="true">Claude Code</button><button type="button" aria-pressed="false">Cursor</button><button type="button" aria-pressed="false">Claude Desktop</button></div>
+      <p class="note">Run this in a terminal, in the folder you work in.</p>
+      <div class="stack tight">
+        <pre class="snippet" aria-label="For Claude Code">claude mcp add --transport http a4a https://a4a.example.com/mcp --header "Authorization: Bearer a4a_9Kd2mQ7xT4vB8nR1cL6wZ3pH5jY0sF2g"</pre>
+        <div class="cluster"><span class="copy"><button type="button">Copy it</button><span class="copy-said" role="status"></span></span><span class="note">It has the token claude-code in it.</span></div>
+      </div>
+    </li>
+  </ol>
+</section>
+<section class="card" aria-labelledby="a-get">
+  <h2 id="a-get">What agents get</h2>
+  <h3>What they read (2)</h3>
+  <ul class="tool-list">
+    <li><div class="tool-head"><code>get_issue</code><strong>Read an issue</strong><span class="badge reads">reads</span></div><p>One issue in full: fields, description, links, recent comments and time spent.</p></li>
+    <li><div class="tool-head"><code>search_issues</code><strong>Search issues</strong><span class="badge reads">reads</span></div><p>Find issues with the query language, such as “project: BACK #Unresolved for: me”.</p></li>
+  </ul>
+  <h3>What they change (1)</h3>
+  <ul class="tool-list">
+    <li><div class="tool-head"><code>update_issue</code><strong>Update an issue</strong><span class="badge changes">changes</span><span class="chip">can overwrite</span></div><p>Change an issue's summary, description or fields. Only what you send changes.</p></li>
+  </ul>
+  <h3>Checking a webhook's signature, in Node</h3>
+  <div class="stack tight">
+    <pre class="snippet code" tabindex="0" aria-label="Checking the signature, in Node">const mac = createHmac('sha256', secret).update(body);
+const expected = 'sha256=' + mac.digest('hex');</pre>
+    <div class="cluster"><span class="copy"><button type="button">Copy it</button><span class="copy-said" role="status"></span></span></div>
+  </div>
+</section>
+</div>
+</div>
+</body>
+</html>

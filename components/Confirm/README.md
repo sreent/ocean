@@ -8,6 +8,8 @@ A button that asks first, for what can't be undone, in the browser's own dialog.
 - Afterwards, say what happened: "The draft is gone."
 - It's the browser's own `<dialog>`, opened with `showModal()`: it keeps the focus in it and the page behind out of reach, without styles of its own, which the pages' policy wouldn't allow.
 
-**Takes:** `label`, `title`, `about`, `confirm`, `danger`, `onConfirm`.
+- In a row's own actions or a card's head, the button is smaller (`button.small`): "Revoke it" beside a token, "Delete the field" beside its title.
+
+**Takes:** `label`, `title`, `about`, `confirm`, `danger`, `onConfirm`, and the proposed `small`.
 
 **In a5s:** `studio/src/design/controls.tsx`. The preview is a static rendition: the button opens the dialog, and its open look is drawn in place below.

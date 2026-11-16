@@ -6,6 +6,7 @@ An issue's links to other issues, grouped by what they say: each other issue's i
 - Each link: the other issue's id in Plex Mono, its summary as a link, and how it stands as a Badge with its shape. A resolved issue's summary is `--muted`.
 - Add link opens a form beneath it, dashed until the link is added, as what isn't in force yet is: what the link says, which issue it's to, and the issue found, by its id, summary and state, before the one thing to do, "Link it".
 - A link is two-sided: adding "depends on" gives the other issue "is required for".
+- The same list shows issues that may be the same as one being reported, with why when an agent said (`p.note` after the link) and its verdict beside its state (`.badges`). Where the list is narrow, as in a column beside a form, each issue's id and state are on one line and its summary beneath.
 - On a phone the form's fields stack.
 
 **Takes:** `issue`, `groups` (each `phrase` and `links`, each `id`, `summary`, `href`, `state`, `resolved`), `adding`, `found`, `onAdd`, `onLink`.

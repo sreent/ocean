@@ -12,3 +12,5 @@ A line of the ledger, the same in every product: when, who and through what, for
 **Takes:** `at`, `who`, `did`, `tone`, `toneWord`, `by`, `seal`.
 
 The preview is a static rendition of the proposed piece; a5s's audit trail draws its own lines today.
+
+**In a4a:** the activity is the ledger as a card of its own, its lines to its edges (`.card.ledger-box`). What a line did is its own words (`.ledger-did`), and what came with it sits under it (`.ledger-more`): a change in a change's grammar (`.change-lines`), what someone said, quoted beside a line (`.ledger-quote`), or a note, such as what triage suggested and where to decide on it (`.ledger-note`). Its id is in mono, in `.ledger-by`.

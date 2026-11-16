@@ -4,8 +4,9 @@ An issue's fields, beside it: each label in Ocean's label style, and each value 
 
 - Each value is a control: a button that opens its choices, or a field to type in. At rest it reads as text; under the pointer and on focus it shows a field's edge, `--line-control`, and on focus the keyboard's ring.
 - Values keep their own look: a state's Badge, a PriorityMeter, a person's Who. Versions and durations ("2d 4h") are in Plex Mono. An empty value says so, in `--muted`: "No due date".
-- A value an agent worked out that nobody has accepted yet is dashed, as a traced value is: not in force until a person accepts it. Beneath it, the agent by its mark and name, where it worked the value out from, and Accept. Accepting is a change to the issue, and its history says who accepted it, and from which agent.
-- A value opened shows its choices in a popover: the chosen one on `--accent-soft`; what each does in `--faint`, or `--muted` on a row under the pointer or chosen, where `--faint` reads too little.
+- A value an agent worked out that nobody has accepted yet is dashed, as a traced value is: not in force until a person accepts it. Beneath it, the agent by its mark and name, where it worked the value out from, and Accept beneath those words, which can be a sentence. Accepting is a change to the issue, and its history says who accepted it, and from which agent.
+- A value opened shows its choices in a popover, from the value's end towards the page, since the panel sits at the page's end: the chosen one on `--accent-soft`; what each does in `--faint`, or `--muted` on a row under the pointer or chosen, where `--faint` reads too little. The choice of nothing ("Unassigned") reads as an empty value does (`.empty`).
+- The popover holds the focus while it's open, and the arrows move between its choices: the one they're on is `.active`, ringed. Enter or Space chooses it, Escape closes it and gives the focus back to the value.
 - Each value is named by its label and itself (`aria-labelledby`), so a screen reader says "State, In Progress".
 
 **Takes:** `fields` (each `name`, `value`, `kind`: a choice, a person, a version, a duration, a date or text; and `proposed`, `{ by, from }`, while an agent's value waits to be accepted), `onChange`, `onAccept`.

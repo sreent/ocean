@@ -1,4 +1,4 @@
-<!-- @dsCard group="Conversation" height=653 width=380 subtitle="The agent, the person, the product's own word, quick answers, the composer" -->
+<!-- @dsCard group="Conversation" height=1287 width=380 subtitle="The agent, the person, the product's own word, quick answers, the composer; and a4a's notes while it works, what didn't go, and what failed" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,6 +10,7 @@
 </head>
 <body>
 <div id="root">
+<div class="ds-stack">
 <div class="ds-phone">
 <section class="talk" aria-label="A conversation with assistant">
 <header class="talk-head">
@@ -30,6 +31,29 @@
 <button type="button" class="round" aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 19.5v-15"/><path d="M5.5 11L12 4.5l6.5 6.5"/></svg></button>
 </footer>
 </section>
+</div>
+<div class="ds-phone">
+<section class="talk" aria-label="A conversation with assistant, in a4a">
+<header class="talk-head">
+<span class="avatar agent" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span>
+<span class="talk-who"><strong>assistant</strong><span>Works on your issues, boards and plans, for Anna Schmidt</span></span>
+<button type="button" class="link">What it may do</button>
+</header>
+<div class="talk-body">
+<span class="talk-day">Today</span>
+<p class="say you">Take BACK-6 and start on it</p>
+<div class="talk-note"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg><p><span class="hidden">assistant's note: </span>Reading BACK-6 first, to see who has it.</p></div>
+<div class="talk-note"><span class="spin" aria-hidden="true"></span><p><span class="hidden">assistant's note: </span>It's open and nobody has it: assigning it to you.</p></div>
+<p class="talk-working" role="status"><span class="spin" aria-hidden="true"></span>assistant is working on it</p>
+<p class="say you unsent">And the same for BACK-7<span class="say-unsent">Not sent</span></p>
+<p class="say own bad" role="alert"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg><span>The assistant is off on this server. Set ANTHROPIC_API_KEY where it runs to turn it on.</span></p>
+</div>
+<form class="talk-foot" onsubmit="event.preventDefault()">
+<textarea rows="1" aria-label="Your message" placeholder="Ask about your projects"></textarea>
+<button type="submit" class="round" aria-label="Send"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 19.5v-15"/><path d="M5.5 11L12 4.5l6.5 6.5"/></svg></button>
+</form>
+</section>
+</div>
 </div>
 </div>
 </body>

@@ -62,6 +62,8 @@ export interface ConfirmProps {
   confirm: string;
   danger?: boolean;
   onConfirm: () => void;
+  /** Proposed, for a4a's rows and cards: a smaller button (`button.small`), such as "Revoke it" beside a token. */
+  small?: boolean;
 }
 /** A button that asks first, in the browser's own dialog, for what can't be undone. */
 export declare function Confirm(props: ConfirmProps): React.ReactElement;
@@ -105,6 +107,8 @@ export interface ApprovalCardProps {
   onDecline: () => void;
   /** Proposed: who asks, where a person does, such as a change request in a3t. Defaults to the agent. */
   by?: { name: string; kind: Kind };
+  /** Proposed, for a4a's issue page: smaller, its values left to the field panel (`.approval.compact`). */
+  compact?: boolean;
 }
 /** What someone is asked to decide, a phone's width at most: what it changes, why, and their yes or no. */
 export declare function ApprovalCard(props: ApprovalCardProps): React.ReactElement;
@@ -135,6 +139,8 @@ export interface AutonomyLadderProps {
   toward?: { what: string; graded: number; needed: number };
   /** Proposed: the rungs this product has. a5s's three by default; a7c's four. */
   rungs?: Rung[];
+  /** Proposed, for a4a: the ladder as a choice, a radio on each rung (`fieldset.ladder-choice`); the rung chosen is the one it's on. */
+  onChoose?: (level: number) => void;
 }
 /** Autonomy is earned: the rung an agent is on, those its release allows beyond it, and how far it has come. */
 export declare function AutonomyLadder(props: AutonomyLadderProps): React.ReactElement;
@@ -542,6 +548,10 @@ export interface BoardProps {
   /** A card on its way: where it was, and where it would land. */
   dragging?: { id: string; to: { lane: number; column: number } };
   onMove: (id: string, to: { lane: number; column: number }) => void;
+  /** From the keyboard: a card's id opens a command for it (CommandBar). */
+  onCommand: (id: string) => void;
+  /** A move the server refused: it goes back, and this says why above the columns. */
+  refused?: { text: string; hint?: string; onDismiss: () => void };
 }
 /** An agile board: the sprint, columns with their limits, cards, lanes, and where a dragged card would land. Proposed. */
 export declare function Board(props: BoardProps): React.ReactElement;
@@ -566,6 +576,10 @@ export type GanttRow = {
   slackTo?: string;
   /** The rows it follows, finish to start. */
   after?: number[];
+  /** Where its name leads: the task itself. */
+  href?: string;
+  /** Where a what-if would put it, dashed in --changes; nothing is saved. */
+  whatIf?: { start: string; end?: string };
 };
 export interface GanttProps {
   /** What the plan is, for screen readers. */
@@ -587,6 +601,13 @@ export interface LoadGridProps {
   people: { who: Someone; capacity: number; hours: (number | "away")[] }[];
   /** What levelling would move, before anything does. */
   levelling?: { id: string; what: string; who: string; from: string; to: string; by: string }[];
+  /** The tasks that only follow the ones it moves, folded beneath them. */
+  following?: { id: string; what: string; who: string; from: string; to: string; by: string }[];
+  /** Within slack, the default, the finish holds; allowing delay, it may move. */
+  mode?: "within_slack" | "allow_delay";
+  onMode?: (mode: "within_slack" | "allow_delay") => void;
+  /** What levelling just did, or that the plan has moved on since it proposed. */
+  status?: { tone: "good" | "warn"; badge: string; words: string };
   /** Its button says what happens: "Level 4 tasks". */
   onLevel?: () => void;
 }
@@ -606,12 +627,39 @@ export interface CostPanelProps {
   forecast: number;
   cpi: CostIndex;
   spi: CostIndex;
-  /** Week by week: what was planned, earned and spent, to date and as planned. */
-  weeks: { ending: string; planned: number; earned?: number; actual?: number }[];
+  /** Week by week: what was planned, earned and spent, to date and as planned. None, and there are no curves. */
+  weeks?: { ending: string; planned: number; earned?: number; actual?: number }[];
   currency: string;
+  /** What it's measured against. None, and the indices' place asks for one. */
+  baseline?: string;
+  /** The costs by person and by task, as tables: each figure with its hours beneath. */
+  byPerson?: { who: Someone; rate?: number; planned: number; spent: number; plannedHours: number; spentHours: number }[];
+  byTask?: { id: string; summary: string; planned: number; spent: number; fixed?: number }[];
 }
 /** Cost against plan: bars on one scale, the indices in words, and the S-curve with its figures beside it. Proposed. */
 export declare function CostPanel(props: CostPanelProps): React.ReactElement;
+
+export interface DirectoryProps {
+  /** Each thing to open: its name, what kind it is or its key, a line about it, and its mark when it has one. */
+  items: { name: string; href: string; kind?: string; key?: string; about: string; icon?: string }[];
+  /** The card's heading; for screen readers alone where the page's title says it already. */
+  label: string;
+}
+/** Things to open, in a list: the boards, or the projects to plan. Proposed. */
+export declare function Directory(props: DirectoryProps): React.ReactElement;
+
+export interface PlanPageProps {
+  views: ("timeline" | "resources" | "costs")[];
+  view: "timeline" | "resources" | "costs";
+  /** The plan at a glance: when it ends and against its baseline, its critical path, what's late, a due date with little to spare. */
+  facts: { ends: string; against?: string; critical: number; late: string[]; tight?: string };
+  /** One task changed, and where the finish would go; nothing is saved. */
+  whatIf?: { tasks: { id: string; summary: string }[]; asked?: string; ends?: { from: string; to: string }; moves?: { id: string; what: string; from: string; to: string; by: string }[]; late?: string[] };
+  /** What the plan assumed to draw itself, folded until it's opened. */
+  assumed?: string[];
+}
+/** A plan's page around its pieces: its views, its facts at a glance, a what-if, and what it assumed. Proposed. */
+export declare function PlanPage(props: PlanPageProps): React.ReactElement;
 
 export interface IssueLinksProps {
   /** The issue the links are from. */

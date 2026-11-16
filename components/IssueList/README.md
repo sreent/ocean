@@ -9,6 +9,7 @@ Issues in rows, dense enough for long lists: each with a box to choose it, its i
 - Its fields sit in columns where there's room. Narrower, the assignee shows by their mark alone, and screen readers still say the name. Narrower still, each row stacks: its id and when, its summary, then its fields. By container query, wherever the list is.
 - From the keyboard the list is one stop: the arrows move from row to row, Space chooses one, Enter opens it. The row with the focus wears the ring inside its edge.
 - Times as people read them: "2 minutes ago", "yesterday", "12 Nov".
+- An issue's id in running text, such as a comment or an assistant's answer, is a link to the issue: `a.issue-id`, in `--accent`.
 - With issues chosen, the bar above says how many, and offers a command for them (CommandBar).
 
 **Takes:** `issues` (each `id`, `summary`, `href`, `state`, `priority`, `type`, `assignee`, `tags`, `comments`, `updated`, `resolved`, `chosen`, `current`), `label`, `onChoose`, `onOpen`, `onCommand`.

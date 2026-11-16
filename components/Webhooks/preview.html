@@ -1,0 +1,57 @@
+<!-- @dsCard group="Settings" height=783 subtitle="Two addresses: one sending, its test arrived and its log open; one paused; and how deliveries work" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Webhooks</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<section class="card" aria-labelledby="w-hooks">
+  <h2 id="w-hooks">Where it sends</h2>
+  <ul class="hooks">
+    <li class="card hook">
+      <div class="hook-head">
+        <div class="hook-what"><span class="mono hook-url">https://ci.example.com/a4a</span><span class="item-about">When an issue is created, or an issue changes · in every project · added 2 hours ago</span></div>
+        <span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>sends</span>
+      </div>
+      <div class="cluster"><button type="button">Send a test</button><button type="button">Pause it</button><button type="button" class="link" aria-expanded="true">Hide its deliveries</button><span class="grow"></span><button type="button" class="danger small">Delete it</button></div>
+      <p class="outcome" role="status">The test arrived.</p>
+      <div class="hook-log">
+        <h3>Recent deliveries</h3>
+        <div class="figures-scroll" role="region" aria-label="Table of recent deliveries" tabindex="0">
+          <table class="figures">
+            <thead><tr><th scope="col">When</th><th scope="col">Event</th><th scope="col">How it went</th><th scope="col" class="num">Try</th><th scope="col" class="num">Took</th></tr></thead>
+            <tbody>
+              <tr><td><time datetime="2026-11-15T19:54:51Z">Today, 19:54</time></td><td><span class="mono">ping</span><span class="item-about">a test</span></td><td><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>delivered, 200</span></td><td class="num">1 of 3</td><td class="num mono">42 ms</td></tr>
+              <tr><td><time datetime="2026-11-15T19:40:02Z">Today, 19:40</time></td><td><span class="mono">issue.updated</span><span class="item-about">event 123</span></td><td><span class="badge bad"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>failed, 503</span><span class="item-about">Service Unavailable</span></td><td class="num">3 of 3</td><td class="num mono">1204 ms</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </li>
+    <li class="card hook">
+      <div class="hook-head">
+        <div class="hook-what"><span class="mono hook-url">https://chat.example.com/hooks/backend</span><span class="item-about">When someone comments · in Backend platform · added 3 days ago</span></div>
+        <span class="badge idle"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 6.5v11"/><path d="M15 6.5v11"/></svg>paused</span>
+      </div>
+      <div class="cluster"><button type="button">Send a test</button><button type="button">Turn it back on</button><button type="button" class="link" aria-expanded="false">Show its deliveries</button><span class="grow"></span><button type="button" class="danger small">Delete it</button></div>
+      <p class="outcome" role="status"></p>
+    </li>
+  </ul>
+</section>
+<section class="card" aria-labelledby="w-how">
+  <h2 id="w-how">How deliveries work</h2>
+  <dl class="facts-list">
+    <div class="pair"><dt>Signed</dt><dd><code>X-A4A-Signature: sha256=&lt;HMAC of the body&gt;</code>: an HMAC-SHA256 of the raw body, with the webhook's secret.</dd></div>
+    <div class="pair"><dt>At least once</dt><dd>A change can arrive twice. Keep the <code>X-A4A-Event-Id</code> of what you've handled, and skip it when it comes again.</dd></div>
+  </dl>
+</section>
+</div>
+</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!-- @dsCard group="Plans" height=591 width=1100 subtitle="Data center migration: the critical path in ink, the baseline beneath, a late task, today" -->
+<!-- @dsCard group="Plans" height=614 width=1100 subtitle="Data center migration: the critical path in ink, the baseline beneath, a late task, today, and where a what-if would move a task" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,7 +27,7 @@
 <li class="gantt-row late" data-depth="1"><span class="gantt-name">Order the hardware<span class="hidden">, on the critical path, 3 days late: it was due 13 Nov, planned for 9–13 Nov</span></span><span class="gantt-when">9–18 Nov</span><span class="gantt-done">80%<span class="hidden"> done</span></span></li>
 <li class="gantt-row" data-depth="1"><span class="gantt-name">Rack and cable<span class="hidden">, on the critical path, after Order the hardware, planned for 16–20 Nov</span></span><span class="gantt-when">19–25 Nov</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
 <li class="gantt-row" data-depth="1"><span class="gantt-name">Set up the network<span class="hidden">, 3 days of slack, after Order the hardware, planned for 16–17 Nov</span></span><span class="gantt-when">19–20 Nov</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
-<li class="gantt-row" data-depth="1"><span class="gantt-name">Burn-in tests<span class="hidden">, on the critical path, after Rack and cable and Set up the network, planned for 23–24 Nov</span></span><span class="gantt-when">26–27 Nov</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Burn-in tests<span class="hidden">, on the critical path, after Rack and cable and Set up the network, planned for 23–24 Nov, in the what-if, 27–30 Nov</span></span><span class="gantt-when">26–27 Nov</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
 <li class="gantt-row summary" data-depth="0"><span class="gantt-name">Move and cut over</span><span class="gantt-when">30 Nov–11 Dec</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
 <li class="gantt-row" data-depth="1"><span class="gantt-name">Migrate storage<span class="hidden">, on the critical path, after Burn-in tests, planned for 25 Nov–1 Dec</span></span><span class="gantt-when">30 Nov–4 Dec</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
 <li class="gantt-row" data-depth="1"><span class="gantt-name">Move the services<span class="hidden">, on the critical path, after Migrate storage, planned for 2–4 Dec</span></span><span class="gantt-when">7–9 Dec</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
@@ -136,6 +136,7 @@
 <g class="gantt-task critical"><rect class="gantt-base" x="512" y="448" width="47" height="4" rx="2"/><rect class="gantt-bar" x="597" y="432" width="47" height="12" rx="4"/></g>
 <g class="gantt-task critical"><rect class="gantt-base" x="598.5" y="480" width="10" height="4" rx="2"/><path class="gantt-milestone" d="M654.5 462l8 8 -8 8 -8 -8z"/></g>
 <g class="gantt-task critical"><rect class="gantt-base" x="597" y="512" width="30" height="4" rx="2"/><rect class="gantt-bar" x="648" y="496" width="30" height="12" rx="4"/></g>
+<rect class="gantt-whatif" x="427" y="336" width="64" height="12" rx="4"/>
 <line class="gantt-today" x1="230.9" x2="230.9" y1="34" y2="520"/>
 <text class="gantt-today-label" x="234.9" y="62">Today</text>
 </svg>
@@ -148,6 +149,7 @@
 <li><svg width="28" height="14" aria-hidden="true"><path class="gantt-slack" d="M2 7H25"/><path class="gantt-slack-end" d="M25 3v8"/></svg>Slack: how far it can slip</li>
 <li><svg width="28" height="14" aria-hidden="true"><path class="gantt-milestone" d="M14 0l7 7 -7 7 -7 -7z"/></svg>A milestone</li>
 <li><svg width="28" height="14" aria-hidden="true"><line class="gantt-today" x1="14" x2="14" y1="0" y2="14"/></svg>Today</li>
+<li><svg width="28" height="14" aria-hidden="true"><rect class="gantt-whatif" x="1.5" y="1.5" width="25" height="11" rx="4"/></svg>Where a what-if would move it</li>
 </ul>
 </section>
 </div>

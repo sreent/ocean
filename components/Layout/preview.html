@@ -1,0 +1,56 @@
+<!-- @dsCard group="Layout" height=640 subtitle="A stack, a cluster, a main column with an aside, a form; pieces placed, never restyled" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Layout</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="label">A main column with an aside; in the column, a stack of cards spaced by one gap</p>
+<div class="split">
+  <div class="stack">
+    <section class="card stack" aria-labelledby="l-desc">
+      <div class="cluster spread"><h2 id="l-desc">Description</h2><button type="button" class="link">Edit the description</button></div>
+      <div class="prose"><p>Several customers report that after the Okta redirect, Safari shows an empty page. It started with <code>2.4.0</code>.</p><pre><code>GET /callback?code=… 302 → /  (no session cookie)</code></pre></div>
+    </section>
+    <section class="card stack" aria-labelledby="l-time">
+      <div class="cluster spread baseline"><h2 id="l-time">Time spent</h2><span class="note"><span class="mono">3h</span> of <span class="mono">2d</span> estimated</span></div>
+      <div class="figures-scroll" tabindex="0" role="group" aria-label="Work logged on BACK-12">
+        <table class="figures"><thead><tr><th scope="col">Day</th><th scope="col">Who</th><th scope="col">Time</th><th scope="col">What</th></tr></thead>
+        <tbody><tr><td>13 Nov</td><td>Anna Schmidt</td><td class="mono">3h</td><td>Reproduced it and traced the cookie</td></tr></tbody></table>
+      </div>
+    </section>
+  </div>
+  <aside class="card stack tight" aria-label="An aside">
+    <h3>The aside</h3>
+    <p class="note">What's about the page's work, such as an issue's fields. Under 1100px it goes beneath the main column.</p>
+  </aside>
+</div></div>
+
+<div class="ds-group"><p class="label">A form: labels above their fields, fields side by side where there's room, what went wrong where it went wrong, and the one thing to do at the line's end</p>
+<form class="card form" onsubmit="return false">
+  <div class="form-field"><label for="l-sum">Summary</label><input id="l-sum" value="Login fails on Safari with SSO"></div>
+  <div class="form-fields">
+    <div class="form-field"><label for="l-pri">Priority</label><select id="l-pri"><option>Critical</option></select></div>
+    <div class="form-field"><label for="l-ass">Assignee</label><select id="l-ass"><option>Anna Schmidt</option></select></div>
+  </div>
+  <div class="error-note" role="alert"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg><strong>BACK-12 was changed by someone else just now</strong><p>It's been reloaded: check it, and save again.</p></div>
+  <div class="cluster end"><button type="button">Cancel</button><button type="submit" class="primary">Save</button></div>
+</form></div>
+
+<div class="ds-group"><p class="label">A cluster wraps when its line runs out; .grow takes what's left of it</p>
+<div class="cluster"><input class="grow" aria-label="What it was spent on" placeholder="What it was spent on"><button type="button">Log time</button></div>
+</div>
+
+<div class="ds-group"><p class="label">Text that becomes a field when chosen</p>
+<h1><span class="editable" role="button" tabindex="0">Users can't sign in with single sign-on on Safari 17</span></h1>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<!-- @dsCard group="Plans" height=708 width=1100 subtitle="Two weeks of the migration's people: load by day, over capacity, and what levelling would move" -->
+<!-- @dsCard group="Plans" height=812 width=1100 subtitle="Two weeks of the migration's people: load by day, over capacity, and what levelling would move, within slack" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,12 +37,19 @@
 <section class="levelling" aria-labelledby="level-title">
 <h3 id="level-title">Levelling would move 4 tasks</h3>
 <p class="note">So nobody is booked over their day. None is on the critical path, so the plan still ends on 11 Dec. Nothing moves until you level them.</p>
+<div class="modes" role="group" aria-label="How far levelling may move tasks"><button type="button" aria-pressed="true">Within slack</button><button type="button" aria-pressed="false">Allow delay</button></div>
+<p class="note">Within slack, a task only moves as far as it may without moving the plan's finish.</p>
+<div class="levelling-status" aria-live="polite"></div>
 <ul class="levelling-list">
 <li><span class="issue-id">BACK-34</span><span class="levelling-what">Mirror the backups to the new site <span class="who-about">· Anna Schmidt</span></span><ul class="change-lines"><li><del>19–20 Nov</del> → <ins>23–24 Nov</ins></li></ul><span class="levelling-by">2 days later</span></li>
 <li><span class="issue-id">BACK-49</span><span class="levelling-what">Patch the old site's switches <span class="who-about">· Anna Schmidt</span></span><ul class="change-lines"><li><del>20 Nov</del> → <ins>25 Nov</ins></li></ul><span class="levelling-by">3 days later</span></li>
 <li><span class="issue-id">BACK-40</span><span class="levelling-what">Test the failover between sites <span class="who-about">· Ben Okafor</span></span><ul class="change-lines"><li><del>26–27 Nov</del> → <ins>30 Nov–1 Dec</ins></li></ul><span class="levelling-by">2 days later</span></li>
 <li><span class="issue-id">BACK-50</span><span class="levelling-what">Clear out the old monitoring <span class="who-about">· Ben Okafor</span></span><ul class="change-lines"><li><del>27 Nov</del> → <ins>2 Dec</ins></li></ul><span class="levelling-by">3 days later</span></li>
 </ul>
+<details><summary>2 more tasks follow their predecessors, and move with them</summary><ul class="levelling-list">
+<li><span class="issue-id">BACK-41</span><span class="levelling-what">Switch the backups' schedule <span class="who-about">· Kofi Mensah</span></span><ul class="change-lines"><li><del>23 Nov</del> → <ins>25 Nov</ins></li></ul><span class="levelling-by">2 days later</span></li>
+<li><span class="issue-id">BACK-51</span><span class="levelling-what">Check the failover's alerts <span class="who-about">· Priya Nair</span></span><ul class="change-lines"><li><del>30 Nov</del> → <ins>2 Dec</ins></li></ul><span class="levelling-by">2 days later</span></li>
+</ul></details>
 <div class="levelling-actions"><button type="button" class="primary">Level 4 tasks</button><p class="note">Each moves within its slack, and its history says levelling moved it.</p></div>
 </section>
 </section>

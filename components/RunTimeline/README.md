@@ -11,3 +11,5 @@ A run as time: what started it and for whom, each step in order in the colour of
 **Takes:** `steps`: each `at`, `tone`, `what` and `detail`.
 
 **In a5s:** `studio/src/design/agentic.tsx`. The a7c run is proposed. The preview is a static rendition.
+
+**In a4a:** a run inside the assistant's conversation is the agent's card (`.run-card`), a phone's width at most, its thread drawn the whole length of each step. A step still going turns where its ring would be (`.spin`). Each step's tool is in mono, then what it did, with its issue's id (`.step-what`); under it, what its tool does as a badge, how it stands (waiting on you, failed, you declined it), what's worth knowing ("can overwrite"), and how long it took in mono (`.step-took`).

@@ -1,0 +1,74 @@
+<!-- @dsCard group="Settings" height=674 subtitle="A section of settings: fields that say what they're for, ticks in groups, days off to take away; and tables of things to set" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Settings</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<section class="card" aria-labelledby="s-plan">
+  <div class="section-head"><h2 id="s-plan">Plan settings</h2><span class="note">The plan's calendar and its money. People's own hours and rates are under Administration.</span></div>
+  <form class="form" onsubmit="event.preventDefault()">
+    <fieldset class="unframed stack">
+      <div class="form-fields">
+        <div class="form-field"><label for="s-starts">Starts</label><input id="s-starts" type="date" value="2026-10-25" aria-describedby="s-starts-help"><small class="field-help" id="s-starts-help">Empty: from its earliest task, or today.</small></div>
+        <div class="form-field"><label for="s-hours">Hours in a working day</label><input id="s-hours" type="number" value="8" aria-describedby="s-hours-help"><small class="field-help" id="s-hours-help">A day of estimate, such as “2d”, is this many hours.</small></div>
+        <div class="form-field"><label for="s-budget">Budget</label><input id="s-budget" type="number" value="60000" aria-describedby="s-budget-help"><small class="field-help" id="s-budget-help">Empty: no budget to compare costs with.</small></div>
+        <div class="form-field"><label for="s-currency">Currency</label><input id="s-currency" class="key" value="usd"></div>
+      </div>
+      <fieldset class="choice-group"><legend>Working days</legend>
+        <label class="choice"><input type="checkbox" checked><span>Mon</span></label>
+        <label class="choice"><input type="checkbox" checked><span>Tue</span></label>
+        <label class="choice"><input type="checkbox" checked><span>Wed</span></label>
+        <label class="choice"><input type="checkbox" checked><span>Thu</span></label>
+        <label class="choice"><input type="checkbox" checked><span>Fri</span></label>
+        <label class="choice"><input type="checkbox"><span>Sat</span></label>
+        <label class="choice"><input type="checkbox"><span>Sun</span></label>
+      </fieldset>
+      <fieldset class="choice-group"><legend>Days off</legend>
+        <div class="cluster">
+          <ul class="chips">
+            <li class="chip removable"><time datetime="2026-12-25">25 Dec 2026</time><button type="button" class="chip-remove" aria-label="Remove 25 Dec 2026"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg></button></li>
+            <li class="chip removable"><time datetime="2026-12-26">26 Dec 2026</time><button type="button" class="chip-remove" aria-label="Remove 26 Dec 2026"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg></button></li>
+          </ul>
+          <span class="cluster"><input type="date" aria-label="A day off to add"><button type="button">Add the day</button></span>
+        </div>
+      </fieldset>
+    </fieldset>
+    <div class="cluster"><button type="submit">Save the plan settings</button><p class="outcome" role="status">The plan settings are saved.</p></div>
+  </form>
+</section>
+<div class="ds-cols">
+<section class="card figures-card" aria-label="Projects">
+  <div class="figures-scroll" role="region" aria-label="Table of projects" tabindex="0">
+    <table class="figures">
+      <thead><tr><th scope="col">Key</th><th scope="col">Project</th><th scope="col" class="num">Open</th></tr></thead>
+      <tbody>
+        <tr><td><a class="issue-id" href="#">BACK</a></td><td><a class="item-name" href="#">Backend platform</a><span class="item-about">APIs, authentication and data services.</span></td><td class="num"><span class="of-total"><strong>12</strong> of 14</span></td></tr>
+        <tr><td><a class="issue-id" href="#">MIG</a></td><td><a class="item-name" href="#">Data center migration</a><span class="item-about">Move every workload to the new region.</span></td><td class="num"><span class="of-total"><strong>14</strong> of 17</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="card" aria-labelledby="s-people">
+  <div class="section-head"><h2 id="s-people">People</h2><span class="note">2 people, 1 banned</span></div>
+  <div class="figures-scroll" role="region" aria-label="Table of people" tabindex="0">
+    <table class="figures middle">
+      <thead><tr><th scope="col">Person</th><th scope="col">Hours a day</th><th scope="col"><span class="hidden">Save</span></th></tr></thead>
+      <tbody>
+        <tr><th scope="row" class="row-head"><span class="item-name">Anna Schmidt</span><span class="item-about"><span class="mono">anna</span> · you</span></th><td><input type="number" value="8" aria-label="Hours a day of Anna Schmidt"></td><td class="fit"><button type="button" class="small">Save</button><p class="outcome" role="status">Saved.</p></td></tr>
+        <tr class="dimmed"><th scope="row" class="row-head"><span class="item-name">Ben Okafor</span><span class="item-about"><span class="mono">ben</span> · banned</span></th><td><input type="number" value="6" aria-label="Hours a day of Ben Okafor"></td><td class="fit"><button type="button" class="small" disabled>Save</button><p class="outcome" role="status"></p></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</div>
+</div>
+</div>
+</body>
+</html>
