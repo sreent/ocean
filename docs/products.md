@@ -186,8 +186,17 @@ a4a is new, and starts on Ocean. Its web app is React 19 with Tailwind v4, which
 | A baseline | faded beneath, as what's no longer in force |
 | Load, a day's share booked | Ocean Blue's steps (`--chart-seq-*`), with its hours |
 | Planned value, earned value, actual cost | the series' colours in order, with the figures beside them as a table |
+| What's left of a sprint; created against resolved; time logged | the series' colours in order, with the figures beside them as a table |
+| A sprint's ideal | dashed, in `--faint`, as what isn't so |
+| A change to a sprint's scope | `--changes`, a ring with how much: "+8h" |
+| A state's band in cumulative flow | how its state stands (`--chart-done`, `--chart-short`, `--chart-failed`, `--chart-open`), never a series colour |
+| A percentile | a solid line in ink with its words: "Half by 2.9 days" |
+| Time spent past an estimate | `warn`, with its words: "2h over" |
+| A row of an import that isn't imported | `bad`, with a cross and its words: "Not imported" |
 
 It brought these pieces to Ocean, each with the markup its components emit in its README: [IssueList](../components/IssueList/README.md), [FieldPanel](../components/FieldPanel/README.md), [PriorityMeter](../components/PriorityMeter/README.md), [QueryBar](../components/QueryBar/README.md), [CommandBar](../components/CommandBar/README.md), [Board](../components/Board/README.md), [Gantt](../components/Gantt/README.md), [LoadGrid](../components/LoadGrid/README.md), [CostPanel](../components/CostPanel/README.md), [IssueLinks](../components/IssueLinks/README.md) and [IssueHistory](../components/IssueHistory/README.md); and for its pages, [Layout](../components/Layout/README.md) (a stack, a cluster, a main column with an aside, forms, prose, what went wrong), [Directory](../components/Directory/README.md), [PlanPage](../components/PlanPage/README.md), [Settings](../components/Settings/README.md), [NavList](../components/NavList/README.md), [AgentSetup](../components/AgentSetup/README.md), [FieldValues](../components/FieldValues/README.md) and [Webhooks](../components/Webhooks/README.md); and for files and its knowledge base, [AttachmentList](../components/AttachmentList/README.md), [ArticleTree](../components/ArticleTree/README.md) and [ArticlePage](../components/ArticlePage/README.md). Where its pages put the family's pieces to new uses (an approval as a triage suggestion, the conversation on a page of its own, the ledger in a card), those pieces' READMEs say how. IssueHistory keeps AuditEntry's spirit, with times as people read them, where the ledger keeps them to the second. In dense rows and on cards, people, agents and services take a smaller mark, `.avatar.small`.
+
+For its reports, dashboards and imports it brought [Burndown](../components/Burndown/README.md), [CumulativeFlow](../components/CumulativeFlow/README.md), [Distribution](../components/Distribution/README.md), [CreatedResolved](../components/CreatedResolved/README.md), [TimeReport](../components/TimeReport/README.md), [Dashboard](../components/Dashboard/README.md) and [MappingTable](../components/MappingTable/README.md): charts drawn as CostPanel's are, from their attributes alone, each with its figures as a table beside it, and a page of widgets arranged without dragging.
 
 ## Where Ocean lives
 
