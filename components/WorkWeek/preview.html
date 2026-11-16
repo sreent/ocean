@@ -1,0 +1,32 @@
+<!-- @dsCard group="Plans" height=360 subtitle="A part-time week: Wednesday off, a half day on Friday" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WorkWeek</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<section class="card" aria-labelledby="week">
+<div class="section-head"><h2 id="week">Working week</h2><span class="note">Your hours each day</span></div>
+<p class="section-note">Part time, or a weekday off: plans give you work on the days you work, those hours each, and your timesheet measures each day against them.</p>
+<form class="form">
+<div class="work-week">
+<div class="form-field"><label for="d1">Mon</label><input id="d1" inputmode="decimal" value="8"></div>
+<div class="form-field"><label for="d2">Tue</label><input id="d2" inputmode="decimal" value="8"></div>
+<div class="form-field"><label for="d3">Wed</label><input id="d3" inputmode="decimal" value="0"></div>
+<div class="form-field"><label for="d4">Thu</label><input id="d4" inputmode="decimal" value="8"></div>
+<div class="form-field"><label for="d5">Fri</label><input id="d5" inputmode="decimal" value="4"></div>
+<div class="form-field"><label for="d6">Sat</label><input id="d6" inputmode="decimal" value="0"></div>
+<div class="form-field"><label for="d0">Sun</label><input id="d0" inputmode="decimal" value="0"></div>
+</div>
+<p class="field-help">28 hours a week.</p>
+<div class="cluster"><button type="submit" class="primary">Save my week</button><button type="button" class="link">Use the plan’s working days</button><p role="status" class="outcome">Saved. Plans and your timesheet use it.</p></div>
+</form>
+</section>
+</div>
+</body>
+</html>

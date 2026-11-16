@@ -2252,6 +2252,56 @@ a.code-title:hover { text-decoration: underline; }
 .code-command code { padding: 0.05rem 0.4rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--sunken);
                      color: var(--text); }
 
+/* a4a's agile and time tracking (D43): its backlog, a sprint's load, velocity, the timer, the
+   timesheet and a person's working week (components/Backlog, SprintLoad, Velocity, Timer,
+   Timesheet, WorkWeek); and days away on the Gantt. */
+.backlog { display: grid; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+.backlog-item { display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto; align-items: center; gap: var(--space-2) var(--space-3);
+  padding: var(--space-2) var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+.backlog-item.moving { border: 1px dashed var(--line-control); background: none; }  /* the gap it leaves while it's dragged */
+.backlog-item.moving > * { visibility: hidden; }
+.backlog-item.drop-before { box-shadow: 0 -3px 0 var(--accent); }
+.backlog-item.drop-after { box-shadow: 0 3px 0 var(--accent); }
+.backlog-handle { padding: 0 var(--space-1); border: 0; background: none; color: var(--muted); cursor: grab; letter-spacing: -0.2em; }
+.backlog-handle:hover { background: none; color: var(--text); }
+.backlog.dragging, .backlog.dragging * { cursor: grabbing; }
+.backlog-summary { color: var(--text); overflow-wrap: anywhere; }
+.backlog-facts { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: var(--space-1) var(--space-2); }
+@media (max-width: 640px) {
+  .backlog-item { grid-template-columns: auto auto minmax(0, 1fr); }
+  .backlog-facts { grid-column: 2 / -1; justify-content: flex-start; }
+}
+.sprint-targets { display: grid; grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr)); gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.sprint-target { display: grid; gap: 0.15rem; padding: var(--space-2) var(--space-3); border: 1px dashed var(--line-control); border-radius: var(--radius-md); }
+.sprint-target .item-about { display: block; color: var(--muted); font-size: var(--text-sm); }
+.sprint-targets.ready .sprint-target { border-color: var(--accent); }
+.sprint-target.over { border-style: solid; background: var(--accent-soft); }
+.board-points { color: var(--muted); font-size: var(--text-sm); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.capacity-cell { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.capacity-meter { width: 6rem; height: 0.75rem; }
+.velocity { display: grid; gap: var(--space-3); margin: 0; min-width: 0; }
+.velocity-scroll { overflow-x: auto; }
+.velocity-committed { fill: var(--chart-1); }
+.velocity-done { fill: var(--chart-2); }
+.velocity-done.open { fill-opacity: 0.45; }  /* a sprint under way: not done yet */
+.velocity-average { stroke: var(--text); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.timer { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+.timer-time { color: var(--text); font-family: var(--font-mono); font-size: var(--text-lg); font-variant-numeric: tabular-nums; }
+.timer.running .timer-time { color: var(--accent); }
+.timer > .note { flex: 1 1 8rem; }
+.timesheet input { width: 5.5rem; text-align: end; }
+.timesheet .day-hours { display: block; color: var(--muted); font-size: var(--text-xs); font-weight: 400; }
+.timesheet td.over { color: var(--warn); font-weight: 600; }
+.timesheet td.short { color: var(--muted); }
+.timesheet .row-head .item-name { display: block; font-weight: 400; }
+.timesheet .row-head .item-about { display: block; color: var(--muted); font-size: var(--text-xs); }
+.work-week { display: grid; grid-template-columns: repeat(7, minmax(3.5rem, 1fr)); gap: var(--space-2); }
+.work-week input { width: 100%; text-align: end; font-family: var(--font-mono); }
+@media (max-width: 520px) { .work-week { grid-template-columns: repeat(4, minmax(3.5rem, 1fr)); } }
+.gantt-away { fill: var(--sunken); }  /* a day the task's assignee is away: never why */
+.gantt-away.half { fill: none; stroke: var(--line-control); stroke-dasharray: 3 2; }
+
 /* Placing pieces on a page (components/Layout): a stack, a cluster, and a page's main column
    with an aside. They only place: each spaces its children by its gap, and takes away their own
    outer margins, so a piece keeps its look wherever it's put. Last in the file, so that taking a
