@@ -14,6 +14,7 @@ Lines on a 24-unit square, as every page draws them: stroke 1.8, round caps and 
 | `settings` | Settings, under Decide |
 | `audit` | The audit trail, under Oversee; what's signed and kept in the ledger; the product's own messages |
 | `admin` | Administration, under Oversee; a team |
+| `spend` | Spending, under Oversee: what agents' models cost against their budgets |
 | `officer` | Data protection, under Oversee |
 | `agent` | An agent, and only an agent |
 | `tool` | A tool; a service |
