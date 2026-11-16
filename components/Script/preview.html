@@ -1,0 +1,74 @@
+<!-- @dsCard group="Settings" height=1250 subtitle="A workflow script with a problem underlined, what it would do to an issue as a dry run, a state machine's transitions, and the moves and actions on an issue" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Script</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<section class="card stack" aria-labelledby="s-form">
+  <h2 id="s-form">Triage critical bugs</h2>
+  <div class="rule-clause">
+    <span class="rule-word">then</span>
+    <div class="rule-clause-body">
+      <span>run this script</span>
+      <div class="script-field">
+        <pre class="script-lines" aria-hidden="true">1
+<span class="bad">2</span>
+3
+4</pre>
+        <div class="script-body">
+          <pre class="script-mirror" aria-hidden="true">if (issue.fields.Priority === 'Critical') {
+<mark class="query-problem">  apply('tag urgent Assignee ' + change.by.login;</mark>
+  comment('Critical: looked at by the rule.');
+}</pre>
+          <textarea class="script-input" aria-label="Its script, in JavaScript" spellcheck="false">if (issue.fields.Priority === 'Critical') {
+  apply('tag urgent Assignee ' + change.by.login;
+  comment('Critical: looked at by the rule.');
+}</textarea>
+        </div>
+      </div>
+      <p class="query-problems"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg><strong>missing ) after argument list (line 2)</strong></p>
+    </div>
+  </div>
+  <div class="script-run" role="group" aria-label="What it would do to BACK-12">
+    <p class="label">What it would do to <a class="issue-id" href="#">BACK-12</a></p>
+    <pre class="script-log">was Major
+triaged BACK-12</pre>
+    <ul class="script-applies">
+      <li><code>Priority Critical tag urgent</code><span class="note">Priority: Major → Critical · Tags: → urgent</span></li>
+    </ul>
+    <p class="note">It asks for 1 command: 1 would change something. It would post a comment. Nothing was saved.</p>
+  </div>
+</section>
+<section class="card stack" aria-labelledby="s-machine">
+  <h2 id="s-machine">State in Backend platform</h2>
+  <ul class="transitions">
+    <li class="transition">
+      <div class="form-field"><label for="t1-name">Name</label><input id="t1-name" value="Start work"></div>
+      <div class="form-field"><label for="t1-from">From</label><input id="t1-from" class="mono" value="Submitted, Open"></div>
+      <div class="form-field"><label for="t1-to">To</label><select id="t1-to"><option>In Progress</option></select></div>
+      <div class="form-field"><label for="t1-if">If it matches</label><input id="t1-if" class="mono" value="has: Assignee"></div>
+      <div class="form-field"><label for="t1-do">And apply</label><input id="t1-do" class="mono" value="tag started"></div>
+    </li>
+  </ul>
+</section>
+<section class="card" aria-labelledby="s-bar">
+  <h2 id="s-bar" class="hidden">On the issue</h2>
+  <div class="workflow-bar" role="group" aria-label="Move it on">
+    <p class="label">Move it on</p>
+    <button type="button" class="move">Send to review <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg> In Review</button>
+    <button type="button" class="move" disabled aria-describedby="why-1">Decline <svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg> Won't fix</button>
+    <button type="button">Escalate</button>
+    <p class="workflow-why" id="why-1">Decline needs the issue to match has: comments</p>
+  </div>
+</section>
+</div>
+</div>
+</body>
+</html>

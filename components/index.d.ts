@@ -1063,3 +1063,36 @@ export interface CommitsProps {
 }
 /** An issue's commits and pull requests, newest first, with how each stands and what a commit's command did. Proposed. */
 export declare function Commits(props: CommitsProps): React.ReactElement;
+
+export interface ScriptFieldProps {
+  /** The script, in JavaScript. */
+  text: string;
+  /** What stops it compiling, each underlined where it is and said beneath: its range of the text, and its line. */
+  problems?: { start: number; end: number; message: string; line: number | null }[];
+  onText: (text: string) => void;
+}
+/** A workflow script in mono, its line numbers in a gutter, each problem underlined as the query's are. Proposed. */
+export declare function ScriptField(props: ScriptFieldProps): React.ReactElement;
+
+export interface ScriptRunProps {
+  /** The issue it ran on, as it is now. */
+  issue: string;
+  ok: boolean;
+  error?: { kind: "syntax" | "runtime" | "time" | "memory"; message: string; line: number | null } | null;
+  logs: string[];
+  /** What it said with refuse(), in its words. */
+  refusal?: string | null;
+  applies: { command: string; issue?: string; changes: FieldChange[]; errors: string[] }[];
+  note: string;
+}
+/** What a script would do to one issue, as a dry run: its logs, its refusal, and what each command it asked for would change. Proposed. */
+export declare function ScriptRun(props: ScriptRunProps): React.ReactElement;
+
+export interface WorkflowBarProps {
+  /** The moves out of the state the issue is in: a move that can't be made now says why. */
+  transitions: { name: string; to: string; allowed: boolean; why?: string | null; onMove: () => void }[];
+  /** The project's actions offered for the issue. */
+  actions: { name: string; onRun: () => void }[];
+}
+/** What a person can do to an issue by its workflows: its state machine's moves and its project's actions, as buttons. Proposed. */
+export declare function WorkflowBar(props: WorkflowBarProps): React.ReactElement;
