@@ -10,7 +10,16 @@ An issue's history, in the ledger's spirit: who did each thing, for whom and thr
 - Comments sit in their place, framed, in the order things happened.
 - A thread joins each mark to the next.
 
-**Takes:** `entries` (each `who` (`name`, `kind`), `for`, `via`, `at` (the moment, and as people read it), `did`, `changes` (each `{ field, from, to }` or `{ field, added }`), `comment`).
+- A person named in a comment ("@anna") reads as their name, a link to them (`a.mention`), in `--accent` at 500.
+
+**On a help desk request**, what the team says among itself and what it says to the person who asked are told apart:
+
+- A public comment, which the requester sees on their page and gets by email, is framed in `--outside`, as what leaves for outside is, with its words beside who said it: a badge in `outside`, "public: sent to Jane Doe". What the requester wrote is public too, by them, "via the help desk", by the name they gave. An internal comment keeps the history's frame, and nothing more: internal is how a comment starts.
+- The composer says which it's writing before anything is sent: a choice of two modes over it, "Internal note" and "Reply to Jane Doe", and under them, in a field's help, what that does ("Jane Doe gets it by email, and sees it on their request's page" or "Only the team sees it"). Its label and its button say it again: "A reply to Jane Doe", "Send to Jane Doe"; "Add the internal note".
+
+**The composer** offers people after an "@" (`.composer`): those whose login or name starts with what's typed, in a popover under the field, from its start, each by their mark, name and login; the arrows choose, Enter or Tab takes one, as "@login ", and Escape puts them away. The field keeps the focus, points at the chosen one (`aria-activedescendant`), and a screen reader hears how many there are. It sits under the field, not at the caret: placing it there would take a style of its own, which pages under a strict CSP don't have.
+
+**Takes:** `entries` (each `who` (`name`, `kind`), `for`, `via`, `at` (the moment, and as people read it), `did`, `changes` (each `{ field, from, to }` or `{ field, added }`), `comment`, `public` (`"reply"` or `"theirs"`)); and for the composer, `visibility` and `onVisibility` where there's a requester, and the people to offer.
 
 **Markup:**
 
@@ -28,4 +37,29 @@ An issue's history, in the ledger's spirit: who did each thing, for whom and thr
 </ol>
 ```
 
-**In a4a:** an issue's page, as its history and comments. The preview is a static rendition.
+```html
+<li><span class="avatar small" aria-hidden="true">AS</span><div class="history-body">
+  <p class="history-head"><strong class="who-name">Anna Schmidt</strong> · via the web · <time datetime="2026-11-16T09:02">09:02</time>
+    <span class="badge outside">public: sent to Jane Doe</span></p>
+  <div class="history-comment public"><div class="prose"><p>Thanks, Jane. <a class="mention" href="…">Ben Okafor</a> is resending them now.</p></div></div>
+</div></li>
+
+<form class="form">
+  <div class="stack tight">
+    <div class="modes" role="group" aria-label="Who sees this comment">
+      <button type="button" aria-pressed="false">Internal note</button><button type="button" aria-pressed="true">Reply to Jane Doe</button></div>
+    <p class="field-help" id="visibility-help">Jane Doe gets it by email, and sees it on their request's page.</p>
+  </div>
+  <div class="form-field"><label for="c">A reply to Jane Doe, as Anna Schmidt</label>
+    <div class="composer">
+      <textarea id="c" aria-describedby="visibility-help" aria-autocomplete="list" aria-controls="people" aria-activedescendant="people-0">… @be</textarea>
+      <ul class="popover options" id="people" role="listbox" aria-label="People to mention">
+        <li id="people-0" role="option" aria-selected="true"><span class="who"><span class="avatar small" aria-hidden="true">BO</span><span class="who-name">Ben Okafor</span></span><span class="option-kind mono">@ben</span></li>
+      </ul>
+      <span class="hidden" role="status">1 person to mention: up and down to choose, Enter to take one.</span>
+    </div></div>
+  <div class="cluster end"><button type="submit" class="primary">Send to Jane Doe</button></div>
+</form>
+```
+
+**In a4a:** an issue's page, as its history and comments. The preview is a static rendition, and below it a help desk request's: a public reply, the requester's own, and the composer offering people.

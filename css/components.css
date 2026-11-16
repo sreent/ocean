@@ -1842,6 +1842,66 @@ dl.facts-list dt { color: var(--text); font-weight: 600; }
 dl.facts-list dd { margin: 0.1rem 0 0; color: var(--muted); font-size: var(--text-sm); overflow-wrap: anywhere; }
 dl.facts-list code { color: var(--text); }
 
+/* What reaches someone, and what's said to people outside (components/Inbox, WatchToggle and HelpDesk;
+   proposed, for a4a): an inbox of what concerns a person, by issue, its unread marked by a dot and by
+   weight as well as by colour; its count beside the sidebar's link; a toggle to watch an issue, and who
+   watches it; a person named in what's written, and the people offered after an "@"; and a help desk's
+   pages for people outside, with what the team says to them told apart from what it says among itself */
+
+/* A count beside a sidebar link, such as what's unread in an inbox: --accent-text on --accent at the
+   line's end; on a phone, where the sidebar shows only icons, on the corner of the page's icon */
+.sidebar nav a .nav-count { margin-inline-start: auto; min-width: 1.4rem; padding: 0 0.4rem; border-radius: 999px; background: var(--accent);
+                            color: var(--accent-text); font-size: var(--text-xs); font-weight: 650; line-height: 1.4rem; text-align: center;
+                            font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) {
+  .sidebar nav a span.nav-count { position: absolute; top: -0.2rem; inset-inline-end: -0.3rem; width: auto; height: auto; margin: 0; overflow: visible;
+                                  clip-path: none; min-width: 1.1rem; padding: 0 0.25rem; font-size: 0.62rem; line-height: 1.1rem; }
+}
+
+/* An inbox: by issue, what happened latest first. Each issue is a framed group: its id, its summary and
+   how it stands, and its own Mark read; under it, what reached the person, in the history's grammar
+   (IssueHistory). Unread: a dot in --accent before what happened, its words in --text at 650; read, at
+   400. A deleted issue says so in a chip, its summary in --muted */
+.inbox { display: grid; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+.inbox-group { display: grid; gap: var(--space-3); min-width: 0; padding: var(--space-3) var(--space-4) var(--space-4);
+               border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+.inbox-issue { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-3); min-width: 0; }
+.inbox-summary { flex: 1 1 12rem; min-width: 0; color: var(--text); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+a.inbox-summary:hover { text-decoration: underline; }
+.inbox-group.deleted .inbox-summary { color: var(--muted); font-weight: 400; }
+.inbox-issue > :is(.badge, .chip) { flex: none; }
+.inbox-issue > button { flex: none; margin-inline-start: auto; }
+.inbox-what { color: var(--text); font-weight: 400; }
+.history > li.unread .inbox-what { font-weight: 650; }
+.history > li.unread .inbox-what::before { content: ""; display: inline-block; width: 0.5rem; height: 0.5rem; margin-inline-end: 0.4rem;
+                                           border-radius: 50%; background: var(--accent); vertical-align: 0.06em; }
+.inbox .history-comment { color: var(--text); font-size: var(--text-sm); }
+
+/* Watching an issue: a toggle, pressed while you watch it, as a choice of modes is, with how many
+   watch beside its word; who watches, and why, is a list of people in a card beside the issue */
+button.watch[aria-pressed="true"], button.watch[aria-pressed="true"]:hover { border-color: var(--accent); background: var(--accent-soft);
+                                                                             color: var(--accent); font-weight: 600; }
+.watch-count { min-width: 1.3rem; padding: 0 0.35rem; border-radius: 999px; background: var(--sunken); color: var(--text); font-size: var(--text-xs);
+               font-weight: 600; line-height: 1.35rem; text-align: center; font-variant-numeric: tabular-nums; }
+button.watch[aria-pressed="true"] .watch-count { background: var(--surface); color: var(--accent); }
+
+/* A person named in what's written ("@anna"): their name, a link to them, in --accent at 500; and the
+   people offered after an "@" as someone types, in a popover under the field, from its start */
+.prose a.mention { font-weight: 500; text-decoration: none; }
+.prose a.mention:hover { text-decoration: underline; }
+.composer { position: relative; display: grid; gap: var(--space-1); min-width: 0; }
+.composer > textarea { width: 100%; }
+.composer > .popover.options { position: absolute; top: calc(100% + 0.25rem); inset-inline-start: 0; width: min(22rem, 100%); }
+
+/* What the team says to a help desk's requester: a public comment is framed in --outside, as what
+   leaves for outside is, with its words beside who said it; an internal one keeps the history's frame */
+.history-comment.public { border-color: var(--outside); }
+.history-head .badge { margin-inline-start: var(--space-1); vertical-align: 0.05em; }
+
+/* A help desk's pages, for people outside: a lone page, wide enough for a conversation */
+.lone-card.wide { width: min(42rem, 100%); }
+.lone-card .history { margin-top: var(--space-1); }
+
 /* Placing pieces on a page (components/Layout): a stack, a cluster, and a page's main column
    with an aside. They only place: each spaces its children by its gap, and takes away their own
    outer margins, so a piece keeps its look wherever it's put. Last in the file, so that taking a

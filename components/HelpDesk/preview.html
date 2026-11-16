@@ -1,0 +1,62 @@
+<!-- @dsCard group="Pages" height=1520 width=1100 subtitle="A help desk for people outside: its form, the page after it, and a request's own page with the team's reply" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HelpDesk</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="card lone-card wide stack">
+<p class="label">Backend platform · help desk</p>
+<h1>Ask Backend platform for help</h1>
+<div class="prose"><p>Ask the backend team about <strong>sign-in</strong>, the API and your data. We answer within four hours on working days.</p></div>
+<form class="form">
+<div class="form-fields">
+<div class="form-field"><label for="name">Your name</label><input id="name" autocomplete="name" value="Jane Doe"></div>
+<div class="form-field"><label for="email">Your email</label><input id="email" type="email" autocomplete="email" aria-describedby="email-help" value="jane@example.org"><small class="field-help" id="email-help">Where we'll send the link to follow your request.</small></div>
+</div>
+<div class="form-field"><label for="summary">What it's about</label><input id="summary" aria-describedby="summary-help" value="I can't reset my password"><small class="field-help" id="summary-help">A line: what you were trying to do, and what happened.</small></div>
+<div class="form-field"><label for="details">The details</label><textarea id="details" rows="4" aria-describedby="details-help">The reset email never arrives. I tried twice this morning, and looked in spam.</textarea><small class="field-help" id="details-help">What you did, what you expected and what happened instead. Leave out passwords: anyone with the link can read this.</small></div>
+<div class="hidden" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+<div class="cluster end"><button type="submit" class="primary">Send the request</button></div>
+</form>
+</div>
+
+<div class="card lone-card wide stack">
+<p class="label">Backend platform · help desk</p>
+<h1>We have your request</h1>
+<p>We've emailed a link to follow it to <strong>jane@example.org</strong>. The team's replies will come there too. If it isn't there in a few minutes, look among your spam.</p>
+</div>
+
+<div class="card lone-card wide stack">
+<p class="label">Backend platform · help desk</p>
+<div class="title-row"><h1>I can't reset my password</h1><span class="badge">Open</span></div>
+<p class="note">You asked on <time datetime="2026-11-16">16 Nov 2026</time>, as Jane Doe (jane@example.org).</p>
+<ol class="history" aria-label="Your request, and the replies to it">
+<li><span class="avatar small" aria-hidden="true">JD</span><div class="history-body">
+<p class="history-head"><strong class="who-name">You</strong> asked · <time datetime="2026-11-16T08:15">08:15</time></p>
+<div class="history-comment"><div class="prose"><p>The reset email never arrives. I tried twice this morning, and looked in spam.</p></div></div>
+</div></li>
+<li><span class="avatar small" aria-hidden="true">AS</span><div class="history-body">
+<p class="history-head"><strong class="who-name">Anna Schmidt</strong> replied · <time datetime="2026-11-16T09:02">09:02</time></p>
+<div class="history-comment"><div class="prose"><p>Thanks, Jane. We found it: the reset mails were stuck in a queue. They're on their way now.</p></div></div>
+</div></li>
+<li><span class="avatar small" aria-hidden="true">JD</span><div class="history-body">
+<p class="history-head"><strong class="who-name">You</strong> · <time datetime="2026-11-16T09:10">09:10</time></p>
+<div class="history-comment"><div class="prose"><p>It worked, thank you.</p></div></div>
+</div></li>
+</ol>
+<form class="form">
+<div class="form-field"><label for="reply">Your reply</label><textarea id="reply" rows="3" aria-describedby="reply-help"></textarea><small class="field-help" id="reply-help">We'll email you when the team replies.</small></div>
+<div class="cluster end"><button type="submit" class="primary" disabled>Send the reply</button></div>
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>
