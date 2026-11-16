@@ -557,7 +557,7 @@ button.small, a.button.small { padding: 0.2rem 0.6rem; font-size: var(--text-sm)
 
 .page-head { margin-bottom: 1.25rem; }
 .crumbs { display: flex; flex-wrap: wrap; gap: 0.15rem; font-size: 0.85rem; margin-bottom: 0.35rem; }
-.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a { display: inline-flex; align-items: center; min-height: 1.5rem; color: var(--muted); text-decoration: none; }  /* a 24px target, as WCAG 2.5.8 asks, even wrapped on a phone */
 .crumbs a:hover { color: var(--accent); }
 .crumbs .sep { color: var(--faint); margin: 0 0.35rem; }
 .title-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
@@ -1893,9 +1893,9 @@ a.attachment-name:hover { text-decoration: underline; }
 /* A knowledge base's tree (components/ArticleTree), on NavList: each article a link, those under it
    indented beneath it along a line, folded with the chevron beside it; the open one chosen */
 .nav-list.tree ul { margin: 0 0 0 0.75rem; padding: 0 0 0 0.5rem; border-inline-start: 1px solid var(--line); list-style: none; }
-.tree-row { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); align-items: start; }
+.tree-row { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); align-items: start; }
 .tree-row > a { min-width: 0; }
-.tree-toggle { display: grid; place-items: center; width: 1.5rem; height: 1.5rem; margin-top: 0.4rem; padding: 0; border: 0;
+.tree-toggle { display: grid; place-items: center; width: 1.75rem; height: 1.75rem; margin-top: 0.275rem; padding: 0; border: 0;  /* more than 24px, as WCAG 2.5.8 asks */
                border-radius: var(--radius-sm); background: none; color: var(--muted); }
 .tree-toggle:hover { background: var(--sunken); color: var(--text); }
 .tree-toggle .icon { width: 0.95rem; height: 0.95rem; }
