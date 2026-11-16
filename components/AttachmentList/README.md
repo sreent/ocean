@@ -2,11 +2,11 @@
 
 Files on something: an issue, a comment or an article. Each is a row with its picture or its kind, its name, its size, who added it and when; files on their way show how far they've come; and a place to drop more is dashed, as what isn't there yet is. Proposed.
 
-- An image (PNG, JPEG, GIF or WebP) shows as its own thumbnail, which opens it. Any other file, SVG and HTML among them, shows the attach mark and its kind from its name ("LOG", "PDF") in Plex Mono, and downloads: nothing anyone uploads runs in the page.
+- An image (PNG, JPEG, GIF or WebP) shows as its own thumbnail, which opens it. Any other file, SVG and HTML among them, shows the attach mark and its kind ("LOG", "PDF") in Plex Mono, and downloads: nothing anyone uploads runs in the page. Its kind is what its bytes say it is where they say for sure, so an HTML page named `cat.png` reads "HTML"; for text, its name's extension.
 - The name is the link, at 500. Under it, in `--muted`: its size as people read sizes ("120 KB"), who added it by their mark (a person, an agent or a service, as Who draws them) and when, as people read times.
 - Deleting asks first, with Confirm in the row's own actions (`button.small`): "Delete report.log?", and that nobody can bring it back. Only who may delete it sees the button.
 - A file on its way is a row with a bar of how far it has come, in `--accent` on `--sunken`, and its words beside it ("1.2 MB of 3 MB"), never the bar alone; Stop beside it. One that failed says why, as an error note under its name, which turns `--muted`.
-- More files go in by dropping them on the dashed place, or with its button, which opens the browser's own picker (a real button, so the keyboard reaches it; the file input itself is `hidden`). Under a file dragged over it, the place is solid, in `--accent` on `--accent-soft`. Its note says what may go.
+- More files go in by dropping them on the dashed place, or with its button, which opens the browser's own picker (a real button, so the keyboard reaches it; the file input itself is `hidden`). Under a file dragged over it, the place is solid, in `--accent` on `--accent-soft`. Its note says what may go. With no files yet, the place is a line, "None yet. Drop files here, or choose files", until a file is dragged over the section, so an issue without files stays quiet.
 - Beside the section's heading, how many there are and the room they take: "3 files, 2.4 MB of 100 MB".
 - Under a comment's words the list is compact (`.compact`): smaller marks, no kind, and no who or when, which the comment already says.
 - Where it's narrow, a row's actions go under its name.
@@ -43,7 +43,7 @@ In a comment's composer, files chosen to go with it are chips that can be taken 
   </ul>
   <div class="attachment-drop">
     <svg class="icon" aria-hidden="true"><!-- attach --></svg>
-    <p>Drop files here, or <button type="button" class="link">choose them</button></p>
+    <p>Drop files here to attach them, or <button type="button" class="link">choose files</button></p>
     <p class="note">Up to 20 MB each. Images show here; everything else downloads.</p>
     <input type="file" multiple hidden>
   </div>
