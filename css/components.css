@@ -2214,6 +2214,51 @@ table.figures.problems td:first-child { white-space: nowrap; font-variant-numeri
 /* What rules did: too much to squeeze onto a phone, so it scrolls in its frame (.figures-scroll) */
 table.figures.rule-runs { min-width: 46rem; }
 
+/* A script: a4a's workflow scripts, in JavaScript, in a field of their own (components/Script). Mono,
+   with its line numbers in a gutter, each problem underlined in --bad as the query's are
+   (.query-problem) and its words beneath (.query-problems), the line it's on in --bad in the gutter.
+   The field is a textarea over a mirror of its text, which draws the underlines and scrolls with it */
+.script-field { display: grid; grid-template-columns: auto minmax(0, 1fr); max-height: 32rem; overflow: hidden;
+                border: 1px solid var(--line-control); border-radius: var(--radius-sm); background: var(--surface); }
+.script-field:focus-within { outline: 2px solid var(--focus); outline-offset: 2px; }
+.script-lines { margin: 0; padding: 0.55rem 0.5rem; overflow: hidden; border-inline-end: 1px solid var(--line); background: var(--sunken);
+                color: var(--muted); font-family: var(--font-mono); font-size: var(--text-sm); line-height: 1.55; text-align: end;
+                white-space: pre; user-select: none; }
+.script-lines .bad { color: var(--bad); font-weight: 600; }
+.script-body { position: relative; min-width: 0; }
+.script-input, .script-mirror { display: block; width: 100%; height: 100%; min-height: 14rem; margin: 0; padding: 0.55rem 0.65rem; border: 0;
+                                font-family: var(--font-mono); font-size: var(--text-sm); line-height: 1.55; letter-spacing: 0; tab-size: 2;
+                                white-space: pre; overflow-wrap: normal; }
+.script-input { position: relative; resize: none; overflow: auto; border-radius: 0; background: transparent; color: var(--text); }
+.script-input:focus-visible { outline: none; }  /* the field around it wears the ring */
+.script-mirror { position: absolute; inset: 0; overflow: hidden; color: transparent; pointer-events: none; }
+/* What a script would do to one issue, as a dry run: how it ended, what it logged (.script-log, mono, as
+   it wrote it), its refusal, and each command it asked for with what that would change */
+.script-run { display: grid; gap: var(--space-2); padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-md);
+              background: var(--surface); }
+.script-run > * { margin: 0; }
+.script-log { max-height: 12rem; overflow: auto; padding: var(--space-2) var(--space-3); border-radius: var(--radius-sm); background: var(--sunken);
+              color: var(--text); font-family: var(--font-mono); font-size: var(--text-sm); line-height: 1.5; white-space: pre-wrap;
+              overflow-wrap: anywhere; }
+.script-applies { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.script-applies > li { display: grid; gap: 0.15rem; min-width: 0; }
+.script-applies code { padding: 0.05rem 0.4rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--sunken); }
+
+/* What a person can do to an issue by its project's workflows (components/Script): its state machine's
+   moves from where it is, each a button that says where it goes, and the project's actions. A move
+   that can't be made now is shown, unpressable, with why beneath; an action that isn't offered isn't */
+.workflow-bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.workflow-bar > .label { margin: 0; }
+.workflow-bar .move .icon { width: 1rem; height: 1rem; }
+.workflow-why { flex-basis: 100%; margin: 0; color: var(--muted); font-size: var(--text-sm); }
+
+/* A state machine's transitions, one row each: its name, the states it leaves, where it goes, and what
+   it asks and does, which wrap onto more rows where it's narrow (components/Script) */
+.transitions { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.transition { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: var(--space-2); align-items: end;
+              padding: var(--space-2) var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-md); }
+.transition > .cluster { grid-column: 1 / -1; }
+
 /* An issue's commits and pull requests, newest first: a pull request by its title, its number in
    mono and how it stands (open, waiting on review, in --warn; merged, in --good; closed unmerged,
    --idle), and its branch into its target; a commit by its sha in mono and its first line, who wrote
