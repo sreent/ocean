@@ -1,0 +1,95 @@
+<!-- @dsCard group="Frame" height=560 subtitle="The button that opens it, and the palette once open: what waits first, then pages and instances" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Palette</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="note">From any page, Ctrl-K, or ⌘K on a Mac, or the button: go anywhere you may, by name.</p>
+<div class="ds-row"><button type="button" class="palette-open" id="open"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13z"/><path d="M15.4 15.4L20 20"/></svg><span>Find anything</span><kbd>Ctrl</kbd><kbd>K</kbd></button></div></div>
+<div class="ds-group"><p class="label">Once it's open</p>
+<dialog class="dialog palette ds-in-place" open aria-label="Find anything" id="shown">
+<div class="palette-find"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13z"/><path d="M15.4 15.4L20 20"/></svg><input role="combobox" aria-expanded="true" aria-controls="shown-list" aria-activedescendant="shown-o0" aria-autocomplete="list" aria-label="Find a page, an agent, an instance or a draft" placeholder="Find anything" autocomplete="off" spellcheck="false"></div>
+<div id="shown-list" class="palette-list" role="listbox" aria-label="What it found">
+<div role="group" aria-labelledby="shown-g0"><p class="label" id="shown-g0">Waiting on you</p>
+<div role="option" id="shown-o0" class="palette-option" aria-selected="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M8 12.2l2.7 2.7L16.2 9.4"/></svg><span class="palette-name">1 change an agent asked for</span><span class="palette-where">waits for your decision</span></div>
+<div role="option" id="shown-o1" class="palette-option" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 7h9"/><path d="M17 7h3"/><path d="M4 17h3"/><path d="M11 17h9"/><path d="M15 4.5v5"/><path d="M9 14.5v5"/></svg><span class="palette-name">Version 8 of the settings</span><span class="palette-where">waits for your approval</span></div>
+</div>
+<div role="group" aria-labelledby="shown-g1"><p class="label" id="shown-g1">Pages</p>
+<div role="option" id="shown-o2" class="palette-option" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M3.5 6.5h5v5h-5z"/><path d="M15.5 3.5h5v5h-5z"/><path d="M15.5 15.5h5v5h-5z"/><path d="M8.5 9h3.5v-3h3.5"/><path d="M12 9v9h3.5"/></svg><span class="palette-name">Your home</span><span class="palette-where">what waits on you</span></div>
+<div role="option" id="shown-o3" class="palette-option" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M10 6.5h10"/><path d="M10 12h10"/><path d="M10 17.5h10"/><path d="M4 6.5l1.5 1.5 2.5-2.5"/><path d="M4 12l1.5 1.5 2.5-2.5"/><path d="M4 17.5l1.5 1.5 2.5-2.5"/></svg><span class="palette-name">Your tasks</span><span class="palette-where">a page</span></div>
+<div role="option" id="shown-o4" class="palette-option" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 7h9"/><path d="M17 7h3"/><path d="M4 17h3"/><path d="M11 17h9"/><path d="M15 4.5v5"/><path d="M9 14.5v5"/></svg><span class="palette-name">Settings</span><span class="palette-where">a page</span></div>
+</div>
+<div role="group" aria-labelledby="shown-g2"><p class="label" id="shown-g2">Instances</p>
+<div role="option" id="shown-o5" class="palette-option" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg><span class="palette-name">The assistant, for billing</span><span class="palette-where">an instance of the assistant</span></div>
+</div>
+</div>
+<p class="palette-keys"><span><kbd>↑</kbd> <kbd>↓</kbd> to choose</span><span><kbd>Enter</kbd> to open</span><span><kbd>Esc</kbd> to close</span></p>
+</dialog>
+</div>
+<dialog class="dialog palette" aria-label="Find anything" id="live">
+<div class="palette-find"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M10.5 4a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13z"/><path d="M15.4 15.4L20 20"/></svg><input role="combobox" aria-expanded="true" aria-controls="live-list" aria-activedescendant="live-o0" aria-autocomplete="list" aria-label="Find a page, an agent, an instance or a draft" placeholder="Find anything" autocomplete="off" spellcheck="false"></div>
+<div id="live-list" class="palette-list" role="listbox" aria-label="What it found">
+<div role="group" aria-labelledby="live-g0"><p class="label" id="live-g0">Waiting on you</p>
+<div role="option" id="live-o0" class="palette-option" aria-selected="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M8 12.2l2.7 2.7L16.2 9.4"/></svg><span class="palette-name">1 change an agent asked for</span><span class="palette-where">waits for your decision</span></div>
+<div role="option" id="live-o1" class="palette-option" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 7h9"/><path d="M17 7h3"/><path d="M4 17h3"/><path d="M11 17h9"/><path d="M15 4.5v5"/><path d="M9 14.5v5"/></svg><span class="palette-name">Version 8 of the settings</span><span class="palette-where">waits for your approval</span></div>
+</div>
+<div role="group" aria-labelledby="live-g1"><p class="label" id="live-g1">Pages</p>
+<div role="option" id="live-o2" class="palette-option" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M3.5 6.5h5v5h-5z"/><path d="M15.5 3.5h5v5h-5z"/><path d="M15.5 15.5h5v5h-5z"/><path d="M8.5 9h3.5v-3h3.5"/><path d="M12 9v9h3.5"/></svg><span class="palette-name">Your home</span><span class="palette-where">what waits on you</span></div>
+<div role="option" id="live-o3" class="palette-option" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M10 6.5h10"/><path d="M10 12h10"/><path d="M10 17.5h10"/><path d="M4 6.5l1.5 1.5 2.5-2.5"/><path d="M4 12l1.5 1.5 2.5-2.5"/><path d="M4 17.5l1.5 1.5 2.5-2.5"/></svg><span class="palette-name">Your tasks</span><span class="palette-where">a page</span></div>
+<div role="option" id="live-o4" class="palette-option" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 7h9"/><path d="M17 7h3"/><path d="M4 17h3"/><path d="M11 17h9"/><path d="M15 4.5v5"/><path d="M9 14.5v5"/></svg><span class="palette-name">Settings</span><span class="palette-where">a page</span></div>
+</div>
+<div role="group" aria-labelledby="live-g2"><p class="label" id="live-g2">Instances</p>
+<div role="option" id="live-o5" class="palette-option" aria-selected="false"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg><span class="palette-name">The assistant, for billing</span><span class="palette-where">an instance of the assistant</span></div>
+</div>
+</div>
+<p class="palette-none" role="status" hidden></p>
+<p class="palette-keys"><span><kbd>↑</kbd> <kbd>↓</kbd> to choose</span><span><kbd>Enter</kbd> to open</span><span><kbd>Esc</kbd> to close</span></p>
+</dialog>
+</div>
+</div>
+<script>
+const live = document.getElementById("live");
+const field = live.querySelector("input");
+const options = () => [...live.querySelectorAll('[role="option"]:not([hidden])')];
+let at = 0;
+function choose(n) {
+  for (const o of live.querySelectorAll('[role="option"]')) o.setAttribute("aria-selected", "false");
+  const all = options();
+  live.querySelector(".palette-none").hidden = all.length > 0;
+  live.querySelector(".palette-none").textContent = `Nothing you may open is called “${field.value.trim()}”.`;
+  if (!all.length) { field.removeAttribute("aria-activedescendant"); return; }
+  at = (n + all.length) % all.length;
+  all[at].setAttribute("aria-selected", "true");
+  field.setAttribute("aria-activedescendant", all[at].id);
+  all[at].scrollIntoView({ block: "nearest" });
+}
+function open() { live.showModal(); field.value = ""; filter(); field.focus(); }
+function filter() {
+  const words = field.value.trim().toLowerCase();
+  for (const o of live.querySelectorAll('[role="option"]')) o.hidden = words && !o.textContent.toLowerCase().includes(words);
+  for (const g of live.querySelectorAll('[role="group"]')) g.hidden = !g.querySelector('[role="option"]:not([hidden])');
+  choose(0);
+}
+document.getElementById("open").addEventListener("click", open);
+document.addEventListener("keydown", (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") { e.preventDefault(); open(); }
+});
+field.addEventListener("input", filter);
+field.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowDown") { e.preventDefault(); choose(at + 1); }
+  if (e.key === "ArrowUp") { e.preventDefault(); choose(at - 1); }
+  if (e.key === "Home") { e.preventDefault(); choose(0); }
+  if (e.key === "End") { e.preventDefault(); choose(-1); }
+  if (e.key === "Enter") { e.preventDefault(); live.close(); }
+});
+live.addEventListener("click", (e) => { if (e.target.closest('[role="option"]')) live.close(); });
+</script>
+</body>
+</html>
