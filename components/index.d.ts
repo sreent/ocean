@@ -802,12 +802,20 @@ export interface AttachmentListProps {
     note?: string;
     /** Who may delete it gets a Confirm: "Delete report.log?". */
     onDelete?: () => void;
+    /**
+     * Shown in place, under its row, once opened with Show: text as it's written, with which part of
+     * how much ("The first 64 KB of 1.2 MB") and the other end a click away; or sound or video in
+     * the browser's own player. Images open as themselves, so take none.
+     */
+    preview?: { text: string; about: string; otherEnd?: { label: string; onShow: () => void } } | { audio: string } | { video: string };
+    open?: boolean;
+    onToggle?: () => void;
   }[];
   /** Files on their way: how far each has come, from 0 to 1, or why it failed. */
   uploading?: { name: string; done: number; words: string; error?: string; onStop?: () => void }[];
   /** Where more go: dropped on it, or chosen with its button. None, and nobody may add any. */
   onAdd?: (files: File[]) => void;
-  /** What may go: "Up to 20 MB each. Images show here; everything else downloads." */
+  /** What may go: "Up to 20 MB each. Images, text, sound and video show here; everything else downloads." */
   addAbout?: string;
   /** Under a comment's words: smaller, without who and when. */
   compact?: boolean;
