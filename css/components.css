@@ -635,8 +635,14 @@ a.chip:hover { border-color: var(--line-strong); color: var(--text); }
 .flow-step.own .flow-box { color: var(--own); }
 .flow-step.trigger .flow-box { border-radius: 2.8rem var(--radius-md) var(--radius-md) 2.8rem; }
 .flow-step.chosen .flow-box { outline: 2px solid var(--focus); outline-offset: 3px; }
-.flow-name { max-width: 100%; font-weight: 600; font-size: var(--text-sm); line-height: 1.3; }
-.flow-about { max-width: 100%; color: var(--muted); font-size: var(--text-xs); line-height: 1.35; }
+.flow-name { max-width: 100%; font-weight: 600; font-size: var(--text-sm); line-height: 1.3; overflow-wrap: break-word; }
+.flow-about { max-width: 100%; color: var(--muted); font-size: var(--text-xs); line-height: 1.35; overflow-wrap: break-word; }
+/* On a canvas, a step's words stand on the canvas's own colour, so the curves to other steps pass
+   behind them, never through them; and a long name wraps within its step, at a break the product
+   marks, such as after each underscore in a tool's name, rather than spilling onto the steps
+   beside it. Only a word with no break at all wraps where it must */
+.flow .flow-name, .flow .flow-about, .flow .flow-slot span { padding-inline: 0.25rem;
+                                                             border-radius: var(--radius-sm); background: var(--sunken); }
 /* Where steps join: a dot on each side. A trigger has none where nothing comes in, the last step
    none where nothing goes on */
 .flow-box::before, .flow-box::after { content: ""; position: absolute; top: 50%; width: 0.6rem; height: 0.6rem;

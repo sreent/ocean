@@ -2,7 +2,7 @@
 
 A step on a canvas, as workflow builders draw them: a5s's agents, a7c's skills, a3t's processes. It follows n8n's canvas, which has worked these out well, in Ocean's colours. Proposed.
 
-- A square for each step, with its icon, and its name and what it does beneath, so names are never cut short.
+- A square for each step, with its icon, and its name and what it does beneath, so names are never cut short. They wrap within the step, at a break the product marks, such as a `<wbr>` after each underscore in a tool's name, and stand on the canvas's colour, so the curves to other steps pass behind them, never through them.
 - The icon takes the colour of what the step does: `--reads`, `--writes`, `--changes`, `--outside`, `--own`. Risk shows before anything runs, and the canvas stays calm.
 - A trigger is rounded on its left, where nothing comes in.
 - Steps join at a dot on each side, by curves in `--faint`, 3 to 1 on the canvas. Where the last run went, the curves are `--good`. Where nothing goes on yet, a short line ends at a button to add the next step.
