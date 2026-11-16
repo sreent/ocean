@@ -960,3 +960,61 @@ export interface MappingTableProps {
 }
 /** Bringing a file of issues in: its columns and values mapped, a check's counts, problems row by row, and the run's progress. Proposed. */
 export declare function MappingTable(props: MappingTableProps): React.ReactElement;
+
+export interface RuleProps {
+  name: string;
+  /** "change": when something happens to an issue; "schedule": every hour or day; "guard": refuses a change that breaks it. */
+  kind: "change" | "schedule" | "guard";
+  /** The rule as a sentence, in its parts: When … (or how often), if …, then …. The query, command or requirement in each is mono, as written. */
+  sentence: { when: string; if?: { words: string; code: string }; then: { words: string; code?: string } };
+  on: boolean;
+  /** What no longer reads in it, such as a value renamed since: it does nothing until they're fixed. */
+  problems?: { part: string; what: string; fix?: string }[];
+  /** What it did last, or when it next runs: "Last acted 2 minutes ago, on BACK-12". */
+  said?: React.ReactNode;
+  onPreview: () => void;
+  onEdit: () => void;
+  onToggle: () => void;
+  onDelete: () => void;
+}
+/** A workflow rule read as a sentence, what it does and how it stands as badges, and what it did last. Proposed. */
+export declare function Rule(props: RuleProps): React.ReactElement;
+
+export interface RuleFormProps {
+  /** Each part's word and what fills it in: a choice, a query or command field (QueryBar's), a message. */
+  clauses: { word: "When" | "if" | "then"; about?: string; field: React.ReactNode }[];
+  /** What it would do now, as a dry run gives it; for a guard, the issues that already break it. */
+  preview?: { matching: number; note: string; sample: { id: string; summary: string; changes: FieldChange[] }[] };
+  onSave: () => void;
+}
+/** A rule's form, said as the rule is: a row for each word, the word beside its fields where there's room. Proposed. */
+export declare function RuleForm(props: RuleFormProps): React.ReactElement;
+
+export interface CommitsProps {
+  /** The issue they mention. */
+  issue: string;
+  /** Pull or merge requests: open (waiting on review), merged, or closed without merging. */
+  pullRequests: {
+    number: number;
+    title: string;
+    href: string;
+    state: "open" | "merged" | "closed";
+    branch?: string;
+    target?: string;
+    by?: string;
+    repository: string;
+    at: { at: string; label: string };
+  }[];
+  /** Commits, each with the command it gave the issue, if one: applied as its author, or not, and why. */
+  commits: {
+    sha: string;
+    title: string;
+    href?: string;
+    by: Someone;
+    branch?: string;
+    at: { at: string; label: string };
+    command?: { text: string; applied: boolean; note: string };
+  }[];
+}
+/** An issue's commits and pull requests, newest first, with how each stands and what a commit's command did. Proposed. */
+export declare function Commits(props: CommitsProps): React.ReactElement;

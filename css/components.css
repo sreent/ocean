@@ -2151,6 +2151,61 @@ table.figures.mapping select { min-width: 12rem; max-width: 100%; }
 table.figures.problems td:first-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
 .problem-hint { display: block; color: var(--muted); font-size: var(--text-sm); }
 
+/* A workflow rule, read as a sentence: When … if … then …, its three words in --text at 650 and
+   the rest in --muted, the query and the command in mono as they are written. What it does and how
+   it stands are badges at its head: changes issues, or refuses changes (the product's own check);
+   on, off, or needs fixing. Off, all of it is --muted. What it did last is a line under it. Its form
+   says it the same way: a row for each word, the word beside its fields where there's room and over
+   them where there isn't (components/Rule) */
+.rules { display: grid; gap: var(--space-3); margin: 0; padding: 0; list-style: none; }
+.section-head + .rules { margin-top: var(--space-3); }
+.rules > .card.rule-card { margin: 0; padding: var(--space-3) var(--space-4); box-shadow: none; }
+.rule-card { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); }  /* one column that can shrink, so a long query wraps */
+.rule-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: var(--space-2); }
+.rule-name { margin: 0; color: var(--text); font-size: var(--text-md); font-weight: 600; overflow-wrap: anywhere; }
+.rule-sentence { margin: 0; color: var(--muted); line-height: 1.8; overflow-wrap: anywhere; }
+.rule-word { color: var(--text); font-weight: 650; }
+.rule-sentence code { padding: 0.08rem 0.4rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--sunken);
+                      color: var(--text); font-size: var(--text-sm); }
+.rule-card.off :is(.rule-name, .rule-word, .rule-sentence code) { color: var(--muted); }
+.rule-said { margin: 0; color: var(--muted); font-size: var(--text-sm); overflow-wrap: anywhere; }
+.rule-said .issue-id { color: var(--text); }
+.rule-form { display: grid; gap: var(--space-3); min-width: 0; container-type: inline-size; }
+.rule-clause { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); gap: var(--space-2) var(--space-3); align-items: start; }
+.rule-clause > .rule-word { padding-top: 0.45rem; }  /* level with the first line of its field */
+.rule-clause-body { display: grid; gap: var(--space-2); min-width: 0; }
+.rule-clause-body > .cluster > :is(select, input) { width: auto; max-width: 100%; }
+@container (max-width: 30rem) {  /* a phone: each word over its fields */
+  .rule-clause { grid-template-columns: minmax(0, 1fr); gap: var(--space-1); }
+  .rule-clause > .rule-word { padding-top: 0; }
+}
+/* What rules did: too much to squeeze onto a phone, so it scrolls in its frame (.figures-scroll) */
+table.figures.rule-runs { min-width: 46rem; }
+
+/* An issue's commits and pull requests, newest first: a pull request by its title, its number in
+   mono and how it stands (open, waiting on review, in --warn; merged, in --good; closed unmerged,
+   --idle), and its branch into its target; a commit by its sha in mono and its first line, who wrote
+   it, where and when, and the command it gave the issue as it was written, applied or not and why
+   (components/Commits) */
+.code-list { display: grid; margin: 0; padding: 0; list-style: none; }
+.section-head + .code-list { margin-top: var(--space-3); }
+.code-list > li { display: grid; gap: 0.1rem; min-width: 0; padding: var(--space-2) 0; border-bottom: 1px solid var(--line); }
+.code-list > li:first-child { padding-top: 0; }
+.code-list > li:last-child { padding-bottom: 0; border-bottom: 0; }
+.code-list > li > * { margin: 0; }
+.code-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.15rem var(--space-2); min-width: 0; }
+.code-line .badge { align-self: center; }
+.code-ref { color: var(--muted); font-family: var(--font-mono); font-size: var(--text-sm); white-space: nowrap; }
+a.code-ref { color: var(--accent); }
+.code-title { color: var(--text); font-weight: 500; overflow-wrap: anywhere; }
+a.code-title { text-decoration: none; }
+a.code-title:hover { text-decoration: underline; }
+.code-list > li > .code-command { margin-top: 0.2rem; }
+.code-command { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem var(--space-2); color: var(--muted); font-size: var(--text-sm);
+                overflow-wrap: anywhere; }
+.code-command code { padding: 0.05rem 0.4rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--sunken);
+                     color: var(--text); }
+
 /* Placing pieces on a page (components/Layout): a stack, a cluster, and a page's main column
    with an aside. They only place: each spaces its children by its gap, and takes away their own
    outer margins, so a piece keeps its look wherever it's put. Last in the file, so that taking a
