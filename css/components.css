@@ -2357,3 +2357,75 @@ body.lone { display: grid; place-items: center; min-height: 100vh; margin: 0; pa
 .editable { border-radius: var(--radius-sm); cursor: text; }
 .editable:hover { background: var(--sunken); }
 .editable:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+/* The editor (a4a, D39): Markdown written as it reads, over the Markdown kept. The toolbar sits on the
+   field's top edge, in --sunken; a tool that's on where the caret is, is pressed (--accent-soft and
+   --accent, as a chosen mode is). The field keeps a field's edge, --line-control, and the focus ring
+   when it has the caret. Visual or Markdown is a choice of two at the bar's end. A file dragged over it
+   rings it in --accent, dashed; a picture on its way says "Uploading…" where it will go. */
+.editor { display: grid; gap: var(--space-1); min-width: 0; }
+.editor-bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-2); }
+.editor-bar > .note { font-size: var(--text-sm); }
+.editor-visual > .editor-bar { padding: var(--space-1); border: 1px solid var(--line-control); border-bottom: 0;
+                               border-radius: var(--radius-sm) var(--radius-sm) 0 0; background: var(--sunken); }
+.editor-tools { display: inline-flex; flex-wrap: wrap; gap: 2px; }
+.editor-tools + .editor-tools { padding-inline-start: var(--space-2); border-inline-start: 1px solid var(--line); }
+button.editor-tool { min-width: 2rem; min-height: 2rem; justify-content: center; padding: 0.2rem 0.35rem; border-color: transparent;
+                     background: none; color: var(--muted); }
+button.editor-tool:hover { background: var(--surface); color: var(--text); }
+button.editor-tool[aria-pressed="true"] { border-color: var(--accent-soft); background: var(--accent-soft); color: var(--accent); }
+.editor-tool .icon { width: 1.1rem; height: 1.1rem; }
+.editor-glyph { min-width: 1.1rem; font-size: var(--text-md); line-height: 1; text-align: center; }
+.editor-glyph:is(.bold, .heading) { font-weight: 700; }
+.editor-glyph.italic { font-style: italic; font-family: Georgia, serif; }
+.editor-glyph.struck-through { text-decoration: line-through; }
+.modes.editor-mode { margin: 0; }
+.editor-mode button { padding: 0.15rem 0.6rem; font-size: var(--text-sm); }
+.editor-status:empty { display: none; }
+
+/* The field: what ProseMirror needs of it (white space kept, a place for its gap caret), in Ocean's words */
+.editor-surface { position: relative; min-height: 7rem; max-height: 32rem; overflow-y: auto; padding: 0.5rem 0.75rem;
+                  border: 1px solid var(--line-control); border-radius: 0 0 var(--radius-sm) var(--radius-sm); background: var(--surface);
+                  white-space: pre-wrap; white-space: break-spaces; overflow-wrap: anywhere; font-variant-ligatures: none; }
+.editor-surface.tall { min-height: 18rem; max-height: none; }
+.editor-surface pre { white-space: pre-wrap; }
+.editor-surface li { position: relative; }
+.editor-surface .is-empty::before { content: attr(data-placeholder); float: inline-start; height: 0; color: var(--muted); pointer-events: none; }
+.editor-surface .ProseMirror-selectednode { outline: 2px solid var(--focus); outline-offset: 1px; }
+.editor-surface img.ProseMirror-separator { display: inline; border: 0; margin: 0; }
+.editor-surface.ProseMirror-hideselection { caret-color: transparent; }
+.editor-surface.ProseMirror-hideselection *::selection { background: transparent; }
+.editor-surface .ProseMirror-gapcursor { display: none; position: absolute; pointer-events: none; }
+.editor-surface .ProseMirror-gapcursor::after { content: ""; display: block; position: absolute; top: -2px; width: 20px;
+                                               border-top: 1px solid var(--text); animation: editor-caret 1.1s steps(2, start) infinite; }
+.editor-surface.ProseMirror-focused .ProseMirror-gapcursor { display: block; }
+@keyframes editor-caret { to { visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { .editor-surface .ProseMirror-gapcursor::after { animation: none; } }
+/* Its tables: each cell edged, aligned by data-align (never a style attribute), a chosen cell washed in --accent-soft */
+.editor-surface .tableWrapper { overflow-x: auto; }
+.editor-surface table { width: 100%; table-layout: fixed; }
+.editor-surface :is(td, th) { position: relative; vertical-align: top; border: 1px solid var(--line); }
+.editor-surface :is(td, th) > p { margin: 0; }
+.editor-surface :is(td, th)[data-align="center"] { text-align: center; }
+.editor-surface :is(td, th)[data-align="right"] { text-align: end; }
+.editor-surface .selectedCell::after { content: ""; position: absolute; inset: 0; background: var(--accent-soft); opacity: 0.7; pointer-events: none; }
+.editor-surface .column-resize-handle { display: none; }
+/* A checklist's item: its box, then its words */
+.editor-surface li p { margin-block: 0.15rem; }
+.editor-surface ul:has(> li.editor-task) { padding-inline-start: 0.25rem; }
+.editor-surface li.editor-task { display: flex; gap: var(--space-2); align-items: baseline; list-style: none; }
+.editor-surface li.editor-task > div { flex: 1; min-width: 0; }
+.editor-surface li.editor-task > input { margin: 0; cursor: pointer; }
+.editor-uploading { display: inline-block; margin: 0 0.25rem; padding: 0 0.5rem; border-radius: var(--radius-pill); background: var(--sunken);
+                    color: var(--muted); font-size: var(--text-sm); }
+.editor-visual.dropping .editor-surface { outline: 2px dashed var(--accent); outline-offset: -4px; }
+
+/* What's written, read (D39): a picture of a4a's own fits its column; one from elsewhere is named, never
+   fetched, in --muted. A checklist's boxes stand where bullets would; one that can be ticked shows a pointer. */
+.prose img { max-width: 100%; height: auto; border-radius: var(--radius-sm); }
+.prose .image-elsewhere { color: var(--muted); font-style: italic; }
+.prose a.image-elsewhere { color: var(--accent); }
+.prose .contains-task-list { padding-inline-start: 0.25rem; list-style: none; }
+.prose .contains-task-list .contains-task-list { padding-inline-start: 1.5rem; }
+.prose .task-list-item > input { margin: 0 0.5rem 0 0; vertical-align: -0.1em; }
+.prose .task-list-item > input:enabled { cursor: pointer; }
