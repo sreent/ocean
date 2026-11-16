@@ -74,7 +74,7 @@ These meanings are the products' shared grammar, the same on every surface: badg
 
 ## Type
 
-- IBM Plex Sans for text, and IBM Plex Mono for ids, versions, digests and times people compare. Both are bundled in `fonts/`, under the SIL Open Font License, and pages load fonts from the product alone, so nothing loads from outside, which matters on premises. Plex has a Thai family designed to match, for when a product needs one.
+- IBM Plex Sans for text, and IBM Plex Mono for ids, versions, digests and times people compare. Both are bundled in `fonts/`, under the SIL Open Font License, and pages load fonts from the product alone, so nothing loads from outside, which matters on premises. IBM Plex Sans Thai, drawn to match, is bundled with them for Thai letters alone, so a page loads it only where it has some. A page in Thai says so, `lang="th"`, which gives its lines more room for the vowels and tones Thai stacks above and below its letters.
 - The body is 15px (`--text-base`), a line and a half apart. Sizes come from the scale `--text-xs` to `--text-2xl`, and a rem is the body's 15px.
 - A page's title is its one h1 (1.45rem, 650), its sections' titles are h2 (1.02rem, 600), and theirs are h3 (0.92rem, 600, in `--muted`), the studio's pages and the server's alike.
 - A note under a title is 0.9rem in `--muted`, no wider than 52rem. A label over a group is 0.74rem at 650, in capitals 0.05em apart, in `--faint`.
