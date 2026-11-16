@@ -1,0 +1,48 @@
+<!-- @dsCard group="Knowledge base" height=520 subtitle="A project's articles as a tree, the open one chosen, one branch folded" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ArticleTree</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-cols">
+<div class="ds-group"><p class="label">Beside the article that's open</p>
+<nav class="card side-card nav-card" aria-label="Backend platform's knowledge base">
+  <h2>Backend platform</h2>
+  <ul class="nav-list tree">
+    <li>
+      <div class="tree-row">
+        <button type="button" class="tree-toggle" aria-expanded="true" aria-controls="under-a1" aria-label="Hide what's under Runbooks"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 9.5l6 6 6-6"/></svg></button>
+        <a href="#a1"><span class="nav-list-name">Runbooks</span><span class="nav-list-about"><span class="issue-id">BACK-A-1</span></span></a>
+      </div>
+      <ul id="under-a1">
+        <li><div class="tree-row"><span aria-hidden="true"></span><a href="#a4" aria-current="page"><span class="nav-list-name">Database failover</span><span class="nav-list-about"><span class="issue-id">BACK-A-4</span></span></a></div></li>
+        <li>
+          <div class="tree-row">
+            <button type="button" class="tree-toggle" aria-expanded="false" aria-controls="under-a5" aria-label="Show what's under Deploying the API"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 9.5l6 6 6-6"/></svg></button>
+            <a href="#a5"><span class="nav-list-name">Deploying the API</span><span class="nav-list-about"><span class="issue-id">BACK-A-5</span></span></a>
+          </div>
+          <ul id="under-a5" hidden>
+            <li><div class="tree-row"><span aria-hidden="true"></span><a href="#a6"><span class="nav-list-name">Rolling back a release</span><span class="nav-list-about"><span class="issue-id">BACK-A-6</span></span></a></div></li>
+          </ul>
+        </li>
+        <li><div class="tree-row"><span aria-hidden="true"></span><a href="#a7"><span class="nav-list-name">Rotating signing keys without downtime, step by step</span><span class="nav-list-about"><span class="issue-id">BACK-A-7</span></span></a></div></li>
+      </ul>
+    </li>
+    <li><div class="tree-row"><span aria-hidden="true"></span><a href="#a2"><span class="nav-list-name">API conventions</span><span class="nav-list-about"><span class="issue-id">BACK-A-2</span></span></a></div></li>
+    <li><div class="tree-row"><span aria-hidden="true"></span><a href="#a3"><span class="nav-list-name">On-call</span><span class="nav-list-about"><span class="issue-id">BACK-A-3</span></span></a></div></li>
+  </ul>
+</nav>
+</div>
+<div class="ds-group"><p class="label">How it sits beside the article</p>
+<p class="note">On a wide screen the tree is a column before the article, as the assistant's conversations are; on a phone the article comes first and the tree after it. Each article's place among those beside it is kept: a move puts it where it's asked to go, and those after it close up.</p>
+</div>
+</div>
+</div>
+</body>
+</html>

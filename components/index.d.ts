@@ -691,3 +691,87 @@ export interface IssueHistoryProps {
 }
 /** An issue's history in the ledger's spirit: who, for whom, through what, when, and each change in the grammar. Proposed. */
 export declare function IssueHistory(props: IssueHistoryProps): React.ReactElement;
+
+export interface AttachmentListProps {
+  /** The section's heading: "Files". */
+  label: string;
+  /** How many there are and how much room they take, beside the heading: "3 files, 2.4 MB of 100 MB". */
+  about?: string;
+  files: {
+    id: string;
+    name: string;
+    /** Where its bytes are: an image opens in place, anything else downloads. */
+    href: string;
+    /** "120 KB". */
+    size: string;
+    /** A raster image (PNG, JPEG, GIF, WebP): its picture is its thumbnail. Anything else shows its kind. */
+    image?: boolean;
+    /** What kind it is, from its name, under the file's mark: "LOG", "PDF". */
+    kind?: string;
+    who?: Someone;
+    /** The moment, and as people read it. */
+    at?: { at: string; label: string };
+    /** Where it is, in a list of an issue's files: "on a comment". */
+    note?: string;
+    /** Who may delete it gets a Confirm: "Delete report.log?". */
+    onDelete?: () => void;
+  }[];
+  /** Files on their way: how far each has come, from 0 to 1, or why it failed. */
+  uploading?: { name: string; done: number; words: string; error?: string; onStop?: () => void }[];
+  /** Where more go: dropped on it, or chosen with its button. None, and nobody may add any. */
+  onAdd?: (files: File[]) => void;
+  /** What may go: "Up to 20 MB each. Images show here; everything else downloads." */
+  addAbout?: string;
+  /** Under a comment's words: smaller, without who and when. */
+  compact?: boolean;
+}
+/** Files on an issue, a comment or an article: each with its picture or kind, name, size, who and when; files on their way; and a place to drop more. Proposed. */
+export declare function AttachmentList(props: AttachmentListProps): React.ReactElement;
+
+export type ArticleNode = {
+  /** "BACK-A-3". */
+  id: string;
+  title: string;
+  href: string;
+  /** The articles under it; folded until opened, unless the open one is among them. */
+  children?: ArticleNode[];
+  open?: boolean;
+};
+export interface ArticleTreeProps {
+  /** Whose tree: "Backend platform". */
+  label: string;
+  articles: ArticleNode[];
+  /** The id of the article open beside the tree. */
+  current?: string;
+  onToggle?: (id: string, open: boolean) => void;
+}
+/** A project's knowledge base as a tree, on NavList: each article a link, those under it indented and folded. Proposed. */
+export declare function ArticleTree(props: ArticleTreeProps): React.ReactElement;
+
+export type DiffLine = { op: "same" | "add" | "del"; text: string };
+export interface ArticlePageProps {
+  id: string;
+  title: string;
+  /** The articles it sits under, from the top. */
+  path: { id: string; title: string; href: string }[];
+  /** "Updated by Anna Schmidt, Mon 9 Nov · version 4". */
+  meta: React.ReactNode;
+  /** Its Markdown, as prose. */
+  body: React.ReactNode;
+  children?: { id: string; title: string; href: string; about?: string }[];
+  /** Issues and articles that mention it by its id. */
+  mentionedIn?: { id: string; title: string; href: string; state?: IssueState; resolved?: boolean }[];
+  /** Editing: its title and Markdown, and how it will read; "write" or "read" where only one fits. */
+  editing?: { title: string; markdown: string; preview: React.ReactNode; show?: "write" | "read" };
+  /** A version against the one before, a line each. */
+  version?: { label: string; lines: DiffLine[] };
+}
+/** An article: its words as prose, where it sits, what's under it and what mentions it; its editor and its versions. Proposed. */
+export declare function ArticlePage(props: ArticlePageProps): React.ReactElement;
+
+export interface ArticleResultsProps {
+  /** Each article found: its title, where it sits, and its words around what matched, the matches marked. */
+  results: { id: string; title: string; href: string; path: string[]; when: string; snippet: { text: string; match: boolean }[] }[];
+}
+/** What a knowledge base search found. Proposed. */
+export declare function ArticleResults(props: ArticleResultsProps): React.ReactElement;
