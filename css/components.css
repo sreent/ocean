@@ -2429,3 +2429,22 @@ button.editor-tool[aria-pressed="true"] { border-color: var(--accent-soft); back
 .prose .contains-task-list .contains-task-list { padding-inline-start: 1.5rem; }
 .prose .task-list-item > input { margin: 0 0.5rem 0 0; vertical-align: -0.1em; }
 .prose .task-list-item > input:enabled { cursor: pointer; }
+
+
+/* ---------------------------------------------------------------------------
+   AppFrame: an app's widget in a frame of its own, named as an app's (a4a, D48)
+   --------------------------------------------------------------------------- */
+.app-frame { display: grid; gap: var(--space-2); }
+.app-frame-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); }
+.app-frame-head h2 { margin: 0; font-size: var(--text-md); }
+.app-frame iframe { display: block; width: 100%; max-height: 800px; border: 0; background: transparent; color-scheme: light dark; }
+.app-frame-said { margin: 0; color: var(--muted); font-size: 0.9rem; min-height: 1.2em; }
+.app-frame-ask { display: grid; gap: var(--space-2); padding: var(--space-3); border: 1px solid var(--line); border-radius: var(--radius); background: var(--accent-soft); }
+.app-frame-ask p { margin: 0; }
+.app-card { display: grid; gap: var(--space-2); }
+.app-card-head { display: flex; gap: var(--space-3); align-items: flex-start; }
+.app-card-head h3 { margin: 0; font-size: var(--text-md); }
+.app-icon { display: inline-grid; place-items: center; width: 2.25rem; height: 2.25rem; flex: none; border-radius: var(--radius); background: var(--accent-soft); color: var(--accent); }
+.app-icon img { width: 1.5rem; height: 1.5rem; }
+.app-may { margin: 0; padding-inline-start: 1.2rem; }
+.app-may li + li { margin-top: 0.15rem; }

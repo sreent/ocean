@@ -227,6 +227,8 @@ For people's days away it brought [DaysAway](../components/DaysAway/README.md), 
 
 For writing it brought [Editor](../components/Editor/README.md): Markdown written as it reads, over the Markdown kept, with its toolbar and its states (a tool pressed where it's on, a file dragged over, a picture uploading, nothing written yet), and the Markdown itself a choice away; and `.prose` learned to fit a picture to its column, to name one from elsewhere without fetching it, and to draw a checklist's boxes where bullets would be.
 
+For its apps it brought [AppFrame](../components/AppFrame/README.md): an app's widget on a page, in a sandboxed frame of its own and named as an app's, with what it said and an ask when it wants to open something, the page never moved without the person; and an app's card for the admin's list, with what it may do in the words its consent showed.
+
 ## Where Ocean lives
 
 This repo is Ocean's one source. a5s copies its files from a release, since its pages serve only their own files. a7c, a3t and a4a depend on it by commit, as `"@sreent/ocean": "github:sreent/ocean#<commit>"`, and import `@sreent/ocean/tokens.css` and `@sreent/ocean/components.css`, with `@sreent/ocean/charts.css` where they draw charts. A Teams app takes the kit's cards from `@sreent/ocean/teams/cards`. Each product runs `node scripts/check.mjs` in CI, against its own `tokens.css` where it changes the brand.

@@ -1114,3 +1114,21 @@ export interface WorkflowBarProps {
 }
 /** What a person can do to an issue by its workflows: its state machine's moves and its project's actions, as buttons. Proposed. */
 export declare function WorkflowBar(props: WorkflowBarProps): React.ReactElement;
+
+
+export interface AppFrameProps {
+  /** The app's title: its badge says the widget is the app's. */
+  app: string;
+  /** The widget's title: the card's heading, and the frame's. */
+  title: string;
+  /** Where its frame loads from. */
+  src: string;
+  /** The height it asks for, kept between 80 and 800. */
+  height: number;
+  /** What it last said, as text. */
+  said?: string | null;
+  /** What it asks the page to open, and the answers. */
+  ask?: { to: string; onOpen: () => void; onStay: () => void } | null;
+}
+/** An app's widget on a page: someone else's code, in a sandboxed frame of its own, named as an app's. Proposed. */
+export declare function AppFrame(props: AppFrameProps): React.ReactElement;
