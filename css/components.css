@@ -557,7 +557,7 @@ button.small, a.button.small { padding: 0.2rem 0.6rem; font-size: var(--text-sm)
 
 .page-head { margin-bottom: 1.25rem; }
 .crumbs { display: flex; flex-wrap: wrap; gap: 0.15rem; font-size: 0.85rem; margin-bottom: 0.35rem; }
-.crumbs a { color: var(--muted); text-decoration: none; }
+.crumbs a { display: inline-flex; align-items: center; min-height: 1.5rem; color: var(--muted); text-decoration: none; }  /* a 24px target, as WCAG 2.5.8 asks, even wrapped on a phone */
 .crumbs a:hover { color: var(--accent); }
 .crumbs .sep { color: var(--faint); margin: 0 0.35rem; }
 .title-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
@@ -1901,6 +1901,118 @@ button.watch[aria-pressed="true"] .watch-count { background: var(--surface); col
 /* A help desk's pages, for people outside: a lone page, wide enough for a conversation */
 .lone-card.wide { width: min(42rem, 100%); }
 .lone-card .history { margin-top: var(--space-1); }
+
+/* Files on something (components/AttachmentList): each a row with its picture or its kind, its
+   name, its size, who added it and when; files on their way, with how far they've come; and a
+   place to drop more, dashed, as what isn't there yet is. An image shows in place; any other
+   file is named by its kind and downloads */
+.attachments { display: grid; gap: var(--space-3); container-type: inline-size; }
+.attachments > .section-head + * { margin-top: 0; }
+.attachment-list { display: grid; margin: 0; padding: 0; list-style: none; }
+.attachment { display: grid; grid-template-columns: 3rem minmax(0, 1fr) auto; gap: var(--space-2) var(--space-3); align-items: center;
+              padding: var(--space-2) 0; border-bottom: 1px solid var(--line); }
+.attachment:last-child { border-bottom: 0; }
+.attachment-thumb { display: grid; place-items: center; align-content: center; gap: 0.05rem; width: 3rem; height: 3rem; overflow: hidden;
+                    border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--sunken); color: var(--muted); }
+a.attachment-thumb:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.attachment-thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.attachment-thumb .icon { width: 1.1rem; height: 1.1rem; }
+.attachment-kind { font-family: var(--font-mono); font-size: 0.62rem; line-height: 1; text-transform: uppercase; }  /* its kind, from its name: LOG, PDF */
+.attachment-what { display: grid; gap: 0.15rem; min-width: 0; }
+.attachment-name { color: var(--text); font-weight: 500; text-decoration: none; overflow-wrap: anywhere; }
+a.attachment-name:hover { text-decoration: underline; }
+.attachment-about { display: flex; flex-wrap: wrap; gap: 0.1rem var(--space-3); color: var(--muted); font-size: var(--text-sm); }
+.attachment-about .who { font-size: var(--text-sm); }
+.attachment-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
+/* On its way: how far it has come, as a bar in --accent on --sunken, and its words beside it */
+.attachment-progress { width: 100%; height: 0.4rem; border: 0; border-radius: var(--radius-pill); background: var(--sunken); appearance: none; }
+.attachment-progress::-webkit-progress-bar { border-radius: var(--radius-pill); background: var(--sunken); }
+.attachment-progress::-webkit-progress-value { border-radius: var(--radius-pill); background: var(--accent); }
+.attachment-progress::-moz-progress-bar { border-radius: var(--radius-pill); background: var(--accent); }
+.attachment.failed .attachment-name { color: var(--muted); }
+.attachment > .error-note { grid-column: 2 / -1; }
+/* Where more go: dropped, or chosen with its button; under a file dragged over it, in --accent */
+.attachment-drop { display: grid; justify-items: center; gap: var(--space-1); padding: var(--space-4); border: 1px dashed var(--line-control);
+                   border-radius: var(--radius-md); color: var(--muted); text-align: center; }
+.attachment-drop > * { margin: 0; }
+.attachment-drop > .icon { width: 1.4rem; height: 1.4rem; }
+.attachment-drop[data-over="true"] { border-style: solid; border-color: var(--accent); background: var(--accent-soft); color: var(--text); }
+.attachment-drop .note { font-size: var(--text-sm); }
+/* A comment's own files, under its words: smaller, and without who and when, which the comment says */
+.attachment-list.compact { gap: var(--space-1); }
+.attachment-list.compact .attachment { grid-template-columns: 2rem minmax(0, 1fr) auto; padding: 0; border: 0; }
+.attachment-list.compact .attachment-thumb { width: 2rem; height: 2rem; }
+.attachment-list.compact .attachment-thumb .icon { width: 0.95rem; height: 0.95rem; }
+.attachment-list.compact .attachment-kind { display: none; }
+.attachment-list.compact .attachment-name { font-size: var(--text-sm); }
+@container (max-width: 26rem) {  /* narrow: its actions under its name */
+  .attachment { grid-template-columns: 3rem minmax(0, 1fr); }
+  .attachment-actions { grid-column: 2; justify-content: flex-start; }
+}
+
+/* A knowledge base's tree (components/ArticleTree), on NavList: each article a link, those under it
+   indented beneath it along a line, folded with the chevron beside it; the open one chosen */
+.nav-list.tree ul { margin: 0 0 0 0.75rem; padding: 0 0 0 0.5rem; border-inline-start: 1px solid var(--line); list-style: none; }
+.tree-row { display: grid; grid-template-columns: 1.75rem minmax(0, 1fr); align-items: start; }
+.tree-row > a { min-width: 0; }
+.tree-toggle { display: grid; place-items: center; width: 1.75rem; height: 1.75rem; margin-top: 0.275rem; padding: 0; border: 0;  /* more than 24px, as WCAG 2.5.8 asks */
+               border-radius: var(--radius-sm); background: none; color: var(--muted); }
+.tree-toggle:hover { background: var(--sunken); color: var(--text); }
+.tree-toggle .icon { width: 0.95rem; height: 0.95rem; }
+.tree-toggle[aria-expanded="false"] .icon { rotate: -90deg; }
+@media (prefers-reduced-motion: no-preference) { .tree-toggle .icon { transition: rotate 120ms ease-out; } }
+
+/* An article (components/ArticlePage): its words as prose to read, a line at a time no wider
+   than reads well; what's under it and what mentions it; its editor, the Markdown beside how it
+   will read; its versions, each change a line, added in --changes and removed struck through;
+   and what a search found, the words that matched marked */
+.article-body { max-width: 46rem; line-height: 1.65; }
+.article-body :is(h2, h3, h4) { color: var(--text); line-height: 1.3; }
+.article-body h2 { margin: 1.6rem 0 0.6rem; font-size: 1.2rem; }
+.article-body h3 { margin: 1.3rem 0 0.4rem; font-size: 1.04rem; }
+.article-body h4 { margin: 1.1rem 0 0.3rem; font-size: var(--text-md); }
+.article-body :is(ul, ol) { padding-inline-start: 1.4rem; }
+.article-body li + li { margin-top: 0.2rem; }
+.article-body blockquote { margin: var(--space-3) 0; padding: 0 0 0 var(--space-4); border-inline-start: 3px solid var(--line-strong); color: var(--muted); }
+.article-body img { max-width: 100%; height: auto; border-radius: var(--radius-sm); }
+.article-body hr { margin: var(--space-6) 0; border: 0; border-top: 1px solid var(--line); }
+.article-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem var(--space-3); color: var(--muted); font-size: var(--text-sm); }
+.article-empty { color: var(--muted); }
+/* The editor: the title, then the Markdown and how it reads, side by side where there's room;
+   where there isn't, one or the other, chosen with modes */
+.article-editor { display: grid; gap: var(--space-3); container-type: inline-size; }
+.article-editor-panes { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-4); align-items: stretch; }
+.article-editor textarea { width: 100%; min-height: 24rem; font-family: var(--font-mono); font-size: var(--text-sm); line-height: 1.55; }
+.article-preview { min-height: 24rem; padding: var(--space-3) var(--space-4); overflow-wrap: anywhere; border: 1px solid var(--line);
+                   border-radius: var(--radius-sm); background: var(--page); }
+.article-editor > .modes { display: none; margin: 0; justify-self: start; }
+@container (max-width: 44rem) {
+  .article-editor-panes { grid-template-columns: minmax(0, 1fr); }
+  .article-editor > .modes { display: inline-flex; }
+  .article-editor[data-show="write"] .article-preview, .article-editor[data-show="read"] .article-editor-write { display: none; }
+}
+/* A version against the one before: each line with its sign, so it reads without colour too */
+.diff { margin: 0; padding: var(--space-2) 0; overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius-sm);
+        background: var(--surface); font-family: var(--font-mono); font-size: var(--text-sm); line-height: 1.55; list-style: none; }
+.diff > li { display: grid; grid-template-columns: 1.6rem minmax(0, 1fr); padding: 0 var(--space-3) 0 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.diff-sign { color: var(--faint); text-align: center; user-select: none; }
+.diff > li.same { color: var(--muted); }
+.diff > li.add { background: var(--changes-bg); color: var(--text); }
+.diff > li.add .diff-sign { color: var(--changes); font-weight: 650; }
+.diff > li.del { color: var(--muted); }
+.diff > li.del .diff-text { text-decoration: line-through; }
+.diff > li.gap { color: var(--faint); font-style: italic; }
+.diff > li :is(ins, del) { text-decoration: inherit; }
+/* What a search found: each article's title, where it sits, and the words around what matched */
+.article-results { display: grid; margin: 0; padding: 0; list-style: none; }
+.article-results > li { display: grid; gap: 0.15rem; padding: var(--space-3) 0; border-bottom: 1px solid var(--line); }
+.article-results > li:first-child { padding-top: 0; }
+.article-results > li:last-child { padding-bottom: 0; border-bottom: 0; }
+.article-results a { color: var(--text); font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+.article-results a:hover { text-decoration: underline; }
+.article-results .article-meta .issue-id { font-size: var(--text-xs); }
+.article-results p { margin: 0; color: var(--muted); font-size: var(--text-sm); overflow-wrap: anywhere; }
+.article-results mark { padding: 0 0.1em; border-radius: 3px; background: var(--accent-soft); color: var(--text); }
 
 /* Placing pieces on a page (components/Layout): a stack, a cluster, and a page's main column
    with an aside. They only place: each spaces its children by its gap, and takes away their own
