@@ -2351,7 +2351,9 @@ button.editor-tool[aria-pressed="true"] { border-color: var(--accent-soft); back
 .editor-surface .selectedCell::after { content: ""; position: absolute; inset: 0; background: var(--accent-soft); opacity: 0.7; pointer-events: none; }
 .editor-surface .column-resize-handle { display: none; }
 /* A checklist's item: its box, then its words */
-.editor-surface li.editor-task { display: flex; gap: var(--space-2); align-items: baseline; list-style: none; margin-inline-start: -1.25rem; }
+.editor-surface li p { margin-block: 0.15rem; }
+.editor-surface ul:has(> li.editor-task) { padding-inline-start: 0.25rem; }
+.editor-surface li.editor-task { display: flex; gap: var(--space-2); align-items: baseline; list-style: none; }
 .editor-surface li.editor-task > div { flex: 1; min-width: 0; }
 .editor-surface li.editor-task > input { margin: 0; cursor: pointer; }
 .editor-uploading { display: inline-block; margin: 0 0.25rem; padding: 0 0.5rem; border-radius: var(--radius-pill); background: var(--sunken);
