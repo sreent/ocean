@@ -711,6 +711,8 @@ export interface IssueHistoryProps {
     comment?: React.ReactNode;
     /** On a help desk request: a comment its requester sees, the team's reply to them or theirs. Framed in `--outside`, with its words. */
     public?: "reply" | "theirs";
+    /** What an agent changed on its own: "possible" offers Undo to someone who may change the issue; "undone" fades it, saying who undid it. */
+    undo?: { state: "possible"; onUndo: () => void } | { state: "undone"; by: string };
   }[];
   /** On a help desk request, the composer's choice, made before anything is sent: an internal note or a reply to the requester. */
   composer?: { requester?: string; visibility: "internal" | "public"; onVisibility: (v: "internal" | "public") => void };

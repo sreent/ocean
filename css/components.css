@@ -1911,6 +1911,13 @@ button.watch[aria-pressed="true"] .watch-count { background: var(--surface); col
    leaves for outside is, with its words beside who said it; an internal one keeps the history's frame */
 .history-comment.public { border-color: var(--outside); }
 .history-head .badge { margin-inline-start: var(--space-1); vertical-align: 0.05em; }
+/* What an agent changed on its own, a person can undo (a4a): a quiet action at the head's end, in --accent,
+   at least 24px tall so a pointer finds it. Undone, the change keeps its place, its lines muted, with its badge. */
+.history-head .history-undo { min-height: 1.5rem; margin-inline-start: var(--space-2); padding: 0 var(--space-1); border: 0; background: none;
+  color: var(--accent); font-size: var(--text-sm); font-weight: 500; }
+.history-head .history-undo:hover:not(:disabled) { text-decoration: underline; }
+.history-head .history-undo:disabled { color: var(--muted); }
+.history > li.undone .change-lines, .history > li.undone .change-lines ins { color: var(--muted); }
 
 /* A help desk's pages, for people outside: a lone page, wide enough for a conversation */
 .lone-card.wide { width: min(42rem, 100%); }
