@@ -1842,6 +1842,144 @@ dl.facts-list dt { color: var(--text); font-weight: 600; }
 dl.facts-list dd { margin: 0.1rem 0 0; color: var(--muted); font-size: var(--text-sm); overflow-wrap: anywhere; }
 dl.facts-list code { color: var(--text); }
 
+/* a4a's reports (components/Burndown, CumulativeFlow, Distribution, CreatedResolved, TimeReport):
+   SVG drawn from its attributes alone and styled here, each chart with its figures as a table
+   beside it, which stacks under it where it's narrow. Series take css/charts.css's colours in
+   order; a state takes how it stands (--chart-done, --chart-short, --chart-failed, --chart-open),
+   never a series colour; a change to a sprint's scope is a change, in --changes. Lines 2px, dots
+   ringed in the card's colour, gridlines hairlines in --line, today in --accent, and every word on
+   a chart in --text or --faint, never a series colour */
+.modes.report-choice { margin: 0; }  /* which report: a choice of five, a column on a phone, as .steps' is */
+@media (max-width: 560px) {
+  .modes.report-choice { display: grid; }
+  .modes.report-choice button + button { border-left: 0; border-top: 1px solid var(--line-strong); }
+}
+.report { display: grid; gap: var(--space-4); min-width: 0; container-type: inline-size; }
+.report > * { margin: 0; }
+.report > :is(.modes, .badge, button) { justify-self: start; }  /* as wide as their words, as in a stack */
+.report-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-1) var(--space-3); }
+.report-head > * { margin: 0; }
+.report-says { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-2); max-width: 52rem; }  /* how it stands: a badge, then in words */
+.report-says > p { margin: 0; }
+.report-facts { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); margin: 0; }  /* a report's figures at a glance */
+.report-facts > div { display: grid; gap: 0.05rem; }
+.report-facts dt { color: var(--muted); font-size: var(--text-sm); }
+.report-facts dd { margin: 0; font-size: 1.35rem; font-weight: 650; letter-spacing: -0.01em; line-height: 1.25; }
+.report-facts dd small { color: var(--muted); font-size: var(--text-sm); font-weight: 400; letter-spacing: 0; }
+.chart-box { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: var(--space-5); align-items: start; }
+@container (max-width: 48rem) { .chart-box { grid-template-columns: minmax(0, 1fr); } }
+.chart { display: grid; gap: var(--space-2); margin: 0; min-width: 0; container-type: inline-size; }
+.chart > svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { fill: var(--faint); font-family: var(--font-sans); font-size: 11px; font-variant-numeric: tabular-nums; }
+.chart .chart-label { fill: var(--text); font-weight: 600; }  /* a figure named on the chart: an end, a marker */
+.chart-grid { stroke: var(--line); stroke-width: 1; }
+.chart-axis { stroke: var(--line-strong); stroke-width: 1; }
+.chart-today { stroke: var(--accent); stroke-width: 1.5; }
+.chart .chart-today-label { fill: var(--accent); font-weight: 600; }
+.chart-key { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); margin: 0; padding: 0; list-style: none; color: var(--muted);
+             font-size: var(--text-sm); }
+.chart-key li { display: inline-flex; align-items: center; gap: 0.4rem; }
+.chart-key svg { flex: none; }
+table.figures.chart-figures { margin: 0; font-size: var(--text-sm); }
+.chart-figures caption { padding-bottom: var(--space-1); color: var(--muted); font-size: var(--text-sm); text-align: start; }
+table.figures.chart-figures th, table.figures.chart-figures td { padding: 0.3rem 0.5rem; }
+.chart-figures tbody th { color: var(--text); font-size: inherit; font-weight: 400; white-space: nowrap; }
+.chart-figures tr.today > * { font-weight: 600; }  /* the row of the day the chart is as of */
+.chart-figures details > summary { cursor: pointer; }
+details.chart-more > summary { color: var(--muted); font-size: var(--text-sm); cursor: pointer; }  /* a widget's figures, folded */
+details.chart-more[open] > summary { margin-bottom: var(--space-2); }
+/* A series: its line, its dots, its columns, by its place in the order */
+.chart-line { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chart-line.s1 { stroke: var(--chart-1); }
+.chart-line.s2 { stroke: var(--chart-2); }
+.chart-line.s3 { stroke: var(--chart-3); }
+.chart-dot { stroke: var(--surface); stroke-width: 2; }
+.chart-dot.s1 { fill: var(--chart-1); }
+.chart-dot.s2 { fill: var(--chart-2); }
+.chart-col.s1 { fill: var(--chart-1); }
+.chart-col.s2 { fill: var(--chart-2); }
+.chart-col.s3 { fill: var(--chart-3); }
+.chart-swatch { display: inline-block; width: 0.75rem; height: 0.75rem; border-radius: 2px; }  /* a legend's mark for a fill */
+.chart-swatch.s1 { background: var(--chart-1); }
+.chart-swatch.s2 { background: var(--chart-2); }
+.chart-swatch[data-standing="done"] { background: var(--chart-done); }
+.chart-swatch[data-standing="waiting"] { background: var(--chart-short); }
+.chart-swatch[data-standing="failed"] { background: var(--chart-failed); }
+.chart-swatch[data-standing="open"] { background: var(--chart-open); }
+/* A sprint's burndown: what's left, solid, in the first series; the ideal a guide, dashed, as what
+   isn't so; where its scope changed, a ring in the colour of a change, with how much */
+.burn-ideal { fill: none; stroke: var(--faint); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.burn-scope { fill: var(--changes); stroke: var(--surface); stroke-width: 2; }
+/* Cumulative flow: a band for each state, how many issues were in it at each day's end, stacked with
+   what's resolved at the foot; a band in the colour of how its state stands, parted from the next
+   by the card's colour, its name at its end where it's tall enough */
+.cfd-band { stroke: var(--surface); stroke-width: 2; stroke-linejoin: round; }
+.cfd-band[data-standing="done"] { fill: var(--chart-done); }
+.cfd-band[data-standing="waiting"] { fill: var(--chart-short); }
+.cfd-band[data-standing="failed"] { fill: var(--chart-failed); }
+.cfd-band[data-standing="open"] { fill: var(--chart-open); }
+/* A distribution: how many took how long, in columns of the first series, with where its
+   percentiles fall as lines in ink and their words */
+.dist-mark { stroke: var(--text); stroke-width: 1.5; }  /* solid: a percentile is so, not a plan */
+/* The time logged: a bar for each person (or project, or week) on one scale, with its figure; and
+   what was spent against what was estimated, a bar on the estimate's track, past it in --warn */
+.time-bars { display: grid; grid-template-columns: minmax(6rem, max-content) minmax(0, 1fr) auto; gap: var(--space-2) var(--space-3);
+             align-items: center; margin: 0; }
+.time-row { display: contents; }
+.time-row dt { color: var(--text); font-size: var(--text-sm); overflow-wrap: anywhere; }
+.time-row dd { margin: 0; }
+.time-bar svg { display: block; width: 100%; height: 0.8rem; overflow: visible; }
+.time-fill { fill: var(--chart-1); }
+.time-figure { font-size: var(--text-sm); font-variant-numeric: tabular-nums; text-align: end; white-space: nowrap; }
+.spent-meter { display: grid; gap: 0.15rem; min-width: 7rem; }
+.spent-meter svg { display: block; width: 100%; height: 0.5rem; }
+.spent-track { fill: var(--sunken); }
+.spent-fill { fill: var(--chart-1); }
+.spent-over { fill: var(--warn); }
+.spent-meter .badge { justify-self: start; }
+
+/* A dashboard (components/Dashboard): a person's widgets in two columns where there's room and one
+   where there isn't, each a card with its title, a widget as wide as the page where it asks to be;
+   arranged by moving each earlier or later, from the keyboard as from the pointer */
+.dashboard { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4); align-items: start; container-type: inline-size; }
+.dashboard-box { container-type: inline-size; }
+@container (max-width: 52rem) { .dashboard { grid-template-columns: minmax(0, 1fr); } }
+.widget { display: grid; gap: var(--space-3); min-width: 0; }
+.widget.full { grid-column: 1 / -1; }
+.widget > * { margin: 0; }
+.widget-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-1) var(--space-3); }
+.widget-head > h2 { margin: 0; font-size: var(--text-md); }
+.widget-actions { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+.widget-count { display: flex; align-items: baseline; gap: var(--space-2); margin: 0; }
+.widget-count strong { font-size: 2rem; font-weight: 650; letter-spacing: -0.01em; line-height: 1.1; }
+.widget-list { margin: 0; padding: 0; list-style: none; }
+.widget-list li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.1rem var(--space-2); align-items: baseline; padding: 0.35rem 0;
+                  border-bottom: 1px solid var(--line); font-size: var(--text-sm); }
+.widget-list li:last-child { border-bottom: 0; }
+.widget-list a { overflow-wrap: anywhere; }
+.widget.adding { border-style: dashed; }  /* a widget being made, not on the dashboard yet */
+
+/* An import (components/MappingTable): each column of the file, a few of its values, and what it
+   becomes here, with what was found from its header; each value of a mapped column and what it
+   becomes; then what the check or the run did, in counts, and each row's problems */
+table.figures.mapping { margin: 0; }
+table.figures.mapping td { vertical-align: middle; }
+table.figures.mapping select { min-width: 12rem; max-width: 100%; }
+.mapping-name { display: block; color: var(--text); font-weight: 600; overflow-wrap: anywhere; }
+.mapping-samples { display: block; color: var(--muted); font-size: var(--text-xs); overflow-wrap: anywhere; }
+.mapping-count { color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.import-tally { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-6); margin: 0; }
+.import-tally > div { display: grid; gap: 0.05rem; }
+.import-tally dt { color: var(--muted); font-size: var(--text-sm); }
+.import-tally dd { margin: 0; font-size: 1.35rem; font-weight: 650; font-variant-numeric: tabular-nums; }
+.import-progress { display: grid; gap: var(--space-1); }
+.import-progress svg { display: block; width: 100%; height: 0.6rem; }
+.import-progress-track { fill: var(--sunken); }
+.import-progress-done { fill: var(--accent); }
+.import-progress p { margin: 0; color: var(--muted); font-size: var(--text-sm); }
+table.figures.problems td:first-child { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.problem-hint { display: block; color: var(--muted); font-size: var(--text-sm); }
+
 /* Placing pieces on a page (components/Layout): a stack, a cluster, and a page's main column
    with an aside. They only place: each spaces its children by its gap, and takes away their own
    outer margins, so a piece keeps its look wherever it's put. Last in the file, so that taking a
