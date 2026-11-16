@@ -3,7 +3,7 @@
 An agile board: the sprint's name, dates and goal; a column for each state, with its count and its limit; cards; lanes, each under its header; and where a card someone drags would land. Proposed.
 
 - The sprint's head: its name, its dates, how long it has left as a chip, and its goal after **Goal:**.
-- Each column says what's in it: its count, or, with a limit, "4 of 5". Over its limit it says so in `--warn`, with the clock and its words: "3 of 2, 1 over the limit".
+- Each column says what's in it: its count, or, with a limit, "4 of 5"; on a board that counts story points, their sum too, in `--muted` (`.board-points`: "13 pts"). Over its limit it says so in `--warn`, with the clock and its words: "3 of 2, 1 over the limit".
 - A card: its id in Plex Mono and the assignee's mark, its summary, then its PriorityMeter and tags as chips. A resolved card's summary is `--muted`. The column says how it stands, so a card carries no state badge. Under the pointer a card shows an open hand: it can be picked up.
 - Lanes, when the board has them, each under its header across every column: what it groups (an epic, a person) and how many issues. The header stays in view as the board scrolls sideways.
 - A board with lanes runs long, so it scrolls in a frame of its own, at most the window's height (`.board-scroll.held`), and the column heads stay in view at its top as the lanes go by, on the page's own background. The page still scrolls past it at either end.
