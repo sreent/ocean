@@ -545,7 +545,7 @@ export interface BoardProps {
   sprint?: { name: string; dates: string; left?: string; goal?: string };
   /** Each column: a state, how many it holds, and its limit. Over the limit, it says so in --warn. */
   columns: { name: string; count: number; limit?: number }[];
-  /** Lanes, each with a card list per column; one lane with no name for a board without them. */
+  /** Lanes, each with a card list per column; one lane with no name for a board without them. With lanes, the board scrolls in a frame of its own and its column heads stay in view (.held). */
   lanes: { id?: string; name?: string; count?: number; cells: BoardCard[][] }[];
   /** A card on its way: where it was, and where it would land. */
   dragging?: { id: string; to: { lane: number; column: number } };
@@ -599,8 +599,13 @@ export declare function Gantt(props: GanttProps): React.ReactElement;
 export interface LoadGridProps {
   /** The working days shown; a week's first day after a weekend leaves a gap. */
   days: { date: string; weekStart?: boolean }[];
-  /** Each person's capacity, in hours a day, and their hours booked each day, or "away". */
-  people: { who: Someone; capacity: number; hours: (number | "away")[] }[];
+  /** Each person's capacity, in hours a day, and their hours booked each day: "away" for a day away, or the hours with that day's capacity and which half they're away on a half day. */
+  people: { who: Someone; capacity: number; hours: (number | "away" | { hours: number; of: number; away: "morning" | "afternoon" })[] }[];
+  /** Which days it shows: from today for a while, to the plan's end, or two dates; each person's own. */
+  window?: { preset: "2w" | "1m" | "3m" | "plan" } | { from: string; to: string };
+  onWindow?: (window: { preset: "2w" | "1m" | "3m" | "plan" } | { from: string; to: string }) => void;
+  /** At the end of the window's row: "Days away", for the people this person may enter them for. */
+  onDaysAway?: () => void;
   /** What levelling would move, before anything does. */
   levelling?: { id: string; what: string; who: string; from: string; to: string; by: string }[];
   /** The tasks that only follow the ones it moves, folded beneath them. */
@@ -615,6 +620,21 @@ export interface LoadGridProps {
 }
 /** People's load by day, shaded in Ocean Blue by the share of their day; over capacity in --warn with its words. Proposed. */
 export declare function LoadGrid(props: LoadGridProps): React.ReactElement;
+
+export interface DaysAwayProps {
+  person: { name: string };
+  /** Each absence: when, in words, and why only for the person, administrators and whoever entered it. */
+  absences: { when: string; half?: "morning" | "afternoon"; kind?: string; note?: string; enteredBy?: string; past?: boolean; canChange: boolean }[];
+  /** Whether the form shows: their own, or a manager or an administrator entering them. */
+  canEnter: boolean;
+  editing?: number;
+  onAdd: (days: { from: string; to: string; half?: "morning" | "afternoon"; kind: string; note?: string }) => void;
+  onChange: (index: number) => void;
+  onRemove: (index: number) => void;
+  outcome?: string;
+}
+/** A person's days away, in Ocean's Settings: a table of them, the past quieter, why only for those it's for, and the form. Proposed, for a4a. */
+export declare function DaysAway(props: DaysAwayProps): React.ReactElement;
 
 /** A cost-performance index with its plain words, and the figures it comes from. */
 export type CostIndex = { value: number; words: string; from: string };

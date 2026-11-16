@@ -6,6 +6,7 @@ An agile board: the sprint's name, dates and goal; a column for each state, with
 - Each column says what's in it: its count, or, with a limit, "4 of 5". Over its limit it says so in `--warn`, with the clock and its words: "3 of 2, 1 over the limit".
 - A card: its id in Plex Mono and the assignee's mark, its summary, then its PriorityMeter and tags as chips. A resolved card's summary is `--muted`. The column says how it stands, so a card carries no state badge. Under the pointer a card shows an open hand: it can be picked up.
 - Lanes, when the board has them, each under its header across every column: what it groups (an epic, a person) and how many issues. The header stays in view as the board scrolls sideways.
+- A board with lanes runs long, so it scrolls in a frame of its own, at most the window's height (`.board-scroll.held`), and the column heads stay in view at its top as the lanes go by, on the page's own background. The page still scrolls past it at either end.
 - A card on its way: where it was is an empty dashed outline; where it would land is dashed in `--accent` on `--accent-soft`, with the card raised on `--shadow-raised` and what dropping it does: "Drop it to move BACK-37 to In Progress: 5 of 5". Into another lane, the words say that too: "Drop it to move WEB-3 to In progress and set its Priority to Critical: 2 of 3".
 - The card where it would land is a copy, showing it as the drop would leave it (its new lane's value; resolved, in a column that resolves it). Screen readers hear what dropping does instead, so the copy is hidden from them, and its summary is a `span`, not a link. While a card is on its way the board's frame is `.dragging`, and the pointer a closed hand.
 - From the keyboard a card moves by a command (CommandBar), so dragging is never the only way. A card's id is the button that opens one for it (`aria-label="Move BACK-33 with a command"`): it reads as the id until it's pointed at or has the focus. A note above the columns says both ways.
@@ -23,7 +24,7 @@ An agile board: the sprint's name, dates and goal; a column for each state, with
     <p class="sprint-goal"><strong>Goal:</strong> move storage to the new racks without downtime.</p>
   </div>
   <p class="note">Drag a card to another column to move it, or choose its id to move it with a command.</p>
-  <div class="board-scroll" tabindex="0" role="group" aria-label="Sprint 14's columns">   <!-- .dragging while a card is on its way -->
+  <div class="board-scroll held" tabindex="0" role="group" aria-label="Sprint 14's columns">   <!-- .held with lanes; .dragging while a card is on its way -->
     <div class="board-grid">
       <div class="board-cols">
         <div class="board-col-head"><h3>Open</h3><span class="board-count">3</span></div>

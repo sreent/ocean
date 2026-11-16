@@ -1,0 +1,39 @@
+<!-- @dsCard group="Plans" height=760 subtitle="A person's days away on their profile: one past, one with why, one another entered; and the form to add more" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DaysAway</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<section class="card" aria-labelledby="away">
+<div class="section-head"><h2 id="away">Days away</h2><span class="note">Plans skip them for your work</span></div>
+<p class="section-note">Everyone sees when you're away; why, only you, administrators and whoever enters it.</p>
+<div class="stack">
+<div class="figures-scroll" role="region" aria-label="Your days away" tabindex="0">
+<table class="figures middle">
+<thead><tr><th scope="col">When</th><th scope="col">Why</th><th scope="col" class="fit"><span class="hidden">What you can do</span></th></tr></thead>
+<tbody>
+<tr class="dimmed"><th scope="row" class="row-head"><span class="item-name">Fri 6 Nov</span></th><td>Sick</td><td class="fit"><div class="cluster"><button type="button" class="small" aria-label="Change Fri 6 Nov">Change</button><button type="button" class="danger small" aria-label="Remove Fri 6 Nov">Remove</button></div></td></tr>
+<tr><th scope="row" class="row-head"><span class="item-name">2 to 6 Dec</span></th><td>Holiday<span class="item-about">Lisbon</span></td><td class="fit"><div class="cluster"><button type="button" class="small" aria-label="Change 2 to 6 Dec">Change</button><button type="button" class="danger small" aria-label="Remove 2 to 6 Dec">Remove</button></div></td></tr>
+<tr><th scope="row" class="row-head"><span class="item-name">The afternoon of Wed 9 Dec</span><span class="item-about">Entered by Ben Okafor</span></th><td>Training</td><td class="fit"><div class="cluster"><button type="button" class="small" aria-label="Change the afternoon of Wed 9 Dec">Change</button><button type="button" class="danger small" aria-label="Remove the afternoon of Wed 9 Dec">Remove</button></div></td></tr>
+</tbody>
+</table>
+</div>
+<p role="status" class="outcome">Added: you’re away 2 to 6 Dec. Plans skip those days for your work.</p>
+<form class="form" aria-labelledby="add-title">
+<h3 id="add-title">Add days away</h3>
+<div class="form-fields"><div class="form-field"><label for="from">From</label><input id="from" type="date" value="2026-12-14"></div><div class="form-field"><label for="to">To</label><input id="to" type="date" value="2026-12-14" aria-describedby="to-help"><small class="field-help" id="to-help">The last day away.</small></div></div>
+<fieldset class="choice-group"><legend>How much of the day</legend><label class="choice"><input type="radio" name="part" checked><span>All of it</span></label><label class="choice"><input type="radio" name="part"><span>The morning</span></label><label class="choice"><input type="radio" name="part"><span>The afternoon</span></label></fieldset>
+<div class="form-fields"><div class="form-field"><label for="why">Why</label><select id="why" aria-describedby="why-help"><option>Holiday</option><option>Sick</option><option>Training</option><option>Something else</option></select><small class="field-help" id="why-help">Only you, administrators and whoever enters it see why. Everyone else sees when.</small></div><div class="form-field"><label for="note">A note, if you want one</label><input id="note"></div></div>
+<div class="cluster"><button type="submit" class="primary">Add the days away</button></div>
+</form>
+</div>
+</section>
+</div>
+</body>
+</html>
