@@ -33,4 +33,4 @@ Where a product sends each change as it happens, signed, so other systems can ac
 </dl>
 ```
 
-**In a4a:** Webhooks. The preview is a static rendition.
+**In a4a:** Webhooks; and Integrations, where deliveries come in from GitHub and GitLab, in the same cards: each integration's webhook URL, a secret shown once, its test, and what each delivery did. The preview is a static rendition.
