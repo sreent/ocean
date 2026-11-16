@@ -729,6 +729,24 @@ export interface MentionFieldProps {
 /** A text area that offers people after an "@", under the field (`.composer`); the arrows choose, Enter or Tab takes one. Proposed, for a4a. */
 export declare function MentionField(props: MentionFieldProps): React.ReactElement;
 
+export interface EditorProps {
+  /** Markdown: what's kept, whichever way it's written. */
+  value: string;
+  onChange: (markdown: string) => void;
+  /** The field's name, said by the editable region (a label can't name one). */
+  label: string;
+  /** Written as it reads, or the Markdown itself; the choice is the person's, and kept. */
+  mode: "visual" | "markdown";
+  onMode: (mode: "visual" | "markdown") => void;
+  placeholder?: string;
+  /** The names of files on their way, each drawn "Uploading…" where it will go. */
+  uploading?: string[];
+  /** Said under it: how an upload is going, or, with `bad`, why it didn't go and what to do. */
+  status?: { text: string; bad?: boolean };
+}
+/** Markdown written as it reads: a toolbar on the field's top edge, its tools pressed when on; checklists, tables and pictures drawn; Visual or Markdown at its end. Proposed, for a4a. */
+export declare function Editor(props: EditorProps): React.ReactElement;
+
 export interface InboxProps {
   /** By issue, the issue with the latest news first. */
   issues: {

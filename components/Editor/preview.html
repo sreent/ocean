@@ -1,0 +1,85 @@
+<!-- @dsCard group="Forms" height=760 subtitle="Writing as it reads: the toolbar and its states, Markdown itself, a file dropped, and what's written read" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Editor</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="label">Visual: bold is on where the caret is; a checklist, a table, a picture on its way</p>
+<div class="editor">
+  <div class="composer editor-visual">
+    <div class="editor-bar">
+      <div class="editor-tools" role="group" aria-label="Words">
+        <button type="button" class="editor-tool" aria-label="Bold" title="Bold" aria-pressed="true"><span class="editor-glyph bold" aria-hidden="true">B</span></button>
+        <button type="button" class="editor-tool" aria-label="Italic" title="Italic" aria-pressed="false"><span class="editor-glyph italic" aria-hidden="true">I</span></button>
+        <button type="button" class="editor-tool" aria-label="Struck through" title="Struck through" aria-pressed="false"><span class="editor-glyph struck-through" aria-hidden="true">S</span></button>
+        <button type="button" class="editor-tool" aria-label="Code" title="Code" aria-pressed="false"><svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M8.5 7.5L4 12l4.5 4.5"/><path d="M15.5 7.5L20 12l-4.5 4.5"/><path d="M13.5 5l-3 14"/></svg></button>
+      </div>
+      <div class="editor-tools" role="group" aria-label="Blocks">
+        <button type="button" class="editor-tool" aria-label="Heading" title="Heading" aria-pressed="false"><span class="editor-glyph heading" aria-hidden="true">H</span></button>
+        <button type="button" class="editor-tool" aria-label="Quote" title="Quote" aria-pressed="false"><svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M5 7h4v5H5z"/><path d="M9 12c0 3-1.5 4.5-4 5.5"/><path d="M14 7h4v5h-4z"/><path d="M18 12c0 3-1.5 4.5-4 5.5"/></svg></button>
+        <button type="button" class="editor-tool" aria-label="Bulleted list" title="Bulleted list" aria-pressed="false"><svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M9.5 6.5h10"/><path d="M9.5 12h10"/><path d="M9.5 17.5h10"/><path d="M4.5 6.5h.5"/><path d="M4.5 12h.5"/><path d="M4.5 17.5h.5"/></svg></button>
+        <button type="button" class="editor-tool" aria-label="Numbered list" title="Numbered list" aria-pressed="false"><svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M10.5 6.5h9.5"/><path d="M10.5 12h9.5"/><path d="M10.5 17.5h9.5"/><path d="M4.5 5l1.5-1v5"/><path d="M4 14h2.5L4 18h2.5"/></svg></button>
+        <button type="button" class="editor-tool" aria-label="Checklist" title="Checklist" aria-pressed="false"><svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M10 6.5h10"/><path d="M10 12h10"/><path d="M10 17.5h10"/><path d="M4 6.5l1.5 1.5 2.5-2.5"/><path d="M4 12l1.5 1.5 2.5-2.5"/><path d="M4 17.5l1.5 1.5 2.5-2.5"/></svg></button>
+      </div>
+      <div class="editor-tools" role="group" aria-label="Insert">
+        <button type="button" class="editor-tool" aria-label="Table" title="Table"><svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M4 10h16"/><path d="M4 14.5h16"/><path d="M10 5v14"/></svg></button>
+        <button type="button" class="editor-tool" aria-label="Picture" title="Picture"><svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M4 16l4.5-4.5 4 4 2.5-2.5L19 17"/><path d="M15.5 8.5h.01"/></svg></button>
+      </div>
+      <span class="grow"></span>
+      <div class="modes editor-mode" role="group" aria-label="How to write it"><button type="button" aria-pressed="true">Visual</button><button type="button" aria-pressed="false">Markdown</button></div>
+    </div>
+    <div class="editor-surface prose" role="textbox" aria-multiline="true" aria-label="Description" contenteditable="true">
+      <p>The November invoice shows <strong>19%</strong> where the contract says 20%. <a class="mention" href="#">@anna</a> knows the rounding.</p>
+      <ul>
+        <li class="editor-task" data-item-type="task" data-checked="true"><input type="checkbox" checked aria-label="Done: Reproduce it on staging"><div><p>Reproduce it on staging</p></div></li>
+        <li class="editor-task" data-item-type="task" data-checked="false"><input type="checkbox" aria-label="Done: Check the rounding rule"><div><p>Check the rounding rule</p></div></li>
+      </ul>
+      <table><tbody>
+        <tr><th>Month</th><th data-align="right">Rate</th></tr>
+        <tr><td>October</td><td data-align="right">20%</td></tr>
+        <tr><td>November</td><td data-align="right" class="selectedCell">19%</td></tr>
+      </tbody></table>
+      <p><span class="editor-uploading">Uploading…</span></p>
+    </div>
+  </div>
+  <p class="field-help editor-status" role="status">Uploading invoice.png: 40%</p>
+</div>
+</div>
+<div class="ds-group"><p class="label">Empty, with its hint; a file dragged over it</p>
+<div class="editor">
+  <div class="composer editor-visual dropping">
+    <div class="editor-bar"><span class="note">The toolbar, as above</span><span class="grow"></span><div class="modes editor-mode" role="group" aria-label="How to write it"><button type="button" aria-pressed="true">Visual</button><button type="button" aria-pressed="false">Markdown</button></div></div>
+    <div class="editor-surface prose" role="textbox" aria-multiline="true" aria-label="A comment" contenteditable="true"><p class="is-empty" data-placeholder="Mention someone with @ and their login. Paste a screenshot to put it here."><br></p></div>
+  </div>
+</div>
+</div>
+<div class="ds-group"><p class="label">Markdown itself: the composer's text area, the choice kept</p>
+<div class="editor">
+  <div class="editor-bar"><span class="note">Markdown, as it’s kept</span><span class="grow"></span><div class="modes editor-mode" role="group" aria-label="How to write it"><button type="button" aria-pressed="false">Visual</button><button type="button" aria-pressed="true">Markdown</button></div></div>
+  <div class="composer"><textarea rows="4" aria-label="A comment">- [x] Reproduce it on staging
+- [ ] Check the rounding rule
+
+![invoice.png](/api/v1/attachments/f3a/image)</textarea></div>
+  <p class="error-note" role="alert"><strong>invoice.tiff is larger than 25 MB, the most one file may be. Compress it, or split it into parts.</strong></p>
+</div>
+</div>
+<div class="ds-group"><p class="label">Read: a checklist someone may tick, and a picture from elsewhere, named</p>
+<div class="prose">
+  <ul class="contains-task-list">
+    <li class="task-list-item"><input type="checkbox" checked aria-label="Reproduce it on staging"> Reproduce it on staging</li>
+    <li class="task-list-item"><input type="checkbox" aria-label="Check the rounding rule"> Check the rounding rule</li>
+  </ul>
+  <p>The vendor's chart: <a class="image-elsewhere" href="#">rates.png</a></p>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
