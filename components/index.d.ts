@@ -91,6 +91,8 @@ export interface PaletteProps {
   /** Only what they may open, already found for the query, in order. */
   options: PaletteOption[];
   onChoose: (option: PaletteOption) => void;
+  /** Still finding what they may open, the first time: it says it's looking, not that it found nothing. */
+  looking?: boolean;
 }
 /** Proposed: going anywhere a person may, and doing the common things, by name, from any page (Ctrl-K, or ⌘K on a Mac). */
 export declare function Palette(props: PaletteProps): React.ReactElement;
