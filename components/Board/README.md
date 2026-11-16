@@ -51,3 +51,5 @@ An agile board: the sprint's name, dates and goal; a column for each state, with
 Where a dragged card would land: `<li class="board-drop"><div class="board-card lifted" aria-hidden="true">…</div><p>Drop it to move BACK-37 to In Progress: 5 of 5</p></li>`, the copy's id a `<span class="issue-id">` and its summary a `<span class="board-card-summary">`; and where it was, `<li class="board-card moving" aria-hidden="true">…</li>`. Without lanes, `.board-cells` follows `.board-cols` directly; without a sprint, the section is named by a heading for screen readers alone, `<h2 class="hidden">`.
 
 **In a4a:** Boards. The preview is a static rendition, a card drawn on its way.
+
+On a phone each column is most of the screen wide (82vw, 22rem at most), the next one showing at the edge, and a swipe settles on a column's start (`scroll-snap-type: x proximity`, so dragging a card isn't fought). On a touch screen a card's id and summary keep their look and take a 44px target.

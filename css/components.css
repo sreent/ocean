@@ -1254,9 +1254,10 @@ a.issue-id:hover { text-decoration: underline; }
 .issue { font-size: var(--text-md); }
 .issue:last-child { border-bottom: 0; }
 .issue:hover { background: var(--sunken); }
-.issue:has(> .issue-select:checked), .issue[aria-current="true"] { background: var(--accent-soft); }
+.issue:has(> .issue-select:checked, > .issue-pick > .issue-select:checked), .issue[aria-current="true"] { background: var(--accent-soft); }
 .issue:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
 .issue-select, .issues-head input { width: 1rem; height: 1rem; margin: 0; padding: 0; accent-color: var(--accent); }
+.issue-pick { display: grid; place-items: center; cursor: pointer; }  /* the box's label: on a touch screen, its target (Touch, below) */
 .issue-main { display: flex; flex-wrap: wrap; align-items: center; gap: 0.15rem var(--space-2); min-width: 0; }
 .issue-main .chips { gap: 0.25rem; }
 .issue-main .chip { padding: 0 0.45rem; font-size: var(--text-xs); }
@@ -1280,7 +1281,7 @@ a.issue-id:hover { text-decoration: underline; }
   .issues-head { display: none; }
   .issue { grid-template-columns: 1rem minmax(0, 1fr) auto; grid-template-areas: "select id updated" ". main main" ". meta meta";
            row-gap: 0.3rem; align-items: start; padding-block: var(--space-2); }
-  .issue > .issue-select { grid-area: select; margin-top: 0.15rem; }
+  .issue > :is(.issue-select, .issue-pick) { grid-area: select; margin-top: 0.15rem; }
   .issue > .issue-id { grid-area: id; }
   .issue > .issue-updated { grid-area: updated; }
   .issue > .issue-main { grid-area: main; }
@@ -2479,3 +2480,52 @@ button.editor-tool[aria-pressed="true"] { border-color: var(--accent-soft); back
 .prose .contains-task-list .contains-task-list { padding-inline-start: 1.5rem; }
 .prose .task-list-item > input { margin: 0 0.5rem 0 0; vertical-align: -0.1em; }
 .prose .task-list-item > input:enabled { cursor: pointer; }
+
+/* A word about the app itself, above every page (a4a installed, D47): it's offline, in --sunken and
+   --muted, out of the app's hands; or a new version is ready, on --accent-soft, with what takes it */
+.app-notices { display: grid; }
+.app-notice { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); margin: 0;
+              padding: var(--space-2) 1.5rem; border-bottom: 1px solid var(--line); background: var(--accent-soft); color: var(--text);
+              font-size: var(--text-sm); }
+.app-notice.offline { background: var(--sunken); color: var(--muted); }
+.app-notice > .icon { flex: none; width: 1rem; height: 1rem; }
+.app-notice > button { margin-inline-start: auto; }
+
+/* On a phone the page reaches the screen's edges (viewport-fit=cover): the bar of pages sits under the
+   status bar and clear of the corners, and the page's foot clear of the home indicator. Where there's
+   no notch, env() is 0 and the padding is what it was. A field being typed in scrolls clear of a
+   sticky foot, and the keyboard shortens the page rather than covering it (interactive-widget) */
+@media (max-width: 760px) {
+  .sidebar { padding-top: max(0.4rem, env(safe-area-inset-top));
+             padding-inline: max(0.6rem, env(safe-area-inset-left)) max(0.6rem, env(safe-area-inset-right)); }
+  .app-notice { padding-inline: max(1rem, env(safe-area-inset-left)) max(1rem, env(safe-area-inset-right)); }
+  main { padding-inline: max(1rem, env(safe-area-inset-left)) max(1rem, env(safe-area-inset-right));
+         padding-bottom: calc(2.5rem + env(safe-area-inset-bottom)); }
+  footer { padding-bottom: max(0.7rem, env(safe-area-inset-bottom)); }
+  html { scroll-padding-block: 4rem 5rem; }
+  /* A board on a phone: a column most of the screen wide, the next one showing at the edge, and a swipe
+     settling on a column's start */
+  .board-cols, .board-cells { grid-auto-columns: min(82vw, 22rem); }
+  .board-scroll { scroll-snap-type: x proximity; }
+  .board-cols > * { scroll-snap-align: start; }
+}
+body.lone { padding: max(var(--space-6), env(safe-area-inset-top)) max(var(--space-6), env(safe-area-inset-right))
+                     max(var(--space-6), env(safe-area-inset-bottom)) max(var(--space-6), env(safe-area-inset-left)); }
+
+/* Touch: on a touch screen everything to tap is 44px at the least, Apple's size and WCAG's (2.5.5), in
+   CSS pixels, whatever the root's size.
+   Controls grow to it. A dense row's links and boxes grow their target, not their look: padding
+   taken back by a negative margin, so nothing around them moves. A link within a sentence stays the
+   sentence's size, as WCAG allows */
+@media (pointer: coarse) {
+  :is(button, .button, select, input:not([type="checkbox"], [type="radio"], [type="hidden"], [type="range"], [type="color"], [type="file"])) {
+    min-height: 44px; }
+  :is(button, .button):not(.link) { min-width: 44px; }
+  button.link:not(p *) { display: inline-flex; align-items: center; min-height: 44px; }
+  .sidebar nav a, .brand { min-width: 44px; min-height: 44px; justify-content: center; }
+  .crumbs a { min-width: 44px; min-height: 44px; }
+  .meta > a { display: inline-flex; align-items: center; min-height: 44px; }  /* a link among a page's facts stands alone */
+  .issue-summary, .board-card-summary { display: inline-block; min-width: 44px; padding-block: 12px; margin-block: -12px; }
+  .board-card-head > button.issue-id { min-height: 0; padding-block: 13px; margin-block: -13px; }
+  .issue-pick { width: 44px; height: 44px; margin: calc((1rem - 44px) / 2); }  /* in its 1rem column */
+}

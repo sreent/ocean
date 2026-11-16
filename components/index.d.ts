@@ -1182,3 +1182,12 @@ export interface WorkWeekProps {
 }
 /** A person's working week: seven fields, Monday first, and its total. Proposed, for a4a. */
 export declare function WorkWeek(props: WorkWeekProps): React.ReactElement;
+
+export interface NoticeProps {
+  /** The app is offline: what's shown may be out of date. */
+  offline?: boolean;
+  /** A new version waits; taking it reloads the app into it. */
+  onNewVersion?: () => void;
+}
+/** A word about the app itself, above every page: offline, or a new version ready (a4a's installed app). */
+export declare function Notice(props: NoticeProps): React.ReactElement | null;
