@@ -8,6 +8,7 @@ Lines on a 24-unit square, as every page draws them: stroke 1.8, round caps and 
 | `tasks` | Tasks, under Work |
 | `book` | Notebook, under Work |
 | `studio` | Studio, under Build |
+| `map` | The map of what depends on what, under Build |
 | `decide` | Decisions, under Decide |
 | `grade` | Grading, under Decide |
 | `settings` | Settings, under Decide |

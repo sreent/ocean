@@ -114,7 +114,7 @@ Two movements only, and only when the person hasn't asked for less motion. What 
 ## Iconography
 
 - Lines on a 24-unit square: stroke 1.8, round caps and joins, no fill, in `currentColor`, so an icon takes its text's colour. 1.15rem in the sidebar, 0.9 to 1.1rem in marks and badges.
-- The set is in `icons/`, 36 of them. The agent's mark is for agents alone. The shield with a tick (`audit`) is for what's signed and kept in the ledger, and for the product's own messages. The tool is for tools and services.
+- The set is in `icons/`, 37 of them. The agent's mark is for agents alone. The shield with a tick (`audit`) is for what's signed and kept in the ledger, and for the product's own messages. The tool is for tools and services.
 - No icon font and no emoji. A new icon is drawn the same way, on the same square.
 
 ## What it's held to
