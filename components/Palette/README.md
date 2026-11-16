@@ -9,7 +9,7 @@ Going anywhere a person may, and doing the common things, by name, from any page
 - Finding nothing says so, and what it looked for: "Nothing you may open is called “frodo”."
 - Its foot says the keys, each in `<kbd>`, on `--sunken`.
 - It goes, or does what a page's own button would, such as "Start a new agent": never what can't be undone, which asks first, on its own page.
-- The button that opens it reads as a place to type, "Find anything", with its keys beside it, where a page keeps its way about, such as the top of the sidebar.
+- The button that opens it reads as a place to type, "Find anything", with its keys beside it, where a page keeps its way about, such as the top of the sidebar. On a phone, in the sidebar's bar, it's its icon alone, and screen readers still say its name.
 - It's a combobox over a listbox, as ARIA has it: the field says which option is chosen (`aria-activedescendant`), each group is labelled by its heading, and a screen reader hears how many it found.
 
 **Takes:** `open`, `onClose`, `query`, `onQuery`, `options` (each `{ id, name, where, group, icon }`), and `onChoose`.
