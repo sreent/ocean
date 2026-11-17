@@ -7,7 +7,7 @@ Ocean is the one look a5s, a7c, a3t and a4a share. It's calm, with colour only w
 Write from the reader's side, in plain words, the way the pages already do.
 
 - Say what something means for the person reading: "Changes to records wait for a person to decide at level 1", not the machinery behind it.
-- Buttons are verbs that say what happens: **Approve**, **Decline**, **Publish it**, **Keep it**, **Delete it**. What follows says what happened: "You approved it." "The draft is gone."
+- Buttons are verbs that say what happens: **Approve**, **Decline**, **Publish it**, **Keep it**, **Delete it**. What follows says what happened: "You approved it." "The draft is gone." The page's status line says it, and a toast says it once more at the foot of the window, with **Undo** while it can still be undone.
 - Before what can't be undone, ask a question that names the thing, and say what goes with it: "Delete the draft of scout?" "Its folder and its test cases go with it, and nobody can bring them back." The safe answer comes first and has the focus.
 - A decision gives its reason after **Why:**, in the words code worked out when it was asked for, never the agent's own.
 - Each page and each card has one thing to do, and only that is the primary button.
@@ -74,7 +74,7 @@ These meanings are the products' shared grammar, the same on every surface: badg
 
 ## Type
 
-- IBM Plex Sans for text, and IBM Plex Mono for ids, versions, digests and times people compare. Both are bundled in `fonts/`, under the SIL Open Font License, and pages load fonts from the product alone, so nothing loads from outside, which matters on premises. Plex has a Thai family designed to match, for when a product needs one.
+- IBM Plex Sans for text, and IBM Plex Mono for ids, versions, digests and times people compare. Both are bundled in `fonts/`, under the SIL Open Font License, and pages load fonts from the product alone, so nothing loads from outside, which matters on premises. IBM Plex Sans Thai, drawn to match, is bundled with them for Thai letters alone, so a page loads it only where it has some. A page in Thai says so, `lang="th"`, which gives its lines more room for the vowels and tones Thai stacks above and below its letters.
 - The body is 15px (`--text-base`), a line and a half apart. Sizes come from the scale `--text-xs` to `--text-2xl`, and a rem is the body's 15px.
 - A page's title is its one h1 (1.45rem, 650), its sections' titles are h2 (1.02rem, 600), and theirs are h3 (0.92rem, 600, in `--muted`), the studio's pages and the server's alike.
 - A note under a title is 0.9rem in `--muted`, no wider than 52rem. A label over a group is 0.74rem at 650, in capitals 0.05em apart, in `--faint`.
@@ -100,7 +100,7 @@ These meanings are the products' shared grammar, the same on every surface: badg
 
 ## Motion
 
-Two movements only, and only when the person hasn't asked for less motion. What opens over the page, such as a popover, a dialog, a hint or a sheet, rises 4px into place over 120ms, easing out. The work an agent has under way turns until it's done.
+Two movements only, and only when the person hasn't asked for less motion. What opens over the page, such as a popover, a dialog, a hint, a sheet or a toast, rises 4px into place over 120ms, easing out. Nothing else moves: what's loading keeps the shape it will have, still, and never shimmers. The work an agent has under way turns until it's done.
 
 ## States
 
@@ -108,12 +108,13 @@ Two movements only, and only when the person hasn't asked for less motion. What 
 - Under the pointer: `--sunken` behind rows and buttons. The primary button darkens to `--accent-strong`.
 - Chosen or pressed: `--accent-soft` behind `--accent`, at 600 (`aria-current`, `aria-pressed`).
 - Disabled: 0.55 opacity, and no pointer.
+- Loading: the shape of what's coming, in `--sunken`, where it will be (a skeleton), with "Loading…" in words for screen readers; only the first time, since what a page showed stays while it loads again.
 - Danger: the button's word and border in `--bad`. Only the confirming button in a dialog is filled with `--bad`, in `--surface`.
 
 ## Iconography
 
 - Lines on a 24-unit square: stroke 1.8, round caps and joins, no fill, in `currentColor`, so an icon takes its text's colour. 1.15rem in the sidebar, 0.9 to 1.1rem in marks and badges.
-- The set is in `icons/`, 35 of them. The agent's mark is for agents alone. The shield with a tick (`audit`) is for what's signed and kept in the ledger, and for the product's own messages. The tool is for tools and services.
+- The set is in `icons/`, 38 of them. The agent's mark is for agents alone. The shield with a tick (`audit`) is for what's signed and kept in the ledger, and for the product's own messages. The tool is for tools and services.
 - No icon font and no emoji. A new icon is drawn the same way, on the same square.
 
 ## What it's held to
