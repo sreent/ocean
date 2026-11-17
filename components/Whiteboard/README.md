@@ -7,7 +7,7 @@ A team's canvas beside its issues: sections that group what lies in them, notes 
 - **A section** is a frame on `--page` edged in `--line-strong`, its title on its top edge in `--muted`, drawn under everything. What lies in it is what its centre lies in.
 - **A card** shows an issue as its reader may see it now: its id in mono and `--muted`, its summary at 600 (two lines at most), its state as a Badge and its assignee as a person or an agent. A resolved one's summary turns `--muted`. A card its reader may not see, for whatever reason (limited to others, a project they aren't in, deleted), is dashed in `--line-control` on `--sunken`, with one line saying so, the same for every reason: nothing of what it holds is drawn, nor sent.
 - **An arrow** is a line in `--faint`, as a canvas's edges are, with its head. One made into a link between its issues is in ink, with the link's words. Its label sits on it in a pill. A wide, unseen stroke (`.whiteboard-arrow-hit`) is what a pointer takes.
-- **Chosen and focused:** each element is a `g` the keyboard reaches (`tabindex="0"`, `role="button"`, `aria-pressed` for chosen), in reading order. Its `.whiteboard-ring` is drawn 4 units off it: `--accent` when it's chosen, `--focus` when the keyboard is on it, dashed `--accent` where a new arrow starts.
+- **Chosen and focused:** each element is a `g` the keyboard reaches (`tabindex="0"`, `role="button"`, `aria-pressed` for chosen), in reading order, and named by its `title`, so its name always holds what it shows. Its `.whiteboard-ring` is drawn 4 units off it: `--accent` when it's chosen, `--focus` when the keyboard is on it, dashed `--accent` where a new arrow starts. A chosen note, text or section has a corner to size it by (`.whiteboard-handle`, the surface edged in `--accent`); the keyboard sizes it as the product says (a4a: Alt and an arrow key).
 - **The outline** (`.whiteboard-outline`) is what screen readers read, and where a narrow screen starts: sections, each with what lies in it, then what lies in none, then the arrows (from what, to what, with their words). Each row is a button that chooses its element on the canvas too, pressed while it's chosen. Beside the canvas where there's room (`.with-outline`), under it where it's narrow (a container query at 44rem).
 - **Who is looking** is a row of people and agents (`.whiteboard-viewers`), each by their mark and name.
 
@@ -29,7 +29,8 @@ A team's canvas beside its issues: sections that group what lies in them, notes 
         <defs><pattern id="wb-dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle class="whiteboard-dot" cx="1" cy="1" r="1"/></pattern>
           <marker …/></defs>
         <rect x="-100000" y="-100000" width="200000" height="200000" fill="url(#wb-dots)"/>
-        <g class="whiteboard-element whiteboard-section" transform="translate(40 40)" tabindex="0" role="button" aria-pressed="false" aria-label="Section: Ideas, 3 elements">
+        <g class="whiteboard-element whiteboard-section" transform="translate(40 40)" tabindex="0" role="button" aria-pressed="false">
+          <title>Section: Ideas, 3 elements</title>
           <rect class="whiteboard-ring" x="-4" y="-4" width="528" height="368" rx="12"/>
           <rect class="whiteboard-box" width="520" height="360" rx="10"/>
           <text class="whiteboard-section-title" x="14" y="24">Ideas</text>
