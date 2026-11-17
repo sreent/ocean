@@ -41,6 +41,7 @@ const TEXT = [  // text, and what it's on: 4.5 to 1
   ["surface", "bad"], ["surface", "text"],  // the danger button; a hint
   ["text", "warn-bg"], ["warn", "surface"],  // a question that waits on the person, and its answers
   ["text", "changes-bg"], ["text", "writes-bg"], ["text", "outside-bg"],  // what sending does, in its tone
+  ["text", "good-bg"], ["text", "bad-bg"], ["text", "idle-bg"],  // a4a: a whiteboard's note in its tone
   ["viewfinder-text", "viewfinder"], ["viewfinder-text", "viewfinder-line"], ["paper-ink", "paper"],  // capture
   ["muted", "accent-soft"], ["accent", "sunken"],  // a4a: an issue's row, chosen or under the pointer
   ["bad", "surface"], ["changes", "surface"],  // a4a: a query's problem, a late task's words; a change in an issue's history
