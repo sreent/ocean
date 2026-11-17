@@ -64,6 +64,11 @@ export interface ConfirmProps {
   onConfirm: () => void;
   /** Proposed, for a4a's rows and cards: a smaller button (`button.small`), such as "Revoke it" beside a token. */
   small?: boolean;
+  /**
+   * Proposed, for a4a's project keys: a word to type again before the confirming answer turns on,
+   * and its field's label ("Type CORE again"). Letter case doesn't count; the field has the focus.
+   */
+  typed?: { label: string; value: string };
 }
 /** A button that asks first, in the browser's own dialog, for what can't be undone. */
 export declare function Confirm(props: ConfirmProps): React.ReactElement;

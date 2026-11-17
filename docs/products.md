@@ -169,6 +169,7 @@ a4a is new, and starts on Ocean. Its web app is React 19 with Tailwind v4, which
 
 | a4a's word | Ocean |
 | --- | --- |
+| Renaming a project's key | Confirm, typed again (`typed`), in the plain colour: the new key typed a second time turns "Rename it" on |
 | Fixed, Verified, Done | Badge `good`, with a tick |
 | In Review, Blocked | Badge `warn`, with a clock: waiting on someone |
 | Won't fix, Duplicate, Obsolete | Badge `idle`, with a pause: not needed |
