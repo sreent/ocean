@@ -22,7 +22,7 @@ Issues in rows, dense enough for long lists: each with a box to choose it, its i
   <div class="issues-head"><input type="checkbox" aria-label="Choose all 9 issues"><span>Issue</span><span>State</span><span>Priority</span><span>Type</span><span>Assignee</span><span><span class="hidden">Comments</span></span><span>Updated</span></div>
   <ul class="issues" aria-label="9 issues">
     <li class="issue" tabindex="0">                       <!-- .resolved; aria-current="true" for the one that's open -->
-      <input type="checkbox" class="issue-select" aria-label="Choose BACK-12" tabindex="-1">
+      <input type="checkbox" class="issue-select" aria-label="Choose BACK-12" tabindex="-1">   <!-- or in <label class="issue-pick">, its target: 44px on a touch screen -->
       <span class="issue-id">BACK-12</span>
       <span class="issue-main"><a class="issue-summary" href="…" tabindex="-1">Login times out on slow networks</a><span class="chips"><span class="chip">login</span></span></span>
       <span class="issue-meta">

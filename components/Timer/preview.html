@@ -1,0 +1,21 @@
+<!-- @dsCard group="Issues" height=320 subtitle="A timer running, one paused, and one at rest while yours runs on another issue" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Timer</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<section class="card stack" aria-labelledby="time">
+<div class="cluster"><h2 id="time" class="grow">Time spent</h2><span class="note"><span class="mono">3h 20m</span> of <span class="mono">2d</span> estimated</span></div>
+<div class="timer running" role="group" aria-label="Your timer"><span class="timer-time">0:42:07</span><span class="note">Running</span><button type="button">Pause</button><button type="button" class="primary">Stop and log</button><button type="button" class="link">Discard</button></div>
+<div class="timer" role="group" aria-label="Your timer"><span class="timer-time">1:05:00</span><span class="note">Paused</span><button type="button">Resume</button><button type="button" class="primary">Stop and log</button><button type="button" class="link">Discard</button></div>
+<div class="timer" role="group" aria-label="Your timer"><span class="timer-time">0:00:00</span><span class="note">Your timer is on BACK-12</span><button type="button">Start timer</button></div>
+</section>
+</div>
+</body>
+</html>
