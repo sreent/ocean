@@ -2367,6 +2367,105 @@ a.code-title:hover { text-decoration: underline; }
 .gantt-away { fill: var(--sunken); stroke: var(--line-control); stroke-dasharray: 2 2; }  /* a day the task's assignee is away, edged so it isn't a weekend: never why */
 .gantt-away.half { fill: none; }
 
+/* A whiteboard (components/Whiteboard; a4a): a canvas a team plans on beside its issues. SVG drawn
+   from its attributes alone (x, y, width, height, transform, viewBox), so it runs under a policy with
+   no inline style: sections that group what lies in them, notes in a tone, text, issue and article
+   cards, and arrows between them. Pan and zoom are the viewBox. A card's words are HTML inside a
+   foreignObject, placed by the same attributes. Every canvas has its list: the outline, in reading
+   order, is what a screen reader and a narrow screen start from. */
+.whiteboard { display: grid; gap: var(--space-3); min-width: 0; container-type: inline-size; }
+.whiteboard-tools { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.whiteboard-tools .modes { margin: 0; }
+.whiteboard-viewers { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); margin: 0; padding: 0; list-style: none;
+                      color: var(--muted); font-size: var(--text-sm); }
+.whiteboard-viewers li { display: inline-flex; align-items: center; gap: var(--space-1); }
+.whiteboard-body { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-3); }
+.whiteboard-body.with-outline { grid-template-columns: minmax(0, 1fr) 18rem; }
+.whiteboard-frame { position: relative; min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-md);
+                    background: var(--sunken); }
+.whiteboard-canvas { display: block; width: 100%; height: min(70vh, 44rem); touch-action: none; user-select: none; -webkit-user-select: none; cursor: grab; }
+.whiteboard-canvas.panning { cursor: grabbing; }
+.whiteboard-canvas text { font-family: var(--font-sans); }
+.whiteboard-dot { fill: var(--line-strong); }  /* the canvas's dots, as a pattern of circles: where nothing is yet */
+/* What can be chosen wears a ring when it's chosen, and the focus ring when the keyboard is on it */
+.whiteboard-element { cursor: pointer; outline: none; }
+.whiteboard-element .whiteboard-ring { fill: none; stroke: none; stroke-width: 2; }
+.whiteboard-element.chosen .whiteboard-ring { stroke: var(--accent); }
+.whiteboard-element:focus-visible .whiteboard-ring { stroke: var(--focus); stroke-dasharray: none; }
+.whiteboard-element.chosen:focus-visible .whiteboard-ring { stroke-width: 3; }
+.whiteboard-element.moving { cursor: grabbing; opacity: 0.85; }
+.whiteboard-handle { fill: var(--surface); stroke: var(--accent); stroke-width: 2; cursor: nwse-resize; }  /* a chosen note's or section's corner, for a pointer to size it by */
+/* A section: a frame that groups what lies inside it, its title on its top edge, under everything */
+.whiteboard-section > .whiteboard-box { fill: var(--page); stroke: var(--line-strong); stroke-width: 1.5; }
+.whiteboard-section-title { fill: var(--muted); font-size: 14px; font-weight: 650; letter-spacing: 0.02em; }
+/* A note: words on a card in its tone's own background, with a band and a badge that say the tone in
+   words, so colour is never the only sign. Plain is the surface. */
+.whiteboard-note > .whiteboard-box { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1; }
+.whiteboard-note > .whiteboard-band { fill: var(--line-strong); }
+.whiteboard-note.writes > .whiteboard-box { fill: var(--writes-bg); }
+.whiteboard-note.writes > .whiteboard-band { fill: var(--writes); }
+.whiteboard-note.good > .whiteboard-box { fill: var(--good-bg); }
+.whiteboard-note.good > .whiteboard-band { fill: var(--good); }
+.whiteboard-note.warn > .whiteboard-box { fill: var(--warn-bg); }
+.whiteboard-note.warn > .whiteboard-band { fill: var(--warn); }
+.whiteboard-note.bad > .whiteboard-box { fill: var(--bad-bg); }
+.whiteboard-note.bad > .whiteboard-band { fill: var(--bad); }
+.whiteboard-note.idle > .whiteboard-box { fill: var(--idle-bg); }
+.whiteboard-note.idle > .whiteboard-band { fill: var(--idle); }
+/* What a note, a text or a card says, in HTML placed by its foreignObject */
+.whiteboard-words { box-sizing: border-box; width: 100%; height: 100%; overflow: hidden; padding: 0.75rem 0.8rem 0.6rem; color: var(--text);
+                    font-size: var(--text-sm); line-height: 1.4; overflow-wrap: anywhere; white-space: pre-wrap; }
+.whiteboard-words .badge { float: inline-end; margin: 0 0 0.25rem 0.4rem; white-space: nowrap; }
+.whiteboard-words.empty { color: var(--muted); font-style: italic; }
+.whiteboard-text .whiteboard-words { padding: 0.25rem; font-size: var(--text-lg); font-weight: 600; line-height: 1.3; }
+/* A card: an issue or an article as its reader may see it now. Its id in mono, its summary, its state
+   and assignee; one they may not see is dashed, with the same words whatever the reason */
+.whiteboard-card > .whiteboard-box { fill: var(--surface); stroke: var(--line-strong); stroke-width: 1; }
+.whiteboard-card.hidden-card > .whiteboard-box { fill: var(--sunken); stroke: var(--line-control); stroke-dasharray: 5 4; }
+.whiteboard-card-body { box-sizing: border-box; display: grid; align-content: start; gap: 0.3rem; width: 100%; height: 100%; overflow: hidden;
+                        padding: 0.65rem 0.8rem; font-size: var(--text-sm); line-height: 1.35; }
+.whiteboard-card-id { color: var(--muted); font-family: var(--font-mono); font-size: var(--text-xs); }
+.whiteboard-card-summary { display: -webkit-box; overflow: hidden; font-weight: 600; overflow-wrap: anywhere; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.whiteboard-card.resolved .whiteboard-card-summary { color: var(--muted); }
+.whiteboard-card-facts { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); min-width: 0; }
+.whiteboard-card-facts .who-name { font-weight: 500; }
+.whiteboard-card.hidden-card .whiteboard-card-body { color: var(--muted); }
+/* An arrow: a line in --faint, as a canvas's edges are, with its head; made into a link between its
+   issues, in ink, with the link's words. Its label sits on the line in a pill */
+.whiteboard-arrow-line { fill: none; stroke: var(--faint); stroke-width: 2; }
+.whiteboard-arrow-head { fill: var(--faint); }
+.whiteboard-arrow.linked .whiteboard-arrow-line { stroke: var(--text); }
+.whiteboard-arrow.linked .whiteboard-arrow-head { fill: var(--text); }
+.whiteboard-arrow-hit { fill: none; stroke: transparent; stroke-width: 16; pointer-events: stroke; }
+.whiteboard-arrow .whiteboard-ring { stroke-width: 6; stroke-linecap: round; opacity: 0.5; }
+.whiteboard-arrow-label { box-sizing: border-box; display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; }
+.whiteboard-arrow-label > span { max-width: 100%; overflow: hidden; padding: 0.05rem 0.5rem; border: 1px solid var(--line); border-radius: var(--radius-pill);
+                                 background: var(--surface); color: var(--muted); font-size: var(--text-xs); text-overflow: ellipsis; white-space: nowrap; }
+.whiteboard-arrow.linked .whiteboard-arrow-label > span { border-color: var(--line-strong); color: var(--text); }
+/* Where a new arrow will start, while the next element is chosen for its end */
+.whiteboard-element.from .whiteboard-ring { stroke: var(--accent); stroke-dasharray: 6 4; }
+/* The outline: the whiteboard as a list, in reading order, each element a row someone chooses from the
+   keyboard, which chooses it on the canvas too; a section's elements under it */
+.whiteboard-outline { display: grid; align-content: start; gap: var(--space-2); max-height: min(70vh, 44rem); overflow: auto; padding: var(--space-3);
+                      border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
+.whiteboard-outline h2 { margin: 0; font-size: var(--text-md); }
+.whiteboard-outline ol { display: grid; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+.whiteboard-outline ol ol { margin-top: var(--space-1); padding-inline-start: var(--space-4); border-inline-start: 2px solid var(--line); }
+button.whiteboard-row { display: flex; align-items: flex-start; gap: var(--space-2); width: 100%; min-height: 2.25rem; padding: 0.4rem 0.55rem;
+                        border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--surface); color: var(--text);
+                        font: inherit; font-size: var(--text-sm); text-align: start; }
+button.whiteboard-row:hover { background: var(--sunken); }
+button.whiteboard-row[aria-pressed="true"] { border-color: var(--accent); background: var(--accent-soft); }
+.whiteboard-row > .icon { flex: none; width: 1rem; height: 1rem; margin-top: 0.15rem; color: var(--muted); }
+.whiteboard-row-text { display: grid; min-width: 0; }
+.whiteboard-row-kind { color: var(--muted); font-size: var(--text-xs); }
+.whiteboard-row-words { overflow-wrap: anywhere; }
+@container (max-width: 44rem) {  /* a narrow screen: the outline under the canvas, and a shorter canvas */
+  .whiteboard-body.with-outline { grid-template-columns: minmax(0, 1fr); }
+  .whiteboard-canvas { height: min(58vh, 30rem); }
+  .whiteboard-outline { max-height: none; }
+}
+
 /* Placing pieces on a page (components/Layout): a stack, a cluster, and a page's main column
    with an aside. They only place: each spaces its children by its gap, and takes away their own
    outer margins, so a piece keeps its look wherever it's put. Last in the file, so that taking a

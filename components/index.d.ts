@@ -1277,3 +1277,35 @@ export interface AppFrameProps {
 }
 /** An app's widget on a page: someone else's code, in a sandboxed frame of its own, named as an app's. Proposed. */
 export declare function AppFrame(props: AppFrameProps): React.ReactElement;
+
+/** What a whiteboard's note is, said by a meaning, never a colour: plain, an idea (writes), agreed (good), a question (warn), a problem (bad), parked (idle). */
+export type WhiteboardTone = "plain" | "idea" | "agreed" | "question" | "problem" | "parked";
+/** An element on a whiteboard: where it is and how big, in the canvas's units, and what it says. */
+export type WhiteboardItem =
+  | { id: string; kind: "note"; x: number; y: number; w: number; h: number; text: string; tone: WhiteboardTone }
+  | { id: string; kind: "text"; x: number; y: number; w: number; h: number; text: string }
+  | { id: string; kind: "section"; x: number; y: number; w: number; h: number; title: string }
+  /** A card as its reader may see it: null when they may not, for whatever reason, and then nothing of it is drawn. */
+  | { id: string; kind: "issue" | "article"; x: number; y: number; w: number; h: number; card: { id: string; summary: string; state?: { name: string; tone?: Tone }; assignee?: Someone; resolved?: boolean } | null }
+  | { id: string; kind: "arrow"; from: string; to: string; label?: string; linked?: string };
+export interface WhiteboardProps {
+  /** Its name, for screen readers: "Q3 planning, 12 elements". */
+  label: string;
+  items: WhiteboardItem[];
+  /** The part of the canvas in view: pan and zoom change it. */
+  viewBox: { x: number; y: number; width: number; height: number };
+  onViewBox?: (box: { x: number; y: number; width: number; height: number }) => void;
+  /** What's chosen. */
+  chosen?: string[];
+  onChoose?: (ids: string[]) => void;
+  /** Moved by a pointer or the arrow keys: each element's new place. */
+  onMove?: (moves: { id: string; x: number; y: number }[]) => void;
+  /** Who is looking now. */
+  viewers?: Someone[];
+  /** Show the outline beside the canvas, or under it where it's narrow. */
+  outline?: boolean;
+  /** The product's words: each kind and tone, the outline's title, and a hidden card's line. */
+  words: Record<string, string>;
+}
+/** A whiteboard: a team's canvas beside its issues, as SVG drawn from attributes: sections, notes in a tone, text, issue and article cards as their reader may see them, and arrows, with its outline in reading order. Proposed. */
+export declare function Whiteboard(props: WhiteboardProps): React.ReactElement;
