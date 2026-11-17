@@ -1445,6 +1445,15 @@ a.board-card-summary:hover { text-decoration: underline; }  /* the copy where a 
 .board-drop { display: grid; gap: var(--space-2); padding: var(--space-2); border: 2px dashed var(--accent); border-radius: var(--radius-md);
               background: var(--accent-soft); list-style: none; }
 .board-drop > p { margin: 0; color: var(--accent); font-size: var(--text-sm); font-weight: 600; text-align: center; }
+/* A card whose id has the keyboard's focus wears the ring whole, so a card moved from the keyboard,
+   a place or a column at a time, is seen wherever it lands; its id needs no ring of its own then */
+.board-card:has(> .board-card-head > button.issue-id:focus-visible) { outline: 2px solid var(--focus); outline-offset: 2px; }
+.board-card:has(> .board-card-head > button.issue-id:focus-visible) button.issue-id:focus-visible { outline: none; color: var(--text); text-decoration: underline; }
+/* On a touch screen a card is picked up by holding it still a moment, and a finger that moves first is a
+   swipe through the columns: held, it starts no text selection and no menu of the link under it */
+@media (pointer: coarse) {
+  .board-card { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+}
 .board-scroll.dragging, .board-scroll.dragging * { cursor: grabbing; }  /* while a card is on its way */
 /* A board with lanes runs long: it scrolls in a frame of its own, at most the window's height, and its column heads stay in view (.held) */
 .board-scroll.held { max-height: calc(100dvh - var(--space-4)); overflow: auto; }

@@ -605,9 +605,14 @@ export interface BoardProps {
   columns: { name: string; count: number; limit?: number }[];
   /** Lanes, each with a card list per column; one lane with no name for a board without them. With lanes, the board scrolls in a frame of its own and its column heads stay in view (.held). */
   lanes: { id?: string; name?: string; count?: number; cells: BoardCard[][] }[];
-  /** A card on its way: where it was, and where it would land. */
-  dragging?: { id: string; to: { lane: number; column: number } };
-  onMove: (id: string, to: { lane: number; column: number }) => void;
+  /** A card on its way: where it was, and where it would land: a cell, and its place among that cell's other cards. */
+  dragging?: { id: string; to: { lane: number; column: number; index: number } };
+  /** Dropped: into a cell, just after or before a card there; neither, into an empty cell, keeps its place in the board's order. */
+  onMove: (id: string, to: { lane: number; column: number; after?: string; before?: string }) => void;
+  /** From the keyboard, Alt and an arrow on a card's id: a place up or down its column, or into the next column. */
+  onRank?: (id: string, way: "up" | "down" | "left" | "right") => void;
+  /** What the last move did, or why a key did nothing, where a screen reader hears it. */
+  said?: string;
   /** From the keyboard: a card's id opens a command for it (CommandBar). */
   onCommand: (id: string) => void;
   /** A move the server refused: it goes back, and this says why above the columns. */
