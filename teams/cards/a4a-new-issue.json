@@ -1,0 +1,105 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "${from}",
+      "wrap": true,
+      "isSubtle": true,
+      "size": "Small"
+    },
+    {
+      "type": "ColumnSet",
+      "$when": "${error}",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "Icon",
+              "name": "ErrorCircle",
+              "size": "xSmall",
+              "color": "Attention",
+              "style": "Filled"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "${error}",
+              "wrap": true,
+              "size": "Small",
+              "color": "Attention"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Input.ChoiceSet",
+      "id": "project",
+      "label": "${words.project}",
+      "placeholder": "${words.chooseProject}",
+      "style": "filtered",
+      "isRequired": true,
+      "errorMessage": "${words.projectNeeded}",
+      "value": "${project}",
+      "choices": [
+        {
+          "$data": "${projects}",
+          "title": "${name}",
+          "value": "${id}"
+        }
+      ]
+    },
+    {
+      "type": "Input.Text",
+      "id": "summary",
+      "label": "${words.summary}",
+      "isRequired": true,
+      "errorMessage": "${words.summaryNeeded}",
+      "maxLength": 500,
+      "value": "${summary}"
+    },
+    {
+      "type": "Input.Text",
+      "id": "description",
+      "label": "${words.description}",
+      "isMultiline": true,
+      "maxLength": 3000,
+      "value": "${description}"
+    },
+    {
+      "type": "TextBlock",
+      "$when": "${cut}",
+      "text": "${cut}",
+      "wrap": true,
+      "isSubtle": true,
+      "size": "Small"
+    },
+    {
+      "type": "TextBlock",
+      "$when": "${files}",
+      "text": "${files}",
+      "wrap": true,
+      "isSubtle": true,
+      "size": "Small"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.Submit",
+      "title": "${words.create}",
+      "data": {
+        "draft": "${draft}"
+      }
+    }
+  ]
+}
