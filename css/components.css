@@ -773,6 +773,110 @@ button.flow-row[aria-expanded="true"] { border-color: var(--focus); }
                border: 1px solid var(--line); border-radius: var(--radius-md); background: var(--surface); }
 .flow-inline .wb-head h2 { font-size: var(--text-lg); }
 
+/* a3t's flows (proposed): one way to build what happens in an app, whether it runs in one go or
+   waits for people and for time. It reads as Mendix's microflows do, left to right: a box for each
+   step with its words inside, a diamond for a decision, a frame round a loop, rings where it starts,
+   waits and ends, and arrows at right angles. The grammar is the family's, as on a7c's and a5s's
+   canvases: the icon in the colour of what the step does, its state in its corner, words on the arrows */
+.logic-step { position: absolute; display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center;
+              gap: 0.1rem 0.55rem; width: 11rem; min-height: 4rem; padding: 0.45rem 0.65rem; box-sizing: border-box;
+              border: 1.5px solid var(--line-strong); border-radius: var(--radius-md); background: var(--surface);
+              box-shadow: var(--shadow); color: var(--idle); }
+.logic-step.compact { width: 10rem; }
+.logic-step > .icon { grid-row: span 3; width: 1.45rem; height: 1.45rem; stroke-width: 1.7; }
+.logic-step.reads > .icon { color: var(--reads); }
+.logic-step.writes > .icon { color: var(--writes); }
+.logic-step.changes > .icon { color: var(--changes); }
+.logic-step.outside > .icon { color: var(--outside); }
+.logic-step.own > .icon { color: var(--own); }
+.logic-kind { color: var(--faint); font-size: 0.66rem; font-weight: 650; line-height: 1.2; letter-spacing: 0.05em; text-transform: uppercase; }
+.logic-words { color: var(--text); font-size: var(--text-sm); font-weight: 600; line-height: 1.25; }
+.logic-about { color: var(--muted); font-size: var(--text-xs); line-height: 1.3; }
+.logic-step.chosen, .logic-decision.chosen > i { outline: 2px solid var(--focus); outline-offset: 3px; }
+.logic-step .flow-state, .logic-ring .flow-state { z-index: 1; }
+.logic-step > .chip { position: absolute; bottom: -0.75rem; inset-inline-start: 0.6rem; }  /* new in this copy, at its foot */
+/* A decision is a diamond, its question above it; where ways meet again, a small one */
+.logic-decision { position: absolute; display: grid; place-items: center; width: 3.4rem; height: 3.4rem; }
+.logic-decision > i { width: 2.4rem; height: 2.4rem; rotate: 45deg; border: 1.5px solid var(--line-strong);
+                      border-radius: 4px; background: var(--surface); box-shadow: var(--shadow); }
+.logic-decision.merge { width: 1.9rem; height: 1.9rem; }
+.logic-decision.merge > i { width: 1.3rem; height: 1.3rem; }
+/* Words beside a diamond or a ring stand on the canvas's colour, so arrows pass behind them */
+.logic-caption { position: absolute; left: 50%; translate: -50% 0; width: max-content; max-width: 11rem; padding: 0 0.25rem;
+                 border-radius: var(--radius-sm); background: var(--sunken); line-height: 1.3; text-align: center; }
+.logic-caption.above { bottom: calc(100% + 0.3rem); }
+.logic-caption.below { top: calc(100% + 0.35rem); }
+.logic-caption.beside { left: calc(100% + 0.55rem); top: 50%; translate: 0 -50%; text-align: start; }
+.logic-caption > strong { display: block; color: var(--text); font-size: var(--text-sm); }
+.logic-caption > span { display: block; color: var(--muted); font-size: var(--text-xs); }
+/* Rings: where it starts, thin; where it ends, heavy; where it waits, double, with the clock */
+.logic-ring { position: absolute; width: 2.4rem; height: 2.4rem; box-sizing: border-box; border: 2px solid var(--text);
+              border-radius: 50%; background: var(--surface); box-shadow: var(--shadow); }
+.logic-ring.end { border-width: 4px; }
+.logic-ring.wait { display: grid; place-items: center; width: 2rem; height: 2rem; border-width: 1.5px;
+                   outline: 1.5px solid var(--text); outline-offset: -5px; color: var(--text); }
+.logic-ring.wait > .icon { width: 0.95rem; height: 0.95rem; }
+/* A frame holds steps that go together: a loop, the steps an error handler guards, steps at once */
+.logic-frame { position: absolute; box-sizing: border-box; border: 1.5px solid var(--line-strong); border-radius: var(--radius-lg); }
+.logic-frame-head { position: absolute; top: -0.9rem; inset-inline-start: 0.9rem; display: inline-flex; align-items: center;
+                    gap: 0.35rem; padding: 0.1rem 0.65rem; border: 1.5px solid var(--line-strong); border-radius: var(--radius-pill);
+                    background: var(--surface); color: var(--text); font-size: var(--text-xs); font-weight: 600; white-space: nowrap; }
+.logic-frame-head .icon { width: 0.95rem; height: 0.95rem; }
+.logic-frame-head .note { color: var(--muted); font-weight: 400; }
+/* Arrows at right angles, with heads: grey for the order of the steps, green where the last run went */
+.logic-edges { position: absolute; inset: 0; overflow: visible; pointer-events: none; }
+.logic-edges path { fill: none; stroke: var(--faint); stroke-width: 1.8; }
+.logic-edges path.ran { stroke: var(--good); }
+.logic-edges path.hangs { stroke-width: 1.5; stroke-dasharray: 5 4; }
+.logic-edges path.head { fill: var(--faint); stroke: none; }
+.logic-edges path.head.ran { fill: var(--good); }
+/* What a run didn't use fades, and its words stay readable, so why it didn't run can be read */
+.logic-step.dim, .logic-decision.dim, .logic-edges .dim { opacity: 0.42; }
+/* Where a flow waits, what came before is saved: a bar in ink across the line. Everything between two
+   bars commits together, and a failure after a bar can't undo what's before it; only an undo can */
+.logic-save { position: absolute; width: 0; height: 2.6rem; translate: -50% -50%; border-inline-start: 2.5px solid var(--text); }
+.logic-save > span { position: absolute; top: calc(100% + 0.15rem); left: 50%; translate: -50% 0; color: var(--muted);
+                     font-size: 0.66rem; font-weight: 650; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
+/* Who acts at a step, at its foot on the right, as Who draws them, small: a person round; an agent
+   the lagoon square; the app's own authority the shield on --own. What hangs below a step, such as a
+   person's task's deadline, hangs from its foot on the left */
+.logic-who { position: absolute; bottom: -0.75rem; inset-inline-end: 0.6rem; display: inline-flex; align-items: center; gap: 0.3rem;
+             padding: 0.05rem 0.45rem 0.05rem 0.1rem; border: 1px solid var(--line); border-radius: var(--radius-pill);
+             background: var(--surface); color: var(--muted); font-size: 0.66rem; white-space: nowrap; }
+.logic-who > b { display: grid; place-items: center; width: 1.05rem; height: 1.05rem; border-radius: 50%; background: var(--sunken);
+                 color: var(--text); font-size: 0.55rem; font-weight: 700; }
+.logic-who > b.agent { border-radius: 4px; background: var(--agent-tone); color: var(--surface); }
+.logic-who > b.own { border-radius: 4px; background: var(--own); color: var(--surface); }
+.logic-who > b .icon { width: 0.72rem; height: 0.72rem; stroke-width: 2.2; }
+/* Live: how many cases wait at a step now, and the longest wait, on the canvas the flow is built on */
+.logic-live { position: absolute; top: -0.75rem; inset-inline-end: 0.5rem; padding: 0.05rem 0.45rem; border-radius: var(--radius-pill);
+              background: var(--warn-bg); color: var(--text); font-size: 0.66rem; font-weight: 600; white-space: nowrap; }
+/* What an action works out first, which its preview shows, and what runs after it saves: a bracket over them */
+.logic-phase { position: absolute; height: 0.55rem; box-sizing: border-box; border: 1.5px solid var(--line-strong); border-bottom: 0;
+               border-radius: 4px 4px 0 0; }
+.logic-phase > span { position: absolute; bottom: calc(100% + 0.25rem); inset-inline-start: 0; color: var(--muted); font-size: var(--text-xs);
+                      white-space: nowrap; }
+/* A new step goes on an arrow: the chosen arrow shows where */
+.logic-add { position: absolute; display: grid; place-items: center; width: 1.35rem; height: 1.35rem; padding: 0; translate: -50% -50%;
+             border: 1px solid var(--line-strong); border-radius: 50%; background: var(--surface); color: var(--muted); font-size: 0.95rem; line-height: 1; }
+/* Which flow, and whether the canvas shows its design or its cases now */
+.logic-view { position: absolute; top: var(--space-4); inset-inline-start: var(--space-4); z-index: 5; display: flex; gap: var(--space-2); align-items: center; }
+.logic-view select { padding: 0.3rem 0.5rem; }
+
+/* a3t's data model (proposed): each entity a box of its fields, with arrows for its references and
+   its lines, as Mendix's domain model draws it; a field's kind in the tag the form designer uses */
+.model-entity { position: absolute; width: 15rem; border: 1.5px solid var(--line-strong); border-radius: var(--radius-md);
+                background: var(--surface); box-shadow: var(--shadow); }
+.model-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 0.45rem; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--line); }
+.model-head strong { font-size: var(--text-md); }
+.model-head > span { color: var(--muted); font-size: var(--text-xs); }
+.model-head .chip { margin-inline-start: auto; }
+.model-entity ul { display: grid; gap: 0.05rem; margin: 0; padding: 0.35rem 0.4rem 0.45rem; list-style: none; }
+.model-entity li { display: flex; align-items: center; gap: 0.5rem; padding: 0.18rem 0.3rem; border-radius: var(--radius-sm); font-size: var(--text-sm); }
+.model-entity li .fd-type { width: 1.45rem; height: 1.45rem; font-size: 0.6rem; }
+.model-entity li.chosen { background: var(--accent-soft); outline: 2px solid var(--focus); outline-offset: 1px; }
+.model-note { margin-inline-start: auto; color: var(--muted); font-size: var(--text-xs); white-space: nowrap; }
+
 /* The workbench (proposed): where people build, the whole window in panes and compact. A rail of
    the product's pages, a toolbar with where the draft stands and its one thing to do, the canvas,
    and an inspector for the step someone has chosen (docs/platforms.md) */
@@ -909,6 +1013,8 @@ body.app.workbench { display: block; height: 100vh; overflow: hidden; background
 /* The app designer (proposed), for a3t: a palette of fields, the form as people will see it, and the
    chosen field's settings, its permissions among them, on the workbench's frame */
 .wb-body.designer { grid-template-columns: 15rem minmax(0, 1fr) 24rem; }
+.wb-body.canvas { grid-template-columns: minmax(0, 1fr) 24rem; }  /* a3t's flows: the picker of steps opens from the left */
+.fd-part[aria-current] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
 .fd-palette { display: grid; align-content: start; gap: var(--space-3); overflow: auto; padding: var(--space-4);
               border-inline-end: 1px solid var(--line); background: var(--surface); }
 .fd-palette input { width: 100%; }

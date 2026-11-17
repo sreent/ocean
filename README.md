@@ -12,7 +12,7 @@ Ocean is the look a5s, a7c, a3t and a4a share: calm, with colour only where it m
 | [`css/components.css`](css/components.css) | The pieces' look: the frame, controls, badges, a decision, an agent's facts, the ladder of autonomy, a run as time, the canvas and the workbench, the conversation kit, and a4a's issues, boards and plans |
 | [`css/charts.css`](css/charts.css) | The chart colours: eight series and Other, Ocean Blue, Ocean Orange-Blue, and how runs end, in light and dark |
 | [`fonts/`](fonts) | IBM Plex Sans (400 to 700), Plex Sans Thai (400 to 700) and Plex Mono (400, 500), with Vietnamese's letters for Plex Sans and Plex Mono, and their licences |
-| [`icons/`](icons) | The 36 line icons, on a 24-unit square, in `currentColor` |
+| [`icons/`](icons) | The 40 line icons, on a 24-unit square, in `currentColor` |
 | [`charts/palettes.json`](charts/palettes.json) | The chart palettes as data, for tools that can't read CSS |
 | [`tokens.json`](tokens.json) | The tokens as data, built from `css/tokens.css`, for tools such as a Tailwind theme |
 | [`components/`](components) | Each piece: what it's for, what it takes, and a preview of it as pages draw it; and showcase pages of the products |
@@ -74,6 +74,8 @@ Drawn from the previews in `components/`, in light. This is the design: no produ
 ![a7c's builder: the whole window given to the canvas, as n8n's editor is](docs/images/ocean-a7c-builder.png)
 ![a5s, a7c, a3t and a4a in one frame, told apart by their names and marks alone](docs/images/ocean-products.png)
 ![a3t's app designer, building an expense claim's form in someone's own space](docs/images/ocean-a3t-designer.png)
+![a3t's flows: a claim's approval, which waits for people, live, built as Mendix lays out a microflow](docs/images/ocean-a3t-flows.png)
+![The family's canvases: a7c's and a5s's as n8n lays a canvas out, a3t's as Mendix does, in one grammar](docs/images/ocean-canvases.png)
 ![The conversation kit's reference flow: an expense claim, from asking to submitted, in eight steps](docs/images/ocean-expense-claim.png)
 ![The same claim in Microsoft Teams, drawn from its cards in teams/cards, in Teams' own look: Teams draws its cards itself, so this one keeps Ocean's rules and words, not its colours or type](docs/images/ocean-in-teams.png)
 

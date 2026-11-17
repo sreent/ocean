@@ -42,3 +42,5 @@ Lines on a 24-unit square, as every page draws them: stroke 1.8, round caps and 
 | `code` | Code, in the sandbox |
 | `list` | A canvas as its list |
 | `find` | Finding anything by name, in the palette |
+| `total` | A count or a total, in a3t's flows |
+| `guard` | Steps an error handler guards, in a3t's flows |

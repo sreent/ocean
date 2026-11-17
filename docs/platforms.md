@@ -6,7 +6,7 @@ a7c automates work as workflows on a canvas, as n8n does. a5s runs agents. a3t b
 
 | Surface | What people do there | a7c | a5s | a3t | How it looks |
 | --- | --- | --- | --- | --- | --- |
-| Workbench | Build: wire steps, set their fields, test, version | the builder's canvas | the studio's drafts, the agent's map | the form, page and process designers | The whole window, in panes, compact |
+| Workbench | Build: wire steps, set their fields, test, version | the builder's canvas | the studio's drafts, the agent's map | the data, form, page and flow designers | The whole window, in panes, compact |
 | Pages | Oversee and decide: read, compare, approve | cases, findings, approvals, the audit log | the studio, decisions, grading, the audit trail | spaces, change requests, access, the audit log | Calm documents, as Ocean is today |
 | Runtime | Use what was built | the forms a workflow asks people to fill | the chat, tasks | the apps people built | The app's own name and brand, on Ocean; in a conversation, the kit; in Teams, Teams' cards |
 
@@ -18,7 +18,7 @@ Builders spend hours in one view, so it's a tool, not a document.
 - Compact, by a density layer rather than other components: text at 0.94rem in panels, 2rem rows, controls padded 0.3rem 0.6rem.
 - The canvas is `--sunken` with a dot grid. Panels are `--surface`, with a `--line` between them, and nothing floats but menus and the picker.
 - The toolbar says where the draft stands (saved, how many problems, its version) and holds its one thing to do: Publish, Promote, or Ask for the change.
-- Steps are FlowNodes, as n8n lays them out: a square for each, its icon in the colour of what it does, so a workflow reads as the agent's map does: coral where a step changes a record, violet where data leaves.
+- Each product draws its steps the way its builders know, in one grammar ([Canvases](../components/Canvases/README.md)). a7c's and a5s's are FlowNodes, as n8n lays them out: a square for each, joined at dots. a3t's are LogicNodes, as Mendix lays out a microflow: a box for each with its words inside, joined by arrows at right angles. In both, a step's icon is in the colour of what it does, so a workflow reads as the agent's map does: coral where a step changes a record, violet where data leaves.
 - What n8n does best, every workbench does: each step's input and output as data, side by side, from the last run or from pinned test data; and expressions as fields, with a chip for each value they read, traced to the step it comes from.
 - Keyboard first: every action has a key, shown in its menu, and the canvas moves from step to step with the arrows.
 - Every canvas has its list: the same steps in order, which the keyboard and a phone use, and which a narrow screen starts with.
@@ -61,7 +61,7 @@ What this needs of Ocean:
 | Core | Button, Field (input, select, combobox, checkbox, radio, switch, each with its label, hint and problem), Tabs, Table, Menu, Popover, Dialog, Drawer, Toast, Hint, Badge, Who, Card, Empty state, Loading, Page head, Shell | Buttons, badges, dialogs, hints, plain fields and tables from a5s; the rest to draw |
 | Trust | ApprovalCard, GateList, TierBadge, JourneyPath, AuditEntry, Traced, Confirm, PermissionDiff, VersionDiff | Drawn, but for the two diffs, which come from a7c's merge panel and a3t's permission diffs |
 | Agents | ToolCall, AgentFacts, AutonomyLadder, RunTimeline, Grading | From a5s; ToolCall from a7c's copilot panel |
-| Workbench | Canvas, FlowNode, Edge, List, Picker, Inspector, ExpressionField, DataView, RunLog, Tests, Versions, Toolbar, Problems | Drawn, proposed: FlowNode with every kind of node and what a flow can do (FlowKinds, FlowPatterns), the canvas on React Flow, its list (FlowList), the picker (Picker), and a step opened (Workbench, StepPanel). The rest to draw from a7c's builder (`apps/web/src/builder`) |
+| Workbench | Canvas, FlowNode, LogicNode, Edge, List, Picker, Inspector, ExpressionField, DataView, RunLog, Tests, Versions, Toolbar, Problems | Drawn, proposed: FlowNode with every kind of node and what a flow can do (FlowKinds, FlowPatterns), the canvas on React Flow, its list (FlowList), the picker (Picker), and a step opened (Workbench, StepPanel); for a3t, LogicNode with every kind of step and what a flow can do (LogicKinds, LogicPatterns), its flows (FlowDesigner) and its data model (ModelDesigner). The rest to draw from a7c's builder (`apps/web/src/builder`) |
 | Runtime | Form (pages, sections, repeating rows), RecordList, RecordPage, TaskInbox, Dashboard | To draw, for a3t; its designer (AppDesigner) and an app in conversation (AppConversation) are drawn |
 | Conversation | Talk (with its composer), Capture, WorkLog, Draft, Question, Source, EditSheet, SignOff, Status ([`conversation.md`](conversation.md)); RecordCard, ListCard and ChartCard, for answers that show rather than ask; the catalogue they're asked for by; and the kit's cards for Microsoft Teams (`teams/cards`) | Drawn, proposed, with its Teams cards, but for the three cards and the catalogue |
 
@@ -83,5 +83,5 @@ Each kit belongs to Ocean, in this repo. The product that draws a kit most leads
 1. **Foundations.** Done: the chart palette, and the interface's fixes (statuses with a shape as well as a colour, controls' edges at 3:1, outside apart from the accent). To do: density, and themes by choice.
 2. **Core**, as far as a5s's pages need, so a5s takes Ocean from here first with no change but the fixes. To do.
 3. **The workbench**, from a7c's builder: the proof that a workflow canvas reads as Ocean. Drawn: Workbench, StepPanel and FlowNode. To do: a7c takes them.
-4. **Trust's two diffs, and the runtime**, as a3t starts its pages. Drawn: a3t's designer, a change request, and an app in conversation. To do: the two diffs, and the runtime's pages.
+4. **Trust's two diffs, and the runtime**, as a3t starts its pages. Drawn: a3t's designer, its flows and its data model, a change request, and an app in conversation. To do: the two diffs, and the runtime's pages.
 5. **The conversation.** Drawn: its kit, and its cards for Microsoft Teams ([`conversation.md`](conversation.md)). Next: the catalogue, and the cards that show a record, a list or a chart, first in a5s's chat, where agents already talk to people, then in a3t's apps.

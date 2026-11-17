@@ -58,6 +58,7 @@ const MARKS = [  // 3 to 1
   ["faint", "sunken"],  // a canvas's edges and the dots they join at: the order of the steps
   ["faint", "surface"], ["text", "surface"],  // a tier's line: dashed, solid, or production's ink
   ["own", "own-message"],  // the shield beside the product's own word, in a conversation
+  ["surface", "own"],  // a3t: the app's own authority, the shield at a flow's step
   ...["surface", "page", "sunken"].map((on) => ["line-control", on]),  // a field's edge, where to type
   ["viewfinder-mark", "viewfinder-line"],  // the frame that finds a document, on a camera's view
   ["focus", "accent-soft"], ["focus", "sunken"],  // a4a: the ring on a row chosen, or under the pointer

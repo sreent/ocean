@@ -14,7 +14,7 @@ export type Kind = "person" | "agent" | "service";
 export type IconName = "chat" | "tasks" | "book" | "studio" | "decide" | "grade" | "settings" | "audit" | "admin"
   | "officer" | "agent" | "tool" | "clock" | "message" | "bell" | "report" | "shield" | "back" | "check" | "run"
   | "people" | "trace" | "cross" | "pause" | "camera" | "photos" | "attach" | "send"
-  | "webhook" | "plug" | "sync" | "wait" | "model" | "code" | "list";
+  | "webhook" | "plug" | "sync" | "wait" | "model" | "code" | "list" | "find" | "total" | "guard";
 
 export interface IconProps { name: IconName; className?: string }
 /** An icon in `currentColor`. */
@@ -262,8 +262,41 @@ export interface FlowNodeProps {
   /** Nothing goes on from it. */
   last?: boolean;
 }
-/** A step on a canvas, as n8n draws them, in Ocean's colours: a5s's agents, a7c's skills, a3t's processes. Proposed. */
+/** A step on a canvas, as n8n draws them, in Ocean's colours: a5s's agents and a7c's skills. a3t's flows are LogicNodes. Proposed. */
 export declare function FlowNode(props: FlowNodeProps): React.ReactElement;
+
+/** Who acts at a step of a3t's flows: a person, by their initials; an agent; or the app's own authority. */
+export type LogicWho = { kind: "person"; initials: string; name: string } | { kind: "agent"; name: string } | { kind: "own"; name: string };
+
+export interface LogicNodeProps {
+  /** A step is a box; a decision a diamond, and where ways meet a small one; rings where a flow starts, waits and ends; a frame round steps that go together. */
+  kind: "step" | "decision" | "merge" | "start" | "wait" | "end" | "frame";
+  icon?: IconName;
+  /** Its words: inside a step, above a decision, under a ring, at a frame's head. */
+  title?: string;
+  /** Its kind of step, in small capitals, such as "Find" or "Person's task". */
+  label?: string;
+  /** A line about it, such as "within 3 days". */
+  detail?: string;
+  /** Its icon's colour: what the step does. A decision, a loop and a wait stay in ink. */
+  tone?: Tone;
+  /** Who acts at the step, at its foot. */
+  who?: LogicWho;
+  /** How it stood after the last try, or where a case is now. */
+  state?: "done" | "waiting" | "failed";
+  /** Problems the step has, counted in its corner. */
+  problems?: number;
+  /** Live: the cases waiting at the step now, and the longest wait, such as "3 waiting · 2 days". */
+  live?: string;
+  /** The step someone has chosen. */
+  chosen?: boolean;
+  /** What a try didn't use: it fades, and its words stay readable. */
+  dim?: boolean;
+  /** New in this working copy. */
+  isNew?: boolean;
+}
+/** A step in a3t's flows, as Mendix's microflows draw one, in Ocean's grammar. Proposed. */
+export declare function LogicNode(props: LogicNodeProps): React.ReactElement;
 
 /** A row of a canvas's list: a step, a start, the agent, or what hangs from it. */
 export type FlowRow = {

@@ -36,7 +36,7 @@ Each product's words, and what Ocean draws them with. An empty cell is a word th
 | A decision | a decision; a version of the settings | an approval; a promotion | a change request's approval; a deploy's | | ApprovalCard |
 | What someone asks for, in a conversation | the chat; a task | a workflow's ask of a person | an app, in conversation | the assistant; asking in words | The conversation kit: Talk, Draft, Question, SignOff, Status (proposed) |
 | What must pass first | what stops a release | a promotion's gates; test cases | a change request's checks | | GateList (proposed) |
-| Steps on a canvas | the agent's map | the builder's canvas | the process designer | | FlowNode, the map's node |
+| Steps on a canvas | the agent's map | the builder's canvas | flows, which run in one go or wait for people | | FlowNode, as n8n draws them; for a3t, LogicNode, as Mendix does |
 | Where a value comes from | a traced value | a finding's evidence | a record's history | a field an agent worked out | Traced; in a conversation, Source |
 | The record of who did what | the ledger, the audit trail | the audit log | the sealed audit log | an issue's history | AuditEntry (proposed) |
 
@@ -113,7 +113,7 @@ a7c is a new product without n8n's code (its ADR 0002): it takes n8n's ideas and
 
 ### a3t
 
-a3t has no pages yet: its code (`sreent/joget`) is the governance kernel so far. Its plan, React 19 with Tailwind and shadcn/ui on Radix, takes Ocean without forking a component: give Tailwind Ocean's meanings as its theme's colours, and shadcn's components follow.
+a3t's studio (`sreent/joget`, `apps/studio`) is React 19 with Tailwind, and takes Ocean without forking a component: give Tailwind Ocean's meanings as its theme's colours, and the components follow, shadcn/ui's among them.
 
 ```css
 @import "@sreent/ocean/tokens.css";
@@ -147,7 +147,9 @@ a3t has no pages yet: its code (`sreent/joget`) is the governance kernel so far.
 - Name shadcn's colours through Tailwind's theme, as above, and never by declaring shadcn's own variables on `:root`: its `--accent` and `--muted` are backgrounds, while Ocean's are a blue and a text colour of the same names.
 - Ocean's `--radius-sm`, `--radius-md` and `--radius-lg` take the place of Tailwind's, and `--font-sans` and `--font-mono` already have Tailwind's names.
 - The apps people build in a3t take the same tokens. An app's own branding is a change of primitives inside its frame, held to the same checks.
-- Its change requests are ApprovalCards with a GateList (ChangeRequest draws one), its environments are TierBadges, its sealed audit log is AuditEntry, and its designer is AppDesigner.
+- a3t is one product, built in one workbench: an app's data (ModelDesigner), its forms (AppDesigner), its pages, its flows (FlowDesigner) and its permissions, in the same frame, the left of each view holding what someone can add.
+- a3t has one way to build what happens: a flow, which runs in one go or waits for people and for time, drawn as Mendix draws a microflow (LogicNode). A flow that waits isn't a second kind of drawing, and a3t keeps no BPMN files. Actions are how people and agents come in: an action works out a change, shows it, saves it, and can start or carry on a flow.
+- Its change requests are ApprovalCards with a GateList (ChangeRequest draws one), its environments are TierBadges, and its sealed audit log is AuditEntry.
 - Its apps are used in conversation with the conversation kit: in their own frame (AppConversation), and in Microsoft Teams (InTeams), where Teams draws the kit's cards from `teams/cards`.
 
 ### a4a

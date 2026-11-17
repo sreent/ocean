@@ -252,3 +252,13 @@ dialog.dialog.ds-in-place { position: static; margin: 0; }
 
 /* Room under a popover drawn open, as it floats over what's below it on a page */
 .ds-pop-room { min-height: 15rem; }
+
+/* a3t's kinds of step, each with its name and what Mendix calls it */
+.ds-kinds { display: flex; flex-wrap: wrap; gap: var(--space-5) var(--space-5); align-items: flex-start; padding: var(--space-6) var(--space-5) var(--space-5);
+            border-radius: var(--radius-md); }
+.ds-kind { display: grid; justify-items: center; gap: var(--space-2); width: 11rem; text-align: center; }
+.ds-kind > .logic-step, .ds-kind > .logic-decision, .ds-kind > .logic-ring, .ds-kind > .logic-frame { position: relative; text-align: start; }
+.ds-kind > strong { font-size: var(--text-sm); }
+.ds-kind > .note { margin: 0; font-size: var(--text-xs); line-height: 1.35; }
+.ds-mark { display: inline-grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 7px; background: var(--accent);
+           color: var(--accent-text); font-size: 0.75rem; font-weight: 700; text-transform: none; letter-spacing: 0; }

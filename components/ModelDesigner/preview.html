@@ -1,0 +1,68 @@
+<!-- @dsCard group="Workbench" height=900 width=1440 subtitle="a3t's data model: entities, their fields and the lines between them" page -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ModelDesigner</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root" class="ds-screen">
+<div class="wb"><aside class="wb-rail">
+<a class="brand" href="#" aria-label="a3t"><span class="mark">a3</span></a>
+<nav aria-label="a3t's pages">
+<a href="#" aria-label="Tasks"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M10 6.5h10"></path><path d="M10 12h10"></path><path d="M10 17.5h10"></path><path d="M4 6.5l1.5 1.5 2.5-2.5"></path><path d="M4 12l1.5 1.5 2.5-2.5"></path><path d="M4 17.5l1.5 1.5 2.5-2.5"></path></svg></a>
+<a href="#" aria-label="Apps"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5 4.5h10.5a3 3 0 0 1 3 3V20H8a3 3 0 0 1-3-3z"></path><path d="M5 17a3 3 0 0 1 3-3h10.5"></path></svg></a>
+<a href="#" aria-label="My space" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path><path d="M3 20a6 6 0 0 1 12 0"></path></svg></a>
+<a href="#" aria-label="Working copies"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M3.5 6.5h5v5h-5z"></path><path d="M15.5 3.5h5v5h-5z"></path><path d="M15.5 15.5h5v5h-5z"></path><path d="M8.5 9h3.5v-3h3.5"></path><path d="M12 9v9h3.5"></path></svg></a>
+<a href="#" aria-label="Change requests"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"></path><path d="M8 12.2l2.7 2.7L16.2 9.4"></path></svg></a>
+<a href="#" aria-label="Deployments"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M8 5.5l10 6.5-10 6.5z"></path></svg></a>
+<a href="#" aria-label="Audit log"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3l7.5 3v6c0 4.5-3.2 7.8-7.5 9-4.3-1.2-7.5-4.5-7.5-9V6z"></path><path d="M9 12l2.2 2.2L15.5 10"></path></svg></a>
+<a href="#" aria-label="Access"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path><path d="M3 20a6 6 0 0 1 12 0"></path><path d="M16.5 4.3a3.5 3.5 0 0 1 0 6.4"></path><path d="M18.5 14.5a6 6 0 0 1 2.5 5.5"></path></svg></a>
+</nav>
+<span class="avatar" aria-label="Ana Ortiz">AO</span>
+</aside><header class="wb-bar">
+<a class="crumb" href="#"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 6l-6 6 6 6"></path></svg>All apps</a>
+<h1>finance/expenses</h1>
+<span class="chip">App</span>
+<span class="chip mono">working copy of 1.3.2</span>
+<span class="tier"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path><path d="M3 20a6 6 0 0 1 12 0"></path></svg>personal</span>
+<span class="wb-saved"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"></path></svg>Saved</span>
+<span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"></path></svg>No problems</span>
+<span class="wb-spacer"></span>
+<button type="button">Preview</button>
+<button type="button" class="primary">Ask for the change</button>
+<span class="wb-break"></span>
+<div class="modes" role="group" aria-label="The app"><button type="button" aria-pressed="true">Data</button><button type="button" aria-pressed="false">Forms</button><button type="button" aria-pressed="false">Pages</button><button type="button" aria-pressed="false">Flows</button><button type="button" aria-pressed="false">Permissions</button></div>
+</header><div class="wb-body designer"><aside class="fd-palette" aria-label="What to add">
+<input type="search" aria-label="Find a kind" placeholder="Find a kind">
+<div class="fd-group"><p class="label">Records</p><div class="fd-part"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5 4.5h10.5a3 3 0 0 1 3 3V20H8a3 3 0 0 1-3-3z"></path><path d="M5 17a3 3 0 0 1 3-3h10.5"></path></svg></span>Entity</div><div class="fd-part"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 6l-6 6 6 6"></path></svg></span>Reference</div><div class="fd-part"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9.5 6.5h10"></path><path d="M9.5 12h10"></path><path d="M9.5 17.5h10"></path><path d="M4.5 6.5h.5"></path><path d="M4.5 12h.5"></path><path d="M4.5 17.5h.5"></path></svg></span>Lines</div></div>
+<div class="fd-group"><p class="label">Fields</p><div class="fd-part"><span class="fd-type">Aa</span>Text</div><div class="fd-part"><span class="fd-type">12</span>Number</div><div class="fd-part"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"></path><path d="M12 7.5V12l3 2"></path></svg></span>Date</div><div class="fd-part"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9.5 6.5h10"></path><path d="M9.5 12h10"></path><path d="M9.5 17.5h10"></path><path d="M4.5 6.5h.5"></path><path d="M4.5 12h.5"></path><path d="M4.5 17.5h.5"></path></svg></span>Choice</div><div class="fd-part"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"></path></svg></span>Yes or no</div><div class="fd-part"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path><path d="M3 20a6 6 0 0 1 12 0"></path></svg></span>Person</div><div class="fd-part"><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 3.5h9l3 3v14H6z"></path><path d="M9 12.5h6"></path><path d="M9 16h6"></path><path d="M9 9h3"></path></svg></span>File</div></div>
+<p class="wb-hint">Drag a kind onto an entity, or press Enter on one to add it after the chosen field. A rename keeps the data.</p>
+</aside><section class="flow" aria-label="The data model"><svg class="logic-edges" aria-hidden="true" width="803" height="805"><path d="M242 228.45 L279 228.45 Q287 228.45 287 220.45 L287 67.57 Q287 59.57 295 59.57 L332 59.57"></path><path class="head" d="M332 54.97 L341 59.57 L332 64.17 Z"></path><path d="M242 256.32 L279 256.32 Q287 256.32 287 248.32 L287 255.57 Q287 247.57 295 247.57 L332 247.57"></path><path class="head" d="M332 242.97 L341 247.57 L332 252.17 Z"></path></svg><div class="model-entity" data-at="24 60"><div class="model-head"><strong>Expense claim</strong><span>expense_claim</span></div><ul><li><span class="fd-type">Aa</span><span>Title</span></li><li><span class="fd-type">Aa</span><span>Trip</span></li><li><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9.5 6.5h10"></path><path d="M9.5 12h10"></path><path d="M9.5 17.5h10"></path><path d="M4.5 6.5h.5"></path><path d="M4.5 12h.5"></path><path d="M4.5 17.5h.5"></path></svg></span><span>Status</span><span class="model-note">3 choices</span></li><li><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"></path><path d="M3 20a6 6 0 0 1 12 0"></path></svg></span><span>Approver</span></li><li><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M14.5 6l-6 6 6 6"></path></svg></span><span>Project code</span></li><li><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9.5 6.5h10"></path><path d="M9.5 12h10"></path><path d="M9.5 17.5h10"></path><path d="M4.5 6.5h.5"></path><path d="M4.5 12h.5"></path><path d="M4.5 17.5h.5"></path></svg></span><span>Receipts</span></li><li><span class="fd-type">12</span><span>Total</span><span class="model-note">worked out</span></li><li class="chosen"><span class="fd-type">Aa</span><span>Bank account <span class="chip">PII</span></span></li></ul></div><div class="model-entity" data-at="340 40"><div class="model-head"><strong>Project</strong><span>project</span></div><ul><li><span class="fd-type">Aa</span><span>Name</span></li><li><span class="fd-type">Aa</span><span>Code</span></li></ul></div><div class="model-entity" data-at="340 228"><div class="model-head"><strong>Receipt</strong><span>the lines of a claim</span></div><ul><li><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"></path><path d="M12 7.5V12l3 2"></path></svg></span><span>Date</span></li><li><span class="fd-type">Aa</span><span>Merchant</span></li><li><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9.5 6.5h10"></path><path d="M9.5 12h10"></path><path d="M9.5 17.5h10"></path><path d="M4.5 6.5h.5"></path><path d="M4.5 12h.5"></path><path d="M4.5 17.5h.5"></path></svg></span><span>Category</span><span class="model-note">3 choices</span></li><li><span class="fd-type">12</span><span>Amount</span><span class="model-note">SGD</span></li><li><span class="fd-type"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 3.5h9l3 3v14H6z"></path><path d="M9 12.5h6"></path><path d="M9 16h6"></path><path d="M9 9h3"></path></svg></span><span>Receipt</span><span class="model-note">a file</span></li></ul></div><div class="model-entity" data-at="340 470"><div class="model-head"><strong>Budget</strong><span>budget</span><span class="chip">new in this copy</span></div><ul><li><span class="fd-type">Aa</span><span>Category</span></li><li><span class="fd-type">12</span><span>Spent</span></li><li><span class="fd-type">12</span><span>Cap</span></li></ul></div>
+<button type="button" class="flow-add">+ Add an entity</button>
+<div class="flow-tools"><button type="button" aria-label="Zoom in">+</button><button type="button" aria-label="Zoom out">−</button><button type="button">Show all of it</button></div>
+<div class="flow-views"><div class="modes" role="group" aria-label="Show it as"><button type="button" aria-pressed="true">Model</button><button type="button" aria-pressed="false">List</button></div></div><span class="flow-label" data-at="287 144">one project</span><span class="flow-label" data-at="287 252">its lines</span></section><aside class="wb-inspector" aria-label="The chosen field">
+<div class="wb-head"><span class="flow-step"><span class="flow-box"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 10.5h12v9.5H6z"></path><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"></path><path d="M12 14.5v2"></path></svg></span></span><div><h2>Bank account</h2><p>text · expense_claim.bank_account</p></div></div>
+<label class="wb-field"><span class="wb-label">Label</span><input type="text" value="Bank account"></label>
+<label class="choice"><input type="checkbox" checked=""> Required</label>
+<div class="wb-field"><span class="wb-label">Classification</span><div class="modes" role="group" aria-label="Classification"><button type="button" aria-pressed="false">None</button><button type="button" aria-pressed="true">PII</button><button type="button" aria-pressed="false">Confidential</button></div></div>
+<div class="wb-field"><span class="wb-label">Who may see it</span>
+<table class="figures"><thead><tr><th scope="col">Role</th><th scope="col">Sees</th></tr></thead>
+<tbody><tr><td>Requester</td><td>their own</td></tr><tr><td>Approver</td><td>masked</td></tr><tr><td>Finance</td><td>yes</td></tr><tr><td>Auditor</td><td>masked</td></tr></tbody></table></div>
+<p class="wb-well"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3l7.5 3v6c0 4.5-3.2 7.8-7.5 9-4.3-1.2-7.5-4.5-7.5-9V6z"></path><path d="M9 12l2.2 2.2L15.5 10"></path></svg><span>The change request will say <strong>who gains access</strong> to this field, in words, for its reviewers.</span></p>
+</aside></div></div>
+</div>
+<script>
+for (const node of document.querySelectorAll("[data-at]")) {
+  const [x, y] = node.dataset.at.split(" ");
+  node.style.left = `${x}px`;
+  node.style.top = `${y}px`;
+}
+for (const box of document.querySelectorAll("[data-width]")) box.style.width = `${box.dataset.width}px`;
+for (const box of document.querySelectorAll("[data-height]")) box.style.height = `${box.dataset.height}px`;
+</script>
+</body>
+</html>
