@@ -2394,6 +2394,7 @@ a.code-title:hover { text-decoration: underline; }
 .whiteboard-element:focus-visible .whiteboard-ring { stroke: var(--focus); stroke-dasharray: none; }
 .whiteboard-element.chosen:focus-visible .whiteboard-ring { stroke-width: 3; }
 .whiteboard-element.moving { cursor: grabbing; opacity: 0.85; }
+.whiteboard-handle { fill: var(--surface); stroke: var(--accent); stroke-width: 2; cursor: nwse-resize; }  /* a chosen note's or section's corner, for a pointer to size it by */
 /* A section: a frame that groups what lies inside it, its title on its top edge, under everything */
 .whiteboard-section > .whiteboard-box { fill: var(--page); stroke: var(--line-strong); stroke-width: 1.5; }
 .whiteboard-section-title { fill: var(--muted); font-size: 14px; font-weight: 650; letter-spacing: 0.02em; }
