@@ -1,0 +1,57 @@
+<!-- @dsCard group="Actions" height=300 subtitle="What was just done, with Undo while it can be undone, and without once it can't" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Toast</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="note">Afterwards, said once at the foot of the window, and in the page's status line too.</p>
+<div class="ds-row"><button type="button" id="cancel">Cancel T-1</button><p class="note" id="status" role="status"></p></div></div>
+<div class="ds-group"><p class="label">As it shows</p>
+<div class="toasts ds-in-place-toasts">
+<div class="toast"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg><p class="toast-words">Cancelled T-1.</p><button type="button" class="small">Undo</button><button type="button" aria-label="Dismiss"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg></button></div>
+<div class="toast"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg><p class="toast-words">Removed N-4 from the notebook.</p><button type="button" aria-label="Dismiss"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg></button></div>
+</div></div>
+</div>
+<div class="toasts" id="toasts" role="status"></div>
+</div>
+<script>
+const toasts = document.getElementById("toasts");
+const status = document.getElementById("status");
+function said(words, undo) {
+  status.textContent = words;
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>';
+  const p = document.createElement("p");
+  p.className = "toast-words";
+  p.textContent = words;
+  toast.append(p);
+  if (undo) {
+    const again = document.createElement("button");
+    again.type = "button"; again.className = "small"; again.textContent = "Undo";
+    again.addEventListener("click", () => { undo(); toast.remove(); });
+    toast.append(again);
+  }
+  const dismiss = document.createElement("button");
+  dismiss.type = "button"; dismiss.setAttribute("aria-label", "Dismiss");
+  dismiss.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>';
+  dismiss.addEventListener("click", () => toast.remove());
+  toast.append(dismiss);
+  toasts.append(toast);
+  while (toasts.children.length > 3) toasts.firstElementChild.remove();
+  let left = 6000, held = false;
+  const tick = setInterval(() => { if (!held && (left -= 250) <= 0) { clearInterval(tick); toast.remove(); } }, 250);
+  for (const [on, hold] of [["pointerenter", true], ["pointerleave", false], ["focusin", true], ["focusout", false]])
+    toast.addEventListener(on, () => { held = hold; });
+}
+document.getElementById("cancel").addEventListener("click", () => said("Cancelled T-1.", () => { status.textContent = "T-1 goes on, as it was."; }));
+</script>
+</body>
+</html>

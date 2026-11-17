@@ -8,11 +8,13 @@ Lines on a 24-unit square, as every page draws them: stroke 1.8, round caps and 
 | `tasks` | Tasks, under Work |
 | `book` | Notebook, under Work |
 | `studio` | Studio, under Build |
+| `map` | The map of what depends on what, under Build |
 | `decide` | Decisions, under Decide |
 | `grade` | Grading, under Decide |
 | `settings` | Settings, under Decide |
 | `audit` | The audit trail, under Oversee; what's signed and kept in the ledger; the product's own messages |
 | `admin` | Administration, under Oversee; a team |
+| `spend` | Spending, under Oversee: what agents' models cost against their budgets |
 | `officer` | Data protection, under Oversee |
 | `agent` | An agent, and only an agent |
 | `tool` | A tool; a service |
@@ -39,3 +41,4 @@ Lines on a 24-unit square, as every page draws them: stroke 1.8, round caps and 
 | `model` | A model, and an agent's model |
 | `code` | Code, in the sandbox |
 | `list` | A canvas as its list |
+| `find` | Finding anything by name, in the palette |

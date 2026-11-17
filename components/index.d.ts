@@ -68,6 +68,64 @@ export interface ConfirmProps {
 /** A button that asks first, in the browser's own dialog, for what can't be undone. */
 export declare function Confirm(props: ConfirmProps): React.ReactElement;
 
+/** Proposed: one thing the palette finds, which the person may open. */
+export interface PaletteOption {
+  /** Its own, for the option's id. */
+  id: string;
+  /** Its name, as people say it: "The assistant, for billing". */
+  name: string;
+  /** What it is, beside its name, in --muted: "an instance of the assistant", "waits for your decision". */
+  where: string;
+  /** Its group, in the palette's one order: what waits on them, then pages, agents, instances and drafts. */
+  group: string;
+  /** An icon's name, from icons/. */
+  icon: string;
+}
+export interface PaletteProps {
+  open: boolean;
+  /** Escape, or a choice: the focus goes back where it was. */
+  onClose: () => void;
+  /** What they've typed, which finds as they type. */
+  query: string;
+  onQuery: (query: string) => void;
+  /** Only what they may open, already found for the query, in order. */
+  options: PaletteOption[];
+  onChoose: (option: PaletteOption) => void;
+  /** Still finding what they may open, the first time: it says it's looking, not that it found nothing. */
+  looking?: boolean;
+}
+/** Proposed: going anywhere a person may, and doing the common things, by name, from any page (Ctrl-K, or ⌘K on a Mac). */
+export declare function Palette(props: PaletteProps): React.ReactElement;
+
+export interface SkeletonProps {
+  /** How many lines, three by default. */
+  lines?: number;
+  /** A title's line above them. */
+  title?: boolean;
+  /** A table's rows instead, each of `columns` cells. */
+  rows?: number;
+  columns?: number;
+  /** A block instead, for a chart or a canvas. */
+  block?: boolean;
+}
+/** Proposed: what's loading, in the shape it will have, still; the region it stands in says it's busy, and "Loading…" in words. */
+export declare function Skeleton(props: SkeletonProps): React.ReactElement;
+
+export interface Toast {
+  id: string;
+  /** What was done, naming the thing, in the past tense, as the page's status line says it too: "Cancelled T-1." */
+  words: string;
+  /** Undo, only while it can still be undone. */
+  undo?: () => void;
+}
+export interface ToastsProps {
+  /** At most three, the newest last. Each stays six seconds, and while the pointer or the focus is on it. */
+  toasts: Toast[];
+  onDismiss: (id: string) => void;
+}
+/** Proposed: what was just done, said once at the foot of the window, with Undo while it can be undone. */
+export declare function Toasts(props: ToastsProps): React.ReactElement;
+
 export interface HintProps {
   /** A sentence on what something means. */
   label: string;
