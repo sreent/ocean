@@ -13,6 +13,7 @@ A step in a3t's flows: how a3t draws what happens in an app, whether it runs in 
 - Live, a step that waits says how many cases wait there now, and the longest wait, on `--warn-bg`.
 - After a try, the path the flow took is green, each step's state is in its corner (a tick, a clock, a cross, a count of problems), and what it didn't use fades with its words still readable. The chosen step wears the focus ring.
 - A new step goes on an arrow: the chosen arrow shows a "+". A step new in a working copy says so at its foot.
+- A step moves by being dragged onto another arrow, or into a way with no steps: the "+" it will go to wears the accent's ring while it's over it. Dropped there, the step moves with all it holds, and the flow lays itself out again. Dropped anywhere else, it goes back. The keyboard moves a step up and down, and cuts, copies and pastes it.
 - Arrows run at right angles with rounded corners, in `--faint`, with heads. The words on them are Ocean's labels.
 - A long flow wraps into rows, as text does. It breaks between the steps of its main line, where it saves if it can, so each row is one stretch of work, and an arrow carries it from the end of one row to the start of the next. A frame or a flow it runs folds to one box until it's opened. "Show all of it" fits the window.
 
@@ -21,4 +22,4 @@ A step in a3t's flows: how a3t draws what happens in an app, whether it runs in 
 
 **Takes:** `kind` (`step`, `decision`, `merge`, `start`, `wait`, `end`, `frame`), `icon`, `title`, `label` (its kind of step), `detail`, `tone`, `who` (a person by initials, an agent, or the app's own), `state`, `problems`, `live`, `chosen`, `dim` and `isNew`.
 
-**On React Flow** (`@xyflow/react`), as a7c's builder draws its canvas: load React Flow's `base.css`, never its `style.css`, and put `flow flow-canvas` on the canvas. Each node holds one of the shapes above, which fills it, and each edge is drawn at right angles. A step keeps one height: its words wrap to two lines at most, and the line about it stays on one. The product lays its flow out itself, left to right, from its steps, so nobody drags a step into place. The preview is a static rendition, placed by its own layout.
+**On React Flow** (`@xyflow/react`), as a7c's builder draws its canvas: load React Flow's `base.css`, never its `style.css`, and put `flow flow-canvas` on the canvas. Each node holds one of the shapes above, which fills it, and each edge is drawn at right angles. A step keeps one height: its words wrap to two lines at most, and the line about it stays on one. The product lays its flow out itself, left to right, from its steps: a step dragged to another arrow moves there, and nobody places one by hand. The preview is a static rendition, placed by its own layout.
