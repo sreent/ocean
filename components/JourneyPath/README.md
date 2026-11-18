@@ -11,3 +11,5 @@ The way from a draft to work, as a path: each stage done, the one to do now, or 
 **Takes:** `stages` (each `name`, `about`, `state`), `next` and `label`.
 
 **In a5s:** `studio/src/design/agentic.tsx`. The a7c and a3t paths are proposed. The preview is a static rendition.
+
+**In a3t:** a form in steps is a path too (`apps/studio/src/screens/Use.tsx`): each section a stage, named by its title, with the fields it asks for under it. The step to fill in now is filled with `--accent`, and the steps done are ticked. The one thing to do is Next, named by the next step, or Submit on the last; Back sits before it. Each step is checked before the next, and the server checks all of it again.
