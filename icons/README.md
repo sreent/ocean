@@ -20,7 +20,7 @@ Lines on a 24-unit square, as every page draws them: stroke 1.8, round caps and 
 | `tool` | A tool; a service |
 | `clock` | A schedule |
 | `message` | A message that starts a run |
-| `bell` | What people owe; reminders |
+| `bell` | What people owe; reminders; notices, and a step that tells people |
 | `report` | A report |
 | `shield` | The product's checks; production |
 | `back` | The way back |

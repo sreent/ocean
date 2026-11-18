@@ -10,6 +10,8 @@ What reached someone, and why: issues assigned to them, mentions, a new help des
 - **The count** beside the sidebar's link (`.nav-count`) is what's unread: `--accent-text` on `--accent`, at the line's end; on a phone, where the sidebar shows only icons, on the corner of the bell. Over 99 it reads 99+. With nothing unread there's no count at all. A screen reader hears it as part of the link: "Inbox 3 unread".
 - **Live.** The count and the list change as notifications come, without a reload.
 
+a3t's notices are an inbox in the same grammar, by record instead of by issue: what a flow told the person, and the tasks that came to them, are due soon or are overdue, each linked to its record or to the person's tasks.
+
 **Takes:** `issues`, each with `id`, `summary`, `href` (none once it's deleted), `state` and its notifications (`who`, `what`, `at`, `unread`, `changes`, `said`); and the count for the sidebar.
 
 **Markup:**
