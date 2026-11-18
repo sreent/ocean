@@ -900,6 +900,12 @@ button.flow-row[aria-expanded="true"] { border-color: var(--focus); }
 .wb-rail nav a:hover { background: var(--sunken); color: var(--text); }
 .wb-rail nav a[aria-current="page"] { background: var(--accent-soft); color: var(--accent); }
 .wb-rail .icon { width: 1.2rem; height: 1.2rem; }
+/* A count on a rail's page, such as the tasks that wait: on the corner of its icon, as the sidebar's count
+   sits on a phone, --accent-text on --accent. The link's name says it too, for a screen reader */
+.wb-rail nav a { position: relative; }
+.wb-rail nav a .nav-count { position: absolute; top: -0.15rem; inset-inline-end: -0.3rem; min-width: 1.1rem; padding: 0 0.25rem;
+                            border-radius: 999px; background: var(--accent); color: var(--accent-text); font-size: 0.62rem;
+                            font-weight: 650; line-height: 1.1rem; text-align: center; font-variant-numeric: tabular-nums; }
 .wb-bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); min-height: 3.4rem;
           padding: var(--space-2) var(--space-4); border-bottom: 1px solid var(--line); background: var(--surface); }
 .wb-bar h1 { margin: 0; font-size: var(--text-lg); font-weight: 650; }
