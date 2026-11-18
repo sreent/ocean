@@ -9,6 +9,8 @@ Where a product sends each change as it happens, signed, so other systems can ac
 - **How deliveries work** is a list of terms (`dl.facts-list`): each term at 600, and what it means under it in `--muted`, its headers in mono on `--text`.
 - A new address's secret is shown once, as AgentSetup shows a token.
 
+a3t draws the other way in with the same grammar: its connections, each a card with the address its flows call and how it knows the app, and the webhooks other systems run its flows through, each with its address and its key, made and shown once. Whether an environment keeps each secret is a badge; never the secret.
+
 **Takes:** nothing of its own: these are classes, on Ocean's card, badges, buttons, table and Confirm.
 
 **Markup:**
