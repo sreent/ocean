@@ -12,7 +12,7 @@
     ],
     "light": [
       "#0f66ac",
-      "#e15f0a",
+      "#e66700",
       "#269c79",
       "#8e3665",
       "#49bdff",
@@ -22,7 +22,7 @@
     ],
     "dark": [
       "#217fd0",
-      "#e46e2d",
+      "#cb5a00",
       "#39aa86",
       "#ad4b8d",
       "#009ee3",
@@ -31,8 +31,8 @@
       "#bc8b09"
     ],
     "other": {
-      "light": "#6b7075",
-      "dark": "#84898e"
+      "light": "#6d7177",
+      "dark": "#979ca1"
     }
   },
   "sequential": {
@@ -83,18 +83,18 @@
     "light": {
       "done": "#38853e",
       "short": "#c57722",
-      "failed": "#861021",
+      "failed": "#851700",
       "open": "#565b61"
     },
     "dark": {
       "done": "#86d489",
       "short": "#ffd48a",
-      "failed": "#d66f6f",
+      "failed": "#d6725d",
       "open": "#9fa5ac"
     }
   },
   "surfaces": {
     "light": "#ffffff",
-    "dark": "#202225"
+    "dark": "#1f2327"
   }
 }

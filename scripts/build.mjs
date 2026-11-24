@@ -13,13 +13,13 @@ import { charts, colour, faces, layers, read, ROOT, source, themes } from "./tok
 const HUES = {
   ocean: "Ocean's blue, the cerulean MathWorks and Maplesoft share, and in dark the sky blue both use: what someone can do",
   lagoon: "Lagoon teal, MATLAB's reef teal and Maple's: agents, and the product's own doing",
-  coral: "Coral, a crimson between MATLAB's old dark red and Maple's burgundy: a change to a record, and what failed",
-  kelp: "Kelp, Maple's green toward MATLAB's: what's going well",
-  amber: "Amber, MATLAB's orange toward Maple's brown: something written, such as a draft, and what waits on someone",
+  coral: "Coral, a maple red, Maplesoft's red toward MATLAB's orange, at Ocean's own lightness: a change to a record, and what failed",
+  kelp: "Kelp, Maple's green: what's going well",
+  amber: "Amber, golden between MATLAB's orange and Maple's brown, and in dark MATLAB's yellow: something written, such as a draft, and what waits on someone",
   violet: "Violet, MATLAB's purple and Maple's violet: the organisation's edge",
   sand: "Sand: the product's own messages",
-  mist: "The mist: the light theme's neutral greys, as both makers draw their pages, from page to ink",
-  deep: "The deep: the dark theme's charcoal",
+  mist: "The mist: the light theme's neutral greys, its wells MATLAB's figure grey, from page to ink",
+  deep: "The deep: the dark theme's charcoal, with a breath of the cerulean",
 };
 
 const MEANINGS = {

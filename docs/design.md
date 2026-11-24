@@ -1,6 +1,6 @@
 # Ocean
 
-Ocean is the one look a5s, a7c, a3t and a4a share. It's calm, with colour only where it means something, and it makes plain what an agent or an automation may do, what it did, and who decides. Its colours mix those of two makers of software for mathematics, MathWorks and Maplesoft, taken where the two meet: cerulean for what someone can do, teal for agents, crimson for any change to a record, and green for what's going well, on neutral greys. The palette is neither maker's brand, and isn't any product's. An organisation's own colours replace the primitives, in one place, for every product at once.
+Ocean is the one look a5s, a7c, a3t and a4a share. It's calm, with colour only where it means something, and it makes plain what an agent or an automation may do, what it did, and who decides. Its colours mix those of two makers of software for mathematics, MathWorks and Maplesoft, taken where the two meet: cerulean for what someone can do, teal for agents, a maple red for any change to a record, and green for what's going well, on neutral greys. The palette is neither maker's brand, and isn't any product's. An organisation's own colours replace the primitives, in one place, for every product at once.
 
 ## Voice
 
@@ -39,19 +39,35 @@ Write from the reader's side, in plain words, the way the pages already do.
 
 ### Where the colours come from
 
-MathWorks' colours and Maple's agree more than they differ: both have a cerulean blue and a bright sky blue, a teal, a green, a purple and neutral greys. Ocean takes each hue from between theirs, and fits each step's lightness to the contrast its meanings need, so the hues are theirs and the lightness is Ocean's. Where they differ, in their warm colours, each gives one meaning: the crimson both have marks a change, and MATLAB's orange marks what's written and waiting. Green and the crimson were then moved, within their makers' hues, so that what readers most need apart parts further for colour-blind readers than in Ocean's earlier palette, in light and dark: going well from failed, and a change from what's written. Green leans to Maple's bluer green, and the crimson's lightness sits between MATLAB's dark red and Maple's burgundy.
+MathWorks' colours and Maple's agree more than they differ: both have a cerulean blue and a bright sky blue, a teal, a green, a purple and neutral greys. Ocean takes each hue from between theirs, and fits each step's lightness to the contrast its meanings need, so the hues are theirs and the lightness is Ocean's. Where they differ, in their warm colours, each gives one meaning: a maple red, Maplesoft's red turned toward MATLAB's orange, marks a change, and a golden amber between MATLAB's orange and Maple's brown marks what's written and waiting. In dark, waiting is MATLAB's yellow as it is.
 
 | Primitive | What it's for | MathWorks, MATLAB | Maplesoft, Maple | Ocean, light / dark |
 | --- | --- | --- | --- | --- |
 | `ocean` | What someone can do | MathWorks' blue `#015696`, `#0076a8`; MATLAB's light blue `#2fbeef` | `#006699`, `#004f79`; its sky `#00aaff` | `#0369a1` / the sky, `#19aaf0` |
 | `lagoon` | Agents; the product's own doing | the reef palette's teal `#00a3a3` | the plots' teal `#00786a` | `#007b72` / `#3ecdc0` |
-| `coral` | A change to a record; what failed | the old last line colour `#a2142f` | the plots' first, burgundy `#78000e` | `#900320` / `#f07e89` |
-| `amber` | Written, not yet relied on; waiting on someone | orange `#dd5400`, yellow `#edb120` | orange `#ff931e`, the plots' brown `#784c00` | `#a15d0f` / `#f2a53f` |
-| `kelp` | Going well | green `#3baa32` | the plots' green `#00783f` | `#007a44` / `#76eea5` |
+| `coral` | A change to a record; what failed | orange `#dd5400`, the old dark red `#a2142f` | Maplesoft's red `#ed4124`, the plots' burgundy `#78000e` | `#b93d21` / `#ef8168` |
+| `amber` | Written, not yet relied on; waiting on someone | orange `#dd5400`; yellow `#edb120`, as it is in dark | the plots' brown `#784c00`, orange `#ff931e` | `#955900` / `#edb120` |
+| `kelp` | Going well | green `#3baa32` | the plots' green `#00783f` | `#007d51` / `#59e1a2` |
 | `violet` | The organisation's edge | purple `#8516d1` | the plots' violet `#604191` | `#622f99` / `#cdb8f0` |
-| `mist`, `deep` | The neutrals, from page to ink | the figure's grey `#f0f0f0`, its axes `#262626` | greys `#f5f5f5`, `#e1e1e1`, charcoal `#2a2a2a` | `#f3f4f5` to `#25272a` / `#151719` to `#ebedef` |
+| `mist`, `deep` | The neutrals, from page to ink | the figure's grey `#f0f0f0`, its axes `#262626` | greys `#f5f5f5`, `#e1e1e1`, charcoal `#2a2a2a` | the page `#f5f6f7`, wells the figure's grey `#f0f0f0`, ink `#25272a` / charcoal `#14181c` to `#ebedef`, with a breath of the cerulean |
 
 The makers' values are MATLAB's line colours (`colororder`, R2025a and before), its `reef` palette and its classic figure, Maple's default plot colours (Niagara, `plots:-setcolors`), Maplesoft's own pages, and MathWorks' blue as Cleve Moler's blog sampled it from the logo (`#015696`) and as Brandfetch lists it (`#0076a8`).
+
+### Balanced, not pushed
+
+The palette is chosen by eye and then measured, in that order: calm and right to look at first, and every number within reach of what Ocean asks, not each pushed as far as it goes. Pushed, the amber turned a muddy brown and the reds uneven. So the tones stay near one lightness, as Ocean's always have, and where two of them meet for a colour-blind reader, the shape and the word beside them tell them apart (The grammar).
+
+How far apart the meanings sit for colour-blind readers, against Ocean's earlier palette: ΔE in OKLab ×100, the worse of protanopia and deuteranopia (Machado 2009, at full severity). 8 or more reads apart at a glance; under 6, the shape and the word carry it.
+
+| Pair | Earlier, light / dark | Now, light / dark |
+| --- | --- | --- |
+| Going well, and failed | 7.0 / 3.0 | 7.7 / 9.9 |
+| A change, and plain text | 21.6 / 16.5 | 19.8 / 23.2 |
+| Going well, and waiting | 6.3 / 6.3 | 7.8 / 11.7 |
+| A change, and a draft | 2.7 / 7.1 | 2.0 / 10.2 |
+| Going well, and an agent | 6.0 / 6.3 | 4.9 / 8.0 |
+| What someone can do, and an agent | 13.0 / 10.2 | 10.2 / 13.5 |
+| What someone can do, and the organisation's edge | 9.5 / 10.3 | 7.6 / 8.1 |
 
 ### The grammar
 

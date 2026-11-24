@@ -13,14 +13,14 @@
    charts/palettes.json has the same, as data. */
 :root {
   --chart-1: #0f66ac;  /* blue */
-  --chart-2: #e15f0a;  /* orange */
+  --chart-2: #e66700;  /* orange */
   --chart-3: #269c79;  /* sea green */
   --chart-4: #8e3665;  /* rose */
   --chart-5: #49bdff;  /* sky */
   --chart-6: #4a7800;  /* olive */
   --chart-7: #793cbb;  /* violet */
   --chart-8: #e2a80f;  /* gold */
-  --chart-other: #6b7075;
+  --chart-other: #6d7177;
   --chart-seq-1: #8fc6e8;
   --chart-seq-2: #5eabdc;
   --chart-seq-3: #298ecd;
@@ -39,21 +39,21 @@
   --chart-div-9: #094e8c;
   --chart-done: #38853e;
   --chart-short: #c57722;
-  --chart-failed: #861021;
+  --chart-failed: #851700;
   --chart-open: #565b61;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --chart-1: #217fd0;  /* blue */
-    --chart-2: #e46e2d;  /* orange */
+    --chart-2: #cb5a00;  /* orange */
     --chart-3: #39aa86;  /* sea green */
     --chart-4: #ad4b8d;  /* rose */
     --chart-5: #009ee3;  /* sky */
     --chart-6: #659728;  /* olive */
     --chart-7: #8f5fcc;  /* violet */
     --chart-8: #bc8b09;  /* gold */
-    --chart-other: #84898e;
+    --chart-other: #979ca1;
     --chart-seq-1: #123e6a;
     --chart-seq-2: #0a5894;
     --chart-seq-3: #1173b8;
@@ -72,7 +72,7 @@
     --chart-div-9: #a3d1f5;
     --chart-done: #86d489;
     --chart-short: #ffd48a;
-    --chart-failed: #d66f6f;
+    --chart-failed: #d6725d;
     --chart-open: #9fa5ac;
   }
 }

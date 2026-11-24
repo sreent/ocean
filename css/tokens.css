@@ -59,26 +59,26 @@
 /* Primitives: Ocean */
 :root {
   /* ocean: the cerulean MathWorks and Maplesoft share, and in dark the sky blue both use. lagoon:
-     MATLAB's reef teal and Maple's. coral: a crimson between MATLAB's old dark red and Maple's
-     burgundy. kelp: Maple's green, toward MATLAB's. amber: MATLAB's orange toward Maple's
-     brown. violet: MATLAB's purple and Maple's. */
+     MATLAB's reef teal and Maple's. coral: a maple red, Maplesoft's red toward MATLAB's orange, at
+     Ocean's own lightness. kelp: Maple's green. amber: golden, between MATLAB's orange and Maple's
+     brown, and in dark MATLAB's yellow as it is. violet: MATLAB's purple and Maple's. */
   --ocean-50: #f1f8fe;  --ocean-100: #dceffe; --ocean-200: #b3daf5; --ocean-300: #79c8fa;
   --ocean-400: #19aaf0; --ocean-500: #057db5; --ocean-600: #0369a1; --ocean-700: #03527f;
   --ocean-800: #133b52; --ocean-900: #0c283b;
   --lagoon-100: #daf6f2; --lagoon-300: #3ecdc0; --lagoon-700: #007b72; --lagoon-900: #113935;
-  --coral-100: #ffe8e7;  --coral-300: #f07e89;  --coral-700: #900320;  --coral-900: #4a2121;
-  --kelp-100: #dbf9e4;   --kelp-300: #76eea5;   --kelp-700: #007a44;   --kelp-900: #153723;
-  --amber-100: #ffeed3;  --amber-300: #f2a53f;  --amber-700: #a15d0f;  --amber-900: #412d12;
+  --coral-100: #ffe9e3;  --coral-300: #ef8168;  --coral-700: #b93d21;  --coral-900: #492219;
+  --kelp-100: #d9f9e6;   --kelp-300: #59e1a2;   --kelp-700: #007d51;   --kelp-900: #113725;
+  --amber-100: #ffeed3;  --amber-300: #edb120;  --amber-700: #955900;  --amber-900: #412d12;
   --violet-100: #f3ecff; --violet-200: #cdb8f0; --violet-300: #bf9fee; --violet-700: #793cbb;
   --violet-800: #622f99; --violet-900: #35264a;
   --sand-100: #fcf3e1;   --sand-900: #352e23;
   /* the mist and the deep: Ocean's neutrals, from page to ink, grey as both makers draw their
-     pages and figures, with a breath of the blue */
-  --mist-0: #ffffff;   --mist-50: #f3f4f5;  --mist-100: #e8eaec; --mist-200: #dcdee0;
-  --mist-300: #c5c8ca; --mist-400: #83878b; --mist-500: #6b7075; --mist-600: #53575c; --mist-900: #25272a;
-  --deep-50: #ebedef;  --deep-200: #a6abb1; --deep-300: #84898e; --deep-400: #676c71; --deep-500: #45494e;
-  --deep-600: #34373b; --deep-700: #2b2e31; --deep-800: #202225; --deep-850: #1b1d1f;
-  --deep-900: #151719;
+     pages and figures: the wells are MATLAB's figure grey, and the charcoal has a breath of the cerulean */
+  --mist-0: #ffffff;   --mist-50: #f5f6f7;  --mist-100: #f0f0f0; --mist-200: #dfe1e4;
+  --mist-300: #cbced1; --mist-400: #878b8f; --mist-500: #6d7177; --mist-600: #53575c; --mist-900: #25272a;
+  --deep-50: #ebedef;  --deep-200: #b6bbc1; --deep-300: #979ca1; --deep-400: #686d72; --deep-500: #454a4f;
+  --deep-600: #33373c; --deep-700: #2a2e32; --deep-800: #1f2327; --deep-850: #191d21;
+  --deep-900: #14181c;
 
   --font-sans: "IBM Plex Sans", "IBM Plex Sans Thai", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
