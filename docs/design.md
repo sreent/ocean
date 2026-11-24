@@ -1,6 +1,6 @@
 # Ocean
 
-Ocean is the one look a5s, a7c, a3t and a4a share. It's calm, with colour only where it means something, and it makes plain what an agent or an automation may do, what it did, and who decides. It takes a hint of the sea: deep blues for what someone can do, lagoon teal for agents, coral for any change to a record, and kelp green for what's going well. The palette isn't anyone's brand. An organisation's own colours replace the primitives, in one place, for every product at once.
+Ocean is the one look a5s, a7c, a3t and a4a share. It's calm, with colour only where it means something, and it makes plain what an agent or an automation may do, what it did, and who decides. Its colours mix those of two makers of software for mathematics, MathWorks and Maplesoft, taken where the two meet: cerulean for what someone can do, teal for agents, crimson for any change to a record, and green for what's going well, on neutral greys. The palette is neither maker's brand, and isn't any product's. An organisation's own colours replace the primitives, in one place, for every product at once.
 
 ## Voice
 
@@ -37,6 +37,22 @@ Write from the reader's side, in plain words, the way the pages already do.
 - `--outside` sits darker than `--accent` in light and lighter in dark, so the organisation's edge and what someone can do differ by more than hue.
 - Dark follows the device, with the same meanings over the deep neutrals.
 
+### Where the colours come from
+
+MathWorks' colours and Maple's agree more than they differ: both have a cerulean blue and a bright sky blue, a teal, a green, a purple and neutral greys. Ocean takes each hue from between theirs, and fits each step's lightness to the contrast its meanings need, so the hues are theirs and the lightness is Ocean's. Where they differ, in their warm colours, each gives one meaning: the crimson both have marks a change, and MATLAB's orange marks what's written and waiting. Green and the crimson were then moved, within their makers' hues, so that what readers most need apart parts further for colour-blind readers than in Ocean's earlier palette, in light and dark: going well from failed, and a change from what's written. Green leans to Maple's bluer green, and the crimson's lightness sits between MATLAB's dark red and Maple's burgundy.
+
+| Primitive | What it's for | MathWorks, MATLAB | Maplesoft, Maple | Ocean, light / dark |
+| --- | --- | --- | --- | --- |
+| `ocean` | What someone can do | MathWorks' blue `#015696`, `#0076a8`; MATLAB's light blue `#2fbeef` | `#006699`, `#004f79`; its sky `#00aaff` | `#0369a1` / the sky, `#19aaf0` |
+| `lagoon` | Agents; the product's own doing | the reef palette's teal `#00a3a3` | the plots' teal `#00786a` | `#007b72` / `#3ecdc0` |
+| `coral` | A change to a record; what failed | the old last line colour `#a2142f` | the plots' first, burgundy `#78000e` | `#900320` / `#f07e89` |
+| `amber` | Written, not yet relied on; waiting on someone | orange `#dd5400`, yellow `#edb120` | orange `#ff931e`, the plots' brown `#784c00` | `#a15d0f` / `#f2a53f` |
+| `kelp` | Going well | green `#3baa32` | the plots' green `#00783f` | `#007a44` / `#76eea5` |
+| `violet` | The organisation's edge | purple `#8516d1` | the plots' violet `#604191` | `#622f99` / `#cdb8f0` |
+| `mist`, `deep` | The neutrals, from page to ink | the figure's grey `#f0f0f0`, its axes `#262626` | greys `#f5f5f5`, `#e1e1e1`, charcoal `#2a2a2a` | `#f3f4f5` to `#25272a` / `#151719` to `#ebedef` |
+
+The makers' values are MATLAB's line colours (`colororder`, R2025a and before), its `reef` palette and its classic figure, Maple's default plot colours (Niagara, `plots:-setcolors`), Maplesoft's own pages, and MathWorks' blue as Cleve Moler's blog sampled it from the logo (`#015696`) and as Brandfetch lists it (`#0076a8`).
+
 ### The grammar
 
 These meanings are the products' shared grammar, the same on every surface: badges, a run's timeline, the map of an agent or a workflow, a decision's stripe, the ledger.
@@ -68,9 +84,10 @@ These meanings are the products' shared grammar, the same on every surface: badg
 `css/charts.css` holds the chart colours, light and dark, and `charts/palettes.json` the same as data, for tools that can't read CSS.
 
 - Series take `--chart-1` to `--chart-8` in order, never cycled; past eight, the rest fold into `--chart-other`. Series 1 is Ocean's blue, and no series is coral, so no line reads as a failure.
+- The order mixes the makers' plots: MATLAB's blue and orange first, as its plots begin, then sea green, Maple's rose, the sky both use, Maple's olive, violet and MATLAB's gold. It was chosen by the colour-blind separation of neighbours, in light and dark at once.
 - A chart of how things stood takes `--chart-done`, `--chart-short`, `--chart-failed` and `--chart-open` and nothing else, with their words. Never a series colour for a state, nor a state's colour for a series.
-- In light, series 5, 7 and 8 are under 3 to 1 on white: label their marks in `--text`, and keep the figures beside the chart as a table. Scatter plots and maps use the first five series in light, four in dark.
-- One measure from least to most is Ocean Blue (`--chart-seq-1` to `-7`); above and below a middle is Ocean Orange-Blue (`--chart-div-1` to `-9`).
+- In light, series 5 and 8 (sky and gold) are under 3 to 1 on white: label their marks in `--text`, and keep the figures beside the chart as a table. Scatter plots and maps use the first five series in light, four in dark.
+- One measure from least to most is Ocean Blue (`--chart-seq-1` to `-7`), Maplesoft's sky deepening to MathWorks' blue; above and below a middle is Ocean Orange-Blue (`--chart-div-1` to `-9`), MATLAB's orange and blue either side of grey.
 
 ## Type
 

@@ -1,6 +1,6 @@
 # Ocean
 
-Ocean is the look a5s, a7c, a3t and a4a share: calm, with colour only where it means something, so a page makes plain what an agent or an automation may do, what it did, and who decides. It began in [a5s](https://github.com/sreent/a5s), and this repo is now its one source. It includes the conversation kit, for outcomes people ask for in a conversation, in the products' own apps and in Microsoft Teams.
+Ocean is the look a5s, a7c, a3t and a4a share: calm, with colour only where it means something, so a page makes plain what an agent or an automation may do, what it did, and who decides. Its colours mix MathWorks' and Maple's where the two meet ([`docs/design.md`](docs/design.md#where-the-colours-come-from)). It began in [a5s](https://github.com/sreent/a5s), and this repo is now its one source. It includes the conversation kit, for outcomes people ask for in a conversation, in the products' own apps and in Microsoft Teams.
 
 ![a7c's steps after a test, and a5s's assistant wired as an agent, on Ocean's canvas: each step's icon in the colour of what it does, and the agent's model, checks and tools hanging below it](docs/images/ocean-agent-map.png)
 
