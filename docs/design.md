@@ -53,9 +53,14 @@ MathWorks' colours and Maple's agree more than they differ: both have a cerulean
 
 The makers' values are MATLAB's line colours (`colororder`, R2025a and before), its `reef` palette and its classic figure, Maple's default plot colours (Niagara, `plots:-setcolors`), Maplesoft's own pages, and MathWorks' blue as Cleve Moler's blog sampled it from the logo (`#015696`) and as Brandfetch lists it (`#0076a8`).
 
-### Balanced, not pushed
+### Zen, stylish, scientific: just right
 
-The palette is chosen by eye and then measured, in that order: calm and right to look at first, and every number within reach of what Ocean asks, not each pushed as far as it goes. Pushed, the amber turned a muddy brown and the reds uneven. So the tones stay near one lightness, as Ocean's always have, and where two of them meet for a colour-blind reader, the shape and the word beside them tell them apart (The grammar).
+Ocean's colours are chosen to be three things at once, and to stop at just right:
+
+- Zen: calm first. Colour only where it means something, the tones near one lightness, the greys airy, and nothing louder than its meaning.
+- Stylish: a few hues that sit together, each taken from the makers' palettes rather than made up.
+- Scientific: what's claimed is measured. `scripts/check.mjs` holds the contrast, a colour-blind validator the chart colours, and how far apart the meanings sit is measured, below.
+- Just right: chosen by eye, then measured, with every number within reach of what Ocean asks rather than each pushed as far as it goes. Pushed, the amber turned a muddy brown and the reds uneven. Where two tones meet for a colour-blind reader, the shape and the word beside them tell them apart (The grammar).
 
 How far apart the meanings sit for colour-blind readers, against Ocean's earlier palette: ΔE in OKLab ×100, the worse of protanopia and deuteranopia (Machado 2009, at full severity). 8 or more reads apart at a glance; under 6, the shape and the word carry it.
 
