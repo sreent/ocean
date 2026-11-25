@@ -1,0 +1,141 @@
+<!-- @dsCard group="Settings" height=1500 subtitle="A project's rules, read as sentences: on, off and one that needs fixing; a rule being made, with a problem and what it would do; and what rules did" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Rule</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<section class="card" aria-labelledby="r-list">
+  <div class="section-head"><h2 id="r-list">Rules in Backend platform</h2><span class="note">They act on their own, as the workflow agent, and say so in each issue's history.</span></div>
+  <ul class="rules">
+    <li class="card rule-card">
+      <div class="rule-head">
+        <h3 class="rule-name">Critical bugs go to Anna</h3>
+        <span class="badges"><span class="badge changes">changes issues</span><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>on</span></span>
+      </div>
+      <p class="rule-sentence"><span class="rule-word">When</span> an issue is created, <span class="rule-word">if</span> it matches <code>Type: Bug Priority: Critical</code>, <span class="rule-word">then</span> apply <code>Assignee anna tag urgent</code>.</p>
+      <p class="rule-said">Last acted 2 minutes ago, on <a class="issue-id" href="#">BACK-12</a>: Assignee, Tags.</p>
+      <div class="cluster"><button type="button">Preview it</button><button type="button">Edit it</button><button type="button">Turn it off</button><span class="grow"></span><button type="button" class="danger small">Delete it</button></div>
+    </li>
+    <li class="card rule-card">
+      <div class="rule-head">
+        <h3 class="rule-name">Overdue issues get tagged</h3>
+        <span class="badges"><span class="badge changes">changes issues</span><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>on</span></span>
+      </div>
+      <p class="rule-sentence"><span class="rule-word">Every day at 09:00</span>, <span class="rule-word">if</span> an issue matches <code>#Unresolved Due date: Overdue</code>, <span class="rule-word">then</span> apply <code>tag overdue</code>.</p>
+      <p class="rule-said">Next runs tomorrow at 09:00. Today it checked 14 issues and changed 3.</p>
+      <div class="cluster"><button type="button">Preview it</button><button type="button">Edit it</button><button type="button">Turn it off</button><span class="grow"></span><button type="button" class="danger small">Delete it</button></div>
+    </li>
+    <li class="card rule-card">
+      <div class="rule-head">
+        <h3 class="rule-name">Won't fix says why</h3>
+        <span class="badges"><span class="badge own">refuses changes</span><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>on</span></span>
+      </div>
+      <p class="rule-sentence"><span class="rule-word">When</span> a change would make an issue match <code>State: {Won't fix}</code>, <span class="rule-word">if</span> it doesn't also match <code>has: comments</code>, <span class="rule-word">then</span> refuse the change: “Say in a comment why it won't be fixed.”</p>
+      <p class="rule-said">Last refused a change by Ben Okafor, yesterday at 16:20, on <a class="issue-id" href="#">BACK-31</a>.</p>
+      <div class="cluster"><button type="button">Preview it</button><button type="button">Edit it</button><button type="button">Turn it off</button><span class="grow"></span><button type="button" class="danger small">Delete it</button></div>
+    </li>
+    <li class="card rule-card">
+      <div class="rule-head">
+        <h3 class="rule-name">Payments bugs go to the payments team</h3>
+        <span class="badges"><span class="badge changes">changes issues</span><span class="badge bad"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>needs fixing</span></span>
+      </div>
+      <p class="rule-sentence"><span class="rule-word">When</span> an issue's Subsystem changes, <span class="rule-word">if</span> it matches <code>Subsystem: Payments</code>, <span class="rule-word">then</span> apply <code>Assignee diego</code>.</p>
+      <p class="error-note" role="note"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg><strong>Its query no longer reads: Unknown value “Payments” for Subsystem</strong><span>It does nothing until it's fixed. Did you mean Billing?</span></p>
+      <div class="cluster"><button type="button">Preview it</button><button type="button">Edit it</button><button type="button">Turn it off</button><span class="grow"></span><button type="button" class="danger small">Delete it</button></div>
+    </li>
+    <li class="card rule-card">
+      <div class="rule-head">
+        <h3 class="rule-name">Done subtasks fix their parent</h3>
+        <span class="badges"><span class="badge changes">changes issues</span><span class="badge">tells people</span><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>on</span></span>
+      </div>
+      <p class="rule-sentence"><span class="rule-word">When</span> an issue's State changes, <span class="rule-word">if</span> it matches <code>#Resolved</code> and all of its parent's subtasks match <code>#Resolved</code>, <span class="rule-word">then</span> apply <code>State Fixed</code> to its parent and tell its parent's watchers “All its subtasks are done.”</p>
+      <p class="rule-said">Last acted 5 minutes ago, on <a class="issue-id" href="#">BACK-40</a>: State.</p>
+      <div class="cluster"><button type="button">Preview it</button><button type="button">Edit it</button><button type="button">Turn it off</button><span class="grow"></span><button type="button" class="danger small">Delete it</button></div>
+    </li>
+    <li class="card rule-card">
+      <div class="rule-head">
+        <h3 class="rule-name">Show-stoppers page the on-call</h3>
+        <span class="badges"><span class="badge outside">calls out</span><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>on</span></span>
+      </div>
+      <p class="rule-sentence"><span class="rule-word">When</span> an issue is created, <span class="rule-word">if</span> it matches <code>Priority: Show-stopper</code>, <span class="rule-word">then</span> call <span class="mono">https://pager.example.com</span>.</p>
+      <p class="rule-said">It hasn't acted yet.</p>
+      <div class="cluster"><button type="button">Preview it</button><button type="button">Turn it off</button><span class="grow"></span><span class="note">It calls a webhook, so an administrator changes it.</span></div>
+    </li>
+    <li class="card rule-card off">
+      <div class="rule-head">
+        <h3 class="rule-name">An answer clears needs-info</h3>
+        <span class="badges"><span class="badge changes">changes issues</span><span class="badge idle"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 6.5v11"/><path d="M15 6.5v11"/></svg>off</span></span>
+      </div>
+      <p class="rule-sentence"><span class="rule-word">When</span> an issue gets a comment, <span class="rule-word">if</span> it matches <code>tag: needs-info</code>, <span class="rule-word">then</span> apply <code>remove tag needs-info</code>.</p>
+      <div class="cluster"><button type="button">Preview it</button><button type="button">Edit it</button><button type="button">Turn it back on</button><span class="grow"></span><button type="button" class="danger small">Delete it</button></div>
+    </li>
+  </ul>
+</section>
+
+<form class="card form" aria-labelledby="r-add">
+  <h2 id="r-add">Add a rule</h2>
+  <div class="form-field"><label for="r-name">Name</label><input id="r-name" value="Critical bugs go to Anna"></div>
+  <fieldset class="unframed rule-form">
+    <legend class="hidden">The rule</legend>
+    <div class="rule-clause">
+      <span class="rule-word" id="r-when">When</span>
+      <div class="rule-clause-body"><div class="cluster"><select aria-labelledby="r-when"><option selected>an issue is created</option><option>an issue changes</option><option>an issue gets a comment</option><option>every hour</option><option>every day</option><option>every weekday</option><option>a change would make an issue match</option></select></div></div>
+    </div>
+    <div class="rule-clause">
+      <span class="rule-word" id="r-if">if</span>
+      <div class="rule-clause-body"><span id="r-if-about">it matches</span>
+        <div class="query">
+          <div class="query-row"><div class="query-field"><span class="query-mirror" aria-hidden="true">Type: Bug Priority: <mark class="query-problem">Critcal</mark></span><input type="text" class="query-input" role="combobox" aria-labelledby="r-if r-if-about" aria-autocomplete="list" aria-expanded="false" aria-invalid="true" aria-describedby="r-if-problem" value="Type: Bug Priority: Critcal" autocomplete="off" spellcheck="false"></div></div>
+          <p class="query-problems" id="r-if-problem"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg><strong>Unknown value “Critcal” for Priority</strong><span aria-hidden="true">·</span><span>Did you mean <button type="button" class="link">Critical</button>?</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="rule-clause">
+      <span class="rule-word" id="r-then">then</span>
+      <div class="rule-clause-body"><span id="r-then-about">apply</span>
+        <div class="query">
+          <div class="query-row"><div class="query-field"><span class="query-mirror" aria-hidden="true">Assignee anna tag urgent</span><input type="text" class="query-input" role="combobox" aria-labelledby="r-then r-then-about" aria-autocomplete="list" aria-expanded="false" value="Assignee anna tag urgent" autocomplete="off" spellcheck="false"></div></div>
+          <p class="query-found">set Assignee to anna; add tag urgent</p>
+        </div>
+        <div class="form-field"><label for="r-comment">And a comment, if it should post one</label><textarea id="r-comment" rows="2" placeholder="It goes on each issue the rule changes"></textarea></div>
+      </div>
+    </div>
+  </fieldset>
+  <div class="command-preview" role="group" aria-label="What it would do">
+    <p class="label">What it would do now</p>
+    <p class="note">3 issues match it now. It acts on one only when an issue is created. Here is what it would change on 3 of them, as they are now.</p>
+    <ul class="command-issues">
+      <li><span class="issue-id">BACK-12</span><span class="command-summary">Checkout crashes on Safari</span><ul class="change-lines"><li><span class="change-field">Assignee:</span> <span class="same">none</span> → <ins>anna</ins></li><li><span class="change-field">Tags:</span> <ins>urgent</ins> <span class="same">added</span></li></ul></li>
+      <li><span class="issue-id">BACK-15</span><span class="command-summary">Exports time out for large accounts</span><ul class="change-lines"><li><span class="change-field">Assignee:</span> <del>ben</del> → <ins>anna</ins></li><li><span class="change-field">Tags:</span> <ins>urgent</ins> <span class="same">added</span></li></ul></li>
+      <li><span class="issue-id">BACK-19</span><span class="command-summary">Tokens expire early on clock drift</span><ul class="change-lines"><li class="same">Nothing to change: it is so already</li></ul></li>
+    </ul>
+  </div>
+  <div class="cluster end"><button type="button">Cancel</button><button type="submit" class="primary" disabled>Save the rule</button></div>
+</form>
+
+<section class="card" aria-labelledby="r-runs">
+  <div class="section-head"><h2 id="r-runs">What rules did</h2><span class="note">The last 30 days, newest first.</span></div>
+  <div class="figures-scroll" role="region" aria-label="Table of what rules did" tabindex="0">
+    <table class="figures rule-runs">
+      <thead><tr><th scope="col">When</th><th scope="col">Rule</th><th scope="col">Issue</th><th scope="col">How it went</th><th scope="col">What it did</th></tr></thead>
+      <tbody>
+        <tr><td><time datetime="2026-11-16T09:12:44Z">Today, 09:12</time></td><td><span class="item-name">Critical bugs go to Anna</span><span class="item-about">set off by Ben Okafor</span></td><td><a class="issue-id" href="#">BACK-12</a></td><td><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>applied</span></td><td><ul class="change-lines"><li><span class="change-field">Assignee:</span> <span class="same">none</span> → <ins>anna</ins></li><li><span class="change-field">Tags:</span> <ins>urgent</ins> <span class="same">added</span></li></ul></td></tr>
+        <tr><td><time datetime="2026-11-16T09:00:03Z">Today, 09:00</time></td><td><span class="item-name">Overdue issues get tagged</span><span class="item-about">on its schedule</span></td><td><span class="muted">14 issues</span></td><td><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>applied</span></td><td>Checked 14 issues, changed 3.</td></tr>
+        <tr><td><time datetime="2026-11-15T16:20:11Z">Yesterday, 16:20</time></td><td><span class="item-name">Won't fix says why</span><span class="item-about">Ben Okafor's change</span></td><td><a class="issue-id" href="#">BACK-31</a></td><td><span class="badge bad"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>refused</span></td><td>Say in a comment why it won't be fixed.</td></tr>
+        <tr><td><time datetime="2026-11-15T11:04:52Z">Yesterday, 11:04</time></td><td><span class="item-name">Outages are show-stoppers</span><span class="item-about">set off by Anna Schmidt</span></td><td><a class="issue-id" href="#">BACK-28</a></td><td><span class="badge bad"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>failed</span></td><td>A show-stopper needs someone on it. (The rule “Show-stoppers have an owner”.)</td></tr>
+        <tr><td><time datetime="2026-11-15T10:30:09Z">Yesterday, 10:30</time></td><td><span class="item-name">Escalate when blocked</span><span class="item-about">set off by a rule</span></td><td><a class="issue-id" href="#">BACK-27</a></td><td><span class="badge idle"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 6.5v11"/><path d="M15 6.5v11"/></svg>skipped</span></td><td>Rules set off by other rules stop after 3 steps, so it didn't act on this change.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</div>
+</div>
+</body>
+</html>

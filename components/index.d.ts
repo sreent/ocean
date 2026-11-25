@@ -64,6 +64,11 @@ export interface ConfirmProps {
   onConfirm: () => void;
   /** Proposed, for a4a's rows and cards: a smaller button (`button.small`), such as "Revoke it" beside a token. */
   small?: boolean;
+  /**
+   * Proposed, for a4a's project keys: a word to type again before the confirming answer turns on,
+   * and its field's label ("Type CORE again"). Letter case doesn't count; the field has the focus.
+   */
+  typed?: { label: string; value: string };
 }
 /** A button that asks first, in the browser's own dialog, for what can't be undone. */
 export declare function Confirm(props: ConfirmProps): React.ReactElement;
@@ -319,7 +324,9 @@ export interface ShellProps {
   /** The product's name, in lower case; its mark is its first two characters. */
   product: string;
   /** The pages this person may use, under Work, Build, Decide and Oversee. */
-  pages: { group: "Work" | "Build" | "Decide" | "Oversee"; name: string; href: string; icon: IconName; current?: boolean }[];
+  pages: { group: "Work" | "Build" | "Decide" | "Oversee"; name: string; href: string; icon: IconName; current?: boolean;
+    /** Proposed, for a4a's inbox: a count beside the link (`.nav-count`), such as what's unread; none when it's 0. */
+    count?: number }[];
   /** Who's signed in. */
   you?: string;
   children: React.ReactNode;
@@ -601,11 +608,16 @@ export interface BoardProps {
   sprint?: { name: string; dates: string; left?: string; goal?: string };
   /** Each column: a state, how many it holds, and its limit. Over the limit, it says so in --warn. */
   columns: { name: string; count: number; limit?: number }[];
-  /** Lanes, each with a card list per column; one lane with no name for a board without them. */
+  /** Lanes, each with a card list per column; one lane with no name for a board without them. With lanes, the board scrolls in a frame of its own and its column heads stay in view (.held). */
   lanes: { id?: string; name?: string; count?: number; cells: BoardCard[][] }[];
-  /** A card on its way: where it was, and where it would land. */
-  dragging?: { id: string; to: { lane: number; column: number } };
-  onMove: (id: string, to: { lane: number; column: number }) => void;
+  /** A card on its way: where it was, and where it would land: a cell, and its place among that cell's other cards. */
+  dragging?: { id: string; to: { lane: number; column: number; index: number } };
+  /** Dropped: into a cell, just after or before a card there; neither, into an empty cell, keeps its place in the board's order. */
+  onMove: (id: string, to: { lane: number; column: number; after?: string; before?: string }) => void;
+  /** From the keyboard, Alt and an arrow on a card's id: a place up or down its column, or into the next column. */
+  onRank?: (id: string, way: "up" | "down" | "left" | "right") => void;
+  /** What the last move did, or why a key did nothing, where a screen reader hears it. */
+  said?: string;
   /** From the keyboard: a card's id opens a command for it (CommandBar). */
   onCommand: (id: string) => void;
   /** A move the server refused: it goes back, and this says why above the columns. */
@@ -655,8 +667,13 @@ export declare function Gantt(props: GanttProps): React.ReactElement;
 export interface LoadGridProps {
   /** The working days shown; a week's first day after a weekend leaves a gap. */
   days: { date: string; weekStart?: boolean }[];
-  /** Each person's capacity, in hours a day, and their hours booked each day, or "away". */
-  people: { who: Someone; capacity: number; hours: (number | "away")[] }[];
+  /** Each person's capacity, in hours a day, and their hours booked each day: "away" for a day away, or the hours with that day's capacity and which half they're away on a half day. */
+  people: { who: Someone; capacity: number; hours: (number | "away" | { hours: number; of: number; away: "morning" | "afternoon" })[] }[];
+  /** Which days it shows: from today for a while, to the plan's end, or two dates; each person's own. */
+  window?: { preset: "2w" | "1m" | "3m" | "plan" } | { from: string; to: string };
+  onWindow?: (window: { preset: "2w" | "1m" | "3m" | "plan" } | { from: string; to: string }) => void;
+  /** At the end of the window's row: "Days away", for the people this person may enter them for. */
+  onDaysAway?: () => void;
   /** What levelling would move, before anything does. */
   levelling?: { id: string; what: string; who: string; from: string; to: string; by: string }[];
   /** The tasks that only follow the ones it moves, folded beneath them. */
@@ -671,6 +688,21 @@ export interface LoadGridProps {
 }
 /** People's load by day, shaded in Ocean Blue by the share of their day; over capacity in --warn with its words. Proposed. */
 export declare function LoadGrid(props: LoadGridProps): React.ReactElement;
+
+export interface DaysAwayProps {
+  person: { name: string };
+  /** Each absence: when, in words, and why only for the person, administrators and whoever entered it. */
+  absences: { when: string; half?: "morning" | "afternoon"; kind?: string; note?: string; enteredBy?: string; past?: boolean; canChange: boolean }[];
+  /** Whether the form shows: their own, or a manager or an administrator entering them. */
+  canEnter: boolean;
+  editing?: number;
+  onAdd: (days: { from: string; to: string; half?: "morning" | "afternoon"; kind: string; note?: string }) => void;
+  onChange: (index: number) => void;
+  onRemove: (index: number) => void;
+  outcome?: string;
+}
+/** A person's days away, in Ocean's Settings: a table of them, the past quieter, why only for those it's for, and the form. Proposed, for a4a. */
+export declare function DaysAway(props: DaysAwayProps): React.ReactElement;
 
 /** A cost-performance index with its plain words, and the figures it comes from. */
 export type CostIndex = { value: number; words: string; from: string };
@@ -745,7 +777,535 @@ export interface IssueHistoryProps {
     did?: string;
     changes?: FieldChange[];
     comment?: React.ReactNode;
+    /** On a help desk request: a comment its requester sees, the team's reply to them or theirs. Framed in `--outside`, with its words. */
+    public?: "reply" | "theirs";
+    /** What an agent changed on its own: "possible" offers Undo to someone who may change the issue; "undone" fades it, saying who undid it. */
+    undo?: { state: "possible"; onUndo: () => void } | { state: "undone"; by: string };
   }[];
+  /** On a help desk request, the composer's choice, made before anything is sent: an internal note or a reply to the requester. */
+  composer?: { requester?: string; visibility: "internal" | "public"; onVisibility: (v: "internal" | "public") => void };
 }
 /** An issue's history in the ledger's spirit: who, for whom, through what, when, and each change in the grammar. Proposed. */
 export declare function IssueHistory(props: IssueHistoryProps): React.ReactElement;
+
+export interface MentionFieldProps {
+  value: string;
+  onChange: (text: string) => void;
+  /** The people it offers after an "@": those whose login or name starts with what's typed. */
+  people: { login: string; name: string; kind: Kind }[];
+}
+/** A text area that offers people after an "@", under the field (`.composer`); the arrows choose, Enter or Tab takes one. Proposed, for a4a. */
+export declare function MentionField(props: MentionFieldProps): React.ReactElement;
+
+export interface EditorProps {
+  /** Markdown: what's kept, whichever way it's written. */
+  value: string;
+  onChange: (markdown: string) => void;
+  /** The field's name, said by the editable region (a label can't name one). */
+  label: string;
+  /** Written as it reads, or the Markdown itself; the choice is the person's, and kept. */
+  mode: "visual" | "markdown";
+  onMode: (mode: "visual" | "markdown") => void;
+  placeholder?: string;
+  /** The names of files on their way, each drawn "Uploading…" where it will go. */
+  uploading?: string[];
+  /** Said under it: how an upload is going, or, with `bad`, why it didn't go and what to do. */
+  status?: { text: string; bad?: boolean };
+}
+/** Markdown written as it reads: a toolbar on the field's top edge, its tools pressed when on; checklists, tables and pictures drawn; Visual or Markdown at its end. Proposed, for a4a. */
+export declare function Editor(props: EditorProps): React.ReactElement;
+
+export interface InboxProps {
+  /** By issue, the issue with the latest news first. */
+  issues: {
+    id: string;
+    summary: string;
+    /** None once the issue is deleted: it then says so, and doesn't link. */
+    href?: string;
+    state?: IssueState;
+    notifications: {
+      who: Someone;
+      /** What it means to this person: "Anna Schmidt mentioned you", "Ben Okafor assigned it to you". */
+      what: string;
+      at: { at: string; label: string };
+      unread: boolean;
+      changes?: FieldChange[];
+      said?: React.ReactNode[];
+    }[];
+  }[];
+  onRead: (issue: string, read: boolean) => void;
+}
+/** What reached someone, by issue: unread by a dot and weight; each issue's own Mark read. Its count is the Shell's, beside its link. Proposed, for a4a. */
+export declare function Inbox(props: InboxProps): React.ReactElement;
+
+export interface WatchToggleProps {
+  watching: boolean;
+  /** How many watch it, heard as words: "3 people watch it". */
+  count: number;
+  onToggle: () => void;
+}
+/** Watch an issue: a toggle, pressed while you do, its word "Watch" either way. Who watches, and why, is a side card of people. Proposed, for a4a. */
+export declare function WatchToggle(props: WatchToggleProps): React.ReactElement;
+
+export interface HelpDeskProps {
+  /** Whose help desk it is: "Backend platform". */
+  project: string;
+  /** The form: the project's own words above it. */
+  form?: { intro?: React.ReactNode; onSend: (fields: { name: string; email: string; summary: string; description: string }) => void };
+  /** After sending: where the link went, or the link itself where no email goes. */
+  sent?: { email: string; tracking?: string };
+  /** A request's own page: its state, what was asked, and the public conversation, never anything internal. */
+  request?: {
+    summary: string;
+    state: { name: string; resolved: boolean };
+    asked: { at: string; text: React.ReactNode };
+    messages: { from: "you" | "team"; name: string; at: string; text: React.ReactNode }[];
+    emailed: boolean;
+    onReply: (text: string) => void;
+  };
+}
+/** A help desk's lone pages for people outside: its form, the page after it, and a request's own page. Proposed, for a4a. */
+export declare function HelpDesk(props: HelpDeskProps): React.ReactElement;
+
+export interface AttachmentListProps {
+  /** The section's heading: "Files". */
+  label: string;
+  /** How many there are and how much room they take, beside the heading: "3 files, 2.4 MB of 100 MB". */
+  about?: string;
+  files: {
+    id: string;
+    name: string;
+    /** Where its bytes are: an image opens in place, anything else downloads. */
+    href: string;
+    /** "120 KB". */
+    size: string;
+    /** A raster image (PNG, JPEG, GIF, WebP): its picture is its thumbnail. Anything else shows its kind. */
+    image?: boolean;
+    /** What kind it is, from its name, under the file's mark: "LOG", "PDF". */
+    kind?: string;
+    who?: Someone;
+    /** The moment, and as people read it. */
+    at?: { at: string; label: string };
+    /** Where it is, in a list of an issue's files: "on a comment". */
+    note?: string;
+    /** Who may delete it gets a Confirm: "Delete report.log?". */
+    onDelete?: () => void;
+    /**
+     * Shown in place, under its row, once opened with Show: text as it's written, with which part of
+     * how much ("The first 64 KB of 1.2 MB") and the other end a click away; or sound or video in
+     * the browser's own player. Images open as themselves, so take none.
+     */
+    preview?: { text: string; about: string; otherEnd?: { label: string; onShow: () => void } } | { audio: string } | { video: string };
+    open?: boolean;
+    onToggle?: () => void;
+  }[];
+  /** Files on their way: how far each has come, from 0 to 1, or why it failed. */
+  uploading?: { name: string; done: number; words: string; error?: string; onStop?: () => void }[];
+  /** Where more go: dropped on it, or chosen with its button. None, and nobody may add any. */
+  onAdd?: (files: File[]) => void;
+  /** What may go: "Up to 20 MB each. Images, text, sound and video show here; everything else downloads." */
+  addAbout?: string;
+  /** Under a comment's words: smaller, without who and when. */
+  compact?: boolean;
+}
+/** Files on an issue, a comment or an article: each with its picture or kind, name, size, who and when; files on their way; and a place to drop more. Proposed. */
+export declare function AttachmentList(props: AttachmentListProps): React.ReactElement;
+
+export type ArticleNode = {
+  /** "BACK-A-3". */
+  id: string;
+  title: string;
+  href: string;
+  /** The articles under it; folded until opened, unless the open one is among them. */
+  children?: ArticleNode[];
+  open?: boolean;
+};
+export interface ArticleTreeProps {
+  /** Whose tree: "Backend platform". */
+  label: string;
+  articles: ArticleNode[];
+  /** The id of the article open beside the tree. */
+  current?: string;
+  onToggle?: (id: string, open: boolean) => void;
+}
+/** A project's knowledge base as a tree, on NavList: each article a link, those under it indented and folded. Proposed. */
+export declare function ArticleTree(props: ArticleTreeProps): React.ReactElement;
+
+export type DiffLine = { op: "same" | "add" | "del"; text: string };
+export interface ArticlePageProps {
+  id: string;
+  title: string;
+  /** The articles it sits under, from the top. */
+  path: { id: string; title: string; href: string }[];
+  /** "Updated by Anna Schmidt, Mon 9 Nov · version 4". */
+  meta: React.ReactNode;
+  /** Its Markdown, as prose. */
+  body: React.ReactNode;
+  children?: { id: string; title: string; href: string; about?: string }[];
+  /** Issues and articles that mention it by its id. */
+  mentionedIn?: { id: string; title: string; href: string; state?: IssueState; resolved?: boolean }[];
+  /** Editing: its title and Markdown, and how it will read; "write" or "read" where only one fits. */
+  editing?: { title: string; markdown: string; preview: React.ReactNode; show?: "write" | "read" };
+  /** A version against the one before, a line each. */
+  version?: { label: string; lines: DiffLine[] };
+}
+/** An article: its words as prose, where it sits, what's under it and what mentions it; its editor and its versions. Proposed. */
+export declare function ArticlePage(props: ArticlePageProps): React.ReactElement;
+
+export interface ArticleResultsProps {
+  /** Each article found: its title, where it sits, and its words around what matched, the matches marked. */
+  results: { id: string; title: string; href: string; path: string[]; when: string; snippet: { text: string; match: boolean }[] }[];
+}
+/** What a knowledge base search found. Proposed. */
+export declare function ArticleResults(props: ArticleResultsProps): React.ReactElement;
+/** How a sprint stands against its ideal, in the words its badge takes. */
+export type BurndownVerdict = "on_track" | "ahead" | "done" | "behind" | "ended" | "not_started" | "empty";
+
+export interface BurndownProps {
+  sprint: { name: string; goal?: string; startDate: string; endDate: string; board: string };
+  /** By hours of estimate, or by how many issues. */
+  by: "estimate" | "count";
+  /** Committed at the start of the first working day, and left now (or at the end). */
+  start: number;
+  remaining: number;
+  /** Each working day: what was left at its end (null for days to come), the ideal, and what it did. */
+  days: { date: string; remaining: number | null; ideal: number; completed: number; added: number; removed: number; logged: number }[];
+  /** How it stands: a badge, and the sentence saying it against the ideal as today began. */
+  status: { verdict: BurndownVerdict; words: string };
+  /** Each change to its scope or progress, in order: added, taken out, deleted, resolved, reopened, estimate changed. */
+  changes: { date: string; issue: string; summary: string; kind: "added" | "removed" | "deleted" | "resolved" | "reopened" | "estimate"; amount: number }[];
+  today: string;
+  /** In a dashboard's widget: the words, the facts and the chart, with its figures folded beneath. */
+  compact?: boolean;
+}
+/** A sprint's burndown: what's left, solid, against the ideal, dashed; scope changes in --changes; its figures beside it. Proposed. */
+export declare function Burndown(props: BurndownProps): React.ReactElement;
+
+/** How a state stands, which is its band's colour: --chart-done, --chart-short, --chart-failed or --chart-open. */
+export type Standing = "done" | "waiting" | "failed" | "open";
+
+export interface CumulativeFlowProps {
+  /** The workflow's states in order; a state's tone says whether it waits on someone (warn) or failed (bad). */
+  states: { name: string; resolved: boolean; tone?: "warn" | "bad" | "good" | "idle" }[];
+  /** Each day's end: how many issues were in each state, in the order of `states`. */
+  days: { date: string; counts: number[]; total: number }[];
+  today: string;
+  compact?: boolean;
+}
+/** Issues in each state at each day's end, stacked, each band in the colour of how its state stands. Proposed. */
+export declare function CumulativeFlow(props: CumulativeFlowProps): React.ReactElement;
+
+export interface DistributionProps {
+  /** Equal buckets, in days: each one's start, end and how many fell in it. */
+  buckets: { from: number; to: number; count: number }[];
+  /** By nearest rank, in days; null when there are none. */
+  percentiles: { p50: number | null; p85: number | null; p95: number | null };
+  average: number | null;
+  /** The slowest, each with how long it took. */
+  issues: { id: string; summary: string; days: number; reopened?: boolean }[];
+  /** Those resolved without ever starting, left out and said so. */
+  notStarted?: string[];
+  compact?: boolean;
+}
+/** How many took how long, in columns of the first series, with the half and 85% marked in ink. Proposed. */
+export declare function Distribution(props: DistributionProps): React.ReactElement;
+
+export interface CreatedResolvedProps {
+  interval: "day" | "week" | "month";
+  /** Each period: created, resolved and reopened in it, and open at its end. */
+  buckets: { from: string; to: string; created: number; resolved: number; reopened: number; open: number }[];
+  totals: { created: number; resolved: number; reopened: number };
+  compact?: boolean;
+}
+/** What came in against what got done, period by period: created in the first series, resolved in the second. Proposed. */
+export declare function CreatedResolved(props: CreatedResolvedProps): React.ReactElement;
+
+export interface TimeReportProps {
+  totalMinutes: number;
+  entries: number;
+  from: string;
+  to: string;
+  /** The bars, by how the time is grouped. */
+  groups: { by: "person" | "project" | "week"; rows: { label: string; who?: Someone; minutes: number }[] };
+  onGroup?: (by: "person" | "project" | "week") => void;
+  /** Each issue's time here and all told, against its estimate (none: "No estimate"). */
+  byIssue: { id: string; summary: string; minutes: number; spentMinutes: number; estimateMinutes: number | null }[];
+  /** Each person's minutes per week, weeks beginning on Monday. */
+  weeks: string[];
+  matrix: { who: Someone; minutes: number[] }[];
+  compact?: boolean;
+}
+/** Time logged as bars on one scale with their figures, spent against estimate as meters, and each person's weeks. Proposed. */
+export declare function TimeReport(props: TimeReportProps): React.ReactElement;
+
+/** A dashboard's widget: a report with its parameters, a search's count or list, or a note. */
+export type DashboardWidget = { id: string; title?: string; width: "half" | "full" } & (
+  | { kind: "report"; report: "burndown" | "flow" | "created-resolved" | "cycle-time" | "time"; body: React.ReactNode }
+  | { kind: "search"; show: "count" | "list"; count?: number; issues?: { id: string; summary: string; state: IssueState }[] }
+  | { kind: "note"; text: React.ReactNode }
+);
+
+export interface DashboardProps {
+  widgets: DashboardWidget[];
+  /** Arranging: each widget moves earlier or later, goes wide or half, or goes, from its head's buttons. */
+  arranging?: boolean;
+  onMove?: (id: string, by: -1 | 1) => void;
+  onWidth?: (id: string, width: "half" | "full") => void;
+  onRemove?: (id: string) => void;
+  /** A widget being made, dashed until it's on the dashboard. */
+  adding?: React.ReactNode;
+}
+/** A person's widgets in two columns where there's room and one where there isn't, arranged without dragging. Proposed. */
+export declare function Dashboard(props: DashboardProps): React.ReactElement;
+
+export interface MappingTableProps {
+  /** Each column of the file: its name, a few of its values, how many rows have one, what it becomes, and whether that was found from its header. */
+  columns: { name: string; samples: string[]; filled: number; target: string; found: boolean }[];
+  /** What a column may become, grouped: what every issue has, the project's fields, links, or left out. */
+  targets: { group: string; options: { value: string; label: string }[] }[];
+  onTarget?: (column: number, target: string) => void;
+  /** For a mapped field of options, people or sprints: each value in the file and what it becomes; `empty` is what leaving it means. */
+  values?: { label: string; items: { value: string; count: number; to: string | null; found: boolean }[]; choices: { value: string; label: string }[]; empty: string }[];
+  onValue?: (label: string, value: string, to: string | null) => void;
+  /** What a check would do, or what the run did. */
+  counts?: { created: number; updated: number; unchanged: number; skipped: number; failed: number; comments: number; links: number; planned: boolean };
+  /** Row by row: an error leaves the row out, a warning imports it without the value. */
+  problems?: { row: number; key?: string; level: "error" | "warning"; message: string; hint?: string; column?: string }[];
+  /** A run's progress, said in words too. */
+  progress?: { done: number; total: number; phase: "issues" | "links" };
+}
+/** Bringing a file of issues in: its columns and values mapped, a check's counts, problems row by row, and the run's progress. Proposed. */
+export declare function MappingTable(props: MappingTableProps): React.ReactElement;
+
+export interface RuleProps {
+  name: string;
+  /** "change": when something happens to an issue; "schedule": every hour or day; "guard": refuses a change that breaks it. */
+  kind: "change" | "schedule" | "guard";
+  /** The rule as a sentence, in its parts: When … (or how often), if …, then …. The query, command or requirement in each is mono, as written. */
+  sentence: {
+    when: string;
+    if?: { words: string; code: string };
+    /** A further condition on related issues: "all of its parent's subtasks match" and its query. */
+    and?: { words: string; code: string };
+    then: { words: string; code?: string };
+    /** The issues it acts on, after the command: " to its parent". */
+    to?: string;
+    /** Whom it tells, and what: "its parent's watchers", "All its subtasks are done." */
+    tell?: { who: string; words: string };
+    /** Where it calls, by the address's origin alone. */
+    call?: string;
+  };
+  on: boolean;
+  /** What it does besides changing issues: "tells people" is a plain fact; "calls out" is `outside`. */
+  does?: ("changes" | "refuses" | "tells" | "calls")[];
+  /** What no longer reads in it, such as a value renamed since: it does nothing until they're fixed. */
+  problems?: { part: string; what: string; fix?: string }[];
+  /** What it did last, or when it next runs: "Last acted 2 minutes ago, on BACK-12". */
+  said?: React.ReactNode;
+  onPreview: () => void;
+  /** Absent for a rule that calls out, for anyone but an administrator: it says why instead. */
+  onEdit?: () => void;
+  onToggle: () => void;
+  onDelete?: () => void;
+}
+/** A workflow rule read as a sentence, what it does and how it stands as badges, and what it did last. Proposed. */
+export declare function Rule(props: RuleProps): React.ReactElement;
+
+export interface RuleFormProps {
+  /** Each part's word and what fills it in: a choice, a query or command field (QueryBar's), a message. */
+  clauses: { word: "When" | "if" | "then"; about?: string; field: React.ReactNode }[];
+  /** What it would do now, as a dry run gives it; for a guard, the issues that already break it. A rule acting on related issues says, for each, which issue it acts for and whom it would tell. */
+  preview?: { matching: number; note: string; sample: { id: string; summary: string; changes: FieldChange[]; for?: string; tells?: string[] }[] };
+  onSave: () => void;
+}
+/** A rule's form, said as the rule is: a row for each word, the word beside its fields where there's room. Proposed. */
+export declare function RuleForm(props: RuleFormProps): React.ReactElement;
+
+export interface CommitsProps {
+  /** The issue they mention. */
+  issue: string;
+  /** Pull or merge requests: open (waiting on review), merged, or closed without merging. */
+  pullRequests: {
+    number: number;
+    title: string;
+    href: string;
+    state: "open" | "merged" | "closed";
+    branch?: string;
+    target?: string;
+    by?: string;
+    repository: string;
+    at: { at: string; label: string };
+  }[];
+  /** Commits, each with the command it gave the issue, if one: applied as its author, or not, and why. */
+  commits: {
+    sha: string;
+    title: string;
+    href?: string;
+    by: Someone;
+    branch?: string;
+    at: { at: string; label: string };
+    command?: { text: string; applied: boolean; note: string };
+  }[];
+}
+/** An issue's commits and pull requests, newest first, with how each stands and what a commit's command did. Proposed. */
+export declare function Commits(props: CommitsProps): React.ReactElement;
+
+export interface ScriptFieldProps {
+  /** The script, in JavaScript. */
+  text: string;
+  /** What stops it compiling, each underlined where it is and said beneath: its range of the text, and its line. */
+  problems?: { start: number; end: number; message: string; line: number | null }[];
+  onText: (text: string) => void;
+}
+/** A workflow script in mono, its line numbers in a gutter, each problem underlined as the query's are. Proposed. */
+export declare function ScriptField(props: ScriptFieldProps): React.ReactElement;
+
+export interface ScriptRunProps {
+  /** The issue it ran on, as it is now. */
+  issue: string;
+  ok: boolean;
+  error?: { kind: "syntax" | "runtime" | "time" | "memory"; message: string; line: number | null } | null;
+  logs: string[];
+  /** What it said with refuse(), in its words. */
+  refusal?: string | null;
+  applies: { command: string; issue?: string; changes: FieldChange[]; errors: string[] }[];
+  note: string;
+}
+/** What a script would do to one issue, as a dry run: its logs, its refusal, and what each command it asked for would change. Proposed. */
+export declare function ScriptRun(props: ScriptRunProps): React.ReactElement;
+
+export interface WorkflowBarProps {
+  /** The moves out of the state the issue is in: a move that can't be made now says why. */
+  transitions: { name: string; to: string; allowed: boolean; why?: string | null; onMove: () => void }[];
+  /** The project's actions offered for the issue. */
+  actions: { name: string; onRun: () => void }[];
+}
+/** What a person can do to an issue by its workflows: its state machine's moves and its project's actions, as buttons. Proposed. */
+export declare function WorkflowBar(props: WorkflowBarProps): React.ReactElement;
+export interface BacklogProps {
+  /** In rank order: each issue's id, summary, state and story points. */
+  issues: { id: string; summary: string; state?: string; points?: number | null }[];
+  /** The board's open sprints, to drop an issue on. */
+  sprints: { name: string; issues: number; dates?: string }[];
+  /** The sprint being planned: each row has a button that puts its issue there. */
+  target?: string;
+  onRank: (issue: string, place: { after?: string; before?: string }) => void;
+  onToSprint: (issue: string, sprint: string) => void;
+  /** What the last move did, said where a screen reader hears it. */
+  said?: string;
+}
+/** A board's backlog in rank order: rows to drag or move with Alt and an arrow, and sprints to drop them on. Proposed, for a4a. */
+export declare function Backlog(props: BacklogProps): React.ReactElement;
+
+export interface VelocityProps {
+  unit: string;
+  sprints: { name: string; committed: number; done: number; finished: boolean }[];
+  /** Done per sprint over the last three that are over; none before one is. */
+  average: number | null;
+}
+/** Committed and done per sprint as pairs of bars, the average of the last three dashed, and the figures as a table. Proposed, for a4a. */
+export declare function Velocity(props: VelocityProps): React.ReactElement;
+
+export interface SprintLoadProps {
+  sprint: string;
+  from: string | null;
+  to: string | null;
+  /** Each person, or none for the issues nobody has yet. */
+  people: { name: string | null; issues: number; points: number | null; loadHours: number; capacityHours: number | null }[];
+  totals: { issues: number; points: number | null; loadHours: number; capacityHours: number | null };
+}
+/** A sprint's load against its people's capacity: a meter each, over in --warn with its words. Proposed, for a4a. */
+export declare function SprintLoad(props: SprintLoadProps): React.ReactElement;
+
+export interface TimerProps {
+  seconds: number;
+  running: boolean;
+  /** The issue your running timer is on, when it isn't this one. */
+  elsewhere?: string;
+  onStart: () => void;
+  onPause: () => void;
+  onStop: () => void;
+  onDiscard: () => void;
+}
+/** A person's timer on an issue: its time, and start, pause, stop and log, discard. Proposed, for a4a. */
+export declare function Timer(props: TimerProps): React.ReactElement;
+
+export interface TimesheetProps {
+  week: string;
+  /** Each day's name and the hours worked that day (0: off). */
+  days: { name: string; hours: number }[];
+  rows: { issue: string; summary: string; type: string | null; minutes: number[]; entries: number[] }[];
+  totals: number[];
+  onSet: (issue: string, type: string | null, day: number, minutes: number) => void;
+}
+/** A person's week of time: a field per issue, type and day, each day's total against its hours. Proposed, for a4a. */
+export declare function Timesheet(props: TimesheetProps): React.ReactElement;
+
+export interface WorkWeekProps {
+  /** Hours on each weekday, Sunday first; none for the plan's working days. */
+  week: number[] | null;
+  capacity: number;
+  canChange: boolean;
+  onSave: (week: number[] | null) => void;
+}
+/** A person's working week: seven fields, Monday first, and its total. Proposed, for a4a. */
+export declare function WorkWeek(props: WorkWeekProps): React.ReactElement;
+
+export interface NoticeProps {
+  /** The app is offline: what's shown may be out of date. */
+  offline?: boolean;
+  /** A new version waits; taking it reloads the app into it. */
+  onNewVersion?: () => void;
+}
+/** A word about the app itself, above every page: offline, or a new version ready (a4a's installed app). */
+export declare function Notice(props: NoticeProps): React.ReactElement | null;
+
+
+export interface AppFrameProps {
+  /** The app's title: its badge says the widget is the app's. */
+  app: string;
+  /** The widget's title: the card's heading, and the frame's. */
+  title: string;
+  /** Where its frame loads from. */
+  src: string;
+  /** The height it asks for, kept between 80 and 800. */
+  height: number;
+  /** What it last said, as text. */
+  said?: string | null;
+  /** What it asks the page to open, and the answers. */
+  ask?: { to: string; onOpen: () => void; onStay: () => void } | null;
+}
+/** An app's widget on a page: someone else's code, in a sandboxed frame of its own, named as an app's. Proposed. */
+export declare function AppFrame(props: AppFrameProps): React.ReactElement;
+
+/** What a whiteboard's note is, said by a meaning, never a colour: plain, an idea (writes), agreed (good), a question (warn), a problem (bad), parked (idle). */
+export type WhiteboardTone = "plain" | "idea" | "agreed" | "question" | "problem" | "parked";
+/** An element on a whiteboard: where it is and how big, in the canvas's units, and what it says. */
+export type WhiteboardItem =
+  | { id: string; kind: "note"; x: number; y: number; w: number; h: number; text: string; tone: WhiteboardTone }
+  | { id: string; kind: "text"; x: number; y: number; w: number; h: number; text: string }
+  | { id: string; kind: "section"; x: number; y: number; w: number; h: number; title: string }
+  /** A card as its reader may see it: null when they may not, for whatever reason, and then nothing of it is drawn. */
+  | { id: string; kind: "issue" | "article"; x: number; y: number; w: number; h: number; card: { id: string; summary: string; state?: { name: string; tone?: Tone }; assignee?: Someone; resolved?: boolean } | null }
+  | { id: string; kind: "arrow"; from: string; to: string; label?: string; linked?: string };
+export interface WhiteboardProps {
+  /** Its name, for screen readers: "Q3 planning, 12 elements". */
+  label: string;
+  items: WhiteboardItem[];
+  /** The part of the canvas in view: pan and zoom change it. */
+  viewBox: { x: number; y: number; width: number; height: number };
+  onViewBox?: (box: { x: number; y: number; width: number; height: number }) => void;
+  /** What's chosen. */
+  chosen?: string[];
+  onChoose?: (ids: string[]) => void;
+  /** Moved by a pointer or the arrow keys: each element's new place. */
+  onMove?: (moves: { id: string; x: number; y: number }[]) => void;
+  /** Who is looking now. */
+  viewers?: Someone[];
+  /** Show the outline beside the canvas, or under it where it's narrow. */
+  outline?: boolean;
+  /** The product's words: each kind and tone, the outline's title, and a hidden card's line. */
+  words: Record<string, string>;
+}
+/** A whiteboard: a team's canvas beside its issues, as SVG drawn from attributes: sections, notes in a tone, text, issue and article cards as their reader may see them, and arrows, with its outline in reading order. Proposed. */
+export declare function Whiteboard(props: WhiteboardProps): React.ReactElement;

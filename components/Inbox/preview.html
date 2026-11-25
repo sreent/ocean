@@ -1,0 +1,82 @@
+<!-- @dsCard group="Issues" height=812 width=1100 subtitle="What reached Ada, by issue: a mention, an assignment, changes folded into one, a help desk request; and its count beside the sidebar's link" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Inbox</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-app">
+<aside class="sidebar">
+<a class="brand" href="#"><span class="mark">a4</span><span>a4a</span></a>
+<nav aria-label="a4a's pages">
+<div class="group">Work</div>
+<a href="#" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6.5 16.5V11a5.5 5.5 0 0 1 11 0v5.5l1.5 2H5z"/><path d="M10 20.5h4"/></svg><span>Inbox</span><span class="nav-count">3<span class="hidden"> unread</span></span></a>
+<a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M10 6.5h10"/><path d="M10 12h10"/><path d="M10 17.5h10"/><path d="M4 6.5l1.5 1.5 2.5-2.5"/><path d="M4 12l1.5 1.5 2.5-2.5"/><path d="M4 17.5l1.5 1.5 2.5-2.5"/></svg><span>Issues</span></a>
+<a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 4.5h4.5v15H4z"/><path d="M10.75 4.5h4.5v10h-4.5z"/><path d="M17.5 4.5H20v7h-2.5z"/></svg><span>Boards</span></a>
+<div class="group">Decide</div>
+<a href="#"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M8 12.2l2.7 2.7L16.2 9.4"/></svg><span>Suggestions</span></a>
+</nav>
+<div class="me"><span class="avatar">AA</span><span>Ada Admin</span></div>
+</aside>
+<div class="page">
+<main>
+<div class="page-head">
+<div class="title-row"><h1>Inbox</h1><div class="grow cluster end"><button type="button">Mark all read</button></div></div>
+<p class="about">What concerns you: issues assigned to you, mentions, new help desk requests, and changes and comments on issues you watch.</p>
+<div class="meta"><span>3 unread notifications</span><a href="#">Choose what reaches you by email</a></div>
+</div>
+<div class="stack">
+<div class="modes" role="group" aria-label="Which notifications to show"><button type="button" aria-pressed="false">Unread</button><button type="button" aria-pressed="true">All</button></div>
+<ol class="inbox" aria-label="Notifications, by issue">
+<li class="inbox-group">
+<div class="inbox-issue"><span class="issue-id" aria-hidden="true">BACK-12</span><a class="inbox-summary" href="#"><span class="hidden">BACK-12: </span>Login fails on hotel Wi-Fi</a><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>In Review</span><button type="button" class="small">Mark read<span class="hidden"> BACK-12</span></button></div>
+<ol class="history">
+<li class="unread"><span class="avatar small" aria-hidden="true">AS</span><div class="history-body">
+<p class="history-head"><span class="hidden">Unread: </span><strong class="inbox-what">Anna Schmidt mentioned you</strong> · <time datetime="2026-11-16T10:02">10:02</time></p>
+<div class="history-comment"><div class="prose"><p>The retry with backoff is in. <a class="mention" href="#" title="@ada">Ada Admin</a>, could you check it on the conference Wi-Fi?</p></div></div>
+</div></li>
+<li class="read"><span class="avatar agent small" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 8.5h10a2.5 2.5 0 0 1 2.5 2.5v6A2.5 2.5 0 0 1 17 19.5H7A2.5 2.5 0 0 1 4.5 17v-6A2.5 2.5 0 0 1 7 8.5z"/><path d="M12 4.5v4"/><path d="M9.5 13.5h.01"/><path d="M14.5 13.5h.01"/><path d="M9.5 16.5h5"/></svg></span><div class="history-body">
+<p class="history-head"><strong class="inbox-what">claude-code for Anna Schmidt made 2 changes</strong> · <time datetime="2026-11-15T16:40">Sun 15 Nov, 16:40</time></p>
+<ul class="change-lines"><li><span class="change-field">State:</span> <del>In Progress</del> → <ins>In Review</ins></li><li><span class="change-field">Fix versions:</span> <ins>2.4.1</ins> <span class="same">added</span></li></ul>
+</div></li>
+</ol>
+</li>
+<li class="inbox-group">
+<div class="inbox-issue"><span class="issue-id" aria-hidden="true">WEB-8</span><a class="inbox-summary" href="#"><span class="hidden">WEB-8: </span>Dashboard cards overlap on narrow screens</a><span class="badge">Open</span><button type="button" class="small">Mark read<span class="hidden"> WEB-8</span></button></div>
+<ol class="history">
+<li class="unread"><span class="avatar small" aria-hidden="true">BO</span><div class="history-body">
+<p class="history-head"><span class="hidden">Unread: </span><strong class="inbox-what">Ben Okafor assigned it to you</strong> · <time datetime="2026-11-16T09:41">09:41</time></p>
+<ul class="change-lines"><li><span class="change-field">Assignee:</span> <del>Unassigned</del> → <ins>Ada Admin</ins></li><li><span class="change-field">Priority:</span> <del>Normal</del> → <ins>Major</ins></li></ul>
+<div class="history-comment"><div class="prose"><p>Seen on a 390px phone; it needs to go out with the release.</p></div></div>
+</div></li>
+</ol>
+</li>
+<li class="inbox-group">
+<div class="inbox-issue"><span class="issue-id" aria-hidden="true">BACK-13</span><a class="inbox-summary" href="#"><span class="hidden">BACK-13: </span>I can't reset my password</a><span class="badge">Open</span><button type="button" class="small">Mark read<span class="hidden"> BACK-13</span></button></div>
+<ol class="history">
+<li class="unread"><span class="avatar small" aria-hidden="true">JD</span><div class="history-body">
+<p class="history-head"><span class="hidden">Unread: </span><strong class="inbox-what">Jane Doe asked for help through the help desk</strong> · <time datetime="2026-11-16T08:15">08:15</time></p>
+</div></li>
+</ol>
+</li>
+<li class="inbox-group deleted">
+<div class="inbox-issue"><span class="issue-id">WEB-3</span><span class="inbox-summary">Old banner experiment</span><span class="chip">deleted</span><button type="button" class="small">Mark unread<span class="hidden"> WEB-3</span></button></div>
+<ol class="history">
+<li class="read"><span class="avatar small" aria-hidden="true">BO</span><div class="history-body">
+<p class="history-head"><strong class="inbox-what">Ben Okafor deleted it</strong> · <time datetime="2026-11-12T11:20">Thu 12 Nov, 11:20</time></p>
+</div></li>
+</ol>
+</li>
+</ol>
+</div>
+</main>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 # Icons
 
-Lines on a 24-unit square, as every page draws them: stroke 1.8, round caps and joins, no fill. Here they're in `currentColor`, so each takes its text's colour; the design system's copies are inked in the light theme's `--text` (`#0f2236`), since an image can't take a colour from the page. The agent's mark is for agents alone.
+Lines on a 24-unit square, as every page draws them: stroke 1.8, round caps and joins, no fill. Here they're in `currentColor`, so each takes its text's colour; the design system's copies are inked in the light theme's `--text` (`#25272a`), since an image can't take a colour from the page. The agent's mark is for agents alone.
 
 | Icon | What it marks |
 | --- | --- |

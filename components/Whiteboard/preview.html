@@ -1,0 +1,112 @@
+<!-- @dsCard group="Plans" height=640 width=1100 subtitle="A planning whiteboard: a section of ideas, a note of each tone, an issue card and a hidden one, an arrow made into a link, and its outline" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Whiteboard</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<section class="whiteboard" aria-labelledby="wb-title">
+<h2 id="wb-title" class="hidden">Q3 planning</h2>
+<div class="whiteboard-tools" role="toolbar" aria-label="Whiteboard">
+<button type="button">Add a note</button>
+<button type="button">Connect</button>
+<button type="button">Make issues</button>
+<div class="modes" role="group" aria-label="Zoom"><button type="button" aria-label="Zoom out">−</button><button type="button">100%</button><button type="button" aria-label="Zoom in">+</button></div>
+<button type="button" aria-pressed="true">Outline</button>
+</div>
+<ul class="whiteboard-viewers" aria-label="Looking now">
+<li><span class="avatar small" aria-hidden="true">AS</span>Anna Schmidt</li>
+<li><span class="avatar small" aria-hidden="true">BO</span>Ben Okafor</li>
+</ul>
+<div class="whiteboard-body with-outline">
+<div class="whiteboard-frame">
+<svg class="whiteboard-canvas" viewBox="0 0 1100 620" role="group" aria-label="Q3 planning, 7 elements">
+<defs><pattern id="wb-dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle class="whiteboard-dot" cx="1" cy="1" r="1"/></pattern></defs>
+<rect x="-1000" y="-1000" width="4000" height="4000" fill="url(#wb-dots)"/>
+<g class="whiteboard-element whiteboard-section" transform="translate(32 32)" tabindex="0" role="button" aria-pressed="false">
+<title>Section: Ideas, 4 elements</title>
+<rect class="whiteboard-ring" x="-4" y="-4" width="728" height="328" rx="12"/>
+<rect class="whiteboard-box" width="720" height="320" rx="10"/>
+<text class="whiteboard-section-title" x="14" y="24">Ideas</text>
+</g>
+<g class="whiteboard-element whiteboard-arrow linked" tabindex="0" role="button" aria-pressed="false">
+<title>Arrow from Cache the session to BACK-12, linked: relates to</title>
+<path class="whiteboard-arrow-hit" d="M264 140 L332 140"/>
+<path class="whiteboard-ring" d="M264 140 L332 140"/>
+<path class="whiteboard-arrow-line" d="M264 140 L332 140"/>
+<path class="whiteboard-arrow-head" d="M336 140 l-12 -6 v12 z"/>
+<foreignObject x="238" y="148" width="120" height="24"><div xmlns="http://www.w3.org/1999/xhtml" class="whiteboard-arrow-label"><span>relates to</span></div></foreignObject>
+</g>
+<g class="whiteboard-element whiteboard-note writes chosen" transform="translate(56 72)" tabindex="0" role="button" aria-pressed="true">
+<title>Note, idea: Cache the session</title>
+<rect class="whiteboard-ring" x="-4" y="-4" width="216" height="148" rx="8"/>
+<rect class="whiteboard-box" width="208" height="140" rx="6"/>
+<rect class="whiteboard-band" width="208" height="6" rx="3"/>
+<foreignObject width="208" height="140"><div xmlns="http://www.w3.org/1999/xhtml" class="whiteboard-words"><span class="badge writes">Idea</span>Cache the session, so a second sign-in takes no round trip</div></foreignObject>
+</g>
+<g class="whiteboard-element whiteboard-card" transform="translate(340 84)" tabindex="0" role="button" aria-pressed="false">
+<title>Issue BACK-12: Login is slow on the mobile app, In Progress, Anna Schmidt</title>
+<rect class="whiteboard-ring" x="-4" y="-4" width="248" height="120" rx="12"/>
+<rect class="whiteboard-box" width="240" height="112" rx="10"/>
+<foreignObject width="240" height="112"><div xmlns="http://www.w3.org/1999/xhtml" class="whiteboard-card-body"><span class="whiteboard-card-id">BACK-12</span><span class="whiteboard-card-summary">Login is slow on the mobile app</span><span class="whiteboard-card-facts"><span class="badge">In Progress</span><span class="who"><span class="avatar small" aria-hidden="true">AS</span><span class="who-name">Anna Schmidt</span></span></span></div></foreignObject>
+</g>
+<g class="whiteboard-element whiteboard-card hidden-card" transform="translate(340 212)" tabindex="0" role="button" aria-pressed="false">
+<title>A card you can't see</title>
+<rect class="whiteboard-ring" x="-4" y="-4" width="248" height="88" rx="12"/>
+<rect class="whiteboard-box" width="240" height="80" rx="10"/>
+<foreignObject width="240" height="80"><div xmlns="http://www.w3.org/1999/xhtml" class="whiteboard-card-body">Hidden: you can't see what this card holds</div></foreignObject>
+</g>
+<g class="whiteboard-element whiteboard-note warn" transform="translate(56 232)" tabindex="0" role="button" aria-pressed="false">
+<title>Note, question: Who owns the session store?</title>
+<rect class="whiteboard-ring" x="-4" y="-4" width="216" height="104" rx="8"/>
+<rect class="whiteboard-box" width="208" height="96" rx="6"/>
+<rect class="whiteboard-band" width="208" height="6" rx="3"/>
+<foreignObject width="208" height="96"><div xmlns="http://www.w3.org/1999/xhtml" class="whiteboard-words"><span class="badge warn">Question</span>Who owns the session store?</div></foreignObject>
+</g>
+<g class="whiteboard-element whiteboard-text" transform="translate(32 380)" tabindex="0" role="button" aria-pressed="false">
+<title>Text: Risks</title>
+<rect class="whiteboard-ring" x="-4" y="-4" width="248" height="56" rx="8"/>
+<foreignObject width="240" height="48"><div xmlns="http://www.w3.org/1999/xhtml" class="whiteboard-words">Risks</div></foreignObject>
+</g>
+<g class="whiteboard-element whiteboard-note bad" transform="translate(32 440)" tabindex="0" role="button" aria-pressed="false">
+<title>Note, problem: Tokens expire mid-sync</title>
+<rect class="whiteboard-ring" x="-4" y="-4" width="216" height="128" rx="8"/>
+<rect class="whiteboard-box" width="208" height="120" rx="6"/>
+<rect class="whiteboard-band" width="208" height="6" rx="3"/>
+<foreignObject width="208" height="120"><div xmlns="http://www.w3.org/1999/xhtml" class="whiteboard-words"><span class="badge bad">Problem</span>Tokens expire mid-sync</div></foreignObject>
+</g>
+<g class="whiteboard-element whiteboard-note good" transform="translate(264 440)" tabindex="0" role="button" aria-pressed="false">
+<title>Note, agreed: Ship behind a flag</title>
+<rect class="whiteboard-ring" x="-4" y="-4" width="216" height="128" rx="8"/>
+<rect class="whiteboard-box" width="208" height="120" rx="6"/>
+<rect class="whiteboard-band" width="208" height="6" rx="3"/>
+<foreignObject width="208" height="120"><div xmlns="http://www.w3.org/1999/xhtml" class="whiteboard-words"><span class="badge good">Agreed</span>Ship behind a flag</div></foreignObject>
+</g>
+</svg>
+</div>
+<nav class="whiteboard-outline" aria-labelledby="wb-outline">
+<h2 id="wb-outline">Outline</h2>
+<ol>
+<li><button type="button" class="whiteboard-row" aria-pressed="false"><span class="whiteboard-row-text"><span class="whiteboard-row-kind">Section</span><span class="whiteboard-row-words">Ideas</span></span></button>
+<ol>
+<li><button type="button" class="whiteboard-row" aria-pressed="true"><span class="whiteboard-row-text"><span class="whiteboard-row-kind">Note, idea</span><span class="whiteboard-row-words">Cache the session, so a second sign-in takes no round trip</span></span></button></li>
+<li><button type="button" class="whiteboard-row" aria-pressed="false"><span class="whiteboard-row-text"><span class="whiteboard-row-kind">Issue BACK-12 · In Progress</span><span class="whiteboard-row-words">Login is slow on the mobile app</span></span></button></li>
+<li><button type="button" class="whiteboard-row" aria-pressed="false"><span class="whiteboard-row-text"><span class="whiteboard-row-kind">Note, question</span><span class="whiteboard-row-words">Who owns the session store?</span></span></button></li>
+<li><button type="button" class="whiteboard-row" aria-pressed="false"><span class="whiteboard-row-text"><span class="whiteboard-row-kind">Card</span><span class="whiteboard-row-words">Hidden: you can't see what this card holds</span></span></button></li>
+</ol></li>
+<li><button type="button" class="whiteboard-row" aria-pressed="false"><span class="whiteboard-row-text"><span class="whiteboard-row-kind">Text</span><span class="whiteboard-row-words">Risks</span></span></button></li>
+<li><button type="button" class="whiteboard-row" aria-pressed="false"><span class="whiteboard-row-text"><span class="whiteboard-row-kind">Note, problem</span><span class="whiteboard-row-words">Tokens expire mid-sync</span></span></button></li>
+<li><button type="button" class="whiteboard-row" aria-pressed="false"><span class="whiteboard-row-text"><span class="whiteboard-row-kind">Note, agreed</span><span class="whiteboard-row-words">Ship behind a flag</span></span></button></li>
+<li><button type="button" class="whiteboard-row" aria-pressed="false"><span class="whiteboard-row-text"><span class="whiteboard-row-kind">Arrow, linked: relates to</span><span class="whiteboard-row-words">Cache the session → BACK-12</span></span></button></li>
+</ol>
+</nav>
+</div>
+</section>
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!-- @dsCard group="Knowledge base" height=1700 subtitle="An article to read, what's under it and what mentions it; its editor; a version against the one before; and a search" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ArticlePage</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="label">An article, to read</p>
+<div class="page-head">
+  <nav class="crumbs" aria-label="Where this is"><a href="#kb">Knowledge base</a>&nbsp;/&nbsp;<a href="#back">Backend platform</a>&nbsp;/&nbsp;<a href="#a1">Runbooks</a></nav>
+  <div class="title-row"><h1>Database failover</h1><span class="issue-id">BACK-A-4</span>
+    <div class="grow cluster end"><button type="button">History</button><button type="button" class="primary">Edit</button></div></div>
+  <div class="meta"><span>Changed by Anna Schmidt <time datetime="2026-11-09T10:02">Mon 9 Nov</time></span><span>Version 4</span></div>
+</div>
+<div class="ds-cols">
+<article class="card stack" aria-label="Database failover">
+  <div class="prose article-body">
+    <p>When the primary fails, promote the replica before anything else: the pooler keeps queueing for 30 seconds, and the app retries after that. The last drill was <a class="issue-id" href="#back-48">BACK-48</a>.</p>
+    <h2>Promote the replica</h2>
+    <ol><li>Check it's caught up: <code>SELECT pg_last_wal_replay_lsn();</code></li><li>Promote it with <code>pg_ctl promote</code>.</li><li>Repoint the pooler, then the app.</li></ol>
+    <blockquote><p>Never promote a replica that's more than a minute behind without asking the lead.</p></blockquote>
+    <h3>When it won't promote</h3>
+    <p>See <a class="issue-id" href="#a7">BACK-A-7</a> for the keys it needs.</p>
+  </div>
+</article>
+<div class="stack">
+  <section class="card" aria-labelledby="under-title"><h2 id="under-title">Under it</h2>
+    <ul class="directory"><li><div class="directory-name"><a href="#a8">Failover drill checklist</a><span class="issue-id">BACK-A-8</span></div></li><li><div class="directory-name"><a href="#a9">After a failover</a><span class="issue-id">BACK-A-9</span></div></li></ul>
+  </section>
+  <section class="card issue-links-box stack" aria-labelledby="mentions-title">
+    <h2 id="mentions-title">Mentioned in</h2>
+    <ul class="link-list">
+      <li><span class="issue-id">BACK-48</span><a href="#back-48">Failover took 20 minutes in the drill</a><span class="badge">In Progress</span></li>
+      <li class="resolved"><span class="issue-id">BACK-31</span><a href="#back-31">Pooler doesn't follow a promoted primary</a><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>Fixed</span></li>
+      <li><span class="issue-id">BACK-A-2</span><a href="#a2">On-call</a></li>
+    </ul>
+  </section>
+</div>
+</div>
+</div>
+
+<div class="ds-group"><p class="label">Editing: the Markdown beside how it will read</p>
+<form class="card article-editor" data-show="write" aria-label="Editing Database failover">
+  <div class="form-field"><label for="title">Title</label><input id="title" value="Database failover"></div>
+  <div class="modes" role="group" aria-label="Show"><button type="button" aria-pressed="true">Write</button><button type="button" aria-pressed="false">Preview</button></div>
+  <div class="article-editor-panes">
+    <div class="form-field article-editor-write"><label for="md">Markdown</label><textarea id="md">When the primary fails, promote the replica before anything else.
+
+## Promote the replica
+
+1. Check it's caught up.
+2. Promote it with `pg_ctl promote`.
+3. Repoint the pooler, then the app.</textarea></div>
+    <div class="article-preview prose article-body" role="region" aria-label="How it will read"><p>When the primary fails, promote the replica before anything else.</p><h2>Promote the replica</h2><ol><li>Check it's caught up.</li><li>Promote it with <code>pg_ctl promote</code>.</li><li>Repoint the pooler, then the app.</li></ol></div>
+  </div>
+  <p class="outcome" role="status"></p>
+  <div class="cluster end"><button type="button">Cancel</button><button type="submit" class="primary">Save version 5</button></div>
+</form>
+</div>
+
+<div class="ds-cols">
+<div class="ds-group"><p class="label">Its versions, newest first</p>
+<nav class="card side-card nav-card" aria-label="Versions of Database failover">
+  <h2>4 versions</h2>
+  <ul class="nav-list">
+    <li><a href="#v4" aria-current="page"><span class="nav-list-name">Version 4</span><span class="nav-list-about"><span>Anna Schmidt</span><span>Mon 9 Nov, 10:02</span></span></a></li>
+    <li><a href="#v3"><span class="nav-list-name">Version 3</span><span class="nav-list-about"><span>claude-code for Anna Schmidt</span><span>via MCP</span><span>Fri 6 Nov, 16:40</span></span></a></li>
+    <li><a href="#v2"><span class="nav-list-name">Version 2</span><span class="nav-list-about"><span>Ben Okafor</span><span>Thu 5 Nov, 09:12</span></span></a></li>
+    <li><a href="#v1"><span class="nav-list-name">Version 1</span><span class="nav-list-about"><span>Anna Schmidt</span><span>Mon 2 Nov, 11:30</span></span></a></li>
+  </ul>
+</nav>
+</div>
+<div class="ds-group"><p class="label">Version 4 against version 3</p>
+<section class="card stack" aria-labelledby="v4-title">
+  <div class="cluster spread"><h2 id="v4-title">Version 4</h2><button type="button" class="small">Bring it back</button></div>
+  <p class="article-meta"><span>Anna Schmidt</span><time datetime="2026-11-09T10:02">Mon 9 Nov, 10:02</time><span>2 lines added, 1 removed</span></p>
+  <ol class="diff" aria-label="Version 4 against version 3">
+    <li class="same"><span class="diff-sign" aria-hidden="true"> </span><span class="diff-text">## Promote the replica</span></li>
+    <li class="gap"><span class="diff-sign" aria-hidden="true">⋯</span><span class="diff-text">2 lines the same</span></li>
+    <li class="del"><span class="diff-sign" aria-hidden="true">−</span><del class="diff-text"><span class="hidden">Removed: </span>3. Repoint the app.</del></li>
+    <li class="add"><span class="diff-sign" aria-hidden="true">+</span><ins class="diff-text"><span class="hidden">Added: </span>3. Repoint the pooler, then the app.</ins></li>
+    <li class="add"><span class="diff-sign" aria-hidden="true">+</span><ins class="diff-text"><span class="hidden">Added: </span>&gt; Never promote a replica that's more than a minute behind without asking the lead.</ins></li>
+    <li class="same"><span class="diff-sign" aria-hidden="true"> </span><span class="diff-text">### When it won't promote</span></li>
+  </ol>
+</section>
+</div>
+</div>
+
+<div class="ds-group"><p class="label">What a search found</p>
+<section class="card" aria-labelledby="found-title"><h2 id="found-title">3 articles for “failover”</h2>
+<ul class="article-results">
+  <li><a href="#a4">Database failover</a><span class="article-meta"><span>Runbooks</span><span class="issue-id">BACK-A-4</span><time datetime="2026-11-09">Mon 9 Nov</time></span><p>When the primary <mark>fails</mark>, promote the replica before anything else: the pooler keeps queueing…</p></li>
+  <li><a href="#a8">Failover drill checklist</a><span class="article-meta"><span>Runbooks / Database failover</span><span class="issue-id">BACK-A-8</span><time datetime="2026-11-05">Thu 5 Nov</time></span><p>Before the drill, tell support; after it, file what took longest, as <mark>failover</mark> issues…</p></li>
+  <li><a href="#a2">On-call</a><span class="article-meta"><span class="issue-id">BACK-A-2</span><time datetime="2026-10-28">Wed 28 Oct</time></span><p>… page the database lead for a <mark>failover</mark>, and the API lead for anything else.</p></li>
+</ul>
+</section>
+</div>
+</div>
+</div>
+</body>
+</html>

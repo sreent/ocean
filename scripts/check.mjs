@@ -11,9 +11,9 @@
 // 4. Nothing loads from outside: no address off the product in the CSS, and every face the
 //    tokens declare is a font file here.
 // 5. A chart's marks read on the card it sits on at 3 to 1: every status, Other, and the series
-//    a chart uses most, all eight in dark. In light, series 5, 7 and 8 are under it, and their
-//    marks are labelled in --text (css/charts.css). Words on a chart's shades, such as the hours
-//    on a4a's load, read on them at 4.5 to 1.
+//    a chart uses most, all eight in dark. In light, series 5 and 8 (sky and gold) are under it,
+//    and their marks are labelled in --text (css/charts.css). Words on a chart's shades, such as
+//    the hours on a4a's load, read on them at 4.5 to 1.
 // 6. In this repo, the chart palettes as data (charts/palettes.json) agree with css/charts.css, and
 //    the Teams cards (teams/cards) are Adaptive Cards of version 1.5, made only of what Teams draws.
 
@@ -41,6 +41,7 @@ const TEXT = [  // text, and what it's on: 4.5 to 1
   ["surface", "bad"], ["surface", "text"],  // the danger button; a hint
   ["text", "warn-bg"], ["warn", "surface"],  // a question that waits on the person, and its answers
   ["text", "changes-bg"], ["text", "writes-bg"], ["text", "outside-bg"],  // what sending does, in its tone
+  ["text", "good-bg"], ["text", "bad-bg"], ["text", "idle-bg"],  // a4a: a whiteboard's note in its tone
   ["viewfinder-text", "viewfinder"], ["viewfinder-text", "viewfinder-line"], ["paper-ink", "paper"],  // capture
   ["muted", "accent-soft"], ["accent", "sunken"],  // a4a: an issue's row, chosen or under the pointer
   ["bad", "surface"], ["changes", "surface"],  // a4a: a query's problem, a late task's words; a change in an issue's history
@@ -66,7 +67,7 @@ const CHART_WORDS = [  // words on a chart's shades: a4a's hours on Ocean Blue's
   ["text", "chart-seq-1"], ["text", "chart-seq-2"], ["surface", "chart-seq-4"], ["surface", "chart-seq-6"],
 ];
 const CHART_MARKS = {  // on the card a chart sits on: 3 to 1
-  light: ["chart-1", "chart-2", "chart-3", "chart-4", "chart-6", "chart-other", "chart-done", "chart-short", "chart-failed", "chart-open"],
+  light: ["chart-1", "chart-2", "chart-3", "chart-4", "chart-6", "chart-7", "chart-other", "chart-done", "chart-short", "chart-failed", "chart-open"],
   dark: ["chart-1", "chart-2", "chart-3", "chart-4", "chart-5", "chart-6", "chart-7", "chart-8", "chart-other",
     "chart-done", "chart-short", "chart-failed", "chart-open"],
 };

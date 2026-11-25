@@ -1,0 +1,29 @@
+<!-- @dsCard group="Plans" height=520 subtitle="A board's backlog in rank order: one row being dragged below another, and the sprints to drop it on" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Backlog</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<section class="card stack" aria-labelledby="backlog">
+<div class="section-head"><h2 id="backlog">Backlog</h2><span class="note">14 issues, 31 pts</span></div>
+<ol class="backlog" aria-label="Backlog, in rank order">
+<li class="backlog-item" draggable="true"><button type="button" class="backlog-handle" aria-label="Move BACK-31" aria-describedby="keys"><span aria-hidden="true">⋮⋮</span></button><a class="issue-id mono" href="#">BACK-31</a><span class="backlog-summary">Rotate signing keys without downtime</span><span class="backlog-facts"><span class="badge" data-tone="idle">Open</span><span class="chip mono">5 pts</span><button type="button" class="small">To Sprint 15</button></span></li>
+<li class="backlog-item drop-after" draggable="true"><button type="button" class="backlog-handle" aria-label="Move BACK-27" aria-describedby="keys"><span aria-hidden="true">⋮⋮</span></button><a class="issue-id mono" href="#">BACK-27</a><span class="backlog-summary">Paginate the audit log</span><span class="backlog-facts"><span class="badge" data-tone="idle">Open</span><span class="chip mono">3 pts</span><button type="button" class="small">To Sprint 15</button></span></li>
+<li class="backlog-item moving" draggable="true"><button type="button" class="backlog-handle" aria-label="Move BACK-40" aria-describedby="keys"><span aria-hidden="true">⋮⋮</span></button><a class="issue-id mono" href="#">BACK-40</a><span class="backlog-summary">Retry webhooks with backoff</span><span class="backlog-facts"><span class="chip mono">2 pts</span></span></li>
+<li class="backlog-item" draggable="true"><button type="button" class="backlog-handle" aria-label="Move BACK-12" aria-describedby="keys"><span aria-hidden="true">⋮⋮</span></button><a class="issue-id mono" href="#">BACK-12</a><span class="backlog-summary">Sessions survive a deploy</span><span class="backlog-facts"><span class="badge" data-tone="warn">In Progress</span><span class="chip mono">8 pts</span><button type="button" class="small">To Sprint 15</button></span></li>
+</ol>
+<p class="field-help" id="keys">Drag an issue to rank it, or onto a sprint. From the keyboard, Alt and an arrow key moves it a place.</p>
+<ul class="sprint-targets ready" aria-label="Sprints to drop an issue on">
+<li class="sprint-target"><span class="item-name">Sprint 14</span><span class="item-about">7 issues, 9 to 22 Nov</span></li>
+<li class="sprint-target over"><span class="item-name">Sprint 15</span><span class="item-about">2 issues, 23 Nov to 6 Dec</span></li>
+</ul>
+</section>
+</div>
+</body>
+</html>

@@ -7,18 +7,19 @@
 
 import { execSync } from "node:child_process";
 import { copyFileSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
-import { charts, faces, layers, read, ROOT, source, themes } from "./tokens.mjs";
+import { charts, colour, faces, layers, read, ROOT, source, themes } from "./tokens.mjs";
 
+// Each hue sits where MathWorks' colours and Maple's meet (docs/design.md, Where the colours come from)
 const HUES = {
-  ocean: "Ocean's blue: what someone can do",
-  lagoon: "Lagoon teal: agents, and the product's own doing",
-  coral: "Coral: a change to a record, and what failed",
-  kelp: "Kelp green: what's going well",
-  amber: "Amber: something written, such as a draft, and what waits on someone",
-  violet: "Violet: the organisation's edge",
+  ocean: "Ocean's blue, the cerulean MathWorks and Maplesoft share, and in dark the sky blue both use: what someone can do",
+  lagoon: "Lagoon teal, MATLAB's reef teal and Maple's: agents, and the product's own doing",
+  coral: "Coral, a maple red, Maplesoft's red toward MATLAB's orange, at Ocean's own lightness: a change to a record, and what failed",
+  kelp: "Kelp, Maple's green: what's going well",
+  amber: "Amber, golden between MATLAB's orange and Maple's brown, and in dark MATLAB's yellow: something written, such as a draft, and what waits on someone",
+  violet: "Violet, MATLAB's purple and Maple's violet: the organisation's edge",
   sand: "Sand: the product's own messages",
-  mist: "The mist: the light theme's neutrals, from page to ink",
-  deep: "The deep: the dark theme's neutrals",
+  mist: "The mist: the light theme's neutral greys, its wells MATLAB's figure grey, from page to ink",
+  deep: "The deep: the dark theme's charcoal, with a breath of the cerulean",
 };
 
 const MEANINGS = {
@@ -134,7 +135,7 @@ function tokensJson() {
   }
   // The chart colours (css/charts.css), each with its light and dark value
   const chart = charts();
-  const SERIES = ["blue", "orange", "sea green", "rose", "sky", "violet", "gold", "teal"];
+  const SERIES = ["blue", "orange", "sea green", "rose", "sky", "olive", "violet", "gold"];
   const RUNS = { "chart-done": "Runs that ended done.", "chart-short": "Runs cut short, such as by their budget.",
     "chart-failed": "Runs that failed.", "chart-open": "Runs still open." };
   for (const name of Object.keys(chart.light)) {
@@ -142,7 +143,7 @@ function tokensJson() {
     const usage = RUNS[name] ?? (name === "chart-other" ? "Any series past the eighth, folded into one: Ocean's mist."
       : kind === "seq" ? `Ocean Blue, step ${n} of 7, from least to most.`
         : kind === "div" ? `Ocean Orange-Blue, step ${n} of 9, from the orange end to the blue; 5 is the middle.`
-          : `Series ${n}, ${SERIES[n - 1]}.${["5", "7", "8"].includes(n) ? " Under 3 to 1 on white: label its marks in text." : ""}`);
+          : `Series ${n}, ${SERIES[n - 1]}.${["5", "8"].includes(n) ? " Under 3 to 1 on white: label its marks in text." : ""}`);
     colours.push({ name, value: { light: chart.light[name].toLowerCase(), dark: chart.dark[name].toLowerCase() }, usage });
   }
   const families = {
@@ -227,9 +228,10 @@ for (const piece of readdirSync(new URL("components/", ROOT), { withFileTypes: t
 }
 put("project/assets/Icons/README.md", read("icons/README.md"));
 put("project/assets/Screens/README.md", read("docs/images/README.md"));
+const ink = colour(themes(read("css/tokens.css")).light, "text");
 for (const icon of readdirSync(new URL("icons/", ROOT)).filter((f) => f.endsWith(".svg"))) {
   // An <img> can't take currentColor, so the design system's copies are inked in light's --text
-  put(`uploads/Icons/${icon}`, read(`icons/${icon}`).replace('stroke="currentColor"', 'stroke="#0f2236"'));
+  put(`uploads/Icons/${icon}`, read(`icons/${icon}`).replace('stroke="currentColor"', `stroke="${ink}"`));
 }
 for (const shot of readdirSync(new URL("docs/images/", ROOT)).filter((f) => f.endsWith(".png"))) {
   copy(`docs/images/${shot}`, `uploads/Screens/${shot}`);

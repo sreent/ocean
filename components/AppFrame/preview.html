@@ -1,0 +1,48 @@
+<!-- @dsCard group="Pages" height=560 subtitle="An app's widget in its frame, with what it said and an ask to open an issue; an app's card in the admin's list" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>AppFrame</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-cols">
+<div class="ds-stack">
+<section class="card app-frame" aria-labelledby="w-title">
+<div class="app-frame-head">
+<h2 id="w-title">Time by person</h2>
+<span class="badge" title="Time by person is an app">App<span class="hidden">: Time by person, an app</span></span>
+</div>
+<iframe title="Time by person" srcdoc="&lt;p style='font: 14px system-ui; margin: 0'&gt;anna · 2h&lt;br&gt;ben · 30m&lt;/p&gt;" sandbox="" height="80"></iframe>
+<p class="app-frame-said" role="status">2h 30m in all.</p>
+<div class="app-frame-ask" role="group" aria-label="Time by person asks">
+<p>Time by person asks to open <strong>BACK-14</strong>.</p>
+<div class="cluster"><button type="button" class="small primary">Open it</button><button type="button" class="small">Stay here</button></div>
+</div>
+</section>
+</div>
+<div class="ds-stack">
+<article class="card app-card" aria-labelledby="a-title">
+<div class="app-card-head">
+<span class="app-icon" aria-hidden="true"><svg viewBox="0 0 24 24" class="icon"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+<div>
+<h3 id="a-title">Time by person <span class="note">1.0.0 · a4a examples</span></h3>
+<p class="note">Who logged how much time on an issue, on the issue's side panel.</p>
+</div>
+</div>
+<p class="label">It may</p>
+<ul class="app-may">
+<li>Read issues: their summaries, descriptions, fields, tags and links</li>
+<li>Read logged time</li>
+</ul>
+<p class="note">Runs in BACK and WEB.</p>
+</article>
+</div>
+</div>
+</div>
+</body>
+</html>

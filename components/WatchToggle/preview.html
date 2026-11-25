@@ -1,0 +1,41 @@
+<!-- @dsCard group="Issues" height=520 subtitle="Watch, pressed and not, with how many watch; who watches BACK-12, and why" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WatchToggle</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-cols">
+<div class="ds-stack">
+<div class="ds-group">
+<p class="label">Watching</p>
+<div class="ds-row">
+<button type="button" class="watch" aria-pressed="true" title="You hear about its changes and comments. Press to stop."><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6.5 16.5V11a5.5 5.5 0 0 1 11 0v5.5l1.5 2H5z"/><path d="M10 20.5h4"/></svg><span>Watch</span><span class="watch-count"><span aria-hidden="true">3</span><span class="hidden">, 3 people watch it</span></span></button>
+<button type="button" class="primary"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5 7l5 5-5 5"/><path d="M12 17h7"/></svg>Apply a command</button>
+</div>
+</div>
+<div class="ds-group">
+<p class="label">Not watching</p>
+<div class="ds-row">
+<button type="button" class="watch" aria-pressed="false" title="Hear about its changes and comments."><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6.5 16.5V11a5.5 5.5 0 0 1 11 0v5.5l1.5 2H5z"/><path d="M10 20.5h4"/></svg><span>Watch</span><span class="watch-count"><span aria-hidden="true">2</span><span class="hidden">, 2 people watch it</span></span></button>
+</div>
+</div>
+</div>
+<section class="card side-card" aria-labelledby="watchers-title">
+<h2 id="watchers-title">Watchers</h2>
+<ul class="plain">
+<li><span class="who"><span class="avatar small" aria-hidden="true">PN</span><span><span class="who-name">Priya Nair</span><span class="who-about"> reported it</span></span></span></li>
+<li><span class="who"><span class="avatar small" aria-hidden="true">AS</span><span><span class="who-name">Anna Schmidt</span><span class="who-about"> was assigned it</span></span></span></li>
+<li><span class="who"><span class="avatar small" aria-hidden="true">BO</span><span><span class="who-name">Ben Okafor</span><span class="who-about"> was mentioned</span></span></span></li>
+</ul>
+<p class="note">They hear about its changes and comments. Whoever reports it, is assigned it, comments or is mentioned watches it too.</p>
+</section>
+</div>
+</div>
+</body>
+</html>

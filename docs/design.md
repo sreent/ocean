@@ -1,6 +1,6 @@
 # Ocean
 
-Ocean is the one look a5s, a7c, a3t and a4a share. It's calm, with colour only where it means something, and it makes plain what an agent or an automation may do, what it did, and who decides. It takes a hint of the sea: deep blues for what someone can do, lagoon teal for agents, coral for any change to a record, and kelp green for what's going well. The palette isn't anyone's brand. An organisation's own colours replace the primitives, in one place, for every product at once.
+Ocean is the one look a5s, a7c, a3t and a4a share. It's calm, with colour only where it means something, and it makes plain what an agent or an automation may do, what it did, and who decides. Its colours mix those of two makers of software for mathematics, MathWorks and Maplesoft, taken where the two meet: cerulean for what someone can do, teal for agents, a maple red for any change to a record, and green for what's going well, on neutral greys. The palette is neither maker's brand, and isn't any product's. An organisation's own colours replace the primitives, in one place, for every product at once.
 
 ## Voice
 
@@ -37,6 +37,43 @@ Write from the reader's side, in plain words, the way the pages already do.
 - `--outside` sits darker than `--accent` in light and lighter in dark, so the organisation's edge and what someone can do differ by more than hue.
 - Dark follows the device, with the same meanings over the deep neutrals.
 
+### Where the colours come from
+
+MathWorks' colours and Maple's agree more than they differ: both have a cerulean blue and a bright sky blue, a teal, a green, a purple and neutral greys. Ocean takes each hue from between theirs, and fits each step's lightness to the contrast its meanings need, so the hues are theirs and the lightness is Ocean's. Where they differ, in their warm colours, each gives one meaning: a maple red, Maplesoft's red turned toward MATLAB's orange, marks a change, and a golden amber between MATLAB's orange and Maple's brown marks what's written and waiting. In dark, waiting is MATLAB's yellow as it is.
+
+| Primitive | What it's for | MathWorks, MATLAB | Maplesoft, Maple | Ocean, light / dark |
+| --- | --- | --- | --- | --- |
+| `ocean` | What someone can do | MathWorks' blue `#015696`, `#0076a8`; MATLAB's light blue `#2fbeef` | `#006699`, `#004f79`; its sky `#00aaff` | `#0369a1` / the sky, `#19aaf0` |
+| `lagoon` | Agents; the product's own doing | the reef palette's teal `#00a3a3` | the plots' teal `#00786a` | `#007b72` / `#3ecdc0` |
+| `coral` | A change to a record; what failed | orange `#dd5400`, the old dark red `#a2142f` | Maplesoft's red `#ed4124`, the plots' burgundy `#78000e` | `#b93d21` / `#ef8168` |
+| `amber` | Written, not yet relied on; waiting on someone | orange `#dd5400`; yellow `#edb120`, as it is in dark | the plots' brown `#784c00`, orange `#ff931e` | `#955900` / `#edb120` |
+| `kelp` | Going well | green `#3baa32` | the plots' green `#00783f` | `#007d51` / `#59e1a2` |
+| `violet` | The organisation's edge | purple `#8516d1` | the plots' violet `#604191` | `#622f99` / `#cdb8f0` |
+| `mist`, `deep` | The neutrals, from page to ink | the figure's grey `#f0f0f0`, its axes `#262626` | greys `#f5f5f5`, `#e1e1e1`, charcoal `#2a2a2a` | the page `#f5f6f7`, wells the figure's grey `#f0f0f0`, ink `#25272a` / charcoal `#14181c` to `#ebedef`, with a breath of the cerulean |
+
+The makers' values are MATLAB's line colours (`colororder`, R2025a and before), its `reef` palette and its classic figure, Maple's default plot colours (Niagara, `plots:-setcolors`), Maplesoft's own pages, and MathWorks' blue as Cleve Moler's blog sampled it from the logo (`#015696`) and as Brandfetch lists it (`#0076a8`).
+
+### Zen, stylish, scientific: just right
+
+Ocean's colours are chosen to be three things at once, and to stop at just right:
+
+- Zen: calm first. Colour only where it means something, the tones near one lightness, the greys airy, and nothing louder than its meaning.
+- Stylish: a few hues that sit together, each taken from the makers' palettes rather than made up.
+- Scientific: what's claimed is measured. `scripts/check.mjs` holds the contrast, a colour-blind validator the chart colours, and how far apart the meanings sit is measured, below.
+- Just right: chosen by eye, then measured, with every number within reach of what Ocean asks rather than each pushed as far as it goes. Pushed, the amber turned a muddy brown and the reds uneven. Where two tones meet for a colour-blind reader, the shape and the word beside them tell them apart (The grammar).
+
+How far apart the meanings sit for colour-blind readers, against Ocean's earlier palette: ΔE in OKLab ×100, the worse of protanopia and deuteranopia (Machado 2009, at full severity). 8 or more reads apart at a glance; under 6, the shape and the word carry it.
+
+| Pair | Earlier, light / dark | Now, light / dark |
+| --- | --- | --- |
+| Going well, and failed | 7.0 / 3.0 | 7.7 / 9.9 |
+| A change, and plain text | 21.6 / 16.5 | 19.8 / 23.2 |
+| Going well, and waiting | 6.3 / 6.3 | 7.8 / 11.7 |
+| A change, and a draft | 2.7 / 7.1 | 2.0 / 10.2 |
+| Going well, and an agent | 6.0 / 6.3 | 4.9 / 8.0 |
+| What someone can do, and an agent | 13.0 / 10.2 | 10.2 / 13.5 |
+| What someone can do, and the organisation's edge | 9.5 / 10.3 | 7.6 / 8.1 |
+
 ### The grammar
 
 These meanings are the products' shared grammar, the same on every surface: badges, a run's timeline, the map of an agent or a workflow, a decision's stripe, the ledger.
@@ -68,13 +105,14 @@ These meanings are the products' shared grammar, the same on every surface: badg
 `css/charts.css` holds the chart colours, light and dark, and `charts/palettes.json` the same as data, for tools that can't read CSS.
 
 - Series take `--chart-1` to `--chart-8` in order, never cycled; past eight, the rest fold into `--chart-other`. Series 1 is Ocean's blue, and no series is coral, so no line reads as a failure.
+- The order mixes the makers' plots: MATLAB's blue and orange first, as its plots begin, then sea green, Maple's rose, the sky both use, Maple's olive, violet and MATLAB's gold. It was chosen by the colour-blind separation of neighbours, in light and dark at once.
 - A chart of how things stood takes `--chart-done`, `--chart-short`, `--chart-failed` and `--chart-open` and nothing else, with their words. Never a series colour for a state, nor a state's colour for a series.
-- In light, series 5, 7 and 8 are under 3 to 1 on white: label their marks in `--text`, and keep the figures beside the chart as a table. Scatter plots and maps use the first five series in light, four in dark.
-- One measure from least to most is Ocean Blue (`--chart-seq-1` to `-7`); above and below a middle is Ocean Orange-Blue (`--chart-div-1` to `-9`).
+- In light, series 5 and 8 (sky and gold) are under 3 to 1 on white: label their marks in `--text`, and keep the figures beside the chart as a table. Scatter plots and maps use the first five series in light, four in dark.
+- One measure from least to most is Ocean Blue (`--chart-seq-1` to `-7`), Maplesoft's sky deepening to MathWorks' blue; above and below a middle is Ocean Orange-Blue (`--chart-div-1` to `-9`), MATLAB's orange and blue either side of grey.
 
 ## Type
 
-- IBM Plex Sans for text, and IBM Plex Mono for ids, versions, digests and times people compare. Both are bundled in `fonts/`, under the SIL Open Font License, and pages load fonts from the product alone, so nothing loads from outside, which matters on premises. IBM Plex Sans Thai, drawn to match, is bundled with them for Thai letters alone, so a page loads it only where it has some. A page in Thai says so, `lang="th"`, which gives its lines more room for the vowels and tones Thai stacks above and below its letters.
+- IBM Plex Sans for text, and IBM Plex Mono for ids, versions, digests and times people compare. Both are bundled in `fonts/`, under the SIL Open Font License, and pages load fonts from the product alone, so nothing loads from outside, which matters on premises. IBM Plex Sans Thai, drawn to match, is bundled with them for Thai letters alone, so a page loads it only where it has some. A page in Thai says so, `lang="th"`, which gives its lines more room for the vowels and tones Thai stacks above and below its letters. The letters Vietnamese adds to Latin (ơ, ư, đ, and the vowels with tone marks) come from the same Plex Sans and Plex Mono, as subsets (Fontsource's, 5.3.0) defined after their Latin faces with a `unicode-range`, so a Vietnamese word is drawn in one typeface, and a page loads them only where it has some.
 - The body is 15px (`--text-base`), a line and a half apart. Sizes come from the scale `--text-xs` to `--text-2xl`, and a rem is the body's 15px.
 - A page's title is its one h1 (1.45rem, 650), its sections' titles are h2 (1.02rem, 600), and theirs are h3 (0.92rem, 600, in `--muted`), the studio's pages and the server's alike.
 - A note under a title is 0.9rem in `--muted`, no wider than 52rem. A label over a group is 0.74rem at 650, in capitals 0.05em apart, in `--faint`.
