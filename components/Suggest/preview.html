@@ -1,0 +1,30 @@
+<!-- @dsCard group="Pages" height=330 subtitle="A field that suggests what to type: names, and what tells them apart" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Suggest</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group ds-pop-room"><p class="label">A customer the other desks serve, by its name and its domains</p>
+<div class="form-field">
+<label for="s1">Name</label>
+<div class="suggests">
+<input id="s1" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls="s1-options" aria-activedescendant="s1-o1" value="Acme" autocomplete="off">
+<ul class="popover options" id="s1-options" role="listbox" aria-label="Customers other desks serve">
+<li role="option" id="s1-o1" aria-selected="true"><span><mark>Acme</mark> Systems</span><span class="option-kind">acme.co.jp, acme.com</span></li>
+<li role="option" id="s1-o2" aria-selected="false"><span><mark>Acme</mark> Systems Europe</span><span class="option-kind">acme.eu</span></li>
+<li role="option" id="s1-o3" aria-selected="false"><span><mark>Acme</mark> Systemsoft Kabushiki Kaisha Holdings</span><span class="option-kind">acme-systemsoft.co.jp, acme-holdings.co.jp</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1313,6 +1313,15 @@ a.issue-id:hover { text-decoration: underline; }
 .options:focus-visible { outline: none; }  /* a listbox that holds the focus rings the option the arrows are on, not itself */
 .options:focus .active { box-shadow: inset 0 0 0 2px var(--focus); }
 
+/* A field that suggests what to type (components/Suggest): its suggestions open under it, as the
+   query's and the composer's do. A suggestion's second words (a customer's domains) can be long, so
+   they wrap beneath its name rather than push the popover past the page */
+.suggests { position: relative; display: grid; min-width: 0; }
+.suggests > :is(input, textarea) { width: 100%; }
+.suggests > .popover.options { position: absolute; top: calc(100% + 0.25rem); inset-inline-start: 0; width: min(26rem, 100%); }
+.suggests .options [role="option"] { flex-wrap: wrap; row-gap: 0; }
+.suggests .option-kind { flex: 0 1 auto; min-width: 0; overflow-wrap: anywhere; }
+
 /* An issue's fields, beside it: each label in Ocean's label style, each value a control whose edge,
    --line-control, shows under the pointer and on focus. A value an agent worked out that nobody has
    accepted yet is dashed, as a traced value is, with the agent by its mark and name */
