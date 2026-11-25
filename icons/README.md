@@ -4,10 +4,11 @@ Lines on a 24-unit square, as every page draws them: stroke 1.8, round caps and 
 
 | Icon | What it marks |
 | --- | --- |
+| `home` | Home, under Work: what waits on whoever signed in |
 | `chat` | Chat, under Work |
 | `tasks` | Tasks, under Work |
 | `book` | Notebook, under Work |
-| `studio` | Studio, under Build |
+| `studio` | A draft of an agent |
 | `map` | The map of what depends on what, under Build |
 | `decide` | Decisions, under Decide |
 | `grade` | Grading, under Decide |
@@ -16,7 +17,8 @@ Lines on a 24-unit square, as every page draws them: stroke 1.8, round caps and 
 | `admin` | Administration, under Oversee; a team |
 | `spend` | Spending, under Oversee: what agents' models cost against their budgets |
 | `officer` | Data protection, under Oversee |
-| `agent` | An agent, and only an agent |
+| `agent` | An agent, and only an agent; Agents, under Build |
+| `plus` | Something new to make: New agent, under Build |
 | `tool` | A tool; a service |
 | `clock` | A schedule |
 | `message` | A message that starts a run |
