@@ -797,6 +797,19 @@ export interface MentionFieldProps {
 /** A text area that offers people after an "@", under the field (`.composer`); the arrows choose, Enter or Tab takes one. Proposed, for a4a. */
 export declare function MentionField(props: MentionFieldProps): React.ReactElement;
 
+export interface SuggestProps {
+  /** The field's label, as its form field says it. */
+  label: string;
+  value: string;
+  /** What it could be, as the person types: each a name, and the words that tell it from names alike (a customer's domains). */
+  suggestions: { value: string; about?: string }[];
+  /** The suggestion the arrows are on. */
+  active?: number;
+  onChange: (value: string) => void;
+}
+/** A field that suggests what to type, under it (`.suggests`): the arrows choose, Enter or Tab takes one, Escape puts them away. Proposed, for a4a. */
+export declare function Suggest(props: SuggestProps): React.ReactElement;
+
 export interface EditorProps {
   /** Markdown: what's kept, whichever way it's written. */
   value: string;
