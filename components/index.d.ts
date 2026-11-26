@@ -1260,6 +1260,40 @@ export interface NoticeProps {
 /** A word about the app itself, above every page: offline, or a new version ready (a4a's installed app). */
 export declare function Notice(props: NoticeProps): React.ReactElement | null;
 
+export interface EnvironmentBandProps {
+  /** Production is filled in the change's colour; the rest are amber, at its well. */
+  kind: "production" | "staging" | "test" | "development";
+  /** The deployment's own name, as whoever runs it sets it, such as "Production" or "Pilot test". */
+  name: string;
+  /** What that means here, in a few words: "Real people and records: what you do here reaches them." */
+  about: string;
+}
+/** Which deployment this is, across the top of every page, whoever's signed in. */
+export declare function EnvironmentBand(props: EnvironmentBandProps): React.ReactElement;
+
+export interface ActingAsProps {
+  /** Their initials, as their round mark shows them. */
+  initials: string;
+  /** The role this page's acts count as, in words: "the owner of billing". */
+  role: string;
+  /** What it lets them do here: "what you approve here changes what agents may do in billing". */
+  lets: string;
+}
+/** Whose power a page uses, first in its main, on a page that changes things only. */
+export declare function ActingAs(props: ActingAsProps): React.ReactElement;
+
+export interface ActionZoneProps {
+  /** Names the act, or the pair that undo each other: "Suspend or resume it". */
+  title: string;
+  /** Whom and what the act reaches, before its buttons. */
+  reach: string;
+  /** Nothing brings it back: marked so, on the failure's well; its Confirm asks for the name typed. */
+  cantUndo?: boolean;
+  children: React.ReactNode;
+}
+/** Where a page's consequential acts are, apart from what only shows, saying whom they reach. */
+export declare function ActionZone(props: ActionZoneProps): React.ReactElement;
+
 
 export interface AppFrameProps {
   /** The app's title: its badge says the widget is the app's. */
