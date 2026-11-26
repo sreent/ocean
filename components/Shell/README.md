@@ -11,6 +11,7 @@ The frame every page sits in: a sidebar of the pages someone may use, and the pa
 - The sidebar leaves out only the pages that would refuse someone. Each page still checks for itself who may use it.
 - Under 760px the sidebar becomes a row of each page's icon, and screen readers still say each page's name. The foot keeps their initials alone, at the row's end, still the link to their own page, and screen readers still say who they are and their roles.
 - On a phone the page reaches the screen's edges (`viewport-fit=cover`): the row of pages sits under the status bar, clear of rounded corners, and the page's foot clear of the home indicator (`env(safe-area-inset-*)`). On a touch screen (`pointer: coarse`) each page's icon, and everything else to tap, is 44px at the least.
+- Which deployment this is sits across the top of the window, over the sidebar and the page, on every page and whoever's signed in: [EnvironmentBand](../EnvironmentBand/README.md). The sidebar starts below it.
 - A word about the app itself, offline or a new version ready, sits above the page: [Notice](../Notice/README.md).
 - A page's head: the way back as crumbs, its title as its one h1 with badges beside it, what it is in `--muted`, and its facts in a row.
 

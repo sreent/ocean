@@ -46,6 +46,7 @@ const TEXT = [  // text, and what it's on: 4.5 to 1
   ["muted", "accent-soft"], ["accent", "sunken"],  // a4a: an issue's row, chosen or under the pointer
   ["bad", "surface"], ["changes", "surface"],  // a4a: a query's problem, a late task's words; a change in an issue's history
   ["bad", "you"], ["muted", "you"],  // a4a: "Not sent", under what the person said, in --muted
+  ["surface", "changes"],  // production's band: its name and words on the change's colour
   ...["reads", "writes", "changes", "outside", "own", "good", "warn", "bad", "idle"].map((tone) => [tone, `${tone}-bg`]),
 ];
 const MARKS = [  // 3 to 1
@@ -58,6 +59,7 @@ const MARKS = [  // 3 to 1
   ["faint", "sunken"],  // a canvas's edges and the dots they join at: the order of the steps
   ["faint", "surface"], ["text", "surface"],  // a tier's line: dashed, solid, or production's ink
   ["own", "own-message"],  // the shield beside the product's own word, in a conversation
+  ["accent", "you"],  // the edge of the line that says whose power a page uses (ActingAs)
   ...["surface", "page", "sunken"].map((on) => ["line-control", on]),  // a field's edge, where to type
   ["viewfinder-mark", "viewfinder-line"],  // the frame that finds a document, on a camera's view
   ["focus", "accent-soft"], ["focus", "sunken"],  // a4a: the ring on a row chosen, or under the pointer

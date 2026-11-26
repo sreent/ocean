@@ -149,6 +149,18 @@ Two movements only, and only when the person hasn't asked for less motion. What 
 - Loading: the shape of what's coming, in `--sunken`, where it will be (a skeleton), with "Loading…" in words for screen readers; only the first time, since what a page showed stays while it loads again.
 - Danger: the button's word and border in `--bad`. Only the confirming button in a dialog is filled with `--bad`, in `--surface`.
 
+## Risk, and the friction it earns
+
+A page makes it as hard to do something as it is to undo it, and no harder: a dialog met too often is a dialog clicked through.
+
+- **Where you are**, on every page: the [EnvironmentBand](../components/EnvironmentBand/README.md) says which deployment this is, production in the change's colour, filled, a test or someone's own machine in amber. Never only on an administrator's page: the classic mistake is doing in production what was meant for a test, and it happens on any page.
+- **Whose power you're using**, on a page that changes things: the [ActingAs](../components/ActingAs/README.md) line names the role its acts count as. A page that only shows has none.
+- **What a press does, by its tier:**
+  1. *Everyday*, on your own work or what you can take back yourself: a button where the work is. Nothing more.
+  2. *Consequential*, reaching other people, what agents may do, or another system's records: in an [ActionZone](../components/ActionZone/README.md), which says first whom and what it reaches. The product may ask for a fresh sign-in, as a5s does for what counts. No dialog.
+  3. *Can't be undone*, where nothing brings it back and it reaches someone else: in a zone of its own, marked so in words, and its [Confirm](../components/Confirm/README.md) asks for the thing's name typed, which the product's server checks too.
+- A product has no administrator's mode: what changes is said where it changes, on whichever page.
+
 ## Iconography
 
 - Lines on a 24-unit square: stroke 1.8, round caps and joins, no fill, in `currentColor`, so an icon takes its text's colour. 1.15rem in the sidebar, 0.9 to 1.1rem in marks and badges.

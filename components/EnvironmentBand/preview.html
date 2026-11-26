@@ -1,0 +1,23 @@
+<!-- @dsCard group="Frame" height=250 subtitle="Which deployment this is, on every page: production, a test, someone's own machine" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>EnvironmentBand</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="label">production: the change's colour, filled</p>
+<section class="env-band production" aria-label="Which deployment this is, production"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/><path d="M3 20a6 6 0 0 1 12 0"/></svg><strong>Production</strong><span>Real people and records: what you do here reaches them.</span></section></div>
+<div class="ds-group"><p class="label">a test or a staging: written, not yet relied on</p>
+<section class="env-band test" aria-label="Which deployment this is, a test"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 5.5a4 4 0 0 0-5 5L4.5 15.5l4 4 5-5a4 4 0 0 0 5-5l-2.5 2.5-2.5-.5-.5-2.5z"/></svg><strong>Pilot test</strong><span>Made-up people and records: nothing here reaches anyone.</span></section></div>
+<div class="ds-group"><p class="label">someone's own machine</p>
+<section class="env-band development" aria-label="Which deployment this is, development"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 7.5L4 12l4.5 4.5"/><path d="M15.5 7.5L20 12l-4.5 4.5"/><path d="M13.5 5l-3 14"/></svg><strong>Development</strong><span>On this machine, taking people's word for who they are.</span></section></div>
+</div>
+</div>
+</body>
+</html>
