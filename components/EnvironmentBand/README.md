@@ -22,4 +22,4 @@ Which deployment this is, across the top of every page, in every product: so nob
 </section>
 ```
 
-As `body.app`'s first child, before the sidebar. **In a5s:** `A5S_ENVIRONMENT` names it, and both the studio and the plain pages draw it. The preview is a static rendition.
+First in the page, before the sidebar: `body.app`'s first child, or its frame's, where a product draws its frame inside an element of its own that the page's grid passes through (`display: contents`), as a5s's studio does. **In a5s:** `A5S_ENVIRONMENT` names it, and both the studio and the plain pages draw it. The preview is a static rendition.
