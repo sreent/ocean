@@ -140,7 +140,7 @@ main { flex: 1; width: 100%; max-width: 76rem; margin: 0 auto; padding: 1.75rem 
   .sidebar nav { flex-direction: row; gap: 0.15rem; }
   .sidebar .group { display: none; }
   .me { flex: none; padding: 0 0 0 0.4rem; border: 0; }  /* their initials alone, at the row's end, still the way to their own page */
-  .me > a { position: relative; }
+  .me > a { position: relative; justify-content: center; }  /* their initials, in the middle of what a finger taps */
   .me-who { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
   .sidebar nav a { position: relative; }  /* holds each name below, inside the bar's own scroll */
   .sidebar nav a span {  /* a phone shows each page's icon, and screen readers still say its name */
@@ -2660,6 +2660,7 @@ body.lone { padding: max(var(--space-6), env(safe-area-inset-top)) max(var(--spa
   :is(button, .button):not(.link) { min-width: 44px; }
   button.link:not(p *) { display: inline-flex; align-items: center; min-height: 44px; }
   .sidebar nav a, .brand { min-width: 44px; min-height: 44px; justify-content: center; }
+  .me > a { min-width: 44px; min-height: 44px; }  /* their own page: on a phone, their initials alone (Shell) */
   .crumbs a { min-width: 44px; min-height: 44px; }
   .meta > a { display: inline-flex; align-items: center; min-height: 44px; }  /* a link among a page's facts stands alone */
   .issue-summary, .board-card-summary, a.inbox-summary { display: inline-block; min-width: 44px; padding-block: 12px; margin-block: -12px; }
