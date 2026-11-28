@@ -1,4 +1,4 @@
-<!-- @dsCard group="Actions" height=300 subtitle="What was just done, with Undo while it can be undone, and without once it can't" -->
+<!-- @dsCard group="Actions" height=330 subtitle="What was just done, with Undo while it can be undone, and without once it can't; said once, from a live region that's always there" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,47 +11,69 @@
 <body>
 <div id="root">
 <div class="ds-stack">
-<div class="ds-group"><p class="note">Afterwards, said once at the foot of the window, and in the page's status line too.</p>
-<div class="ds-row"><button type="button" id="cancel">Cancel T-1</button><p class="note" id="status" role="status"></p></div></div>
+<div class="ds-group"><p class="note">Afterwards, said once: by the page's status line where the page says it, or else by the toasts' own.</p>
+<div class="ds-row"><button type="button" id="cancel">Cancel T-1</button><p class="note" id="status" role="status"></p></div>
+<div class="ds-row"><button type="button" id="remove">Remove N-4 from the notebook</button></div></div>
 <div class="ds-group"><p class="label">As it shows</p>
-<div class="toasts ds-in-place-toasts">
-<div class="toast"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg><p class="toast-words">Cancelled T-1.</p><button type="button" class="small">Undo</button><button type="button" aria-label="Dismiss"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg></button></div>
-<div class="toast"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg><p class="toast-words">Removed N-4 from the notebook.</p><button type="button" aria-label="Dismiss"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg></button></div>
-</div></div>
+<section class="toasts ds-in-place-toasts" aria-label="Notifications, as they show">
+<div class="toast"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg><p class="toast-words" id="shown-1">Cancelled T-1.</p><button type="button" class="small" aria-describedby="shown-1">Undo</button><button type="button" aria-label="Dismiss" aria-describedby="shown-1"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg></button></div>
+<div class="toast"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg><p class="toast-words" id="shown-2">Removed N-4 from the notebook.</p><button type="button" aria-label="Dismiss" aria-describedby="shown-2"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg></button></div>
+</section></div>
 </div>
-<div class="toasts" id="toasts" role="status"></div>
+<section class="toasts" id="toasts" aria-label="Notifications" aria-keyshortcuts="F8"><p class="hidden" role="status" id="said"></p></section>
 </div>
 <script>
 const toasts = document.getElementById("toasts");
+const said = document.getElementById("said");
 const status = document.getElementById("status");
-function said(words, undo) {
-  status.textContent = words;
-  const toast = document.createElement("div");
-  toast.className = "toast";
-  toast.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>';
+let made = 0;
+const icon = (d) => `<svg viewBox="0 0 24 24" aria-hidden="true" class="icon">${d.map((p) => `<path d="${p}"/>`).join("")}</svg>`;
+// Long enough to read: six seconds, ten with Undo, and a second more for every ten words past ten
+const stays = (words, undo) => (undo ? 10000 : 6000) + Math.max(0, Math.ceil((words.split(/\s+/).length - 10) / 10)) * 1000;
+function toast(words, { undo, undoKeys, saidOnPage } = {}) {
+  const id = `toast-${++made}`;
+  const el = document.createElement("div");
+  el.className = "toast";
+  el.innerHTML = icon(["M5.5 12.5l4 4 9-9"]);
   const p = document.createElement("p");
-  p.className = "toast-words";
-  p.textContent = words;
-  toast.append(p);
+  p.className = "toast-words"; p.id = id; p.textContent = words;
+  el.append(p);
+  const back = () => { el.remove(); if (el.contains(document.activeElement) || returnTo) returnTo?.focus(); };
+  let returnTo = null;
   if (undo) {
     const again = document.createElement("button");
-    again.type = "button"; again.className = "small"; again.textContent = "Undo";
-    again.addEventListener("click", () => { undo(); toast.remove(); });
-    toast.append(again);
+    again.type = "button"; again.className = "small"; again.textContent = "Undo"; again.setAttribute("aria-describedby", id);
+    again.addEventListener("click", () => { undo(); back(); });
+    el.append(again);
   }
   const dismiss = document.createElement("button");
-  dismiss.type = "button"; dismiss.setAttribute("aria-label", "Dismiss");
-  dismiss.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>';
-  dismiss.addEventListener("click", () => toast.remove());
-  toast.append(dismiss);
-  toasts.append(toast);
-  while (toasts.children.length > 3) toasts.firstElementChild.remove();
-  let left = 6000, held = false;
-  const tick = setInterval(() => { if (!held && (left -= 250) <= 0) { clearInterval(tick); toast.remove(); } }, 250);
+  dismiss.type = "button"; dismiss.setAttribute("aria-label", "Dismiss"); dismiss.setAttribute("aria-describedby", id);
+  dismiss.innerHTML = icon(["M7 7l10 10", "M17 7L7 17"]);
+  dismiss.addEventListener("click", back);
+  el.append(dismiss);
+  el.addEventListener("focusin", (event) => { if (!el.contains(event.relatedTarget)) returnTo = event.relatedTarget; });
+  el.addEventListener("keydown", (event) => { if (event.key === "Escape") back(); });
+  toasts.append(el);
+  while (toasts.querySelectorAll(".toast").length > 3) toasts.querySelector(".toast").remove();
+  if (!saidOnPage) {  // said once: emptied first, so the same words twice are still said
+    said.textContent = "";
+    setTimeout(() => { said.textContent = undo && undoKeys ? `${words} ${undoKeys}` : words; }, 50);
+  }
+  let left = stays(words, undo), held = false;
+  const tick = setInterval(() => {
+    if (!el.isConnected) return clearInterval(tick);
+    if (!held && !document.hidden && (left -= 250) <= 0) { clearInterval(tick); el.remove(); }
+  }, 250);
   for (const [on, hold] of [["pointerenter", true], ["pointerleave", false], ["focusin", true], ["focusout", false]])
-    toast.addEventListener(on, () => { held = hold; });
+    el.addEventListener(on, () => { held = hold || el.matches(":hover") || el.contains(document.activeElement); });
 }
-document.getElementById("cancel").addEventListener("click", () => said("Cancelled T-1.", () => { status.textContent = "T-1 goes on, as it was."; }));
+// The page says what happened where it happened, so its toast is shown and not said again
+document.getElementById("cancel").addEventListener("click", () => {
+  status.textContent = "Cancelled T-1.";
+  toast("Cancelled T-1.", { undo: () => { status.textContent = "T-1 goes on, as it was."; }, saidOnPage: true });
+});
+// Nothing on the page says this one, so the toasts' own status line does
+document.getElementById("remove").addEventListener("click", () => toast("Removed N-4 from the notebook.", { undo: () => {}, undoKeys: "Ctrl+Z puts it back." }));
 </script>
 </body>
 </html>
