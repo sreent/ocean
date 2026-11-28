@@ -1676,6 +1676,15 @@ a.board-card-summary:hover { text-decoration: underline; }  /* the copy where a 
   .gantt-hit.link { stroke-width: 36px; }
   .gantt.editable .gantt-chart { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
 }
+@container (max-width: 72rem) {  /* a person by their mark alone; screen readers still say the name */
+  .gantt-sheet .gantt-cell.person { flex-basis: 2.75rem; width: 2.75rem; }
+  .gantt-sheet .gantt-cell.person .who-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .gantt-sheet .gantt-side-head > .gantt-cell.person { color: transparent; }  /* the marks say whose; the head's word stays for screen readers */
+}
+@container (max-width: 60rem) {  /* the planned span leaves the sheet, which the bars show and the task's words say, so the chart keeps room */
+  .gantt-sheet .gantt-cell.dates { display: none; }
+  .gantt-sheet .gantt-cell.name { flex-basis: 12rem; }
+}
 @container (max-width: 40rem) {  /* the sheet keeps its names; a4a edits a task in its sheet (EditSheet) */
   .gantt-sheet .gantt-cell:not(.name) { display: none; }
   .gantt-sheet .gantt-cell.name { flex-basis: 10.5rem; }
