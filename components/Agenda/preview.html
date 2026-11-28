@@ -1,0 +1,68 @@
+<!-- @dsCard group="Plans" height=980 width=420 subtitle="A plan on a phone: day by day and week by week, today marked, a late task, a milestone and one done" -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Agenda</title>
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/charts.css">
+<link rel="stylesheet" href="../showcase.css">
+</head>
+<body>
+<div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="label">Day by day</p>
+<section class="agenda" aria-labelledby="ag-days">
+<h2 id="ag-days" class="hidden">Data center migration, day by day</h2>
+<ol class="agenda-days">
+<li class="agenda-day"><h3 class="agenda-head">Tue 17 Nov<span class="agenda-count">2<span class="hidden"> issues</span></span></h3>
+<ul class="agenda-items">
+<li class="agenda-item late"><svg class="agenda-mark" viewBox="0 0 16 16" aria-hidden="true"><g class="gantt-task late"><rect class="gantt-bar" x="1.5" y="5" width="13" height="6" rx="2.5"/></g></svg><span class="agenda-main"><a class="issue-id" href="#">MIG-6</a><a class="agenda-summary" href="#">Order the hardware</a><span class="badge bad"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>5 days late</span><span class="hidden">, on the critical path</span></span><span class="agenda-when">9–13 Nov</span></li>
+<li class="agenda-item"><svg class="agenda-mark" viewBox="0 0 16 16" aria-hidden="true"><rect class="gantt-bar" x="1.5" y="5" width="13" height="6" rx="2.5"/></svg><span class="agenda-main"><a class="issue-id" href="#">MIG-8</a><a class="agenda-summary" href="#">Set up the network</a></span><span class="agenda-when">16–17 Nov</span></li>
+</ul></li>
+<li class="agenda-day today" aria-current="date"><h3 class="agenda-head">Wed 18 Nov<span class="agenda-today">Today</span><span class="agenda-count">2<span class="hidden"> issues</span></span></h3>
+<ul class="agenda-items">
+<li class="agenda-item"><svg class="agenda-mark" viewBox="0 0 16 16" aria-hidden="true"><g class="gantt-task critical"><rect class="gantt-bar" x="2" y="5" width="12" height="6" rx="2.5"/></g></svg><span class="agenda-main"><a class="issue-id" href="#">MIG-7</a><a class="agenda-summary" href="#">Rack and cable</a><span class="hidden">, on the critical path, starts today</span></span><span class="agenda-when">18–24 Nov</span></li>
+<li class="agenda-item done"><svg class="agenda-mark" viewBox="0 0 16 16" aria-hidden="true"><path class="agenda-tick" d="M3 8.5l3.2 3.2 6.8-6.8"/></svg><span class="agenda-main"><a class="issue-id" href="#">MIG-13</a><a class="agenda-summary" href="#">Agree the cutover window</a><span class="hidden">, done</span></span><span class="agenda-when">18 Nov</span></li>
+</ul></li>
+<li class="agenda-day"><h3 class="agenda-head">Thu 19 Nov<span class="agenda-count">1<span class="hidden"> issue</span></span></h3>
+<ul class="agenda-items">
+<li class="agenda-item"><svg class="agenda-mark" viewBox="0 0 16 16" aria-hidden="true"><rect class="gantt-bar" x="1.5" y="5" width="13" height="6" rx="2.5"/></svg><span class="agenda-main"><a class="issue-id" href="#">MIG-16</a><a class="agenda-summary" href="#">Book the movers</a></span><span class="agenda-when">19 Nov</span></li>
+</ul></li>
+<li class="agenda-day"><h3 class="agenda-head">Fri 20 Nov</h3>
+<p class="agenda-none">Nothing starts or ends</p></li>
+<li class="agenda-day"><h3 class="agenda-head">Thu 10 Dec<span class="agenda-count">1<span class="hidden"> issue</span></span></h3>
+<ul class="agenda-items">
+<li class="agenda-item"><svg class="agenda-mark" viewBox="0 0 16 16" aria-hidden="true"><path class="gantt-milestone" d="M8 1.5l6.5 6.5-6.5 6.5-6.5-6.5z"/></svg><span class="agenda-main"><a class="issue-id" href="#">MIG-14</a><a class="agenda-summary" href="#">Cutover</a><span class="hidden">, a milestone</span></span><span class="agenda-when">10 Dec</span></li>
+</ul></li>
+</ol>
+</section>
+</div>
+<div class="ds-group"><p class="label">Week by week</p>
+<section class="agenda" aria-labelledby="ag-weeks">
+<h2 id="ag-weeks" class="hidden">Data center migration, week by week</h2>
+<ol class="agenda-days">
+<li class="agenda-day today" aria-current="date"><h3 class="agenda-head">16 to 22 Nov<span class="agenda-today">This week</span><span class="agenda-count">4<span class="hidden"> issues</span></span></h3>
+<ul class="agenda-items">
+<li class="agenda-item"><svg class="agenda-mark" viewBox="0 0 16 16" aria-hidden="true"><g class="gantt-task critical"><rect class="gantt-bar" x="2" y="5" width="12" height="6" rx="2.5"/></g></svg><span class="agenda-main"><a class="issue-id" href="#">MIG-7</a><a class="agenda-summary" href="#">Rack and cable</a><span class="hidden">, on the critical path</span></span><span class="agenda-when">18–24 Nov</span></li>
+<li class="agenda-item"><svg class="agenda-mark" viewBox="0 0 16 16" aria-hidden="true"><rect class="gantt-bar" x="1.5" y="5" width="13" height="6" rx="2.5"/></svg><span class="agenda-main"><a class="issue-id" href="#">MIG-8</a><a class="agenda-summary" href="#">Set up the network</a></span><span class="agenda-when">16–17 Nov</span></li>
+<li class="agenda-item"><svg class="agenda-mark" viewBox="0 0 16 16" aria-hidden="true"><rect class="gantt-bar" x="1.5" y="5" width="13" height="6" rx="2.5"/></svg><span class="agenda-main"><a class="issue-id" href="#">MIG-16</a><a class="agenda-summary" href="#">Book the movers</a></span><span class="agenda-when">19 Nov</span></li>
+<li class="agenda-item done"><svg class="agenda-mark" viewBox="0 0 16 16" aria-hidden="true"><path class="agenda-tick" d="M3 8.5l3.2 3.2 6.8-6.8"/></svg><span class="agenda-main"><a class="issue-id" href="#">MIG-13</a><a class="agenda-summary" href="#">Agree the cutover window</a><span class="hidden">, done</span></span><span class="agenda-when">18 Nov</span></li>
+</ul></li>
+<li class="agenda-day"><h3 class="agenda-head">23 to 29 Nov<span class="agenda-count">2<span class="hidden"> issues</span></span></h3>
+<ul class="agenda-items">
+<li class="agenda-item"><svg class="agenda-mark" viewBox="0 0 16 16" aria-hidden="true"><g class="gantt-task critical"><rect class="gantt-bar" x="2" y="5" width="12" height="6" rx="2.5"/></g></svg><span class="agenda-main"><a class="issue-id" href="#">MIG-9</a><a class="agenda-summary" href="#">Burn-in tests</a><span class="hidden">, on the critical path</span></span><span class="agenda-when">24–25 Nov</span></li>
+<li class="agenda-item"><svg class="agenda-mark" viewBox="0 0 16 16" aria-hidden="true"><rect class="gantt-bar" x="1.5" y="5" width="13" height="6" rx="2.5"/></svg><span class="agenda-main"><a class="issue-id" href="#">MIG-10</a><a class="agenda-summary" href="#">Label the racks</a></span><span class="agenda-when">25–26 Nov</span></li>
+</ul></li>
+<li class="agenda-day"><h3 class="agenda-head">7 to 13 Dec<span class="agenda-count">1<span class="hidden"> issue</span></span></h3>
+<ul class="agenda-items">
+<li class="agenda-item"><svg class="agenda-mark" viewBox="0 0 16 16" aria-hidden="true"><path class="gantt-milestone" d="M8 1.5l6.5 6.5-6.5 6.5-6.5-6.5z"/></svg><span class="agenda-main"><a class="issue-id" href="#">MIG-14</a><a class="agenda-summary" href="#">Cutover</a><span class="hidden">, a milestone</span></span><span class="agenda-when">10 Dec</span></li>
+</ul></li>
+</ol>
+</section>
+</div>
+</div>
+</div>
+</body>
+</html>

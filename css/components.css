@@ -1622,7 +1622,7 @@ a.board-card-summary:hover { text-decoration: underline; }  /* the copy where a 
 .gantt-cell.name > .icon { flex: none; width: 0.85rem; height: 0.85rem; color: var(--muted); }  /* a lock: nobody here may change it */
 /* Rows ranked by hand: a grip, as the backlog's handle; the row on its way dashed where it was; where
    it would land a line in --accent; onto a row, to go under it, that row edged and filled */
-.gantt-grip { flex: none; padding: 0 0.15rem; border: 0; background: none; color: var(--muted); cursor: grab; letter-spacing: -0.2em; line-height: 1; }
+.gantt-grip { flex: none; align-self: stretch; justify-content: center; min-width: 24px; padding: 0; border: 0; background: none; color: var(--muted); cursor: grab; letter-spacing: -0.2em; line-height: 1; }
 .gantt-grip:hover { background: none; color: var(--text); }
 .gantt-row.moving { outline: 1px dashed var(--line-control); outline-offset: -1px; color: var(--muted); }
 .gantt-row.drop-before { box-shadow: inset 0 3px 0 var(--accent); }
@@ -1734,8 +1734,8 @@ a.agenda-summary:hover { text-decoration: underline; }
 .cal-weekdays, .cal-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); column-gap: 1px; }
 .cal-weekday { padding: var(--space-1) var(--space-2); overflow: hidden; background: var(--surface); color: var(--faint); font-size: 0.74rem;
                font-weight: 650; letter-spacing: 0.05em; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; }
-.cal-week { grid-template-rows: 1.85rem repeat(4, 1.5rem) var(--space-1); }
-.cal.week .cal-week { grid-template-rows: 2.1rem repeat(8, 1.5rem) var(--space-1); }
+.cal-week { grid-template-rows: 1.85rem repeat(4, 1.75rem) var(--space-1); }  /* lanes a chip of 24px fits, as WCAG 2.5.8 asks */
+.cal.week .cal-week { grid-template-rows: 2.1rem repeat(8, 1.75rem) var(--space-1); }
 button.cal-day { grid-row: 1 / -1; display: flex; flex-direction: column; align-items: flex-start; gap: 0; min-width: 0; padding: var(--space-1) var(--space-2);
                  border: 0; border-radius: 0; background: var(--surface); color: var(--text); font-weight: 400; text-align: start; cursor: default; }
 button.cal-day:hover { background: var(--surface); }
@@ -1748,11 +1748,14 @@ button.cal-day:hover { background: var(--surface); }
 button.cal-day.off { background: var(--sunken); }
 button.cal-day.outside { background: var(--page); }
 button.cal-day:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
-.cal-head-line { display: flex; align-items: baseline; gap: 0 var(--space-2); max-width: 100%; overflow: hidden; white-space: nowrap; }  /* the number, today's word, a holiday's name: one line, over the lanes */
 .cal-num { font-size: var(--text-sm); font-weight: 600; font-variant-numeric: tabular-nums; }
 .cal-day.off .cal-num { color: var(--muted); font-weight: 500; }
 .cal-day.outside .cal-num { color: var(--faint); font-weight: 400; }
-.cal-holiday { min-width: 0; overflow: hidden; color: var(--muted); font-size: var(--text-xs); text-overflow: ellipsis; }
+/* Today's word and a holiday's name, beside the day's number at the end of its first row: placed by col-N, out of the day's
+   button, whose name says them already, and the pointer goes through them to it */
+.cal-week > :is(.cal-today, .cal-holiday) { z-index: 1; grid-row: 1; justify-self: end; align-self: center; max-width: calc(100% - 2.4rem);
+                                            margin-inline-end: var(--space-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; pointer-events: none; }
+.cal-holiday { color: var(--muted); font-size: var(--text-xs); }
 .cal-day.today { box-shadow: inset 0 2px 0 var(--accent); }
 .cal-day.today .cal-num, .cal-today { color: var(--accent); }
 .cal-today { font-size: var(--text-xs); font-weight: 650; }
@@ -1765,7 +1768,7 @@ button.cal-day.drop { background: var(--accent-soft); outline: 2px dashed var(--
 .cal-week > .span-7 { grid-column-end: span 7; }
 .cal-week > .lane-1 { grid-row: 2; } .cal-week > .lane-2 { grid-row: 3; } .cal-week > .lane-3 { grid-row: 4; } .cal-week > .lane-4 { grid-row: 5; }
 .cal-week > .lane-5 { grid-row: 6; } .cal-week > .lane-6 { grid-row: 7; } .cal-week > .lane-7 { grid-row: 8; } .cal-week > .lane-8 { grid-row: 9; }
-.cal-chip { z-index: 1; display: flex; align-items: center; gap: 0.3rem; min-width: 0; height: 1.3rem; margin: 0.1rem 0.3rem; padding: 0 0.45rem;
+.cal-chip { z-index: 1; display: flex; align-items: center; gap: 0.3rem; min-width: 0; height: 1.6rem; margin: 0.075rem 0.3rem; padding: 0 0.45rem;
             overflow: hidden; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--text);
             font-size: var(--text-xs); line-height: 1; text-decoration: none; white-space: nowrap; cursor: grab; }
 .cal-chip:hover { border-color: var(--line-control); }
@@ -1787,8 +1790,9 @@ button.cal-day.drop { background: var(--accent-soft); outline: 2px dashed var(--
 .cal-chip.moving > * { visibility: hidden; }
 .cal-chip.ghost { border: 1px dashed var(--accent); background: var(--accent-soft); color: var(--accent); cursor: grabbing; }  /* where it would land */
 .cal-chip.ghost .issue-id { color: var(--accent); }
-.cal-week > .cal-more { z-index: 1; justify-self: start; align-self: center; margin: 0 0.3rem; padding: 0 0.25rem; border: 0; border-radius: var(--radius-sm);
-                        background: none; color: var(--muted); font-size: var(--text-xs); font-weight: 600; line-height: 1.4; }
+.cal-week > .cal-more { z-index: 1; justify-self: start; align-self: center; max-width: calc(100% - 0.6rem); min-height: 1.6rem; margin: 0 0.3rem; padding: 0 0.25rem;
+                        overflow: hidden; border: 0; border-radius: var(--radius-sm); background: none; color: var(--muted); font-size: var(--text-xs);
+                        font-weight: 600; line-height: 1.4; text-overflow: ellipsis; white-space: nowrap; }
 .cal-week > .cal-more:hover { background: none; color: var(--text); text-decoration: underline; }
 .cal-grid.dragging, .cal-grid.dragging * { cursor: grabbing; }
 /* The issues with no date: a tray to drag them from, onto a day */
@@ -1811,7 +1815,7 @@ button.cal-day.drop { background: var(--accent-soft); outline: 2px dashed var(--
   .cal-body { grid-template-columns: minmax(0, 1fr); }
 }
 @container (max-width: 34rem) {  /* a phone shows the agenda in its place; a grid this narrow shows its chips by their ids */
-  .cal-chip-summary, .cal-holiday { display: none; }
+  .cal-chip-summary, .cal-holiday, .cal-today { display: none; }  /* today keeps its line and its number in --accent, and its name says so */
   .cal-chip { padding-inline: 0.25rem; margin-inline: 0.15rem; }
   .cal-weekday, button.cal-day { padding-inline: 0.3rem; }
 }

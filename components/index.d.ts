@@ -14,7 +14,7 @@ export type Kind = "person" | "agent" | "service";
 export type IconName = "chat" | "tasks" | "book" | "studio" | "decide" | "grade" | "settings" | "audit" | "admin"
   | "officer" | "agent" | "tool" | "clock" | "message" | "bell" | "report" | "shield" | "back" | "check" | "run"
   | "people" | "trace" | "cross" | "pause" | "camera" | "photos" | "attach" | "send"
-  | "webhook" | "plug" | "sync" | "wait" | "model" | "code" | "list";
+  | "webhook" | "plug" | "sync" | "wait" | "model" | "code" | "list" | "home" | "map" | "plus" | "spend" | "find" | "lock";
 
 export interface IconProps { name: IconName; className?: string }
 /** An icon in `currentColor`. */
@@ -120,11 +120,16 @@ export interface Toast {
   id: string;
   /** What was done, naming the thing, in the past tense, as the page's status line says it too: "Cancelled T-1." */
   words: string;
-  /** Undo, only while it can still be undone. */
+  /** Undo, only while it can still be undone. Its key (Ctrl+Z in a4a) undoes it too, before the toast goes and after. */
   undo?: () => void;
+  /** How to undo from the keyboard, said with the words: "Ctrl+Z undoes it." */
+  undoKeys?: string;
+  /** The page has said it already, where it happened (a timeline's move): the toast shows it and isn't said again. */
+  saidOnPage?: boolean;
 }
 export interface ToastsProps {
-  /** At most three, the newest last. Each stays six seconds, and while the pointer or the focus is on it. */
+  /** At most three, the newest last. Each stays six seconds, ten with Undo, a second more for every ten words past ten, and while
+   * the pointer or the focus is in it or the window is hidden. Said once, by the region's own status line, which is always there. */
   toasts: Toast[];
   onDismiss: (id: string) => void;
 }
@@ -534,6 +539,9 @@ export interface IssueListProps {
   onOpen: (id: string) => void;
   /** With issues chosen, the bar above offers a command for them. */
   onCommand?: (ids: string[]) => void;
+  /** In groups by a field's value, each under a head that folds it. */
+  groups?: IssueGroup[];
+  onFold?: (value: string, folded: boolean) => void;
 }
 /** Issues in rows, framed, one stop for the keyboard: arrows move, Space chooses, Enter opens. Stacks where it's narrow. Proposed. */
 export declare function IssueList(props: IssueListProps): React.ReactElement;
@@ -663,6 +671,83 @@ export interface GanttProps {
 }
 /** A plan over time, as SVG drawn from attributes: the critical path in ink, baselines faded, a late task in words. Proposed. */
 export declare function Gantt(props: GanttProps): React.ReactElement;
+
+/** A cell of the editable Gantt's sheet: a date someone set, the planned span, a duration, a person, what's done. */
+export type GanttCellKind = "date" | "dates" | "duration" | "person" | "done";
+export type GanttEditRow = GanttRow & {
+  id: string;
+  /** Nobody here may change it: no handles, a lock, and why in words. */
+  locked?: string;
+  chosen?: boolean;
+  /** Its row has the keyboard's focus: the bar wears the focus ring. */
+  focused?: boolean;
+  /** The dates people set, each by its field, bracketed on the chart where the plan differs. */
+  set?: { start?: { field: string; value: string }; end?: { field: string; value: string } };
+  /** Changed in the draft: --writes. */
+  drafted?: boolean;
+  /** Where it was, while it's on its way or moved by a draft: dashed. */
+  was?: { start: string; end?: string };
+};
+export interface GanttEditProps extends Omit<GanttProps, "rows"> {
+  rows: GanttEditRow[];
+  /** The sheet's columns after the task, each with its head in the project's words. */
+  columns: { kind: GanttCellKind; head: string; field?: string; readOnly?: boolean }[];
+  zoom: "day" | "week" | "month" | "quarter";
+  /** A cell being typed in, refused (and why), or saving. */
+  editing?: { row: string; column: number; value: string; refused?: { text: string; hint: string }; saving?: boolean };
+  /** What's on its way: a bar and where it would land, a link and the task under it, a row and where it would go. */
+  dragging?:
+    | { kind: "bar"; row: string; to: { start: string; end?: string }; words: string }
+    | { kind: "link"; from: string; onto?: string; words: string }
+    | { kind: "row"; row: string; where: "before" | "after" | "into"; of: string; words: string };
+  draft?: { words: string; onKeep: () => void; onDrop: () => void };
+  /** What a move would also move: tasks whose dates people set, each ticked to accept it. */
+  proposals?: { heading: string; items: { id: string; what: string; who?: string; field: string; from: string; to: string; by: string; accepted: boolean }[];
+    onAccept: (ids: "all" | "none" | string[]) => void; onPutBack: () => void };
+  /** Said in a live region: each step from the keyboard, and what a drag would do. */
+  said?: string;
+}
+/** The Gantt, to change where it's seen: a sheet of cells, bars dragged, stretched and linked, rows ranked, new tasks, a draft, and what a move would also move. Proposed. */
+export declare function GanttEdit(props: GanttEditProps): React.ReactElement;
+
+export interface IssueGroup {
+  /** The field's value, in its words, and its tone where it has one; none for the issues with no value. */
+  value: string;
+  tone?: Tone;
+  none?: boolean;
+  /** How many the group holds, the server's count. */
+  count: number;
+  folded?: boolean;
+  issues: IssueRowProps[];
+}
+
+export interface AgendaItem { id: string; summary: string; href: string; when: string; kind: "task" | "milestone" | "late" | "done"; critical?: boolean;
+  /** For a late one: "5 days late". */
+  late?: string; said?: string }
+export interface AgendaProps {
+  by: "day" | "week";
+  days: { label: string; count: number; today?: boolean; todayWord?: string; items: AgendaItem[] }[];
+  /** The words for a day with nothing in it; without them, such a day is left out. */
+  none?: string;
+}
+/** A timeline or a calendar as a phone shows it: days or weeks as heads, issues under them with their dates and marks. Proposed. */
+export declare function Agenda(props: AgendaProps): React.ReactElement;
+
+export interface CalendarChip { id: string; summary: string; href: string; col: 1 | 2 | 3 | 4 | 5 | 6 | 7; span: 1 | 2 | 3 | 4 | 5 | 6 | 7; lane: number;
+  continues?: boolean; continued?: boolean; milestone?: boolean; done?: boolean; late?: boolean; chosen?: boolean; locked?: boolean; said: string }
+export interface CalendarProps {
+  span: "month" | "week";
+  /** Seven names, in the order the product starts its week. */
+  weekdays: string[];
+  weeks: { label: string; days: { date: string; name: string; number: number; today?: boolean; off?: boolean; holiday?: string; outside?: boolean }[];
+    chips: CalendarChip[]; more?: { col: number; count: number; said: string }[] }[];
+  tray?: { heading: string; keys: string; issues: { id: string; summary: string }[] };
+  dragging?: { chip?: string; fromTray?: string; onto?: string; words: string };
+  onMove: (id: string, to: string) => void;
+  onOpenDay: (date: string) => void;
+}
+/** A month or a week of seven columns, issues as chips that span days, and a tray of issues with no date. Proposed. */
+export declare function Calendar(props: CalendarProps): React.ReactElement;
 
 export interface LoadGridProps {
   /** The working days shown; a week's first day after a weekend leaves a gap. */

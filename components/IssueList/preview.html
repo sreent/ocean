@@ -1,4 +1,4 @@
-<!-- @dsCard group="Issues" height=508 width=1100 subtitle="Issues in rows: three chosen, one open, the resolved in muted" -->
+<!-- @dsCard group="Issues" height=1060 width=1100 subtitle="Issues in rows: three chosen, one open, the resolved in muted; and in groups by state, each head its value and count, one folded" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,6 +10,8 @@
 </head>
 <body>
 <div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="label">In a list</p>
 <section class="issues-box" aria-label="Issues in BACK">
 <div class="issues-bar"><strong>3 chosen</strong><button type="button">Apply a command</button><button type="button" class="link">Choose none</button></div>
 <div class="issues-head"><input type="checkbox" aria-label="Choose all 9 issues" id="all"><span>Issue</span><span>State</span><span>Priority</span><span>Type</span><span>Assignee</span><span><span class="hidden">Comments</span></span><span>Updated</span></div>
@@ -25,6 +27,44 @@
 <li class="issue resolved" tabindex="-1"><input type="checkbox" class="issue-select" aria-label="Choose BACK-27" tabindex="-1"><span class="issue-id">BACK-27</span><span class="issue-main"><a class="issue-summary" href="#" tabindex="-1">Login fails once the session cookie expires</a><span class="chips"><span class="chip">login</span></span></span><span class="issue-meta"><span class="issue-state"><span class="badge idle"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 6.5v11"/><path d="M15 6.5v11"/></svg>Duplicate</span></span><span class="issue-priority"><span class="priority" role="meter" aria-label="Priority" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" aria-valuetext="Major"><span class="priority-steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="priority-word">Major</span></span></span><span class="issue-type">Bug</span><span class="issue-assignee"><span class="issue-type">Unassigned</span></span><span class="issue-comments"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 5.5h16v10.5H9l-5 4z"/></svg>0<span class="hidden"> comments</span></span></span><time class="issue-updated" datetime="2026-11-11T17:45">11 Nov</time></li>
 </ul>
 </section>
+</div>
+<div class="ds-group"><p class="label">In groups, by State: each head says its value, in its tone where it has one, and how many; Fixed folded</p>
+<section class="issues-box" aria-label="Issues in BACK, by State">
+<div class="issues-head"><input type="checkbox" aria-label="Choose all 9 issues"><span>Issue</span><span>State</span><span>Priority</span><span>Type</span><span>Assignee</span><span><span class="hidden">Comments</span></span><span>Updated</span></div>
+<section class="issues-group" aria-labelledby="g-open-head">
+<h3 class="issues-group-head" id="g-open-head"><button type="button" class="issues-group-fold" aria-expanded="true" aria-controls="g-open-rows"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 9l6 6 6-6"/></svg><span class="issues-group-name">Open</span><span class="issues-group-count">2<span class="hidden"> issues</span></span></button></h3>
+<ul class="issues" id="g-open-rows" aria-label="Open">
+<li class="issue" tabindex="-1"><input type="checkbox" class="issue-select" aria-label="Choose BACK-15" checked tabindex="-1"><span class="issue-id">BACK-15</span><span class="issue-main"><a class="issue-summary" href="#" tabindex="-1">Retry failed webhook deliveries with backoff</a><span class="chips"><span class="chip">webhooks</span></span></span><span class="issue-meta"><span class="issue-state"><span class="badge">Open</span></span><span class="issue-priority"><span class="priority" role="meter" aria-label="Priority" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3" aria-valuetext="Major"><span class="priority-steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="priority-word">Major</span></span></span><span class="issue-type">Feature</span><span class="issue-assignee"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">BO</span><span class="who-name">Ben Okafor</span></span></span><span class="issue-comments"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 5.5h16v10.5H9l-5 4z"/></svg>2<span class="hidden"> comments</span></span></span><time class="issue-updated" datetime="2026-11-15T13:02">1 hour ago</time></li>
+<li class="issue" tabindex="-1"><input type="checkbox" class="issue-select" aria-label="Choose BACK-30" tabindex="-1"><span class="issue-id">BACK-30</span><span class="issue-main"><a class="issue-summary" href="#" tabindex="-1">Upgrade the storage nodes' firmware</a><span class="chips"><span class="chip">storage</span></span></span><span class="issue-meta"><span class="issue-state"><span class="badge">Open</span></span><span class="issue-priority"><span class="priority" role="meter" aria-label="Priority" aria-valuemin="1" aria-valuemax="5" aria-valuenow="2" aria-valuetext="Normal"><span class="priority-steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="priority-word">Normal</span></span></span><span class="issue-type">Task</span><span class="issue-assignee"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">KM</span><span class="who-name">Kofi Mensah</span></span></span><span class="issue-comments"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 5.5h16v10.5H9l-5 4z"/></svg>0<span class="hidden"> comments</span></span></span><time class="issue-updated" datetime="2026-11-14T09:12">yesterday</time></li>
+</ul>
+</section>
+<section class="issues-group" aria-labelledby="g-progress-head">
+<h3 class="issues-group-head" id="g-progress-head"><button type="button" class="issues-group-fold" aria-expanded="true" aria-controls="g-progress-rows"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 9l6 6 6-6"/></svg><span class="issues-group-name">In Progress</span><span class="issues-group-count">1<span class="hidden"> issue</span></span></button></h3>
+<ul class="issues" id="g-progress-rows" aria-label="In Progress">
+<li class="issue" tabindex="-1"><input type="checkbox" class="issue-select" aria-label="Choose BACK-12" checked tabindex="-1"><span class="issue-id">BACK-12</span><span class="issue-main"><a class="issue-summary" href="#" tabindex="-1">Login times out on slow networks</a><span class="chips"><span class="chip">login</span><span class="chip">regression</span></span></span><span class="issue-meta"><span class="issue-state"><span class="badge">In Progress</span></span><span class="issue-priority"><span class="priority" role="meter" aria-label="Priority" aria-valuemin="1" aria-valuemax="5" aria-valuenow="4" aria-valuetext="Critical"><span class="priority-steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="priority-word">Critical</span></span></span><span class="issue-type">Bug</span><span class="issue-assignee"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">AS</span><span class="who-name">Anna Schmidt</span></span></span><span class="issue-comments"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 5.5h16v10.5H9l-5 4z"/></svg>5<span class="hidden"> comments</span></span></span><time class="issue-updated" datetime="2026-11-15T13:58">2 minutes ago</time></li>
+</ul>
+</section>
+<section class="issues-group" aria-labelledby="g-review-head">
+<h3 class="issues-group-head" id="g-review-head"><button type="button" class="issues-group-fold" aria-expanded="true" aria-controls="g-review-rows"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 9l6 6 6-6"/></svg><span class="issues-group-name"><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>In Review</span></span><span class="issues-group-count">1<span class="hidden"> issue</span></span></button></h3>
+<ul class="issues" id="g-review-rows" aria-label="In Review">
+<li class="issue" tabindex="-1"><input type="checkbox" class="issue-select" aria-label="Choose BACK-19" checked tabindex="-1"><span class="issue-id">BACK-19</span><span class="issue-main"><a class="issue-summary" href="#" tabindex="-1">Rate limits count per token, not per person</a><span class="chips"><span class="chip">api</span></span></span><span class="issue-meta"><span class="issue-state"><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>In Review</span></span><span class="issue-priority"><span class="priority" role="meter" aria-label="Priority" aria-valuemin="1" aria-valuemax="5" aria-valuenow="2" aria-valuetext="Normal"><span class="priority-steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="priority-word">Normal</span></span></span><span class="issue-type">Bug</span><span class="issue-assignee"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">PN</span><span class="who-name">Priya Nair</span></span></span><span class="issue-comments"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 5.5h16v10.5H9l-5 4z"/></svg>3<span class="hidden"> comments</span></span></span><time class="issue-updated" datetime="2026-11-15T11:20">3 hours ago</time></li>
+</ul>
+</section>
+<section class="issues-group" aria-labelledby="g-blocked-head">
+<h3 class="issues-group-head" id="g-blocked-head"><button type="button" class="issues-group-fold" aria-expanded="true" aria-controls="g-blocked-rows"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 9l6 6 6-6"/></svg><span class="issues-group-name"><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>Blocked</span></span><span class="issues-group-count">1<span class="hidden"> issue</span></span></button></h3>
+<ul class="issues" id="g-blocked-rows" aria-label="Blocked">
+<li class="issue" tabindex="-1" aria-current="true"><input type="checkbox" class="issue-select" aria-label="Choose BACK-21" tabindex="-1"><span class="issue-id">BACK-21</span><span class="issue-main"><a class="issue-summary" href="#" tabindex="-1">Exports of large projects stop at 10,000 issues</a><span class="chips"><span class="chip">export</span></span></span><span class="issue-meta"><span class="issue-state"><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>Blocked</span></span><span class="issue-priority"><span class="priority" role="meter" aria-label="Priority" aria-valuemin="1" aria-valuemax="5" aria-valuenow="5" aria-valuetext="Show-stopper"><span class="priority-steps" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span><span class="priority-word">Show-stopper</span></span></span><span class="issue-type">Bug</span><span class="issue-assignee"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">LP</span><span class="who-name">Lena Park</span></span></span><span class="issue-comments"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M4 5.5h16v10.5H9l-5 4z"/></svg>8<span class="hidden"> comments</span></span></span><time class="issue-updated" datetime="2026-11-14T16:40">yesterday</time></li>
+</ul>
+</section>
+<section class="issues-group" aria-labelledby="g-fixed-head">
+<h3 class="issues-group-head" id="g-fixed-head"><button type="button" class="issues-group-fold" aria-expanded="false" aria-controls="g-fixed-rows"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M6 9l6 6 6-6"/></svg><span class="issues-group-name"><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>Fixed</span></span><span class="issues-group-count">2<span class="hidden"> issues</span></span></button></h3>
+<ul class="issues" id="g-fixed-rows" aria-label="Fixed" hidden>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
 </div>
 <script>
 // The list's keyboard: arrows move between issues, Space chooses one, Enter opens it
@@ -55,6 +95,12 @@ rows.forEach((row, i) => row.addEventListener("keydown", (event) => {
 for (const box of document.querySelectorAll(".issue-select")) box.addEventListener("change", count);
 all.addEventListener("change", () => { for (const row of rows) row.querySelector(".issue-select").checked = all.checked; count(); });
 count();
+// Each group's head folds it
+for (const fold of document.querySelectorAll('.issues-group-fold')) fold.addEventListener('click', () => {
+  const open = fold.getAttribute('aria-expanded') !== 'true';
+  fold.setAttribute('aria-expanded', String(open));
+  document.getElementById(fold.getAttribute('aria-controls')).hidden = !open;
+});
 </script>
 </body>
 </html>
