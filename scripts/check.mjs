@@ -47,6 +47,7 @@ const TEXT = [  // text, and what it's on: 4.5 to 1
   ["bad", "surface"], ["changes", "surface"],  // a4a: a query's problem, a late task's words; a change in an issue's history
   ["bad", "you"], ["muted", "you"],  // a4a: "Not sent", under what the person said, in --muted
   ["surface", "changes"],  // production's band: its name and words on the change's colour
+  ["writes", "surface"],  // a4a: a draft's word on its band
   ...["reads", "writes", "changes", "outside", "own", "good", "warn", "bad", "idle"].map((tone) => [tone, `${tone}-bg`]),
 ];
 const MARKS = [  // 3 to 1
@@ -64,6 +65,7 @@ const MARKS = [  // 3 to 1
   ["viewfinder-mark", "viewfinder-line"],  // the frame that finds a document, on a camera's view
   ["focus", "accent-soft"], ["focus", "sunken"],  // a4a: the ring on a row chosen, or under the pointer
   ["agent-tone", "page"], ["bad", "own-message"],  // a4a: the agent's mark by its notes in a conversation; a failure's cross there
+  ["focus", "writes-bg"], ["writes", "writes-bg"],  // a4a: the focus ring on a task a draft changed, and its dashed edge
 ];
 const CHART_WORDS = [  // words on a chart's shades: a4a's hours on Ocean Blue's steps, at 4.5 to 1
   ["text", "chart-seq-1"], ["text", "chart-seq-2"], ["surface", "chart-seq-4"], ["surface", "chart-seq-6"],

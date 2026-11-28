@@ -12,7 +12,7 @@ Ocean is the look a5s, a7c, a3t and a4a share: calm, with colour only where it m
 | [`css/components.css`](css/components.css) | The pieces' look: the frame, controls, badges, a decision, an agent's facts, the ladder of autonomy, a run as time, the canvas and the workbench, the conversation kit, and a4a's issues, boards and plans |
 | [`css/charts.css`](css/charts.css) | The chart colours: eight series and Other, Ocean Blue, Ocean Orange-Blue, and how runs end, in light and dark |
 | [`fonts/`](fonts) | IBM Plex Sans (400 to 700), Plex Sans Thai (400 to 700) and Plex Mono (400, 500), with Vietnamese's letters for Plex Sans and Plex Mono, and their licences |
-| [`icons/`](icons) | The 36 line icons, on a 24-unit square, in `currentColor` |
+| [`icons/`](icons) | The 41 line icons, on a 24-unit square, in `currentColor` |
 | [`charts/palettes.json`](charts/palettes.json) | The chart palettes as data, for tools that can't read CSS |
 | [`tokens.json`](tokens.json) | The tokens as data, built from `css/tokens.css`, for tools such as a Tailwind theme |
 | [`components/`](components) | Each piece: what it's for, what it takes, and a preview of it as pages draw it; and showcase pages of the products |

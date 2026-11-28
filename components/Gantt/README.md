@@ -56,3 +56,91 @@ A plan over time: its tasks in a list beside it, by indentation, and across the 
 Draw in this order, so each sits on the last: weekends, rules and the axis; curves; summaries; each task's group; a what-if's marks; today. A task's name as a link: `<span class="gantt-name"><a href="…">Burn-in tests</a><span class="hidden">, on the critical path…</span></span>`.
 
 **In a4a:** Plans, for a plan's tasks and its waterfall. Load css/charts.css with it. The preview is a static rendition of a plan to move a data center.
+
+## To change, where it's seen
+
+a4a's timeline is this Gantt made editable (`.gantt.editable`): its list a sheet whose cells are typed in, and its bars dragged, stretched and linked, each change made as a command makes it. Ocean gives each state its look; a4a supplies every word, every key and every date. Proposed, for a4a (D74).
+
+- **The sheet** (`.gantt-side.gantt-sheet`, `role="treegrid"`): the rows the list had, each a row of compact cells by kind: the task (`.gantt-cell.name`: a grip, its id, its summary), a date someone set (`.date`), the planned span (`.dates.planned`, the engine's), a duration (`.duration`), a person (`.person`, by their mark and name) and what's done (`.done`). Dates and durations are in Plex Mono. The heads say which field each is, in the project's own words, so the dates people set and the dates planned stand side by side, labelled. A cell nobody may type in says so (`aria-readonly="true"`): the planned span, a summary's rolled-up dates, and every cell of a task nobody here may change. Under the pointer a cell that takes typing is `--sunken`; the cell with the keyboard's focus wears the ring inside its edge.
+- **A cell being typed in** (`.editing`) holds its input, 26px tall. Refused, its input is `aria-invalid="true"` and edged in `--bad`, and why is said in words above the chart, with how to put it right (`.error-note`, `role="alert"`), which the input names (`aria-describedby`). **Saving** (`.saving`), the value as typed is underlined, dashed, as what isn't in force yet, and screen readers hear ", saving". **A person** is picked as a field's value is (Picker): the cell's input is a combobox, and its options open in the top layer (`ul.popover.options.gantt-pick[popover]`), so the chart's frame never cuts them off: under the cell, or over it near the window's foot, where the browser anchors one thing to another (CSS anchor positioning), and in the middle of the window where it can't.
+- **Rows**: chosen, `--accent-soft` (`aria-selected="true"`), as a list's rows are. Ranked by hand, each row a person may move has a grip, the backlog's handle (`button.gantt-grip`, `⋮⋮`). On its way, a row is dashed where it was (`.moving`) and the list says so (`.gantt-rows.dragging`, a closed hand); where it would land is a line in `--accent` on the edge of the row beside it (`.drop-before`, `.drop-after`) and across the chart (`line.gantt-drop-line`); dropped onto a row, to go under it as a subtask, that row is edged and filled (`.drop-into`, and `rect.gantt-drop-into` across the chart). A row the draft changed has a `--writes` edge (`.drafted`). A row nobody here may change has a lock after its name and no grip (`.locked`), and its words say why ("read-only: it's in Infrastructure, which you can only read").
+- **A new task** (`.gantt-row.new`): a plus and the input its summary is typed in, at the end of the sheet (`data-depth="0"`) or under its parent, a level in, after the parent's last task; named for screen readers by where it goes ("New task in Build the new site").
+- **A bar chosen** (`g.gantt-task.chosen`) is `--accent-soft`; the one whose row has the keyboard's focus wears the focus ring (`rect.gantt-ring`, or `path.gantt-ring` around a milestone), so the bar and its row show one choice. **Its handles** (`g.gantt-handles`), drawn on the chosen bar and under the pointer, never on a locked one: the body moves it (`rect.gantt-hit.move`, an open hand), a grip at each end changes how long it takes (`rect.gantt-resize`, in `--accent`, held by `line.gantt-hit.resize`), and a dot just past each end links it (`circle.gantt-link-handle`, held by `circle.gantt-hit.link`): from its finish to another task's start, finish to start.
+- **On its way** (`g.gantt-task.moving`, edged in `--accent`, the chart `.dragging`): where it was is dashed (`rect.gantt-was`); where it would land, snapped to the days it would take, is dashed in `--accent` on `--accent-soft`, the row's height, under the bar (`rect.gantt-ghost`), as a board's slot is, with its dates beside it (`text.gantt-ghost-label`). From the keyboard the bar itself moves a working day at a time: `.moving`, with where it was.
+- **A link being drawn**: the dot it's drawn from is filled (`.gantt-link-handle.on`); a dashed curve in `--accent` follows the pointer (`path.gantt-link-draft`, `path.gantt-link-head.draft`); the task under it is the target (`g.gantt-task.target`, edged in `--accent`, its start's dot filled), with what dropping does beside it ("After MIG-8").
+- **Locked** (`g.gantt-task.locked`): no handles, an arrow's pointer, and a lock after the bar (`svg.gantt-lock`, the lock from `icons/`, 12px, with a `<title>` saying why), as its row says.
+- **A date someone set**, where it isn't the date planned: a bracket in `--muted` (`path.gantt-set`), "[" at a start the plan comes after (a start no earlier than), "]" at a due date the plan finishes before. A task late against its due date keeps its tick in `--bad` and its words, above.
+- **The axis at four zooms**, one upper row of labels (`text.gantt-major`; `.gantt-week` is the same, and stays) over a lower one (plain `text`): by day, 17px a day, weeks by their Monday over the days; by week, 6px a day, months over each week's Monday; by month, 2px a day, quarters over months; by quarter, 0.6px a day, years over quarters. A rule at each upper label. Days nobody works (`rect.gantt-off`, or `.gantt-weekend`, the same): the weekends and the project's own holidays, at the day's and the week's zoom; by month and by quarter a day is 2px or less, and its shade would only be a texture, so it's left out. Today as always: a line in `--accent`, with its word.
+- **A draft**: a band across the top of the chart (`.gantt-draft`, before `.gantt-scroll`, which it joins): a `writes` badge with its word, then what the draft changed and what it does to the finish, then Keep and Drop, Keep the primary ("Keep it", "Drop it": the product's words). While it's there the chart's frame is `--writes`. Each task the draft changed is dashed in `--writes` on `--writes-bg` (`g.gantt-task.drafted`; the critical path keeps its weight), its row edged; a task that only follows one is drawn where it would go, with where it was dashed (`rect.gantt-was`).
+- **What a move would also move**: when a move would shift tasks whose dates people set, the engine proposes, and nothing moves until the person says. It's levelling's list of moves (LoadGrid), since a proposal is levelling's kind of move: `section.levelling.gantt-proposals`, raised, with a heading that says what and how many, and `ul.levelling-list.choose`, a box for each (`label.issue-pick > input`, ticked to accept it), its id, what it is and whose, its date in the grammar of a change (`.change-lines`: the field, what it was struck through, what it becomes in `--changes`) and how far. Then the primary, for those ticked ("Move MIG-7 and 2 more"), all, none (the task alone), and "Put it back". a4a moves the focus to the heading (`tabindex="-1"`) when it opens.
+
+**Keyboard** (a4a supplies the keys; Ocean the look of each state): the sheet is one stop, a treegrid. The arrows move from cell to cell and row to row; Space chooses a row; Enter or F2 types in a cell, Enter saves it, Escape puts it back. On a row, Alt and ← or → moves the task a working day, Alt, Shift and ← or → changes its length, and Alt and ↑ or ↓ moves its row: the bar shows it on its way while it moves, the focus stays on the row, and each step is said in a live region (`p.hidden[role="status"]`): "Moved MIG-7 to 23–27 Nov." Links from the keyboard are made by a command (CommandBar: "depends on MIG-8"). Ctrl+Z undoes the last change (Toast).
+
+**What a screen reader hears**: the chart is hidden from it, as before; the sheet is what it reads: each row's level, whether it's open, whether it's chosen; each cell with its column's head, its value, and whether it can be typed in; and in the task's own words, what the chart shows: on the critical path, late and by how much, the date set and the date planned, read-only and why, being moved and where it would land. What a drag would do is said in the live region ("Drop it to start MIG-7 23 Nov.").
+
+**Touch**: in `pointer: coarse`, an editable Gantt's rows are 44px. The sheet's rows grow by Ocean's CSS, and a4a draws the chart's rows 44px too: row r's top is 40 + 44r, and everything in a row comes down 6px (the bar's top at T + 14). a4a takes the height from the sheet (a row's `offsetHeight`, again when it changes) rather than asking the media query itself, so the chart is always drawn to the rows the CSS gives. The handles' hit strokes widen (`line.gantt-hit.resize` 44px, `circle.gantt-hit.link` 36px around its dot) and the move target is the row's height, so each is 44px. A bar held still a moment (D53's 220 ms) is picked up, and a held bar starts no text selection. A bar too short for its three targets keeps only the move, and its dates are typed in its sheet. On a phone the timeline becomes the agenda ([Agenda](../Agenda/README.md)), and a task is changed in its sheet (EditSheet).
+
+**Narrower**, by the Gantt's own width, so the chart always keeps room beside the sheet: under 72rem a person shows by their mark alone, and screen readers still say the name; under 60rem the planned span leaves the sheet, since the bars show it and each task's words say it, and the names narrow; under 40rem the sheet keeps its names alone, its other cells out of the layout, so nothing hidden takes the focus, and a4a changes a task in its sheet there.
+
+**Takes**, beyond the rows above: `editable`; per row `id`, `locked` (and why), `chosen`, `focused`, `set` (each date someone set: `{ field, value }`), `drafted`, `was`; `cells` (the columns, each `kind`: `date`, `dates`, `duration`, `person`, `done`, and its head); `editing` (a cell, its value, `invalid` and why, `saving`); `dragging` (a bar: where it would land; a link: from where, onto which; a row: before, after or into which); `draft` (what changed, `onKeep`, `onDrop`); `proposals` (each `id`, `what`, `who`, the field, from, to, how far; `onAccept` with all, none or ids, `onPutBack`); `zoom`; `said`.
+
+**Markup:** as the read-only Gantt's, with the sheet for the list. T is a row's top, 40 + 32r (44r on a touch screen); x and w are a bar's.
+
+```html
+<section class="gantt gantt-box editable" aria-labelledby="t-title">
+  <h2 id="t-title" class="hidden">Data center migration</h2>
+  <div class="gantt-tools">
+    <div class="modes" role="group" aria-label="Zoom"><button type="button" aria-pressed="true">Day</button><button type="button" aria-pressed="false">Week</button><button type="button" aria-pressed="false">Month</button><button type="button" aria-pressed="false">Quarter</button></div>
+    <button type="button">Today</button><span class="grow"></span>
+  </div>
+  <p class="note" id="t-keys">Drag a bar to move it… From the keyboard, on a task’s row: <kbd>Alt</kbd> and <kbd>←</kbd> or <kbd>→</kbd> moves it a working day…</p>
+  <p class="error-note" id="t-error" role="alert"><svg class="icon" aria-hidden="true"><!-- cross --></svg><strong>MIG-8 can’t be due before it starts.</strong><span>It starts 16 Nov: give it a due date on or after that, or press Escape to keep 17 Nov.</span></p>
+  <p class="hidden" role="status">Moved MIG-7 to 23–27 Nov.</p>
+  <!-- a draft: <div class="gantt-draft" role="region" aria-label="Draft"><span class="badge writes">Draft</span><p><strong>2 tasks changed.</strong> The plan ends 2 days later, 11 Dec. Nothing is saved until you keep it.</p><button type="button" class="small primary">Keep it</button><button type="button" class="small">Drop it</button></div> -->
+  <div class="gantt-scroll" tabindex="0" role="group" aria-label="Data center migration, 2 Nov to 13 Dec">
+    <div class="gantt-grid">
+      <div class="gantt-side gantt-sheet" role="treegrid" aria-label="Data center migration’s tasks" aria-describedby="t-keys">
+        <div class="gantt-side-head" role="row"><span class="gantt-cell name" role="columnheader">Task</span><span class="gantt-cell date" role="columnheader">Start</span><span class="gantt-cell date" role="columnheader">Due</span><span class="gantt-cell duration" role="columnheader">Estimate</span><span class="gantt-cell person" role="columnheader">Assignee</span><span class="gantt-cell dates planned" role="columnheader">Planned</span></div>
+        <div class="gantt-rows" role="rowgroup">                                   <!-- .dragging while a row is on its way -->
+          <div class="gantt-row summary" role="row" data-depth="0" aria-level="1" aria-expanded="true" aria-selected="false">
+            <span class="gantt-cell name" role="gridcell" tabindex="-1"><a href="…" tabindex="-1">Build the new site</a></span>
+            <span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true"></span>…
+          </div>
+          <div class="gantt-row" role="row" data-depth="1" aria-level="2" aria-selected="true">   <!-- .locked .drafted .moving .drop-before .drop-after .drop-into -->
+            <span class="gantt-cell name" role="gridcell" tabindex="0"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-6" aria-describedby="t-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-6</span><a href="…" tabindex="-1">Order the hardware</a><span class="hidden">, on the critical path</span></span>
+            <span class="gantt-cell date" role="gridcell" tabindex="-1">9 Nov</span>
+            <span class="gantt-cell date editing" role="gridcell"><input type="text" value="13 Nov" aria-label="Due date of MIG-6"></span>   <!-- refused: aria-invalid="true" aria-describedby="t-error" -->
+            <span class="gantt-cell duration saving" role="gridcell" tabindex="-1">5d<span class="hidden">, saving</span></span>
+            <span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">AS</span><span class="who-name">Anna Schmidt</span></span></span>
+            <span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">9–13 Nov</span>
+          </div>
+          <div class="gantt-row new" role="row" data-depth="1" aria-level="2"><span class="gantt-cell name" role="gridcell"><svg class="icon" aria-hidden="true"><!-- plus --></svg><input type="text" placeholder="Add a task" aria-label="New task in Build the new site"></span></div>
+        </div>
+      </div>
+      <svg class="gantt-chart" width="714" height="360" viewBox="0 0 714 360" aria-hidden="true">   <!-- .dragging while a bar or a link is on its way -->
+        <rect class="gantt-off" …/>  <!-- the axis, as above -->
+        <g class="gantt-task critical chosen"><rect class="gantt-bar" x y="T+8" width height="12" rx="4"/>…</g>
+        <rect class="gantt-ring" x="x-3" y="T+5" width="w+6" height="18" rx="6"/>
+        <g class="gantt-handles">
+          <rect class="gantt-hit move" x y="T" width="w" height="32"/>
+          <rect class="gantt-resize" x="x-2" y="T+7" width="4" height="14" rx="2"/><line class="gantt-hit resize" x1="x" x2="x" y1="T" y2="T+32"/>
+          <rect class="gantt-resize" x="x+w-2" y="T+7" width="4" height="14" rx="2"/><line class="gantt-hit resize" x1="x+w" x2="x+w" y1="T" y2="T+32"/>
+          <circle class="gantt-link-handle" cx="x-9" cy="T+14" r="4"/><circle class="gantt-hit link" cx="x-9" cy="T+14" r="4"/>
+          <circle class="gantt-link-handle" cx="x+w+9" cy="T+14" r="4"/><circle class="gantt-hit link" cx="x+w+9" cy="T+14" r="4"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+```
+
+| Mark | Its attributes |
+| --- | --- |
+| On its way | `rect.gantt-was`: where it was, x, T+8, w, 12, rx 4. `rect.gantt-ghost`: where it would land, x′, T+3, w′, 22, rx 6, before the task's group. `text.gantt-ghost-label`: its dates, 8px after the further of the ghost and the bar, at T+18 |
+| A link being drawn | `circle.gantt-link-handle.on` where it starts; `path.gantt-link-draft`, a link's curve to the pointer, with `path.gantt-link-head.draft` at its end; on the target, `g.gantt-task.target` and its start's dot `.on`, and a `text.gantt-ghost-label` beside it |
+| A date someone set | `path.gantt-set`: a start, at its day's left edge x, `M x+4 T+6 H x V T+22 H x+4`; a due date, at its day's right edge x, `M x-4 T+6 H x V T+22 H x-4` |
+| Locked | `<svg class="gantt-lock" x="x+w+6" y="T+8" width="12" height="12" viewBox="0 0 24 24"><path d="M7 11h10a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1z"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/><title>…</title></svg>` |
+| A row moved | `line.gantt-drop-line`: across the chart, 1.5px inside the edge where it would land; `rect.gantt-drop-into`: 0, T, the chart's width, the row's height, for the row it would go under |
+| A draft | `g.gantt-task.drafted` for each task it changed, with its `rect.gantt-was` |
+
+Draw in this order: days off, rules and the axis; a row's `gantt-drop-into`; curves; summaries; for each task, where it was, where it would land, its group, its ring, its handles and its label; a link being drawn; a row's drop line; today.

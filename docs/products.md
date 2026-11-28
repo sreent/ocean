@@ -223,6 +223,12 @@ a4a is new, and starts on Ocean. Its web app is React 19 with Tailwind v4, which
 | A timer running / paused | its time in `--accent`, "Running" / in `--text`, "Paused" |
 | A day in a timesheet over / under its hours | `--warn`, at 600 / `--muted`; the figures beside it say how much |
 | A day a task's assignee is away, on the Gantt | `--sunken` behind the bar, edged in dashes of `--line-control`; half a day the dashed edge alone; never why |
+| A task on the timeline chosen / on its way / where it would land | `--accent-soft`, its handles in `--accent`, the focus ring on the one whose row has the focus / edged in `--accent`, where it was dashed / dashed in `--accent` on `--accent-soft`, with its dates, as a board's slot |
+| A date someone set, where the plan differs | a bracket in `--muted`: "[" at a start the plan comes after, "]" at a due date it finishes before |
+| A task nobody here may change | no handles, a lock, and why in words |
+| A draft of a plan | `--writes`, what's written and not yet relied on: a band across the chart with Keep and Drop, its frame in that colour, and each task it changed dashed |
+| What moving a task would also move | levelling's list of moves, a box to accept each, its date in the grammar of a change; nothing moves until the person says |
+| An issue on the calendar | a chip on the week's grid, placed by classes alone; going on past the week, a square, dashed end with a chevron; a full day, "+2 more" |
 | An issue's news in a Teams channel | the kit's cards from `teams/cards/a4a-change.json`: who did what, the issue's line, its state in a Badge; only what every reader of the project may see |
 | An issue as one person sees it in Teams, and what their action did | `teams/cards/a4a-issue.json`, answered in place for them alone; a refusal in `Attention`, with its words |
 | A Teams or Slack message made an issue | Teams: the dialog from `teams/cards/a4a-new-issue.json` (the project, a summary from its first line, the message as the description), answered with the issue card; Slack: its own modal, in the same order. The issue's page names where it came from in a side card (`.card.side-card`): the chat, the channel and a link to the message, who sent it and when, its files as links, and a `.note` when it was cut to fit |
@@ -251,6 +257,8 @@ For its agile boards and time tracking it brought [Backlog](../components/Backlo
 For a4a installed on a phone it brought [Notice](../components/Notice/README.md), a word about the app itself above every page, and taught the frame a phone's ways: the page reaching the screen's edges and kept clear of the notch and the home indicator, everything to tap 44px on a touch screen, a board's columns a phone's width with a swipe settling on each, and the issue row's box a label that's its target.
 
 For its whiteboards it brought [Whiteboard](../components/Whiteboard/README.md): a team's canvas as SVG drawn from attributes alone, so it needs no inline style, with sections, notes whose tone is a meaning and a word, issue and article cards as each reader may see them, and arrows that become links; the keyboard's and a screen reader's way through it, its outline in reading order; and who is looking.
+
+For planning as views of one search it brought [Calendar](../components/Calendar/README.md), a month or a week of issues as chips that span days, with a tray of those with no date to drag onto one, and [Agenda](../components/Agenda/README.md), a timeline or a calendar as a phone shows it; and it taught the [Gantt](../components/Gantt/README.md) to be changed where it's seen (a sheet of cells typed in place, bars dragged, stretched and linked, rows ranked by hand, the axis at four zooms, a draft, and what a move would also move), the [IssueList](../components/IssueList/README.md) to group its issues under heads that fold, and the [Toast](../components/Toast/README.md) to say what it says once, from a live region that's always there, and to stay long enough to read.
 
 For its apps it brought [AppFrame](../components/AppFrame/README.md): an app's widget on a page, in a sandboxed frame of its own and named as an app's, with what it said and an ask when it wants to open something, the page never moved without the person; and an app's card for the admin's list, with what it may do in the words its consent showed.
 

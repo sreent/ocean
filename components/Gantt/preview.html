@@ -1,4 +1,4 @@
-<!-- @dsCard group="Plans" height=614 width=1100 subtitle="Data center migration: the critical path in ink, the baseline beneath, a late task, today, and where a what-if would move a task" -->
+<!-- @dsCard group="Plans" height=2400 width=1280 subtitle="Data center migration: as it reads, and to change in place: bars chosen, dragged and linked, cells edited, rows ranked, a draft, what a move would also move, and the axis at four zooms" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,6 +11,8 @@
 </head>
 <body>
 <div id="root">
+<div class="ds-stack">
+<div class="ds-group"><p class="label">As it reads</p>
 <section class="gantt gantt-box" aria-labelledby="gantt-title">
 <h2 id="gantt-title" class="hidden">Data center migration, by day</h2>
 <div class="gantt-scroll" tabindex="0" role="group" aria-label="Data center migration, 2 Nov to 13 Dec">
@@ -155,5 +157,665 @@
 </ul>
 </section>
 </div>
+<div class="ds-group"><p class="label">To change, in place: a task chosen, with its handles and the focus ring; a date set and the date planned; cells being typed in, refused and saving; a task nobody here may change; new tasks</p>
+<section class="gantt gantt-box editable" aria-labelledby="ga-title">
+<h2 id="ga-title" class="hidden">Data center migration, to change</h2>
+<div class="gantt-tools">
+<div class="modes" role="group" aria-label="Zoom"><button type="button" aria-pressed="true">Day</button><button type="button" aria-pressed="false">Week</button><button type="button" aria-pressed="false">Month</button><button type="button" aria-pressed="false">Quarter</button></div>
+<button type="button">Today</button><span class="grow"></span>
+</div>
+<p class="note" id="a-keys">Drag a bar to move it, its ends to change how long it takes, and a dot at its end onto another task to link them. From the keyboard, on a task’s row: <kbd>Alt</kbd> and <kbd>←</kbd> or <kbd>→</kbd> moves it a working day, with <kbd>Shift</kbd> changes its length, and <kbd>Alt</kbd> and <kbd>↑</kbd> or <kbd>↓</kbd> moves its row. <kbd>Enter</kbd> edits a cell.</p>
+<p class="error-note" id="a-error" role="alert"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg><strong>MIG-8 can’t be due before it starts.</strong><span>It starts 16 Nov: give it a due date on or after that, or press Escape to keep 17 Nov.</span></p>
+<p class="hidden" role="status">Saving MIG-9’s estimate, 3d.</p>
+<div class="gantt-scroll" tabindex="0" role="group" aria-label="Data center migration, 2 Nov to 13 Dec">
+<div class="gantt-grid">
+<div class="gantt-side gantt-sheet" role="treegrid" aria-label="Data center migration’s tasks" aria-describedby="a-keys">
+<div class="gantt-side-head" role="row"><span class="gantt-cell name" role="columnheader">Task</span><span class="gantt-cell date" role="columnheader">Start</span><span class="gantt-cell date" role="columnheader">Due</span><span class="gantt-cell duration" role="columnheader">Estimate</span><span class="gantt-cell person" role="columnheader">Assignee</span><span class="gantt-cell dates planned" role="columnheader">Planned</span></div>
+<div class="gantt-rows" role="rowgroup">
+<div class="gantt-row summary" role="row" data-depth="0" aria-level="1" aria-expanded="true" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><a href="#" tabindex="-1">Build the new site</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell person" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">9–25 Nov</span></div>
+<div class="gantt-row" role="row" data-depth="1" aria-level="2" aria-selected="true"><span class="gantt-cell name" role="gridcell" tabindex="0"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-6" aria-describedby="a-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-6</span><a href="#" tabindex="-1">Order the hardware</a><span class="hidden">, chosen, on the critical path</span></span><span class="gantt-cell date" role="gridcell" tabindex="-1">9 Nov</span><span class="gantt-cell date" role="gridcell" tabindex="-1">13 Nov</span><span class="gantt-cell duration" role="gridcell" tabindex="-1">5d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">AS</span><span class="who-name">Anna Schmidt</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">9–13 Nov</span></div>
+<div class="gantt-row" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-7" aria-describedby="a-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-7</span><a href="#" tabindex="-1">Rack and cable</a><span class="hidden">, on the critical path: its start is set for 16 Nov, and it’s planned for 18–24 Nov, after Order the hardware</span></span><span class="gantt-cell date editing" role="gridcell"><input type="text" value="16 Nov" aria-label="Start of MIG-7"></span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1">5d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">KM</span><span class="who-name">Kofi Mensah</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">18–24 Nov</span></div>
+<div class="gantt-row" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-8" aria-describedby="a-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-8</span><a href="#" tabindex="-1">Set up the network</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1">16 Nov</span><span class="gantt-cell date editing" role="gridcell"><input type="text" value="12 Nov" aria-label="Due date of MIG-8" aria-invalid="true" aria-describedby="a-error"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1">2d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">IA</span><span class="who-name">Inès Aubert</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">16–17 Nov</span></div>
+<div class="gantt-row" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-9" aria-describedby="a-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-9</span><a href="#" tabindex="-1">Burn-in tests</a><span class="hidden">, on the critical path: due 27 Nov, planned for 24–25 Nov</span></span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell date" role="gridcell" tabindex="-1">27 Nov</span><span class="gantt-cell duration saving" role="gridcell" tabindex="-1">3d<span class="hidden">, saving</span></span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">LF</span><span class="who-name">Lena Fischer</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">24–25 Nov</span></div>
+<div class="gantt-row new" role="row" data-depth="1" aria-level="2"><span class="gantt-cell name" role="gridcell"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 5.5v13"/><path d="M5.5 12h13"/></svg><input type="text" placeholder="Add a task" aria-label="New task in Build the new site"></span></div>
+<div class="gantt-row summary" role="row" data-depth="0" aria-level="1" aria-expanded="true" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><a href="#" tabindex="-1">Move and cut over</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell person" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">30 Nov–4 Dec</span></div>
+<div class="gantt-row locked" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1" aria-readonly="true"><span class="issue-id">MIG-12</span><a href="#" tabindex="-1">Move the services</a><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 11h10a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1z"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/></svg><span class="hidden">, read-only: it’s in Infrastructure, which you can only read</span></span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true">30 Nov</span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true">2 Dec</span><span class="gantt-cell duration" role="gridcell" tabindex="-1" aria-readonly="true">3d</span><span class="gantt-cell person" role="gridcell" tabindex="-1" aria-readonly="true"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">TG</span><span class="who-name">Tomás García</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">30 Nov–2 Dec</span></div>
+<div class="gantt-row" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-14" aria-describedby="a-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-14</span><a href="#" tabindex="-1">Cutover</a><span class="hidden">, a milestone</span></span><span class="gantt-cell date" role="gridcell" tabindex="-1">4 Dec</span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell person" role="gridcell" tabindex="-1"></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">4 Dec</span></div>
+<div class="gantt-row new" role="row" data-depth="0" aria-level="1"><span class="gantt-cell name" role="gridcell"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 5.5v13"/><path d="M5.5 12h13"/></svg><input type="text" placeholder="Add a task" aria-label="New task"></span></div>
+</div>
+</div>
+<svg class="gantt-chart" width="714" height="360" viewBox="0 0 714 360" aria-hidden="true">
+<rect class="gantt-weekend" x="85" y="40" width="34" height="320"/>
+<rect class="gantt-weekend" x="204" y="40" width="34" height="320"/>
+<rect class="gantt-weekend" x="323" y="40" width="34" height="320"/>
+<rect class="gantt-weekend" x="442" y="40" width="34" height="320"/>
+<rect class="gantt-weekend" x="561" y="40" width="34" height="320"/>
+<rect class="gantt-weekend" x="680" y="40" width="34" height="320"/>
+<line class="gantt-rule" x1="0" x2="714" y1="71.5" y2="71.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="103.5" y2="103.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="135.5" y2="135.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="167.5" y2="167.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="199.5" y2="199.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="231.5" y2="231.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="263.5" y2="263.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="295.5" y2="295.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="327.5" y2="327.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="39.5" y2="39.5"/>
+<line class="gantt-rule" x1="118.5" x2="118.5" y1="0" y2="360"/>
+<line class="gantt-rule" x1="237.5" x2="237.5" y1="0" y2="360"/>
+<line class="gantt-rule" x1="356.5" x2="356.5" y1="0" y2="360"/>
+<line class="gantt-rule" x1="475.5" x2="475.5" y1="0" y2="360"/>
+<line class="gantt-rule" x1="594.5" x2="594.5" y1="0" y2="360"/>
+<text class="gantt-major" x="5" y="15">2 Nov</text>
+<text class="gantt-major" x="124" y="15">9 Nov</text>
+<text class="gantt-major" x="243" y="15">16 Nov</text>
+<text class="gantt-major" x="362" y="15">23 Nov</text>
+<text class="gantt-major" x="481" y="15">30 Nov</text>
+<text class="gantt-major" x="600" y="15">7 Dec</text>
+<text x="8.5" y="33" text-anchor="middle">2</text>
+<text x="25.5" y="33" text-anchor="middle">3</text>
+<text x="42.5" y="33" text-anchor="middle">4</text>
+<text x="59.5" y="33" text-anchor="middle">5</text>
+<text x="76.5" y="33" text-anchor="middle">6</text>
+<text x="93.5" y="33" text-anchor="middle">7</text>
+<text x="110.5" y="33" text-anchor="middle">8</text>
+<text x="127.5" y="33" text-anchor="middle">9</text>
+<text x="144.5" y="33" text-anchor="middle">10</text>
+<text x="161.5" y="33" text-anchor="middle">11</text>
+<text x="178.5" y="33" text-anchor="middle">12</text>
+<text x="195.5" y="33" text-anchor="middle">13</text>
+<text x="212.5" y="33" text-anchor="middle">14</text>
+<text x="229.5" y="33" text-anchor="middle">15</text>
+<text x="246.5" y="33" text-anchor="middle">16</text>
+<text x="263.5" y="33" text-anchor="middle">17</text>
+<text x="280.5" y="33" text-anchor="middle">18</text>
+<text x="297.5" y="33" text-anchor="middle">19</text>
+<text x="314.5" y="33" text-anchor="middle">20</text>
+<text x="331.5" y="33" text-anchor="middle">21</text>
+<text x="348.5" y="33" text-anchor="middle">22</text>
+<text x="365.5" y="33" text-anchor="middle">23</text>
+<text x="382.5" y="33" text-anchor="middle">24</text>
+<text x="399.5" y="33" text-anchor="middle">25</text>
+<text x="416.5" y="33" text-anchor="middle">26</text>
+<text x="433.5" y="33" text-anchor="middle">27</text>
+<text x="450.5" y="33" text-anchor="middle">28</text>
+<text x="467.5" y="33" text-anchor="middle">29</text>
+<text x="484.5" y="33" text-anchor="middle">30</text>
+<text x="501.5" y="33" text-anchor="middle">1</text>
+<text x="518.5" y="33" text-anchor="middle">2</text>
+<text x="535.5" y="33" text-anchor="middle">3</text>
+<text x="552.5" y="33" text-anchor="middle">4</text>
+<text x="569.5" y="33" text-anchor="middle">5</text>
+<text x="586.5" y="33" text-anchor="middle">6</text>
+<text x="603.5" y="33" text-anchor="middle">7</text>
+<text x="620.5" y="33" text-anchor="middle">8</text>
+<text x="637.5" y="33" text-anchor="middle">9</text>
+<text x="654.5" y="33" text-anchor="middle">10</text>
+<text x="671.5" y="33" text-anchor="middle">11</text>
+<text x="688.5" y="33" text-anchor="middle">12</text>
+<text x="705.5" y="33" text-anchor="middle">13</text>
+
+<path class="gantt-link critical" d="M202 86H205Q209 86 209 90V114Q209 118 213 118H269"/><path class="gantt-link-head critical" d="M274 118l-6 -3.5v7z"/>
+<path class="gantt-link" d="M202 86H205Q209 86 209 90V146Q209 150 213 150H235"/><path class="gantt-link-head" d="M240 150l-6 -3.5v7z"/>
+<path class="gantt-link critical" d="M389 118H392Q396 118 396 122V134Q396 138 392 138H367Q363 138 363 142V178Q363 182 367 182H371"/><path class="gantt-link-head critical" d="M376 182l-6 -3.5v7z"/>
+<path class="gantt-link" d="M270 150H273Q277 150 277 154V178Q277 182 281 182H371"/><path class="gantt-link-head" d="M376 182l-6 -3.5v7z"/>
+<path class="gantt-link critical" d="M406 182H409Q413 182 413 186V274Q413 278 417 278H473"/><path class="gantt-link-head critical" d="M478 278l-6 -3.5v7z"/>
+<path class="gantt-link critical" d="M525 278H528Q532 278 532 282V306Q532 310 536 310H539.5"/><path class="gantt-link-head critical" d="M544.5 310l-6 -3.5v7z"/>
+<path class="gantt-summary" d="M121 61V52H406V61"/>
+<g class="gantt-task critical chosen"><rect class="gantt-bar" x="121" y="80" width="81" height="12" rx="4"/><rect class="gantt-done-part" x="123" y="82" width="61.6" height="8" rx="2.5"/></g>
+<rect class="gantt-ring" x="118" y="77" width="87" height="18" rx="6"/>
+<g class="gantt-handles"><rect class="gantt-hit move" x="121" y="72" width="81" height="32"/><rect class="gantt-resize" x="119" y="79" width="4" height="14" rx="2"/><line class="gantt-hit resize" x1="121" x2="121" y1="72" y2="104"/><rect class="gantt-resize" x="200" y="79" width="4" height="14" rx="2"/><line class="gantt-hit resize" x1="202" x2="202" y1="72" y2="104"/><circle class="gantt-link-handle" cx="112" cy="86" r="4"/><circle class="gantt-hit link" cx="112" cy="86" r="4"/><circle class="gantt-link-handle" cx="211" cy="86" r="4"/><circle class="gantt-hit link" cx="211" cy="86" r="4"/></g>
+<g class="gantt-task critical"><rect class="gantt-bar" x="274" y="112" width="115" height="12" rx="4"/><path class="gantt-set" d="M243 110H239V126H243"/></g>
+<g class="gantt-task"><rect class="gantt-bar" x="240" y="144" width="30" height="12" rx="4"/></g>
+<g class="gantt-task critical"><rect class="gantt-bar" x="376" y="176" width="30" height="12" rx="4"/><path class="gantt-set" d="M437 174H441V190H437"/></g>
+<path class="gantt-summary" d="M478 253V244H559V253"/>
+<g class="gantt-task critical locked"><rect class="gantt-bar" x="478" y="272" width="47" height="12" rx="4"/><svg class="gantt-lock" x="531" y="272" width="12" height="12" viewBox="0 0 24 24"><path d="M7 11h10a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1z"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/></svg></g>
+<g class="gantt-task critical"><path class="gantt-milestone" d="M552.5 302l8 8 -8 8 -8 -8z"/></g>
+
+<line class="gantt-today" x1="280.5" x2="280.5" y1="34" y2="360"/><text class="gantt-today-label" x="284.5" y="350">Today</text>
+</svg>
+</div>
+</div>
+</section>
+</div>
+<div class="ds-group"><p class="label">On its way: a bar dragged and where it would land; a link drawn onto the task under it; a row moved, and where it would go; and what the move would also move</p>
+<section class="gantt gantt-box editable" aria-labelledby="gb-title">
+<h2 id="gb-title" class="hidden">Data center migration, a task on its way</h2>
+<div class="gantt-tools">
+<div class="modes" role="group" aria-label="Zoom"><button type="button" aria-pressed="true">Day</button><button type="button" aria-pressed="false">Week</button><button type="button" aria-pressed="false">Month</button><button type="button" aria-pressed="false">Quarter</button></div>
+<button type="button">Today</button><span class="grow"></span>
+</div>
+<p class="note" id="b-keys">Drag a bar to move it, its ends to change how long it takes, and a dot at its end onto another task to link them. From the keyboard, on a task’s row: <kbd>Alt</kbd> and <kbd>←</kbd> or <kbd>→</kbd> moves it a working day, with <kbd>Shift</kbd> changes its length, and <kbd>Alt</kbd> and <kbd>↑</kbd> or <kbd>↓</kbd> moves its row. <kbd>Enter</kbd> edits a cell.</p>
+<p class="hidden" role="status">Drop it to start MIG-7 23 Nov.</p>
+<div class="gantt-scroll" tabindex="0" role="group" aria-label="Data center migration, 2 Nov to 13 Dec">
+<div class="gantt-grid">
+<div class="gantt-side gantt-sheet" role="treegrid" aria-label="Data center migration’s tasks" aria-describedby="b-keys">
+<div class="gantt-side-head" role="row"><span class="gantt-cell name" role="columnheader">Task</span><span class="gantt-cell date" role="columnheader">Start</span><span class="gantt-cell date" role="columnheader">Due</span><span class="gantt-cell duration" role="columnheader">Estimate</span><span class="gantt-cell person" role="columnheader">Assignee</span><span class="gantt-cell dates planned" role="columnheader">Planned</span></div>
+<div class="gantt-rows dragging" role="rowgroup">
+<div class="gantt-row summary" role="row" data-depth="0" aria-level="1" aria-expanded="true" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><a href="#" tabindex="-1">Build the new site</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell person" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">9–27 Nov</span></div>
+<div class="gantt-row" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-6" aria-describedby="b-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-6</span><a href="#" tabindex="-1">Order the hardware</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1">9 Nov</span><span class="gantt-cell date" role="gridcell" tabindex="-1">13 Nov</span><span class="gantt-cell duration" role="gridcell" tabindex="-1">5d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">AS</span><span class="who-name">Anna Schmidt</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">9–13 Nov</span></div>
+<div class="gantt-row" role="row" data-depth="1" aria-level="2" aria-selected="true"><span class="gantt-cell name" role="gridcell" tabindex="0"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-7" aria-describedby="b-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-7</span><a href="#" tabindex="-1">Rack and cable</a><span class="hidden">, being moved: drop it to start it 23 Nov</span></span><span class="gantt-cell date" role="gridcell" tabindex="-1">16 Nov</span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1">5d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">KM</span><span class="who-name">Kofi Mensah</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">18–24 Nov</span></div>
+<div class="gantt-row" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-8" aria-describedby="b-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-8</span><a href="#" tabindex="-1">Set up the network</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1">16 Nov</span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1">2d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">IA</span><span class="who-name">Inès Aubert</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">16–17 Nov</span></div>
+<div class="gantt-row" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-10" aria-describedby="b-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-10</span><a href="#" tabindex="-1">Label the racks</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1">25 Nov</span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1">2d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">PN</span><span class="who-name">Priya Natarajan</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">25–26 Nov</span></div>
+<div class="gantt-row" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-9" aria-describedby="b-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-9</span><a href="#" tabindex="-1">Burn-in tests</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell date" role="gridcell" tabindex="-1">27 Nov</span><span class="gantt-cell duration" role="gridcell" tabindex="-1">3d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">LF</span><span class="who-name">Lena Fischer</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">25–27 Nov</span></div>
+<div class="gantt-row summary" role="row" data-depth="0" aria-level="1" aria-expanded="true" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><a href="#" tabindex="-1">Move and cut over</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell person" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">30 Nov–8 Dec</span></div>
+<div class="gantt-row moving" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-11" aria-describedby="b-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-11</span><a href="#" tabindex="-1">Migrate storage</a><span class="hidden">, being moved: drop it below Move the services</span></span><span class="gantt-cell date" role="gridcell" tabindex="-1">30 Nov</span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1">3d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">TG</span><span class="who-name">Tomás García</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">30 Nov–2 Dec</span></div>
+<div class="gantt-row drop-after" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-12" aria-describedby="b-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-12</span><a href="#" tabindex="-1">Move the services</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1">3 Dec</span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1">3d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">TG</span><span class="who-name">Tomás García</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">3–7 Dec</span></div>
+<div class="gantt-row" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-14" aria-describedby="b-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-14</span><a href="#" tabindex="-1">Cutover</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1">8 Dec</span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell person" role="gridcell" tabindex="-1"></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">8 Dec</span></div>
+</div>
+</div>
+<svg class="gantt-chart dragging" width="714" height="360" viewBox="0 0 714 360" aria-hidden="true">
+<rect class="gantt-weekend" x="85" y="40" width="34" height="320"/>
+<rect class="gantt-weekend" x="204" y="40" width="34" height="320"/>
+<rect class="gantt-weekend" x="323" y="40" width="34" height="320"/>
+<rect class="gantt-weekend" x="442" y="40" width="34" height="320"/>
+<rect class="gantt-weekend" x="561" y="40" width="34" height="320"/>
+<rect class="gantt-weekend" x="680" y="40" width="34" height="320"/>
+<line class="gantt-rule" x1="0" x2="714" y1="71.5" y2="71.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="103.5" y2="103.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="135.5" y2="135.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="167.5" y2="167.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="199.5" y2="199.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="231.5" y2="231.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="263.5" y2="263.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="295.5" y2="295.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="327.5" y2="327.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="39.5" y2="39.5"/>
+<line class="gantt-rule" x1="118.5" x2="118.5" y1="0" y2="360"/>
+<line class="gantt-rule" x1="237.5" x2="237.5" y1="0" y2="360"/>
+<line class="gantt-rule" x1="356.5" x2="356.5" y1="0" y2="360"/>
+<line class="gantt-rule" x1="475.5" x2="475.5" y1="0" y2="360"/>
+<line class="gantt-rule" x1="594.5" x2="594.5" y1="0" y2="360"/>
+<text class="gantt-major" x="5" y="15">2 Nov</text>
+<text class="gantt-major" x="124" y="15">9 Nov</text>
+<text class="gantt-major" x="243" y="15">16 Nov</text>
+<text class="gantt-major" x="362" y="15">23 Nov</text>
+<text class="gantt-major" x="481" y="15">30 Nov</text>
+<text class="gantt-major" x="600" y="15">7 Dec</text>
+<text x="8.5" y="33" text-anchor="middle">2</text>
+<text x="25.5" y="33" text-anchor="middle">3</text>
+<text x="42.5" y="33" text-anchor="middle">4</text>
+<text x="59.5" y="33" text-anchor="middle">5</text>
+<text x="76.5" y="33" text-anchor="middle">6</text>
+<text x="93.5" y="33" text-anchor="middle">7</text>
+<text x="110.5" y="33" text-anchor="middle">8</text>
+<text x="127.5" y="33" text-anchor="middle">9</text>
+<text x="144.5" y="33" text-anchor="middle">10</text>
+<text x="161.5" y="33" text-anchor="middle">11</text>
+<text x="178.5" y="33" text-anchor="middle">12</text>
+<text x="195.5" y="33" text-anchor="middle">13</text>
+<text x="212.5" y="33" text-anchor="middle">14</text>
+<text x="229.5" y="33" text-anchor="middle">15</text>
+<text x="246.5" y="33" text-anchor="middle">16</text>
+<text x="263.5" y="33" text-anchor="middle">17</text>
+<text x="280.5" y="33" text-anchor="middle">18</text>
+<text x="297.5" y="33" text-anchor="middle">19</text>
+<text x="314.5" y="33" text-anchor="middle">20</text>
+<text x="331.5" y="33" text-anchor="middle">21</text>
+<text x="348.5" y="33" text-anchor="middle">22</text>
+<text x="365.5" y="33" text-anchor="middle">23</text>
+<text x="382.5" y="33" text-anchor="middle">24</text>
+<text x="399.5" y="33" text-anchor="middle">25</text>
+<text x="416.5" y="33" text-anchor="middle">26</text>
+<text x="433.5" y="33" text-anchor="middle">27</text>
+<text x="450.5" y="33" text-anchor="middle">28</text>
+<text x="467.5" y="33" text-anchor="middle">29</text>
+<text x="484.5" y="33" text-anchor="middle">30</text>
+<text x="501.5" y="33" text-anchor="middle">1</text>
+<text x="518.5" y="33" text-anchor="middle">2</text>
+<text x="535.5" y="33" text-anchor="middle">3</text>
+<text x="552.5" y="33" text-anchor="middle">4</text>
+<text x="569.5" y="33" text-anchor="middle">5</text>
+<text x="586.5" y="33" text-anchor="middle">6</text>
+<text x="603.5" y="33" text-anchor="middle">7</text>
+<text x="620.5" y="33" text-anchor="middle">8</text>
+<text x="637.5" y="33" text-anchor="middle">9</text>
+<text x="654.5" y="33" text-anchor="middle">10</text>
+<text x="671.5" y="33" text-anchor="middle">11</text>
+<text x="688.5" y="33" text-anchor="middle">12</text>
+<text x="705.5" y="33" text-anchor="middle">13</text>
+
+<path class="gantt-link critical" d="M202 86H205Q209 86 209 90V114Q209 118 213 118H269"/><path class="gantt-link-head critical" d="M274 118l-6 -3.5v7z"/>
+<path class="gantt-link" d="M202 86H205Q209 86 209 90V146Q209 150 213 150H235"/><path class="gantt-link-head" d="M240 150l-6 -3.5v7z"/>
+<path class="gantt-link" d="M270 150H273Q277 150 277 154V210Q277 214 281 214H388"/><path class="gantt-link-head" d="M393 214l-6 -3.5v7z"/>
+<path class="gantt-link" d="M440 214H443Q447 214 447 218V274Q447 278 451 278H473"/><path class="gantt-link-head" d="M478 278l-6 -3.5v7z"/>
+<path class="gantt-link" d="M525 278H528Q532 278 532 282V294Q532 298 528 298H520Q516 298 516 302V306Q516 310 520 310H524"/><path class="gantt-link-head" d="M529 310l-6 -3.5v7z"/>
+<path class="gantt-link" d="M610 310H613Q617 310 617 314V326Q617 330 613 330H603.5Q599.5 330 599.5 334V338Q599.5 342 603.5 342H607.5"/><path class="gantt-link-head" d="M612.5 342l-6 -3.5v7z"/>
+<path class="gantt-summary" d="M121 61V52H440V61"/>
+<g class="gantt-task critical"><rect class="gantt-bar" x="121" y="80" width="81" height="12" rx="4"/><rect class="gantt-done-part" x="123" y="82" width="61.6" height="8" rx="2.5"/></g>
+<rect class="gantt-was" x="274" y="112" width="115" height="12" rx="4"/>
+<rect class="gantt-ghost" x="359" y="107" width="81" height="22" rx="6"/>
+<g class="gantt-task critical chosen moving"><rect class="gantt-bar" x="353" y="112" width="115" height="12" rx="4"/></g>
+<text class="gantt-ghost-label" x="476" y="122">23–27 Nov</text>
+<g class="gantt-task"><rect class="gantt-bar" x="240" y="144" width="30" height="12" rx="4"/></g>
+<g class="gantt-task target"><rect class="gantt-bar" x="393" y="176" width="30" height="12" rx="4"/></g>
+<g class="gantt-task critical"><rect class="gantt-bar" x="393" y="208" width="47" height="12" rx="4"/></g>
+<path class="gantt-summary" d="M478 253V244H627V253"/>
+<g class="gantt-task"><rect class="gantt-bar" x="478" y="272" width="47" height="12" rx="4"/></g>
+<g class="gantt-task"><rect class="gantt-bar" x="529" y="304" width="81" height="12" rx="4"/></g>
+<g class="gantt-task"><path class="gantt-milestone" d="M620.5 334l8 8 -8 8 -8 -8z"/></g>
+<circle class="gantt-link-handle on" cx="279" cy="150" r="4"/><path class="gantt-link-draft" d="M283 150H287Q291 150 291 154V178Q291 182 295 182H374"/><path class="gantt-link-head draft" d="M380 182l-6 -3.5v7z"/><circle class="gantt-link-handle on" cx="384" cy="182" r="4"/><text class="gantt-ghost-label" x="431" y="186">After MIG-8</text><line class="gantt-drop-line" x1="2" x2="712" y1="326.5" y2="326.5"/>
+<line class="gantt-today" x1="280.5" x2="280.5" y1="34" y2="360"/><text class="gantt-today-label" x="284.5" y="254">Today</text>
+</svg>
+</div>
+</div>
+<section class="levelling gantt-proposals" aria-labelledby="b-prop" tabindex="-1">
+<h3 id="b-prop">Moving MIG-7 to 23–27 Nov moves 3 tasks whose dates people set</h3>
+<p class="note">Their dates move only with yours, and only those you keep ticked. The rest of the plan moves as it follows.</p>
+<ul class="levelling-list choose">
+<li><label class="issue-pick"><input type="checkbox" checked aria-label="Move MIG-9 too"></label><span class="issue-id">MIG-9</span><span class="levelling-what">Burn-in tests <span class="who-about">· Lena Fischer</span></span><ul class="change-lines"><li><span class="change-field">Due date:</span> <del>27 Nov</del> → <ins>1 Dec</ins></li></ul><span class="levelling-by">2 days later</span></li>
+<li><label class="issue-pick"><input type="checkbox" checked aria-label="Move MIG-11 too"></label><span class="issue-id">MIG-11</span><span class="levelling-what">Migrate storage <span class="who-about">· Tomás García</span></span><ul class="change-lines"><li><span class="change-field">Start date:</span> <del>30 Nov</del> → <ins>2 Dec</ins></li></ul><span class="levelling-by">2 days later</span></li>
+<li><label class="issue-pick"><input type="checkbox" aria-label="Move MIG-12 too"></label><span class="issue-id">MIG-12</span><span class="levelling-what">Move the services <span class="who-about">· Tomás García</span></span><ul class="change-lines"><li><span class="change-field">Start date:</span> <del>3 Dec</del> → <ins>7 Dec</ins></li></ul><span class="levelling-by">2 days later</span></li>
+</ul>
+<div class="levelling-actions"><button type="button" class="primary">Move MIG-7 and 2 more</button><button type="button">Move them all</button><button type="button">Move MIG-7 alone</button><button type="button" class="link">Put it back</button></div>
+</section>
+</section>
+</div>
+<div class="ds-group"><p class="label">A draft, to keep or drop</p>
+<section class="gantt gantt-box editable" aria-labelledby="gc-title">
+<h2 id="gc-title" class="hidden">Data center migration, as drafted</h2>
+<div class="gantt-draft" role="region" aria-label="Draft">
+<span class="badge writes">Draft</span>
+<p><strong>2 tasks changed, and 2 more follow them.</strong> The plan ends 2 days later, 11 Dec. Nothing is saved until you keep it.</p>
+<button type="button" class="small primary">Keep it</button><button type="button" class="small">Drop it</button>
+</div>
+<div class="gantt-scroll" tabindex="0" role="group" aria-label="Data center migration, 16 Nov to 27 Dec, as drafted">
+<div class="gantt-grid">
+<div class="gantt-side gantt-sheet" role="treegrid" aria-label="Data center migration’s tasks, as drafted" aria-describedby="a-keys">
+<div class="gantt-side-head" role="row"><span class="gantt-cell name" role="columnheader">Task</span><span class="gantt-cell date" role="columnheader">Start</span><span class="gantt-cell date" role="columnheader">Due</span><span class="gantt-cell duration" role="columnheader">Estimate</span><span class="gantt-cell person" role="columnheader">Assignee</span><span class="gantt-cell dates planned" role="columnheader">Planned</span></div>
+<div class="gantt-rows" role="rowgroup">
+<div class="gantt-row summary" role="row" data-depth="0" aria-level="1" aria-expanded="true" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><a href="#" tabindex="-1">Move and cut over</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell person" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">30 Nov–11 Dec</span></div>
+<div class="gantt-row drafted" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="0"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-11" aria-describedby="a-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-11</span><a href="#" tabindex="-1">Migrate storage</a><span class="hidden">, changed in the draft: 5 days, was 3</span></span><span class="gantt-cell date" role="gridcell" tabindex="-1">30 Nov</span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1">5d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">TG</span><span class="who-name">Tomás García</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">30 Nov–4 Dec</span></div>
+<div class="gantt-row drafted" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-12" aria-describedby="a-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-12</span><a href="#" tabindex="-1">Move the services</a><span class="hidden">, changed in the draft: Kofi Mensah, was Tomás García</span></span><span class="gantt-cell date" role="gridcell" tabindex="-1">3 Dec</span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1">3d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">KM</span><span class="who-name">Kofi Mensah</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">7–9 Dec</span></div>
+<div class="gantt-row" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-14" aria-describedby="a-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-14</span><a href="#" tabindex="-1">Cutover</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1">10 Dec</span><span class="gantt-cell date" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1" aria-readonly="true"></span><span class="gantt-cell person" role="gridcell" tabindex="-1"></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">10 Dec</span></div>
+<div class="gantt-row" role="row" data-depth="1" aria-level="2" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-15" aria-describedby="a-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-15</span><a href="#" tabindex="-1">Retire the old site</a><span class="hidden">, moved by the draft: it follows Cutover, was 8–9 Dec</span></span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1">2d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">TG</span><span class="who-name">Tomás García</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">10–11 Dec</span></div>
+</div>
+</div>
+<svg class="gantt-chart" width="714" height="200" viewBox="0 0 714 200" aria-hidden="true">
+<rect class="gantt-weekend" x="85" y="40" width="34" height="160"/>
+<rect class="gantt-weekend" x="204" y="40" width="34" height="160"/>
+<rect class="gantt-weekend" x="323" y="40" width="34" height="160"/>
+<rect class="gantt-weekend" x="442" y="40" width="34" height="160"/>
+<rect class="gantt-weekend" x="561" y="40" width="34" height="160"/>
+<rect class="gantt-weekend" x="680" y="40" width="34" height="160"/>
+<line class="gantt-rule" x1="0" x2="714" y1="71.5" y2="71.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="103.5" y2="103.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="135.5" y2="135.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="167.5" y2="167.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="39.5" y2="39.5"/>
+<line class="gantt-rule" x1="118.5" x2="118.5" y1="0" y2="200"/>
+<line class="gantt-rule" x1="237.5" x2="237.5" y1="0" y2="200"/>
+<line class="gantt-rule" x1="356.5" x2="356.5" y1="0" y2="200"/>
+<line class="gantt-rule" x1="475.5" x2="475.5" y1="0" y2="200"/>
+<line class="gantt-rule" x1="594.5" x2="594.5" y1="0" y2="200"/>
+<text class="gantt-major" x="5" y="15">16 Nov</text>
+<text class="gantt-major" x="124" y="15">23 Nov</text>
+<text class="gantt-major" x="243" y="15">30 Nov</text>
+<text class="gantt-major" x="362" y="15">7 Dec</text>
+<text class="gantt-major" x="481" y="15">14 Dec</text>
+<text class="gantt-major" x="600" y="15">21 Dec</text>
+<text x="8.5" y="33" text-anchor="middle">16</text>
+<text x="25.5" y="33" text-anchor="middle">17</text>
+<text x="42.5" y="33" text-anchor="middle">18</text>
+<text x="59.5" y="33" text-anchor="middle">19</text>
+<text x="76.5" y="33" text-anchor="middle">20</text>
+<text x="93.5" y="33" text-anchor="middle">21</text>
+<text x="110.5" y="33" text-anchor="middle">22</text>
+<text x="127.5" y="33" text-anchor="middle">23</text>
+<text x="144.5" y="33" text-anchor="middle">24</text>
+<text x="161.5" y="33" text-anchor="middle">25</text>
+<text x="178.5" y="33" text-anchor="middle">26</text>
+<text x="195.5" y="33" text-anchor="middle">27</text>
+<text x="212.5" y="33" text-anchor="middle">28</text>
+<text x="229.5" y="33" text-anchor="middle">29</text>
+<text x="246.5" y="33" text-anchor="middle">30</text>
+<text x="263.5" y="33" text-anchor="middle">1</text>
+<text x="280.5" y="33" text-anchor="middle">2</text>
+<text x="297.5" y="33" text-anchor="middle">3</text>
+<text x="314.5" y="33" text-anchor="middle">4</text>
+<text x="331.5" y="33" text-anchor="middle">5</text>
+<text x="348.5" y="33" text-anchor="middle">6</text>
+<text x="365.5" y="33" text-anchor="middle">7</text>
+<text x="382.5" y="33" text-anchor="middle">8</text>
+<text x="399.5" y="33" text-anchor="middle">9</text>
+<text x="416.5" y="33" text-anchor="middle">10</text>
+<text x="433.5" y="33" text-anchor="middle">11</text>
+<text x="450.5" y="33" text-anchor="middle">12</text>
+<text x="467.5" y="33" text-anchor="middle">13</text>
+<text x="484.5" y="33" text-anchor="middle">14</text>
+<text x="501.5" y="33" text-anchor="middle">15</text>
+<text x="518.5" y="33" text-anchor="middle">16</text>
+<text x="535.5" y="33" text-anchor="middle">17</text>
+<text x="552.5" y="33" text-anchor="middle">18</text>
+<text x="569.5" y="33" text-anchor="middle">19</text>
+<text x="586.5" y="33" text-anchor="middle">20</text>
+<text x="603.5" y="33" text-anchor="middle">21</text>
+<text x="620.5" y="33" text-anchor="middle">22</text>
+<text x="637.5" y="33" text-anchor="middle">23</text>
+<text x="654.5" y="33" text-anchor="middle">24</text>
+<text x="671.5" y="33" text-anchor="middle">25</text>
+<text x="688.5" y="33" text-anchor="middle">26</text>
+<text x="705.5" y="33" text-anchor="middle">27</text>
+
+<path class="gantt-link critical" d="M321 86H324Q328 86 328 90V114Q328 118 332 118H354"/><path class="gantt-link-head critical" d="M359 118l-6 -3.5v7z"/>
+<path class="gantt-link critical" d="M406 118H409Q413 118 413 122V134Q413 138 409 138H399.5Q395.5 138 395.5 142V146Q395.5 150 399.5 150H403.5"/><path class="gantt-link-head critical" d="M408.5 150l-6 -3.5v7z"/>
+<path class="gantt-link" d="M424.5 150H427.5Q431.5 150 431.5 154V166Q431.5 170 427.5 170H401Q397 170 397 174V178Q397 182 401 182H405"/><path class="gantt-link-head" d="M410 182l-6 -3.5v7z"/>
+<path class="gantt-summary" d="M240 61V52H440V61"/>
+<rect class="gantt-was" x="240" y="80" width="47" height="12" rx="4"/>
+<g class="gantt-task critical drafted"><rect class="gantt-bar" x="240" y="80" width="81" height="12" rx="4"/></g>
+<rect class="gantt-was" x="291" y="112" width="81" height="12" rx="4"/>
+<g class="gantt-task critical drafted"><rect class="gantt-bar" x="359" y="112" width="47" height="12" rx="4"/><path class="gantt-set" d="M294 110H290V126H294"/></g>
+<g class="gantt-task critical"><path class="gantt-milestone" d="M416.5 142l8 8 -8 8 -8 -8z"/></g>
+<rect class="gantt-was" x="376" y="176" width="30" height="12" rx="4"/>
+<g class="gantt-task"><rect class="gantt-bar" x="410" y="176" width="30" height="12" rx="4"/></g>
+
+<line class="gantt-today" x1="42.5" x2="42.5" y1="34" y2="200"/><text class="gantt-today-label" x="46.5" y="126">Today</text>
+</svg>
+</div>
+</div>
+</section>
+</div>
+<div class="ds-group"><p class="label">Rows apart: one dragged onto another, to go under it; a person being picked</p>
+<section class="gantt gantt-box editable" aria-labelledby="ge-title">
+<h2 id="ge-title" class="hidden">Loose ends, ranked by hand</h2>
+<div class="gantt-scroll" tabindex="0" role="group" aria-label="Loose ends, 2 Nov to 13 Dec">
+<div class="gantt-grid">
+<div class="gantt-side gantt-sheet" role="treegrid" aria-label="Loose ends" aria-describedby="a-keys">
+<div class="gantt-side-head" role="row"><span class="gantt-cell name" role="columnheader">Task</span><span class="gantt-cell date" role="columnheader">Start</span><span class="gantt-cell date" role="columnheader">Due</span><span class="gantt-cell duration" role="columnheader">Estimate</span><span class="gantt-cell person" role="columnheader">Assignee</span><span class="gantt-cell dates planned" role="columnheader">Planned</span></div>
+<div class="gantt-rows dragging" role="rowgroup">
+<div class="gantt-row moving" role="row" data-depth="0" aria-level="1" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-21" aria-describedby="a-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-21</span><a href="#" tabindex="-1">Photograph the old racks</a><span class="hidden">, being moved: drop it under Label the racks</span></span><span class="gantt-cell date" role="gridcell" tabindex="-1">23 Nov</span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1">1d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">PN</span><span class="who-name">Priya Natarajan</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">23 Nov</span></div>
+<div class="gantt-row drop-into" role="row" data-depth="0" aria-level="1" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-10" aria-describedby="a-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-10</span><a href="#" tabindex="-1">Label the racks</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1">25 Nov</span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1">2d</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">PN</span><span class="who-name">Priya Natarajan</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">25–26 Nov</span></div>
+<div class="gantt-row" role="row" data-depth="0" aria-level="1" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-16" aria-describedby="a-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-16</span><a href="#" tabindex="-1">Book the movers</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell date" role="gridcell" tabindex="-1">20 Nov</span><span class="gantt-cell duration" role="gridcell" tabindex="-1">2h</span><span class="gantt-cell person editing" role="gridcell"><input type="text" value="Ko" role="combobox" aria-expanded="true" aria-controls="e-people" aria-autocomplete="list" aria-label="Assignee of MIG-16"><ul class="popover options gantt-pick" popover="manual" role="listbox" id="e-people" aria-label="People who can be assigned"><li role="option" aria-selected="true"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">KM</span><span class="who-name">Kofi Mensah</span></span><span class="option-kind">2 tasks this week</span></li><li role="option" aria-selected="false"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">PN</span><span class="who-name">Priya Natarajan</span></span><span class="option-kind">free</span></li><li role="option" aria-selected="false">Unassigned</li></ul></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">19 Nov</span></div>
+<div class="gantt-row" role="row" data-depth="0" aria-level="1" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-17" aria-describedby="a-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-17</span><a href="#" tabindex="-1">Tell the tenants</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1">1h</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">IA</span><span class="who-name">Inès Aubert</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">20 Nov</span></div>
+<div class="gantt-row" role="row" data-depth="0" aria-level="1" aria-selected="false"><span class="gantt-cell name" role="gridcell" tabindex="-1"><button type="button" class="gantt-grip" tabindex="-1" aria-label="Move MIG-18" aria-describedby="a-keys"><span aria-hidden="true">⋮⋮</span></button><span class="issue-id">MIG-18</span><a href="#" tabindex="-1">Return the keys</a></span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell date" role="gridcell" tabindex="-1"></span><span class="gantt-cell duration" role="gridcell" tabindex="-1">1h</span><span class="gantt-cell person" role="gridcell" tabindex="-1"><span class="who" data-kind="person"><span class="avatar small" aria-hidden="true">AS</span><span class="who-name">Anna Schmidt</span></span></span><span class="gantt-cell dates planned" role="gridcell" tabindex="-1" aria-readonly="true">11 Dec</span></div>
+</div>
+</div>
+<svg class="gantt-chart" width="714" height="200" viewBox="0 0 714 200" aria-hidden="true">
+<rect class="gantt-weekend" x="85" y="40" width="34" height="160"/>
+<rect class="gantt-weekend" x="204" y="40" width="34" height="160"/>
+<rect class="gantt-weekend" x="323" y="40" width="34" height="160"/>
+<rect class="gantt-weekend" x="442" y="40" width="34" height="160"/>
+<rect class="gantt-weekend" x="561" y="40" width="34" height="160"/>
+<rect class="gantt-weekend" x="680" y="40" width="34" height="160"/>
+<line class="gantt-rule" x1="0" x2="714" y1="71.5" y2="71.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="103.5" y2="103.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="135.5" y2="135.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="167.5" y2="167.5"/>
+<line class="gantt-rule" x1="0" x2="714" y1="39.5" y2="39.5"/>
+<line class="gantt-rule" x1="118.5" x2="118.5" y1="0" y2="200"/>
+<line class="gantt-rule" x1="237.5" x2="237.5" y1="0" y2="200"/>
+<line class="gantt-rule" x1="356.5" x2="356.5" y1="0" y2="200"/>
+<line class="gantt-rule" x1="475.5" x2="475.5" y1="0" y2="200"/>
+<line class="gantt-rule" x1="594.5" x2="594.5" y1="0" y2="200"/>
+<text class="gantt-major" x="5" y="15">2 Nov</text>
+<text class="gantt-major" x="124" y="15">9 Nov</text>
+<text class="gantt-major" x="243" y="15">16 Nov</text>
+<text class="gantt-major" x="362" y="15">23 Nov</text>
+<text class="gantt-major" x="481" y="15">30 Nov</text>
+<text class="gantt-major" x="600" y="15">7 Dec</text>
+<text x="8.5" y="33" text-anchor="middle">2</text>
+<text x="25.5" y="33" text-anchor="middle">3</text>
+<text x="42.5" y="33" text-anchor="middle">4</text>
+<text x="59.5" y="33" text-anchor="middle">5</text>
+<text x="76.5" y="33" text-anchor="middle">6</text>
+<text x="93.5" y="33" text-anchor="middle">7</text>
+<text x="110.5" y="33" text-anchor="middle">8</text>
+<text x="127.5" y="33" text-anchor="middle">9</text>
+<text x="144.5" y="33" text-anchor="middle">10</text>
+<text x="161.5" y="33" text-anchor="middle">11</text>
+<text x="178.5" y="33" text-anchor="middle">12</text>
+<text x="195.5" y="33" text-anchor="middle">13</text>
+<text x="212.5" y="33" text-anchor="middle">14</text>
+<text x="229.5" y="33" text-anchor="middle">15</text>
+<text x="246.5" y="33" text-anchor="middle">16</text>
+<text x="263.5" y="33" text-anchor="middle">17</text>
+<text x="280.5" y="33" text-anchor="middle">18</text>
+<text x="297.5" y="33" text-anchor="middle">19</text>
+<text x="314.5" y="33" text-anchor="middle">20</text>
+<text x="331.5" y="33" text-anchor="middle">21</text>
+<text x="348.5" y="33" text-anchor="middle">22</text>
+<text x="365.5" y="33" text-anchor="middle">23</text>
+<text x="382.5" y="33" text-anchor="middle">24</text>
+<text x="399.5" y="33" text-anchor="middle">25</text>
+<text x="416.5" y="33" text-anchor="middle">26</text>
+<text x="433.5" y="33" text-anchor="middle">27</text>
+<text x="450.5" y="33" text-anchor="middle">28</text>
+<text x="467.5" y="33" text-anchor="middle">29</text>
+<text x="484.5" y="33" text-anchor="middle">30</text>
+<text x="501.5" y="33" text-anchor="middle">1</text>
+<text x="518.5" y="33" text-anchor="middle">2</text>
+<text x="535.5" y="33" text-anchor="middle">3</text>
+<text x="552.5" y="33" text-anchor="middle">4</text>
+<text x="569.5" y="33" text-anchor="middle">5</text>
+<text x="586.5" y="33" text-anchor="middle">6</text>
+<text x="603.5" y="33" text-anchor="middle">7</text>
+<text x="620.5" y="33" text-anchor="middle">8</text>
+<text x="637.5" y="33" text-anchor="middle">9</text>
+<text x="654.5" y="33" text-anchor="middle">10</text>
+<text x="671.5" y="33" text-anchor="middle">11</text>
+<text x="688.5" y="33" text-anchor="middle">12</text>
+<text x="705.5" y="33" text-anchor="middle">13</text>
+<rect class="gantt-drop-into" x="0" y="72" width="714" height="32"/>
+<g class="gantt-task"><rect class="gantt-bar" x="359" y="48" width="13" height="12" rx="4"/></g>
+<g class="gantt-task"><rect class="gantt-bar" x="393" y="80" width="30" height="12" rx="4"/></g>
+<g class="gantt-task"><rect class="gantt-bar" x="291" y="112" width="13" height="12" rx="4"/></g>
+<g class="gantt-task"><rect class="gantt-bar" x="308" y="144" width="13" height="12" rx="4"/></g>
+<g class="gantt-task"><rect class="gantt-bar" x="665" y="176" width="13" height="12" rx="4"/></g>
+
+<line class="gantt-today" x1="280.5" x2="280.5" y1="34" y2="200"/><text class="gantt-today-label" x="284.5" y="190">Today</text>
+</svg>
+</div>
+</div>
+</section>
+</div>
+<div class="ds-group"><p class="label">The axis at four zooms</p>
+<div class="ds-stack">
+<section class="gantt gantt-box" aria-labelledby="z-day">
+<p class="label" id="z-day">Day</p>
+<div class="gantt-scroll" tabindex="0" role="group" aria-label="The plan by day">
+<div class="gantt-grid">
+<div class="gantt-side">
+<div class="gantt-side-head" aria-hidden="true"><span>Task</span><span>When</span><span>Done</span></div>
+<ol class="gantt-rows">
+<li class="gantt-row summary" data-depth="0"><span class="gantt-name">Data center migration</span><span class="gantt-when">2 Nov–11 Dec</span><span class="gantt-done">35%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Build the new site</span><span class="gantt-when">9–27 Nov</span><span class="gantt-done">30%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Cutover</span><span class="gantt-when">10 Dec</span><span class="gantt-done"></span></li>
+</ol>
+</div>
+<svg class="gantt-chart" width="476" height="136" viewBox="0 0 476 136" aria-hidden="true">
+<rect class="gantt-weekend" x="85" y="40" width="34" height="96"/>
+<rect class="gantt-weekend" x="204" y="40" width="34" height="96"/>
+<rect class="gantt-weekend" x="323" y="40" width="34" height="96"/>
+<rect class="gantt-weekend" x="442" y="40" width="34" height="96"/>
+<rect class="gantt-off" x="170" y="40" width="17" height="96"/>
+<line class="gantt-rule" x1="0" x2="476" y1="71.5" y2="71.5"/>
+<line class="gantt-rule" x1="0" x2="476" y1="103.5" y2="103.5"/>
+<line class="gantt-rule" x1="0" x2="476" y1="39.5" y2="39.5"/>
+<text class="gantt-major" x="5" y="15">16 Nov</text>
+<line class="gantt-rule" x1="118.5" x2="118.5" y1="0" y2="136"/>
+<text class="gantt-major" x="124" y="15">23 Nov</text>
+<line class="gantt-rule" x1="237.5" x2="237.5" y1="0" y2="136"/>
+<text class="gantt-major" x="243" y="15">30 Nov</text>
+<line class="gantt-rule" x1="356.5" x2="356.5" y1="0" y2="136"/>
+<text class="gantt-major" x="362" y="15">7 Dec</text>
+<text x="8.5" y="33" text-anchor="middle">16</text>
+<text x="25.5" y="33" text-anchor="middle">17</text>
+<text x="42.5" y="33" text-anchor="middle">18</text>
+<text x="59.5" y="33" text-anchor="middle">19</text>
+<text x="76.5" y="33" text-anchor="middle">20</text>
+<text x="93.5" y="33" text-anchor="middle">21</text>
+<text x="110.5" y="33" text-anchor="middle">22</text>
+<text x="127.5" y="33" text-anchor="middle">23</text>
+<text x="144.5" y="33" text-anchor="middle">24</text>
+<text x="161.5" y="33" text-anchor="middle">25</text>
+<text x="178.5" y="33" text-anchor="middle">26</text>
+<text x="195.5" y="33" text-anchor="middle">27</text>
+<text x="212.5" y="33" text-anchor="middle">28</text>
+<text x="229.5" y="33" text-anchor="middle">29</text>
+<text x="246.5" y="33" text-anchor="middle">30</text>
+<text x="263.5" y="33" text-anchor="middle">1</text>
+<text x="280.5" y="33" text-anchor="middle">2</text>
+<text x="297.5" y="33" text-anchor="middle">3</text>
+<text x="314.5" y="33" text-anchor="middle">4</text>
+<text x="331.5" y="33" text-anchor="middle">5</text>
+<text x="348.5" y="33" text-anchor="middle">6</text>
+<text x="365.5" y="33" text-anchor="middle">7</text>
+<text x="382.5" y="33" text-anchor="middle">8</text>
+<text x="399.5" y="33" text-anchor="middle">9</text>
+<text x="416.5" y="33" text-anchor="middle">10</text>
+<text x="433.5" y="33" text-anchor="middle">11</text>
+<text x="450.5" y="33" text-anchor="middle">12</text>
+<text x="467.5" y="33" text-anchor="middle">13</text>
+<path class="gantt-summary" d="M-238 61V52H442V61"/>
+<g class="gantt-task critical"><rect class="gantt-bar" x="-117" y="80" width="319" height="12" rx="4"/><rect class="gantt-done-part" x="-115" y="82" width="94.5" height="8" rx="2.5"/></g>
+<g class="gantt-task"><path class="gantt-milestone" d="M416.5 110l8 8 -8 8 -8 -8z"/></g>
+<line class="gantt-today" x1="42.5" x2="42.5" y1="34" y2="136"/><text class="gantt-today-label" x="46.5" y="126">Today</text>
+</svg>
+</div>
+</div>
+</section>
+<section class="gantt gantt-box" aria-labelledby="z-week">
+<p class="label" id="z-week">Week</p>
+<div class="gantt-scroll" tabindex="0" role="group" aria-label="The plan by week">
+<div class="gantt-grid">
+<div class="gantt-side">
+<div class="gantt-side-head" aria-hidden="true"><span>Task</span><span>When</span><span>Done</span></div>
+<ol class="gantt-rows">
+<li class="gantt-row summary" data-depth="0"><span class="gantt-name">Data center migration</span><span class="gantt-when">2 Nov–11 Dec</span><span class="gantt-done">35%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Build the new site</span><span class="gantt-when">9–27 Nov</span><span class="gantt-done">30%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Cutover</span><span class="gantt-when">10 Dec</span><span class="gantt-done"></span></li>
+</ol>
+</div>
+<svg class="gantt-chart" width="504" height="136" viewBox="0 0 504 136" aria-hidden="true">
+<rect class="gantt-weekend" x="30" y="40" width="12" height="96"/>
+<rect class="gantt-weekend" x="72" y="40" width="12" height="96"/>
+<rect class="gantt-weekend" x="114" y="40" width="12" height="96"/>
+<rect class="gantt-weekend" x="156" y="40" width="12" height="96"/>
+<rect class="gantt-weekend" x="198" y="40" width="12" height="96"/>
+<rect class="gantt-weekend" x="240" y="40" width="12" height="96"/>
+<rect class="gantt-weekend" x="282" y="40" width="12" height="96"/>
+<rect class="gantt-weekend" x="324" y="40" width="12" height="96"/>
+<rect class="gantt-weekend" x="366" y="40" width="12" height="96"/>
+<rect class="gantt-weekend" x="408" y="40" width="12" height="96"/>
+<rect class="gantt-weekend" x="450" y="40" width="12" height="96"/>
+<rect class="gantt-weekend" x="492" y="40" width="12" height="96"/>
+<rect class="gantt-off" x="186" y="40" width="6" height="96"/>
+<rect class="gantt-off" x="360" y="40" width="6" height="96"/>
+<rect class="gantt-off" x="402" y="40" width="6" height="96"/>
+<line class="gantt-rule" x1="0" x2="504" y1="71.5" y2="71.5"/>
+<line class="gantt-rule" x1="0" x2="504" y1="103.5" y2="103.5"/>
+<line class="gantt-rule" x1="0" x2="504" y1="39.5" y2="39.5"/>
+<line class="gantt-rule" x1="35.5" x2="35.5" y1="0" y2="136"/>
+<text class="gantt-major" x="41" y="15">Nov 2026</text>
+<line class="gantt-rule" x1="215.5" x2="215.5" y1="0" y2="136"/>
+<text class="gantt-major" x="221" y="15">Dec</text>
+<line class="gantt-rule" x1="401.5" x2="401.5" y1="0" y2="136"/>
+<text class="gantt-major" x="407" y="15">Jan 2027</text>
+<text x="21" y="33" text-anchor="middle">26</text>
+<text x="63" y="33" text-anchor="middle">2</text>
+<text x="105" y="33" text-anchor="middle">9</text>
+<text x="147" y="33" text-anchor="middle">16</text>
+<text x="189" y="33" text-anchor="middle">23</text>
+<text x="231" y="33" text-anchor="middle">30</text>
+<text x="273" y="33" text-anchor="middle">7</text>
+<text x="315" y="33" text-anchor="middle">14</text>
+<text x="357" y="33" text-anchor="middle">21</text>
+<text x="399" y="33" text-anchor="middle">28</text>
+<text x="441" y="33" text-anchor="middle">4</text>
+<text x="483" y="33" text-anchor="middle">11</text>
+<path class="gantt-summary" d="M42 61V52H282V61"/>
+<g class="gantt-task critical"><rect class="gantt-bar" x="85.5" y="80" width="111" height="12" rx="4"/><rect class="gantt-done-part" x="87.5" y="82" width="32.1" height="8" rx="2.5"/></g>
+<g class="gantt-task"><path class="gantt-milestone" d="M273 110l8 8 -8 8 -8 -8z"/></g>
+<line class="gantt-today" x1="141" x2="141" y1="34" y2="136"/><text class="gantt-today-label" x="145" y="126">Today</text>
+</svg>
+</div>
+</div>
+</section>
+<section class="gantt gantt-box" aria-labelledby="z-month">
+<p class="label" id="z-month">Month</p>
+<div class="gantt-scroll" tabindex="0" role="group" aria-label="The plan by month">
+<div class="gantt-grid">
+<div class="gantt-side">
+<div class="gantt-side-head" aria-hidden="true"><span>Task</span><span>When</span><span>Done</span></div>
+<ol class="gantt-rows">
+<li class="gantt-row summary" data-depth="0"><span class="gantt-name">Data centers</span><span class="gantt-when">Jul 2026–Jun 2027</span><span class="gantt-done">30%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Data center migration</span><span class="gantt-when">2 Nov–11 Dec</span><span class="gantt-done">35%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Old site closed</span><span class="gantt-when">31 Mar 2027</span><span class="gantt-done"></span></li>
+</ol>
+</div>
+<svg class="gantt-chart" width="730" height="136" viewBox="0 0 730 136" aria-hidden="true">
+<line class="gantt-rule" x1="0" x2="730" y1="71.5" y2="71.5"/>
+<line class="gantt-rule" x1="0" x2="730" y1="103.5" y2="103.5"/>
+<line class="gantt-rule" x1="0" x2="730" y1="39.5" y2="39.5"/>
+<text class="gantt-major" x="5" y="15">Q3 2026</text>
+<line class="gantt-rule" x1="183.5" x2="183.5" y1="0" y2="136"/>
+<text class="gantt-major" x="189" y="15">Q4 2026</text>
+<line class="gantt-rule" x1="367.5" x2="367.5" y1="0" y2="136"/>
+<text class="gantt-major" x="373" y="15">Q1 2027</text>
+<line class="gantt-rule" x1="547.5" x2="547.5" y1="0" y2="136"/>
+<text class="gantt-major" x="553" y="15">Q2 2027</text>
+<text x="31" y="33" text-anchor="middle">Jul</text>
+<text x="93" y="33" text-anchor="middle">Aug</text>
+<text x="154" y="33" text-anchor="middle">Sep</text>
+<text x="215" y="33" text-anchor="middle">Oct</text>
+<text x="276" y="33" text-anchor="middle">Nov</text>
+<text x="337" y="33" text-anchor="middle">Dec</text>
+<text x="399" y="33" text-anchor="middle">Jan</text>
+<text x="458" y="33" text-anchor="middle">Feb</text>
+<text x="517" y="33" text-anchor="middle">Mar</text>
+<text x="578" y="33" text-anchor="middle">Apr</text>
+<text x="639" y="33" text-anchor="middle">May</text>
+<text x="700" y="33" text-anchor="middle">Jun</text>
+<path class="gantt-summary" d="M10 61V52H720V61"/>
+<g class="gantt-task critical"><rect class="gantt-bar" x="248.5" y="80" width="79" height="12" rx="4"/><rect class="gantt-done-part" x="250.5" y="82" width="26.3" height="8" rx="2.5"/></g>
+<g class="gantt-task"><path class="gantt-milestone" d="M547 110l8 8 -8 8 -8 -8z"/></g>
+<line class="gantt-today" x1="281" x2="281" y1="34" y2="136"/><text class="gantt-today-label" x="285" y="126">Today</text>
+</svg>
+</div>
+</div>
+</section>
+<section class="gantt gantt-box" aria-labelledby="z-quarter">
+<p class="label" id="z-quarter">Quarter</p>
+<div class="gantt-scroll" tabindex="0" role="group" aria-label="The plan by quarter">
+<div class="gantt-grid">
+<div class="gantt-side">
+<div class="gantt-side-head" aria-hidden="true"><span>Task</span><span>When</span><span>Done</span></div>
+<ol class="gantt-rows">
+<li class="gantt-row summary" data-depth="0"><span class="gantt-name">Data centers</span><span class="gantt-when">Jul 2026–Jun 2027</span><span class="gantt-done">30%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Data center migration</span><span class="gantt-when">2 Nov–11 Dec</span><span class="gantt-done">35%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="1"><span class="gantt-name">Old site closed</span><span class="gantt-when">31 Mar 2027</span><span class="gantt-done"></span></li>
+</ol>
+</div>
+<svg class="gantt-chart" width="438" height="136" viewBox="0 0 438 136" aria-hidden="true">
+<line class="gantt-rule" x1="0" x2="438" y1="71.5" y2="71.5"/>
+<line class="gantt-rule" x1="0" x2="438" y1="103.5" y2="103.5"/>
+<line class="gantt-rule" x1="0" x2="438" y1="39.5" y2="39.5"/>
+<text class="gantt-major" x="5" y="15">2026</text>
+<line class="gantt-rule" x1="218.5" x2="218.5" y1="0" y2="136"/>
+<text class="gantt-major" x="224" y="15">2027</text>
+<text x="27" y="33" text-anchor="middle">Q1</text>
+<text x="81.3" y="33" text-anchor="middle">Q2</text>
+<text x="136.2" y="33" text-anchor="middle">Q3</text>
+<text x="191.4" y="33" text-anchor="middle">Q4</text>
+<text x="246" y="33" text-anchor="middle">Q1</text>
+<text x="300.3" y="33" text-anchor="middle">Q2</text>
+<text x="355.2" y="33" text-anchor="middle">Q3</text>
+<text x="410.4" y="33" text-anchor="middle">Q4</text>
+<path class="gantt-summary" d="M111.6 61V52H324.6V61"/>
+<g class="gantt-task critical"><rect class="gantt-bar" x="183.2" y="80" width="23.7" height="12" rx="4"/><rect class="gantt-done-part" x="185.2" y="82" width="6.9" height="8" rx="2.5"/></g>
+<g class="gantt-task"><path class="gantt-milestone" d="M272.7 110l8 8 -8 8 -8 -8z"/></g>
+<line class="gantt-today" x1="192.9" x2="192.9" y1="34" y2="136"/><text class="gantt-today-label" x="196.9" y="126">Today</text>
+</svg>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</div>
+<script>
+document.getElementById('e-people').showPopover();
+document.querySelector('#ga-title ~ .gantt-scroll [tabindex="0"][role="gridcell"]')?.focus();
+</script>
 </body>
 </html>

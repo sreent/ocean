@@ -11,6 +11,9 @@ Issues in rows, dense enough for long lists: each with a box to choose it, its i
 - Times as people read them: "2 minutes ago", "yesterday", "12 Nov".
 - An issue's id in running text, such as a comment or an assistant's answer, is a link to the issue: `a.issue-id`, in `--accent`.
 - With issues chosen, the bar above says how many, and offers a command for them (CommandBar).
+- **In groups**, by a field's value (a4a's `group`): each group is a section (`.issues-group`) under a head (`h3.issues-group-head`) whose whole width is the button that folds it (`button.issues-group-fold`, `aria-expanded`, `aria-controls` its rows): a chevron, pointing down while it's open and at the group while it's folded; the value, in its own tone where it has one, as a Badge with its shape, as the rows show it ("In Review", `warn` with the clock), and plain at 600 where it has none, or in `--muted` for the issues with no value ("No assignee", `.issues-group-name.none`); then how many the group holds (`.issues-group-count`), the server's count, however many rows are loaded. A folded group's rows are `hidden`.
+- The head stays in view while its group goes by, below the band above every page, and the next group's head takes its place; a row the arrows reach scrolls clear of it. The box clips rather than scrolls (`overflow: clip`) so the heads stay with the page.
+- From the keyboard each head is a stop of its own: Enter or Space folds or opens its group. The rows of every group are still one stop together: the arrows go from the last row of a group to the first of the next, past any folded. A screen reader hears each group as a section named by its head, can move from head to head by heading, and hears the button as the value, how many, and whether it's open ("In Review, 1 issue, expanded").
 
 **Takes:** `issues` (each `id`, `summary`, `href`, `state`, `priority`, `type`, `assignee`, `tags`, `comments`, `updated`, `resolved`, `chosen`, `current`), `label`, `onChoose`, `onOpen`, `onCommand`.
 
@@ -40,4 +43,24 @@ Issues in rows, dense enough for long lists: each with a box to choose it, its i
 
 A state with a tone carries its shape: `<span class="badge good"><svg class="icon">tick</svg>Fixed</span>`, `badge warn` with the clock, `badge idle` with the pause. Nobody assigned is `<span class="issue-type">Unassigned</span>` in the assignee's place.
 
-**In a4a:** the Issues page, a search's results, and every list of issues. The preview is a static rendition, with the list's keyboard.
+In groups, the rows sit in a section under their head, and the head under the column heads:
+
+```html
+<section class="issues-box" aria-label="Issues in BACK, by State">
+  <div class="issues-head">…</div>
+  <section class="issues-group" aria-labelledby="g-review-head">
+    <h3 class="issues-group-head" id="g-review-head">
+      <button type="button" class="issues-group-fold" aria-expanded="true" aria-controls="g-review-rows">
+        <svg class="icon" aria-hidden="true"><!-- chevron, pointing down --></svg>
+        <span class="issues-group-name"><span class="badge warn"><svg class="icon" aria-hidden="true"><!-- clock --></svg>In Review</span></span>   <!-- a value with no tone: its words alone; none: <span class="issues-group-name none">No assignee</span> -->
+        <span class="issues-group-count">1<span class="hidden"> issue</span></span>
+      </button>
+    </h3>
+    <ul class="issues" id="g-review-rows" aria-label="In Review">   <!-- hidden while it's folded -->
+      <li class="issue" tabindex="-1">…</li>
+    </ul>
+  </section>
+</section>
+```
+
+**In a4a:** the Issues page, a search's results, and every list of issues; grouped, the list view of a search (`&group=`). The preview is a static rendition, with the list's keyboard, and the same issues in groups by State.

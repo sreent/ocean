@@ -1260,7 +1260,7 @@ a.issue-id:hover { text-decoration: underline; }
 /* Issues in rows: dense, each field in its column where there's room, stacked where there isn't.
    Under the pointer --sunken; chosen, --accent-soft; the one that's open, in --accent; a resolved
    issue's summary in --muted */
-.issues-box { container-type: inline-size; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius-md);
+.issues-box { container-type: inline-size; overflow: hidden; overflow: clip; border: 1px solid var(--line); border-radius: var(--radius-md);  /* clipped, not a scroller, so a group's head can stay in view as the page scrolls */
               background: var(--surface); box-shadow: var(--shadow); }
 .issues-bar { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3);
               padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--line); font-size: var(--text-sm); }
@@ -1308,6 +1308,27 @@ a.issue-id:hover { text-decoration: underline; }
   .issue > .issue-meta { grid-area: meta; display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-3); }
   .issue-assignee .who-name { position: static; width: auto; height: auto; overflow: visible; clip-path: none; }
 }
+/* Issues in groups, by a field's value: over each group its head, the value (a Badge in its tone
+   where the value has one, with its shape), how many the group holds, and the chevron of the button
+   that folds it, which is the whole head. The head stays in view while its group goes by, below the
+   band above every page, and the next group's head takes its place. A row the arrows reach scrolls
+   clear of it */
+.issues-group + .issues-group { border-top: 1px solid var(--line); }
+.issues-group-head { position: sticky; top: 0; z-index: 2; margin: 0; border-bottom: 1px solid var(--line); background: var(--surface);
+                     font-size: var(--text-md); }
+.issues-group-fold { display: flex; align-items: center; gap: var(--space-2); width: 100%; padding: 0.45rem var(--space-3); border: 0;
+                     border-radius: 0; background: none; color: var(--text); font-weight: 600; text-align: start; }
+.issues-group-fold:hover { background: var(--sunken); }
+.issues-group-fold:focus-visible { outline-offset: -2px; }
+.issues-group-fold > .icon { flex: none; width: 0.95rem; height: 0.95rem; color: var(--muted); }
+.issues-group-fold[aria-expanded="false"] > .icon { rotate: -90deg; }
+@media (prefers-reduced-motion: no-preference) { .issues-group-fold > .icon { transition: rotate 120ms ease-out; } }
+.issues-group-name { min-width: 0; overflow-wrap: anywhere; }
+.issues-group-name.none { color: var(--muted); font-weight: 400; }  /* the issues with no value, such as nobody assigned */
+.issues-group-count { color: var(--muted); font-size: var(--text-sm); font-weight: 400; font-variant-numeric: tabular-nums; }
+.issues-group .issue { scroll-margin-top: 3rem; }
+body.app:has(.env-band) :is(.issues-group-head, .agenda-head) { top: 2rem; }  /* below the band, which stays in view too */
+body.app:has(.env-band) .issues-group .issue { scroll-margin-top: 5rem; }
 
 /* Choices in a popover: a field's picker, the query's suggestions. The chosen one on --accent-soft;
    what kind each is in --faint, or --muted where --faint would read too little */
@@ -1548,6 +1569,273 @@ a.board-card-summary:hover { text-decoration: underline; }  /* the copy where a 
   .gantt-row[data-depth="2"] .gantt-name { padding-inline-start: 1.2rem; }
 }
 .gantt-box { container-type: inline-size; }
+
+/* The Gantt, to change where it's seen (a4a's timeline, .gantt.editable). Its list is a sheet whose
+   cells are edited in place: a date, a duration, a person; being typed in, refused (--bad, with the
+   reason in words beside the chart) and saving (dashed, as what isn't in force yet). Its bars are
+   dragged by their body to move them, by their ends to change their length, and from the handles at
+   their start and finish to link them. Chosen, a bar is --accent-soft, as a chosen row is, with its
+   handles in --accent, and the one whose row has the keyboard's focus wears the focus ring. On its way
+   it leaves its place dashed, and where it would land is dashed in --accent on --accent-soft, as a
+   board's card does. A task nobody here may change has no handles, and a lock says so. A date someone
+   set is a bracket where it isn't the date planned. A draft is --writes, what's written and not yet
+   relied on: a band across the chart and the bars it changed. Positions are SVG attributes alone */
+.gantt-tools { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+.gantt-tools > .modes { margin: 0; }
+.gantt-tools > .note { margin: 0; }
+.gantt-tools > .grow { flex: 1; }
+.gantt-sheet { width: max-content; }
+.gantt-sheet :is(.gantt-side-head, .gantt-row) { display: flex; gap: 0; padding-inline: var(--space-1); }
+.gantt-sheet .gantt-cell { flex: none; display: flex; align-items: center; gap: var(--space-1); min-width: 0; height: 100%;
+                           padding-inline: var(--space-2); overflow: hidden; white-space: nowrap; }
+.gantt-sheet .gantt-cell.name { flex: 0 0 15rem; }
+.gantt-sheet .gantt-cell.name > :is(.gantt-label, a) { min-width: 0; overflow: hidden; color: inherit; text-decoration: none; text-overflow: ellipsis; }
+.gantt-sheet .gantt-cell.name > a:hover { text-decoration: underline; }
+.gantt-sheet .gantt-row[data-depth="1"] .gantt-cell.name { padding-inline-start: 1.5rem; }
+.gantt-sheet .gantt-row[data-depth="2"] .gantt-cell.name { padding-inline-start: 2.5rem; }
+.gantt-sheet .gantt-row.summary .gantt-cell.name { font-weight: 600; }
+.gantt-cell.date { flex-basis: 5.5rem; width: 5.5rem; }
+.gantt-cell.duration { flex-basis: 5.25rem; width: 5.25rem; justify-content: flex-end; }
+.gantt-cell.person { flex-basis: 8.5rem; width: 8.5rem; }
+.gantt-cell.person .who-name { overflow: hidden; font-weight: 400; text-overflow: ellipsis; }
+.gantt-cell.dates { flex-basis: 7rem; width: 7rem; }  /* a span: the planned start and finish */
+.gantt-cell.done { flex-basis: 3.25rem; width: 3.25rem; justify-content: flex-end; }
+.gantt-row > :is(.gantt-cell.date, .gantt-cell.dates, .gantt-cell.duration, .gantt-cell.done) { font-family: var(--font-mono); font-size: var(--text-xs); }
+.gantt-sheet .gantt-cell.name > .issue-id { flex: none; font-size: var(--text-xs); }
+.gantt-cell.planned, .gantt-cell.done { color: var(--muted); }  /* the engine's dates and what's done: to read, not to type in */
+.gantt-sheet .gantt-side-head > .gantt-cell { display: block; line-height: 40px; font-family: var(--font-sans); text-overflow: ellipsis; }
+.gantt-sheet .gantt-side-head > :is(.duration, .done) { text-align: end; }
+.gantt-sheet .gantt-row .gantt-cell:not([aria-readonly="true"]):hover { background: var(--sunken); cursor: text; }
+.gantt-sheet .gantt-cell:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; border-radius: var(--radius-sm); }
+.gantt-cell.editing { overflow: visible; padding-inline: 0.15rem; }
+.gantt-cell.editing > :is(input, select) { width: 100%; height: 26px; padding: 0 0.35rem; font-size: var(--text-xs); }
+.gantt-cell.editing:is(.date, .duration) > input { font-family: var(--font-mono); }
+.gantt-cell.editing > [aria-invalid="true"] { border-color: var(--bad); box-shadow: inset 0 0 0 1px var(--bad); }  /* refused: the reason is in words, beside the chart */
+.gantt-cell.saving { color: var(--muted); text-decoration: underline dashed var(--line-control); text-underline-offset: 4px; }
+.gantt-cell.editing { anchor-name: --gantt-cell; }
+/* A person to pick, in the top layer (popover), so the chart's frame never cuts it off: under the cell, or
+   over it near the window's foot, where the browser anchors; centred in the window where it can't */
+.popover.options.gantt-pick { inset: auto; margin: 2px 0; position-anchor: --gantt-cell; position-area: block-end span-inline-end;
+                              position-try-fallbacks: flip-block; }
+.gantt-sheet .gantt-row[aria-selected="true"] { background: var(--accent-soft); }
+.gantt-sheet .gantt-row.drafted { box-shadow: inset 3px 0 0 var(--writes); }  /* changed in the draft */
+.gantt-cell.name > .icon { flex: none; width: 0.85rem; height: 0.85rem; color: var(--muted); }  /* a lock: nobody here may change it */
+/* Rows ranked by hand: a grip, as the backlog's handle; the row on its way dashed where it was; where
+   it would land a line in --accent; onto a row, to go under it, that row edged and filled */
+.gantt-grip { flex: none; align-self: stretch; justify-content: center; min-width: 24px; padding: 0; border: 0; background: none; color: var(--muted); cursor: grab; letter-spacing: -0.2em; line-height: 1; }
+.gantt-grip:hover { background: none; color: var(--text); }
+.gantt-row.moving { outline: 1px dashed var(--line-control); outline-offset: -1px; color: var(--muted); }
+.gantt-row.drop-before { box-shadow: inset 0 3px 0 var(--accent); }
+.gantt-row.drop-after { box-shadow: inset 0 -3px 0 var(--accent); }
+.gantt-row.drop-into { background: var(--accent-soft); box-shadow: inset 0 0 0 2px var(--accent); }
+.gantt-rows.dragging, .gantt-rows.dragging * { cursor: grabbing; }
+/* A new task: where its summary is typed, at the end or under its parent */
+.gantt-row.new .gantt-cell.name { flex: 1 0 15rem; padding-inline-end: var(--space-1); }
+.gantt-row.new input { flex: 1; min-width: 0; height: 26px; padding: 0 0.4rem; font-size: var(--text-sm); }
+.gantt-row.new .icon { flex: none; width: 0.9rem; height: 0.9rem; color: var(--muted); }
+/* The chart's own marks */
+.gantt-weekend, .gantt-off { fill: var(--sunken); }  /* a day nobody works: a weekend, or the project's holiday */
+.gantt-chart .gantt-major { fill: var(--muted); font-weight: 600; }  /* the axis's upper row, at every zoom */
+.gantt-task.drafted .gantt-bar { fill: var(--writes-bg); stroke: var(--writes); stroke-dasharray: 4 2; }
+.gantt-task.chosen .gantt-bar { fill: var(--accent-soft); }
+.gantt-ring { fill: none; stroke: var(--focus); stroke-width: 2; }  /* on the task whose row has the focus */
+.gantt-task.moving .gantt-bar, .gantt-task.target .gantt-bar { stroke: var(--accent); stroke-width: 2; }
+.gantt-was { fill: none; stroke: var(--line-control); stroke-width: 1; stroke-dasharray: 3 3; }  /* where it was, while it's on its way */
+.gantt-ghost { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 4 3; }  /* where it would land: the row's height, under the bar */
+.gantt-chart .gantt-ghost-label { fill: var(--accent); font-weight: 600; }
+.gantt-resize { fill: var(--accent); }
+.gantt-link-handle { fill: var(--surface); stroke: var(--accent); stroke-width: 1.5; }
+.gantt-link-handle.on { fill: var(--accent); }  /* the one a link is drawn from, or will land on */
+.gantt-link-draft { fill: none; stroke: var(--accent); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.gantt-link-head.draft { fill: var(--accent); }
+.gantt-set { fill: none; stroke: var(--muted); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }  /* a date someone set: "[" a start, "]" an end */
+.gantt-lock { fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.gantt-drop-line { stroke: var(--accent); stroke-width: 3; stroke-linecap: round; }
+.gantt-drop-into { fill: var(--accent-soft); }
+/* Where a pointer takes hold: unseen, wider than what it holds */
+.gantt-hit { fill: transparent; stroke: transparent; pointer-events: all; }
+.gantt-hit.move { cursor: grab; }
+.gantt-hit.resize { stroke-width: 12px; cursor: ew-resize; }
+.gantt-hit.link { stroke-width: 12px; cursor: crosshair; }
+.gantt-chart.dragging, .gantt-chart.dragging * { cursor: grabbing; }
+/* A draft: a band across the top of the chart, the chart's frame in its colour */
+.gantt-draft { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); margin-bottom: calc(-1 * var(--space-3));
+               padding: var(--space-2) var(--space-3) var(--space-2) var(--space-4); border: 1px solid var(--writes); border-bottom: 2px solid var(--writes);
+               border-radius: var(--radius-md) var(--radius-md) 0 0; background: var(--writes-bg); color: var(--text); font-size: var(--text-sm); }
+.gantt-draft > p { flex: 1 1 18rem; margin: 0; }
+.gantt-draft > .badge { background: var(--surface); }
+.gantt-draft + .gantt-scroll { border-color: var(--writes); border-top: 0; border-start-start-radius: 0; border-start-end-radius: 0; }
+/* What a move would also move: levelling's list of moves, with a choice for each */
+.levelling.gantt-proposals { box-shadow: var(--shadow-raised); }
+.levelling-list.choose > li { grid-template-columns: 1.25rem 5.25rem minmax(0, 1fr) auto 6.5rem; }
+.levelling-list.choose > li > .issue-pick { align-self: center; }
+@media (pointer: coarse) {  /* rows of 44px, the chart drawn to match; handles held by wider strokes */
+  .gantt.editable .gantt-row { height: 44px; }
+  .gantt.editable .gantt-cell.editing > :is(input, select), .gantt.editable .gantt-row.new input { height: 44px; }
+  .gantt-hit.resize { stroke-width: 44px; }
+  .gantt-hit.link { stroke-width: 36px; }
+  .gantt.editable .gantt-chart { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+}
+@container (max-width: 72rem) {  /* a person by their mark alone; screen readers still say the name */
+  .gantt-sheet .gantt-cell.person { flex-basis: 2.75rem; width: 2.75rem; }
+  .gantt-sheet .gantt-cell.person .who-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .gantt-sheet .gantt-side-head > .gantt-cell.person { color: transparent; }  /* the marks say whose; the head's word stays for screen readers */
+}
+@container (max-width: 60rem) {  /* the planned span leaves the sheet, which the bars show and the task's words say, so the chart keeps room */
+  .gantt-sheet .gantt-cell.dates { display: none; }
+  .gantt-sheet .gantt-cell.name { flex-basis: 12rem; }
+}
+@container (max-width: 40rem) {  /* the sheet keeps its names; a4a edits a task in its sheet (EditSheet) */
+  .gantt-sheet .gantt-cell:not(.name) { display: none; }
+  .gantt-sheet .gantt-cell.name { flex-basis: 10.5rem; }
+  .gantt-sheet .gantt-row[data-depth="1"] .gantt-cell.name { padding-inline-start: 1.1rem; }
+  .gantt-sheet .gantt-row[data-depth="2"] .gantt-cell.name { padding-inline-start: 1.7rem; }
+  .levelling-list.choose > li { grid-template-columns: 1.25rem minmax(0, 1fr) auto; grid-template-areas: "pick id by" ". what what" ". dates dates"; }
+  .levelling-list.choose > li > .issue-pick { grid-area: pick; }
+}
+
+/* The agenda (components/Agenda): a timeline or a calendar on a phone. Days or weeks as heads that stay
+   in view while their issues go by, today's in --accent with its word; under each, its issues, with
+   their dates and a mark of what each is, drawn as the Gantt draws it: a bar for a task, a diamond for
+   a milestone, a bar edged in --bad for what's late, with its words, and a tick in --good for what's
+   done, its summary in --muted */
+.agenda { display: grid; gap: var(--space-3); min-width: 0; }
+.agenda-days { margin: 0; padding: 0; list-style: none; overflow: hidden; overflow: clip; border: 1px solid var(--line);
+               border-radius: var(--radius-md); background: var(--surface); }
+.agenda-day + .agenda-day { border-top: 1px solid var(--line); }
+.agenda-head { position: sticky; top: 0; z-index: 1; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--space-2); margin: 0;
+               padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--line); background: var(--surface); color: var(--text);
+               font-size: var(--text-md); font-weight: 600; }
+.agenda-day.today > .agenda-head { box-shadow: inset 3px 0 0 var(--accent); }
+.agenda-today { color: var(--accent); font-size: var(--text-sm); font-weight: 650; }
+.agenda-count { margin-inline-start: auto; color: var(--muted); font-size: var(--text-sm); font-weight: 400; font-variant-numeric: tabular-nums; }
+.agenda-items { margin: 0; padding: 0; list-style: none; }
+.agenda-item { display: grid; grid-template-columns: 1rem minmax(0, 1fr) auto; grid-template-areas: "mark main when"; gap: 0.15rem var(--space-3);
+               align-items: center; padding: var(--space-2) var(--space-3); border-bottom: 1px solid var(--line); font-size: var(--text-md); }
+.agenda-item:last-child { border-bottom: 0; }
+.agenda-mark { grid-area: mark; display: block; width: 1rem; height: 1rem; overflow: visible; }
+.agenda-tick { fill: none; stroke: var(--good); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.agenda-main { grid-area: main; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.1rem var(--space-2); min-width: 0; }
+.agenda-summary { color: var(--text); text-decoration: none; overflow-wrap: anywhere; }
+a.agenda-summary:hover { text-decoration: underline; }
+.agenda-when { grid-area: when; color: var(--muted); font-family: var(--font-mono); font-size: var(--text-xs); white-space: nowrap; }
+.agenda-item.late .agenda-when { color: var(--bad); font-weight: 500; }
+.agenda-item.done .agenda-summary { color: var(--muted); }
+.agenda-main > .badge { align-self: center; }
+.agenda-none { margin: 0; padding: var(--space-2) var(--space-3); color: var(--muted); font-size: var(--text-sm); }
+@media (pointer: coarse) {
+  .agenda-summary { display: inline-block; min-width: 44px; padding-block: 12px; margin-block: -12px; }
+}
+
+/* The calendar (components/Calendar): a month, or a week, of seven columns in the order the product
+   gives them, under the weekdays' names. Each day its number; today's on a line in --accent, with its
+   word; a day nobody works, or a holiday, quiet on --sunken; a day outside the month quieter still, on
+   the page's own colour, its number --faint. Issues are chips on the week's grid, placed by classes
+   alone (the column they start in, how many they span, their lane), so they need no style of their own;
+   one that goes on past the week says so at its end, and goes on in the next week's first lane free.
+   A full day says how many more. Beside the grid, or under it where it's narrow, the issues with no
+   date yet, to drag onto a day */
+.cal { display: grid; gap: var(--space-3); min-width: 0; container-type: inline-size; }
+.cal-body { display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: var(--space-4); align-items: start; min-width: 0; }
+.cal-body.no-tray { grid-template-columns: minmax(0, 1fr); }
+.cal-grid { display: grid; gap: 1px; min-width: 0; overflow: hidden; overflow: clip; border: 1px solid var(--line); border-radius: var(--radius-md);
+            background: var(--line); }  /* the lines between the days are the gaps */
+.cal-weekdays, .cal-week { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); column-gap: 1px; }
+.cal-weekday { padding: var(--space-1) var(--space-2); overflow: hidden; background: var(--surface); color: var(--faint); font-size: 0.74rem;
+               font-weight: 650; letter-spacing: 0.05em; text-overflow: ellipsis; text-transform: uppercase; white-space: nowrap; }
+.cal-week { grid-template-rows: 1.85rem repeat(4, 1.75rem) var(--space-1); }  /* lanes a chip of 24px fits, as WCAG 2.5.8 asks */
+.cal.week .cal-week { grid-template-rows: 2.1rem repeat(8, 1.75rem) var(--space-1); }
+button.cal-day { grid-row: 1 / -1; display: flex; flex-direction: column; align-items: flex-start; gap: 0; min-width: 0; padding: var(--space-1) var(--space-2);
+                 border: 0; border-radius: 0; background: var(--surface); color: var(--text); font-weight: 400; text-align: start; cursor: default; }
+button.cal-day:hover { background: var(--surface); }
+/* Each day in its column by its place among the week's seven, in the order the product gives them,
+   before any chip is placed over it */
+.cal-week > .cal-day:nth-child(1) { grid-column: 1; } .cal-week > .cal-day:nth-child(2) { grid-column: 2; }
+.cal-week > .cal-day:nth-child(3) { grid-column: 3; } .cal-week > .cal-day:nth-child(4) { grid-column: 4; }
+.cal-week > .cal-day:nth-child(5) { grid-column: 5; } .cal-week > .cal-day:nth-child(6) { grid-column: 6; }
+.cal-week > .cal-day:nth-child(7) { grid-column: 7; }
+button.cal-day.off { background: var(--sunken); }
+button.cal-day.outside { background: var(--page); }
+button.cal-day:focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+.cal-num { font-size: var(--text-sm); font-weight: 600; font-variant-numeric: tabular-nums; }
+.cal-day.off .cal-num { color: var(--muted); font-weight: 500; }
+.cal-day.outside .cal-num { color: var(--faint); font-weight: 400; }
+/* Today's word and a holiday's name, beside the day's number at the end of its first row: placed by col-N, out of the day's
+   button, whose name says them already, and the pointer goes through them to it */
+.cal-week > :is(.cal-today, .cal-holiday) { z-index: 1; grid-row: 1; justify-self: end; align-self: center; max-width: calc(100% - 2.4rem);
+                                            margin-inline-end: var(--space-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; pointer-events: none; }
+.cal-holiday { color: var(--muted); font-size: var(--text-xs); }
+.cal-day.today { box-shadow: inset 0 2px 0 var(--accent); }
+.cal-day.today .cal-num, .cal-today { color: var(--accent); }
+.cal-today { font-size: var(--text-xs); font-weight: 650; }
+button.cal-day.drop { background: var(--accent-soft); outline: 2px dashed var(--accent); outline-offset: -3px; }  /* where what's dragged would land */
+.cal-week > .col-1 { grid-column-start: 1; } .cal-week > .col-2 { grid-column-start: 2; } .cal-week > .col-3 { grid-column-start: 3; }
+.cal-week > .col-4 { grid-column-start: 4; } .cal-week > .col-5 { grid-column-start: 5; } .cal-week > .col-6 { grid-column-start: 6; }
+.cal-week > .col-7 { grid-column-start: 7; }
+.cal-week > .span-1 { grid-column-end: span 1; } .cal-week > .span-2 { grid-column-end: span 2; } .cal-week > .span-3 { grid-column-end: span 3; }
+.cal-week > .span-4 { grid-column-end: span 4; } .cal-week > .span-5 { grid-column-end: span 5; } .cal-week > .span-6 { grid-column-end: span 6; }
+.cal-week > .span-7 { grid-column-end: span 7; }
+.cal-week > .lane-1 { grid-row: 2; } .cal-week > .lane-2 { grid-row: 3; } .cal-week > .lane-3 { grid-row: 4; } .cal-week > .lane-4 { grid-row: 5; }
+.cal-week > .lane-5 { grid-row: 6; } .cal-week > .lane-6 { grid-row: 7; } .cal-week > .lane-7 { grid-row: 8; } .cal-week > .lane-8 { grid-row: 9; }
+.cal-chip { z-index: 1; display: flex; align-items: center; gap: 0.3rem; min-width: 0; height: 1.6rem; margin: 0.075rem 0.3rem; padding: 0 0.45rem;
+            overflow: hidden; border: 1px solid var(--line-strong); border-radius: var(--radius-sm); background: var(--surface); color: var(--text);
+            font-size: var(--text-xs); line-height: 1; text-decoration: none; white-space: nowrap; cursor: grab; }
+.cal-chip:hover { border-color: var(--line-control); }
+.cal-chip:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+.cal-chip > .issue-id { flex: none; font-size: inherit; }
+.cal-chip-summary { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.cal-chip > svg { flex: none; width: 0.75rem; height: 0.75rem; }
+.cal-chip > .cal-on { margin-inline-start: auto; color: var(--muted); }  /* it goes on past the week */
+.cal-chip.continues { margin-inline-end: 0; border-start-end-radius: 0; border-end-end-radius: 0; border-inline-end-style: dashed; }
+.cal-chip.continued { margin-inline-start: 0; border-start-start-radius: 0; border-end-start-radius: 0; border-inline-start-style: dashed; }
+.cal-chip.done .cal-chip-summary { color: var(--muted); }
+.cal-chip.late { border-color: var(--bad); }
+.cal-chip.late > .icon { color: var(--bad); }
+.cal-chip.done > .icon { color: var(--good); }
+.cal-chip.chosen { border-color: var(--accent); background: var(--accent-soft); }
+.cal-chip.locked { cursor: default; }
+.cal-chip.locked > .icon { color: var(--muted); }
+.cal-chip.moving { border: 1px dashed var(--line-control); background: none; }  /* where it was, while it's dragged */
+.cal-chip.moving > * { visibility: hidden; }
+.cal-chip.ghost { border: 1px dashed var(--accent); background: var(--accent-soft); color: var(--accent); cursor: grabbing; }  /* where it would land */
+.cal-chip.ghost .issue-id { color: var(--accent); }
+.cal-week > .cal-more { z-index: 1; justify-self: start; align-self: center; max-width: calc(100% - 0.6rem); min-height: 1.6rem; margin: 0 0.3rem; padding: 0 0.25rem;
+                        overflow: hidden; border: 0; border-radius: var(--radius-sm); background: none; color: var(--muted); font-size: var(--text-xs);
+                        font-weight: 600; line-height: 1.4; text-overflow: ellipsis; white-space: nowrap; }
+.cal-week > .cal-more:hover { background: none; color: var(--text); text-decoration: underline; }
+.cal-grid.dragging, .cal-grid.dragging * { cursor: grabbing; }
+/* The issues with no date: a tray to drag them from, onto a day */
+.cal-tray { display: grid; gap: var(--space-2); align-content: start; min-width: 0; padding: var(--space-3); border: 1px solid var(--line);
+            border-radius: var(--radius-md); background: var(--surface); }
+.cal-tray > :is(h2, h3) { display: flex; align-items: baseline; gap: var(--space-2); margin: 0; font-size: var(--text-md); }
+.cal-tray > :is(h2, h3) > .note { font-size: var(--text-sm); font-weight: 400; }
+.cal-tray > .note { margin: 0; font-size: var(--text-sm); }
+.cal-tray-list { display: grid; gap: var(--space-2); margin: 0; padding: 0; list-style: none; }
+.cal-tray-item { display: grid; gap: 0.15rem; padding: var(--space-2) var(--space-3); border: 1px solid var(--line); border-radius: var(--radius-md);
+                 background: var(--surface); box-shadow: var(--shadow); font-size: var(--text-sm); cursor: grab; }
+.cal-tray-item > .issue-id { justify-self: start; }
+.cal-tray-item > button.issue-id { padding: 0; border: 0; background: none; color: var(--muted); font-weight: 400; line-height: inherit; }
+.cal-tray-item > button.issue-id:hover { color: var(--text); text-decoration: underline; }
+.cal-tray-summary { color: var(--text); overflow-wrap: anywhere; }
+.cal-tray-item.moving { border: 1px dashed var(--line-control); background: none; box-shadow: none; }
+.cal-tray-item.moving > * { visibility: hidden; }
+.cal-tray-item.lifted { border-color: var(--accent); box-shadow: var(--shadow-raised); }  /* picked up from the keyboard, on its way to a day */
+@container (max-width: 46rem) {  /* the tray under the grid */
+  .cal-body { grid-template-columns: minmax(0, 1fr); }
+}
+@container (max-width: 34rem) {  /* a phone shows the agenda in its place; a grid this narrow shows its chips by their ids */
+  .cal-chip-summary, .cal-holiday, .cal-today { display: none; }  /* today keeps its line and its number in --accent, and its name says so */
+  .cal-chip { padding-inline: 0.25rem; margin-inline: 0.15rem; }
+  .cal-weekday, button.cal-day { padding-inline: 0.3rem; }
+}
+@media (pointer: coarse) {  /* lanes of 44px, each chip its lane's height */
+  .cal-week { grid-template-rows: 1.85rem repeat(4, 44px) var(--space-1); }
+  .cal.week .cal-week { grid-template-rows: 2.1rem repeat(8, 44px) var(--space-1); }
+  .cal-chip { height: auto; align-self: stretch; margin-block: 2px; font-size: var(--text-sm); }
+  .cal-week > .cal-more { align-self: stretch; }
+  .cal-chip, .cal-tray-item { -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+  .cal-tray-item > button.issue-id { min-height: 0; padding-block: 13px; margin-block: -13px; }
+}
 
 /* People's load, day by day: each cell the hours booked, its shade the share of that day's capacity in
    Ocean Blue's steps (css/charts.css), a quarter at a time; over capacity in --warn, with its words;
@@ -2736,10 +3024,12 @@ button.palette-open kbd { font-size: 0.75em; }
 .skeleton-words { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%);
                   white-space: nowrap; }  /* "Loading…", for screen readers, where the skeleton stands */
 
-/* Toasts: what was just done, said once, at the foot of the window, where it doesn't cover the work.
-   Each names the thing in the past tense ("Cancelled T-1."), and offers Undo while it can still be
-   undone. The page's own status line says it too: a toast is never the only place it's said, and
-   never for what needs the person, which stays on the page */
+/* Toasts: what was just done, at the foot of the window, where it doesn't cover the work. Each names
+   the thing in the past tense ("Cancelled T-1."), and offers Undo while it can still be undone, which
+   its key does too. The page says it as well, where it happened: a toast is never the only place it's
+   said, and never for what needs the person, which stays on the page. Said once: the toasts' region
+   is always there with a status line of its own (p.hidden[role="status"]), and the toasts themselves
+   aren't a live region, so nothing is said twice */
 .toasts { position: fixed; inset-inline: var(--space-4); bottom: var(--space-4); z-index: 50; display: grid;
           justify-items: center; gap: var(--space-2); margin: 0; padding: 0; list-style: none; pointer-events: none; }
 .toast { display: flex; align-items: center; gap: var(--space-3); max-width: min(32rem, 100%);
