@@ -2,7 +2,7 @@
 
 Which deployment this is, across the top of every page, in every product: so nobody does in production what they meant for a test, or the other way round.
 
-- A band over the sidebar and the page (`.env-band`), 2rem high, that stays as the page scrolls. The sidebar sits below it. On a page before the frame, such as signing in, it's across the top of the window too.
+- A band over the sidebar and the page (`.env-band`), 2rem high, that stays as the page scrolls. The sidebar sits below it. The page beside it fills the rest of the window, not the whole of it, so a page that fits never scrolls, and nothing at its top, such as a chat's head, slides under the band. On a page before the frame, such as signing in, it's across the top of the window too.
 - **Production** (`.production`): the change's colour, filled (`--changes`, with `--surface` words), since what's done there reaches people, and records others rely on. With the people icon.
 - **A test, a staging, or someone's own machine**: the amber of what's written but not yet relied on, at its well (`--writes-bg`, with a `--writes` edge under it), with the tool's icon, or the code's on someone's own machine.
 - It says the deployment's name, in bold, and what that means, in a few words: "Production. Real people and records: what you do here reaches them." "Pilot test. Made-up people and records: nothing here reaches anyone." The product chooses the words; the name is the deployment's own, as whoever runs it sets it.
