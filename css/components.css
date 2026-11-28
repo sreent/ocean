@@ -2015,7 +2015,7 @@ table.data-grid { table-layout: fixed; width: 0; border-collapse: separate; bord
 .data-grid col.dg-w-xl { width: 22rem; }
 .data-grid :is(th, td) { height: 2.25rem; padding: 0 var(--space-2); overflow: hidden; border-bottom: 1px solid var(--line); background: var(--surface);
                          color: var(--text); font-weight: 400; text-align: start; text-overflow: ellipsis; vertical-align: middle; white-space: nowrap; }
-.data-grid thead th { position: sticky; top: 0; z-index: 3; height: 2.75rem; padding: 0; border-bottom-color: var(--line-strong); color: var(--muted);
+.data-grid thead th { position: sticky; top: 0; z-index: 4; height: 2.75rem; padding: 0; border-bottom-color: var(--line-strong); color: var(--muted);
                       font-size: 0.82rem; font-weight: 600; }
 .data-grid thead th > :is(.dg-sort, .dg-head) { display: flex; align-items: center; gap: 0.3rem; width: 100%; height: 100%; padding: 0 var(--space-2); }
 .dg-sort { border: 0; border-radius: 0; background: none; color: inherit; font: inherit; text-align: start; }
@@ -2031,14 +2031,14 @@ table.data-grid { table-layout: fixed; width: 0; border-collapse: separate; bord
 .data-grid th[aria-sort="descending"] .dg-sort-mark { rotate: 180deg; }
 .dg-resize { position: absolute; inset-block: 0.65rem; inset-inline-end: 0; width: 7px; border-inline-end: 1px solid var(--line); cursor: col-resize; }  /* the pointer's way to a width */
 .dg-resize:hover, .data-grid th.resizing .dg-resize { inset-block: 0; border-inline-end: 2px solid var(--accent); }
-.data-grid :is(.dg-pick, .dg-id, .dg-summary, .dg-group-head, .dg-total-head) { position: sticky; z-index: 1; }
+.data-grid :is(.dg-pick, .dg-id, .dg-summary, .dg-group-head, .dg-total-head) { position: sticky; z-index: 2; }  /* over what scrolls under them, a cell being typed in too */
 .data-grid .dg-pick { inset-inline-start: 0; padding: 0; text-align: center; }
 .data-grid .dg-id { inset-inline-start: 2.75rem; }
 .data-grid .dg-summary { inset-inline-start: 9rem; border-inline-end: 1px solid var(--line); }  /* the edge the rest scrolls under */
 .data-grid.no-pick .dg-id { inset-inline-start: 0; }
 .data-grid.no-pick .dg-summary { inset-inline-start: 6.25rem; }
 .data-grid :is(.dg-group-head, .dg-total-head) { inset-inline-start: 0; border-inline-end: 1px solid var(--line); }  /* across the box, the id and the summary */
-.data-grid thead :is(.dg-pick, .dg-id, .dg-summary) { z-index: 4; }
+.data-grid thead :is(.dg-pick, .dg-id, .dg-summary) { z-index: 5; }
 .data-grid :is(td, th):focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
 .data-grid :is(.dg-sort, .issues-group-fold):focus-visible { outline-offset: -2px; }
 .data-grid tr[aria-selected="true"] > * { background: var(--accent-soft); }
@@ -2070,8 +2070,8 @@ table.data-grid { table-layout: fixed; width: 0; border-collapse: separate; bord
 .data-grid .dg-badge > .badge { max-width: 100%; overflow: hidden; text-overflow: ellipsis; vertical-align: middle; }
 .dg-amounts { display: inline-flex; gap: var(--space-2); }  /* a cost in each currency it's kept in */
 /* A cell being typed in, refused or saving */
-.data-grid .editing { position: relative; z-index: 2; overflow: visible; padding: 0 2px; anchor-name: --gantt-cell; }  /* a person is picked from ul.popover.options.gantt-pick */
-.data-grid .editing.dg-summary { position: sticky; }
+.data-grid .editing { position: relative; z-index: 1; overflow: visible; padding: 0 2px; anchor-name: --gantt-cell; }  /* a person is picked from ul.popover.options.gantt-pick */
+.data-grid .editing.dg-summary { position: sticky; z-index: 3; }  /* its note over the frozen cells below it, under the heads */
 .data-grid .editing > :is(input, select) { width: 100%; height: 1.85rem; padding: 0 0.4rem; font: inherit; }
 .data-grid .editing > [aria-invalid="true"] { border-color: var(--bad); box-shadow: inset 0 0 0 1px var(--bad); }
 .dg-note { position: absolute; font-family: var(--font-sans); inset-block-start: calc(100% + 2px); inset-inline-start: 0; z-index: 1; width: max-content; max-width: min(22rem, 80vw);
@@ -2083,8 +2083,8 @@ table.data-grid { table-layout: fixed; width: 0; border-collapse: separate; bord
 .data-grid tbody:first-of-type > tr.dg-group:first-child > * { border-top: 0; }
 .data-grid .dg-group-head { padding: 0; }
 .data-grid .dg-group-head > .issues-group-fold { height: 100%; padding-block: 0; font-size: var(--text-md); }
-.data-grid tfoot :is(td, th) { position: sticky; bottom: 0; z-index: 3; border-top: 1px solid var(--line-strong); border-bottom: 0; font-weight: 600; }
-.data-grid tfoot .dg-total-head { z-index: 4; }
+.data-grid tfoot :is(td, th) { position: sticky; bottom: 0; z-index: 4; border-top: 1px solid var(--line-strong); border-bottom: 0; font-weight: 600; }
+.data-grid tfoot .dg-total-head { z-index: 5; }
 @container (max-width: 40rem) {  /* the id and the summary narrow, so a column still shows beside them */
   .data-grid col.dg-col-id { width: 4.75rem; }
   .data-grid col.dg-col-summary { width: 9rem; }
