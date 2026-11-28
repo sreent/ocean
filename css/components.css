@@ -2185,11 +2185,13 @@ table.figures.cost-figures td.cost-says { color: var(--muted); }  /* what a figu
 .link-list a:hover { text-decoration: underline; }
 .link-list .resolved a { color: var(--muted); }
 .link-list .badge { justify-self: end; }
+.link-list li > .link-dep { grid-column: 2; margin-top: -0.35rem; color: var(--muted); font-size: var(--text-xs); }  /* a dependency's kind and lag, under its summary (D72) */
 .link-add { display: grid; gap: var(--space-3); min-width: 0; margin: 0; padding: var(--space-2) var(--space-4) var(--space-4);
             border: 1px dashed var(--line-control); border-radius: var(--radius-md); }
 .link-add legend { padding: 0 0.3rem; font-weight: 600; }
 .link-add-fields { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: var(--space-2) var(--space-3); }
 .link-add label { display: grid; gap: 0.25rem; }
+.link-add-fields > .wide { grid-column: 1 / -1; }  /* a choice whose words are long, such as which ends a dependency joins */
 .link-add select, .link-add input:not([type="checkbox"]):not([type="radio"]) { width: 100%; }
 .link-found { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem var(--space-2); margin: 0; }
 .link-add-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
@@ -2197,7 +2199,7 @@ table.figures.cost-figures td.cost-says { color: var(--muted); }  /* what a figu
 @container (max-width: 30rem) { .link-add-fields { grid-template-columns: minmax(0, 1fr); } }
 @container (max-width: 24rem) {  /* narrow, as in a column beside a form: its id and how it stands, then its summary */
   .link-list li { grid-template-columns: auto minmax(0, 1fr); gap: 0.2rem var(--space-2); }
-  .link-list li > a, .link-list li > .note { grid-column: 1 / -1; }
+  .link-list li > a, .link-list li > .note, .link-list li > .link-dep { grid-column: 1 / -1; }
   .link-list li > :is(.badge, .badges) { grid-row: 1; grid-column: 2; justify-self: start; }
 }
 .link-list li > .note { grid-column: 2 / -1; margin: 0; font-size: var(--text-sm); }  /* why it's there, when an agent said */
