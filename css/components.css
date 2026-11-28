@@ -2770,6 +2770,8 @@ button.palette-open kbd { font-size: 0.75em; }
 .env-band.production { border-bottom-color: var(--changes); background: var(--changes); color: var(--surface); }
 .env-band.production > .icon { color: var(--surface); }
 body.app:has(.env-band) .sidebar { top: 2rem; height: calc(100vh - 2rem); }  /* below it, as the page scrolls */
+body.app:has(.env-band) .page { min-height: calc(100vh - 2rem); }  /* the rest of the window, so a page
+   that fits it never scrolls, sliding its head, such as a chat's, under the band */
 body.app.workbench:has(.env-band) .wb.window { height: calc(100vh - 2rem); }
 body.lone .env-band { position: fixed; inset: 0 0 auto; }
 body.lone:has(.env-band) { padding-top: calc(2rem + var(--space-6)); }
