@@ -770,9 +770,77 @@ export interface LoadGridProps {
   status?: { tone: "good" | "warn"; badge: string; words: string };
   /** Its button says what happens: "Level 4 tasks". */
   onLevel?: () => void;
+  /** The workload to change where it's seen: each day's work as blocks, dragged to another person or day (D72). */
+  editable?: boolean;
+  /** Per person, per day: each issue's block, its hours, and whether nobody here may change it, and why. */
+  blocks?: { id: string; summary: string; hours: number; locked?: string }[][][];
+  /** The issue chosen: its blocks are --accent-soft on each of its days. */
+  chosen?: string;
+  /** A block on its way: onto whom and which days, what each day would come to against its capacity, and the words for it. */
+  dragging?: { id: string; to: { person: number; day: number; would: number; of: number }[]; said: string };
+  /** A block picked up from the keyboard. */
+  lifted?: string;
+  /** Levelling's moves beside the grid, each with a box: ticked to accept, unticked to refuse. */
+  proposals?: { id: string; what: string; who: string; field?: string; from: string; to: string; by: string; accepted: boolean }[];
+  onAccept?: (accept: "all" | "none" | string[]) => void;
+  /** Handed to someone else: the issue's Assignee. Along the row: its dates, by working days. */
+  onHandOver?: (id: string, person: string) => void;
+  onMove?: (id: string, days: number) => void;
+  /** Said in a live region: each step from the keyboard, and what a drag would do. */
+  said?: string;
 }
-/** People's load by day, shaded in Ocean Blue by the share of their day; over capacity in --warn with its words. Proposed. */
+/** People's load by day, shaded in Ocean Blue by the share of their day; over capacity in --warn with its words; editable, its work as blocks to drag. Proposed. */
 export declare function LoadGrid(props: LoadGridProps): React.ReactElement;
+
+/** A column of the data grid: its field, its head and which of its dates in the project's words, its kind and its set width. */
+export interface DataGridColumn {
+  field: string;
+  head: string;
+  /** Under the head: "set" or "planned", so a field's two dates read apart. */
+  kind?: string;
+  type: "text" | "number" | "date" | "period" | "person" | "badge" | "money";
+  width: "s" | "m" | "l" | "xl";
+  /** The engine's: read-only, in --muted. */
+  planned?: boolean;
+  sortable?: boolean;
+}
+export type DataGridCell = { value: React.ReactNode; said?: string; tone?: Tone; shape?: boolean | IconName; late?: string; readOnly?: boolean };
+export interface DataGridRow {
+  id: string; href: string; summary: string;
+  /** 0 for the top; each level in, a step of indentation. */
+  depth: number;
+  /** A parent: open or folded. */
+  open?: boolean;
+  chosen?: boolean;
+  /** Nobody here may change it: a lock, and why in words. */
+  locked?: string;
+  cells: Record<string, DataGridCell>;
+}
+export interface DataGridProps {
+  title: string;
+  columns: DataGridColumn[];
+  sort?: { field: string; direction: "ascending" | "descending" };
+  /** Without groups, the rows alone; in groups, each under its head with its roll-ups. */
+  rows?: DataGridRow[];
+  groups?: { value: string; tone?: Tone; count: number; open: boolean; rollups: Record<string, DataGridCell>; rows: DataGridRow[] }[];
+  total?: { words: string; rollups: Record<string, DataGridCell> };
+  /** A cell being typed in: refused, with its note, or saving. */
+  editing?: { row: string; field: string; typed: string; invalid?: { title: string; hint: string }; saving?: boolean };
+  dates?: "set" | "planned" | "both";
+  shown?: string[];
+  exports?: { csv: string; xlsx: string };
+  /** Said in a live region: a sort, a width, a fold. */
+  said?: string;
+  onSort?: (field: string) => void;
+  onWidth?: (field: string, width: DataGridColumn["width"]) => void;
+  onShown?: (fields: string[]) => void;
+  onDates?: (dates: "set" | "planned" | "both") => void;
+  onEdit?: (row: string, field: string, value: string) => void;
+  onChoose?: (ids: string[]) => void;
+  onFold?: (rowOrGroup: string, open: boolean) => void;
+}
+/** A sheet edited in place, as a4a's table view: heads that sort and take set widths, frozen id and summary, cells by kind, parents folded, groups with roll-ups, and the total. Proposed. */
+export declare function DataGrid(props: DataGridProps): React.ReactElement;
 
 export interface DaysAwayProps {
   person: { name: string };
