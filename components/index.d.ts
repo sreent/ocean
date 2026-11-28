@@ -914,9 +914,13 @@ export interface IssueLinksProps {
   /** The issue the links are from. */
   issue: string;
   /** By what they say: "depends on", "is required for", "subtask of", "parent for", "duplicates", "relates to". */
-  groups: { phrase: string; links: { id: string; summary: string; href: string; state: IssueState; resolved?: boolean }[] }[];
+  groups: { phrase: string; links: { id: string; summary: string; href: string; state: IssueState; resolved?: boolean;
+    /** A dependency's kind and lag (D72), in words from this issue's side; none for finish to start with no lag. */
+    dependency?: { type: "FS" | "SS" | "FF" | "SF"; lag?: number; said: string } }[] }[];
   /** Add link, open: what it says, which issue, and the issue found. */
-  adding?: { phrase: string; to: string; found?: { id: string; summary: string; state: IssueState } };
+  adding?: { phrase: string; to: string; found?: { id: string; summary: string; state: IssueState };
+    /** With "depends on": which ends it joins, and its lag in working days. */
+    dependency?: { type: "FS" | "SS" | "FF" | "SF"; lag?: string } };
   onAdd: () => void;
   onLink: (phrase: string, to: string) => void;
 }
