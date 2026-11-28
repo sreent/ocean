@@ -1,4 +1,4 @@
-<!-- @dsCard group="Reports" height=1500 width=1100 subtitle="A person's dashboard: their issues, a count, the sprint as wide as the page, a note; then the same, being arranged" -->
+<!-- @dsCard group="Reports" height=2300 width=1100 subtitle="A person's dashboard: their issues, a count, the sprint as wide as the page, a note; then the same, being arranged; and for plans, a portfolio's summary and earned value by currency" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -27,6 +27,43 @@
 <section class="card widget" aria-label="Note, being arranged"><div class="widget-head"><h2>Note</h2><div class="widget-actions" role="group" aria-label="Arrange Note"><button type="button" class="small">Move earlier</button><button type="button" class="small" disabled>Move later</button><button type="button" class="small">Make it wide</button><button type="button" class="small danger">Remove</button></div></div><div class="prose"><p>Release on <strong>Friday</strong>. <a class="issue-id" href="/issues/BACK-31">BACK-31</a> first.</p></div></section>
 </div></div>
 <section class="card widget adding" aria-labelledby="add-title"><h2 id="add-title">Add a widget</h2><form class="form"><div class="form-fields"><div class="form-field"><label for="add-kind">What it shows</label><select id="add-kind"><option>A report</option></select></div><div class="form-field"><label for="add-report">Report</label><select id="add-report"><option>Cycle time</option></select></div></div><div class="cluster end"><button type="submit" class="primary">Add it</button></div></form></section>
+</div>
+<div class="ds-group">
+<p class="label">For plans: a portfolio's summary by project, and earned value by currency</p>
+<div class="dashboard-box"><div class="dashboard">
+<section class="card widget full" aria-labelledby="w-plan">
+<div class="widget-head"><h2 id="w-plan">Q4 infrastructure</h2><a href="#">Open the plan</a></div>
+<dl class="plan-summary">
+<div><dt class="label">Finishes</dt><dd class="plan-figure">18 Dec</dd><dd class="plan-says">3 days later than its baseline, 15 Dec</dd></div>
+<div><dt class="label">Late</dt><dd class="plan-figure">2<span class="hidden"> tasks</span></dd><dd><span class="badge bad"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>2 tasks late</span></dd></div>
+<div><dt class="label">Critical</dt><dd class="plan-figure">11<span class="hidden"> tasks</span></dd><dd class="plan-says">tasks on the critical path</dd></div>
+<div><dt class="label">Next milestone</dt><dd><ul class="plan-milestones"><li><svg viewBox="0 0 16 16" aria-hidden="true"><path class="gantt-milestone" d="M8 1.5l6.5 6.5-6.5 6.5-6.5-6.5z"/></svg><a class="issue-id" href="#">WEB-41</a><span>Portal goes live</span><span class="plan-when">7 Dec</span><span class="badge bad"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>3 days late</span></li></ul></dd></div>
+</dl>
+<div class="figures-scroll" tabindex="0" role="group" aria-label="Q4 infrastructure, by project">
+<table class="figures plan-figures"><caption class="hidden">Q4 infrastructure, by project</caption>
+<thead><tr><th scope="col">Project</th><th scope="col" class="num">Finishes</th><th scope="col">Against its baseline</th><th scope="col" class="num">Late</th><th scope="col" class="num">Critical</th><th scope="col">Next milestones</th></tr></thead>
+<tbody><tr><th scope="row"><a href="#">Data center migration</a></th><td class="num mono">11 Dec</td><td>3 days later</td><td class="num"><span class="badge bad"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>1 late</span></td><td class="num">5</td><td><ul class="plan-milestones"><li><svg viewBox="0 0 16 16" aria-hidden="true"><path class="gantt-milestone" d="M8 1.5l6.5 6.5-6.5 6.5-6.5-6.5z"/></svg><a class="issue-id" href="#">MIG-13</a><span>Cutover window agreed</span><span class="plan-when">11 Dec</span></li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path class="gantt-milestone" d="M8 1.5l6.5 6.5-6.5 6.5-6.5-6.5z"/></svg><a class="issue-id" href="#">MIG-30</a><span>Old site handed back</span><span class="plan-when">18 Dec</span></li></ul></td></tr><tr><th scope="row"><a href="#">Customer portal 3.0</a></th><td class="num mono">4 Dec</td><td>On its baseline</td><td class="num"><span class="badge bad"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>1 late</span></td><td class="num">2</td><td><ul class="plan-milestones"><li><svg viewBox="0 0 16 16" aria-hidden="true"><path class="gantt-milestone" d="M8 1.5l6.5 6.5-6.5 6.5-6.5-6.5z"/></svg><a class="issue-id" href="#">WEB-41</a><span>Portal goes live</span><span class="plan-when">7 Dec</span><span class="badge bad"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>3 days late</span></li></ul></td></tr><tr><th scope="row"><a href="#">Operations handbook</a></th><td class="num mono">18 Dec</td><td><span class="plan-none">No baseline</span></td><td class="num"><span class="plan-none">None</span></td><td class="num">4</td><td><ul class="plan-milestones"><li><svg viewBox="0 0 16 16" aria-hidden="true"><path class="gantt-milestone" d="M8 1.5l6.5 6.5-6.5 6.5-6.5-6.5z"/></svg><a class="issue-id" href="#">OPS-9</a><span>Handbook published</span><span class="plan-when">18 Dec</span></li></ul></td></tr></tbody>
+</table>
+</div>
+</section>
+<section class="card widget" aria-labelledby="w-evm">
+<div class="widget-head"><h2 id="w-evm">Q4 infrastructure: earned value</h2><span class="note">Against the baseline of 2 Nov</span></div>
+<div class="figures-scroll" tabindex="0" role="group" aria-label="Earned value, by currency">
+<table class="figures cost-figures"><caption class="hidden">Earned value, by currency</caption>
+<thead><tr><th scope="col">In</th><th scope="col" class="num">CPI</th><th scope="col" class="num">SPI</th><th scope="col" class="num">EAC</th></tr></thead>
+<tbody>
+<tr><th scope="row">Euros</th><td class="num">0.88<span class="cost-sub">14% more than planned</span></td><td class="num">0.93<span class="cost-sub">3 days behind</span></td><td class="num">€545,000<span class="cost-sub"><span class="badge bad"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg>€65,000 over budget</span></span></td></tr>
+<tr><th scope="row">US dollars</th><td class="num">1.04<span class="cost-sub">4% less than planned</span></td><td class="num">1.00<span class="cost-sub">On time</span></td><td class="num">$118,000<span class="cost-sub">$2,000 under budget</span></td></tr>
+</tbody>
+</table>
+</div>
+<details class="chart-more"><summary>What these say</summary><p class="note">CPI is what the work done was planned to cost, over what it cost; SPI, what's been earned over what was planned by now; EAC, what the plan will cost at its end, at this CPI. Each currency is measured on its own, never converted.</p></details>
+</section>
+<section class="card widget" aria-labelledby="w-evm2">
+<div class="widget-head"><h2 id="w-evm2">Customer portal 3.0: earned value</h2></div>
+<div class="cost-index ask"><p class="label">Earned value</p><p>With a baseline, a4a measures what the work done so far has cost against what it was planned to cost, and how far ahead or behind it is.</p><button type="button">Save the plan as a baseline</button></div>
+</section>
+</div></div>
 </div>
 </div>
 </div>

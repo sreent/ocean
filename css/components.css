@@ -283,10 +283,13 @@ pre.entries { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 0.75rem
 
 /* The settings: forms for what people change most, or the whole version as written */
 
-.modes { display: inline-flex; margin: 0.25rem 0 1rem; border: 1px solid var(--line-strong);
+/* A choice of modes or views: one line where it fits, wrapping where it doesn't, as on a phone or in a longer
+   language, each row filled, with a line between every two choices, across and down; never scrolling, so
+   no choice is hidden. The lines are each choice's shadow on its neighbours, clipped at the frame */
+.modes { display: inline-flex; flex-wrap: wrap; max-width: 100%; margin: 0.25rem 0 1rem; border: 1px solid var(--line-strong);
          border-radius: var(--radius-sm); overflow: hidden; }
-.modes button { border: 0; border-radius: 0; }
-.modes button + button { border-left: 1px solid var(--line-strong); }
+.modes button { flex: 1 0 auto; border: 0; border-radius: 0; box-shadow: -1px 0 0 var(--line-strong), 0 -1px 0 var(--line-strong); }
+.modes button:focus-visible { outline-offset: -3px; }  /* inside its own edge, so the frame never clips it */
 .modes button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
 fieldset.form-card { min-width: 0; margin: 0 0 1rem; padding: 0.5rem 1.25rem 1.1rem;
                      border: 1px solid var(--line); border-radius: var(--radius); }
@@ -1088,6 +1091,22 @@ button.fd-part { width: 100%; padding: 0.3rem 0.4rem; border: 0; background: tra
 .sheet { display: grid; gap: var(--space-3); padding: var(--space-2) var(--space-4) var(--space-4);
          border-radius: var(--radius-lg) var(--radius-lg) 0 0; background: var(--surface); box-shadow: var(--shadow-raised); }
 .sheet::before { content: ""; justify-self: center; width: 2.4rem; height: 0.25rem; border-radius: var(--radius-pill); background: var(--line-strong); }
+/* The sheet as a modal of its own (a4a's edit sheet on a phone): the browser's own dialog, opened with
+   showModal(), which keeps the focus in it, closes with Escape and gives the focus back, over the page it
+   dims. From the window's foot on a phone, kept clear of the home indicator; centred, as a dialog is, and
+   without its handle, where the window is wider */
+dialog.sheet { position: fixed; inset: auto 0 0; width: min(100%, 36rem); max-width: none; max-height: calc(100dvh - var(--space-8)); margin: 0 auto;
+               overflow: auto; overscroll-behavior: contain; border: 0; color: var(--text);
+               padding-bottom: max(var(--space-4), env(safe-area-inset-bottom)); }
+dialog.sheet:not([open]) { display: none; }
+dialog.sheet::backdrop { background: rgba(10, 23, 36, 0.45); }
+body:has(dialog.sheet[open]) { overflow: hidden; }
+dialog.sheet > .sheet-head h2 { margin: 0; font-size: var(--text-lg); }
+dialog.sheet > .dialog-actions { flex-wrap: wrap; }
+@media (min-width: 761px) {
+  dialog.sheet { inset: 0; height: fit-content; margin: auto; padding: var(--space-5); border-radius: var(--radius-lg); }
+  dialog.sheet::before { display: none; }
+}
 .sheet-head { display: flex; justify-content: space-between; align-items: start; gap: var(--space-2); }
 .sheet-head strong { display: block; }
 .sheet-head span { color: var(--muted); font-size: var(--text-xs); }
@@ -1555,6 +1574,14 @@ a.board-card-summary:hover { text-decoration: underline; }  /* the copy where a 
 .gantt-late-mark { fill: none; stroke: var(--bad); stroke-width: 2; stroke-linecap: round; }
 .gantt-today { stroke: var(--accent); stroke-width: 1.5; }
 .gantt-chart .gantt-today-label { fill: var(--accent); font-weight: 600; }
+/* Links of four kinds (a4a, D72): each leaves its predecessor at the end its kind names and enters its
+   successor at the end its kind names, its head pointing into the bar: start to start, finish to finish and
+   start to finish, as finish to start does. Those that drive their task's dates are inked heavier than those
+   that don't; the critical path's stay ink, twice as heavy. A lag or a lead in working days beside its link */
+.gantt-link.driving:not(.critical) { stroke: var(--muted); stroke-width: 1.75; }
+.gantt-link-head.driving:not(.critical) { fill: var(--muted); }
+.gantt-chart .gantt-lag, .gantt-legend .gantt-lag { fill: var(--muted); font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+                                                    paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
 .gantt-whatif { fill: none; stroke: var(--changes); stroke-width: 1.5; stroke-dasharray: 4 3; }  /* where a what-if would move it: dashed, as what isn't so, in the colour of a change */
 .gantt-legend { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); margin: 0; padding: 0; list-style: none; color: var(--muted);
                 font-size: var(--text-sm); }
@@ -2297,7 +2324,6 @@ a.item-name:hover { text-decoration: underline; }
 .steps .modes { margin: 0; flex-wrap: wrap; }
 @media (max-width: 560px) {
   .steps .modes { display: grid; }
-  .steps .modes button + button { border-left: 0; border-top: 1px solid var(--line-strong); }
 }
 .secret { display: grid; gap: var(--space-2); padding: var(--space-3) var(--space-4); border: 1px solid var(--warn); border-radius: var(--radius-md);
           background: var(--warn-bg); }
@@ -2386,6 +2412,31 @@ a.inbox-summary:hover { text-decoration: underline; }
 .history > li.unread .inbox-what::before { content: ""; display: inline-block; width: 0.5rem; height: 0.5rem; margin-inline-end: 0.4rem;
                                            border-radius: 50%; background: var(--accent); vertical-align: 0.06em; }
 .inbox .history-comment { color: var(--text); font-size: var(--text-sm); }
+/* An update asked of someone (a4a, D72). In their inbox: who asks, for what, and why, then a small form
+   in place, on a well: the dates and the time left as they stand, to confirm as they are or to change;
+   once answered, what they said, in a status line. On the issue's side: that an update was asked, by
+   whom and when, and how it stands: waiting on someone (warn, the clock), answered (good, the tick), or
+   withdrawn (idle, the pause) */
+.update-ask { display: grid; gap: var(--space-3); justify-items: start; min-width: 0; margin: 0; padding: var(--space-3); border-radius: var(--radius-md);
+              background: var(--sunken); }
+.update-now { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin: 0; }
+.update-now > div { display: grid; gap: 0.1rem; }
+.update-now dt { color: var(--muted); font-size: var(--text-xs); }
+.update-now dd { margin: 0; color: var(--text); font-family: var(--font-mono); font-size: var(--text-sm); }
+.update-of { margin-inline-start: 0.4rem; color: var(--muted); font-family: var(--font-sans); font-size: var(--text-xs); }
+.update-fields { display: flex; flex-wrap: wrap; align-items: start; gap: var(--space-2) var(--space-3); min-width: 0; margin: 0; padding: 0; border: 0; }
+.update-fields .form-field { display: grid; gap: 0.15rem; margin: 0; }
+.update-fields .form-field > input { width: 9rem; max-width: 100%; font-family: var(--font-mono); }
+.update-fields .form-hint { max-width: 12rem; margin: 0; color: var(--muted); font-size: var(--text-xs); }
+.update-ask > .error-note { justify-self: stretch; }
+.update-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.update-said { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-2); margin: 0; color: var(--muted); font-size: var(--text-sm); }
+.update-said:empty { display: none; }
+.update-asked { display: grid; gap: var(--space-2); justify-items: start; }
+.update-asked > * { margin: 0; }
+.update-asked > p { color: var(--muted); font-size: var(--text-sm); }
+.update-asked .who-name { display: inline; color: var(--text); font-weight: 600; }
+.update-why { padding-inline-start: var(--space-3); border-inline-start: 2px solid var(--line); color: var(--text); font-size: var(--text-sm); }
 
 /* Watching an issue: a toggle, pressed while you watch it, as a choice of modes is, with how many
    watch beside its word; who watches, and why, is a list of people in a card beside the issue */
@@ -2565,7 +2616,6 @@ a.attachment-name:hover { text-decoration: underline; }
 .modes.report-choice { margin: 0; }  /* which report: a choice of five, a column on a phone, as .steps' is */
 @media (max-width: 560px) {
   .modes.report-choice { display: grid; }
-  .modes.report-choice button + button { border-left: 0; border-top: 1px solid var(--line-strong); }
 }
 .report { display: grid; gap: var(--space-4); min-width: 0; container-type: inline-size; }
 .report > * { margin: 0; }
@@ -2671,6 +2721,26 @@ details.chart-more[open] > summary { margin-bottom: var(--space-2); }
 .widget-list li:last-child { border-bottom: 0; }
 .widget-list a { overflow-wrap: anywhere; }
 .widget.adding { border-style: dashed; }  /* a widget being made, not on the dashboard yet */
+/* A plan's summary, as a widget (a4a, D72): its finish and how far it has moved against its baseline,
+   how many tasks are late (--bad, with the cross and its words) and on the critical path, and its next
+   milestones; then the same by project, for a portfolio, as figures. Earned value by currency is
+   CostPanel's figures, each index with its words (.cost-figures, .cost-sub) */
+.plan-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: var(--space-3) var(--space-4); margin: 0; }
+.plan-summary > div { display: grid; gap: 0.15rem; align-content: start; min-width: 0; }
+.plan-summary dt { margin: 0; }
+.plan-summary dd { min-width: 0; margin: 0; }
+.plan-figure { font-size: 1.45rem; font-weight: 650; letter-spacing: -0.01em; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.plan-says { color: var(--muted); font-size: var(--text-sm); }
+.plan-none { color: var(--muted); font-weight: 400; }  /* no baseline, no late tasks: said, quietly */
+table.figures.plan-figures { margin: 0; font-size: var(--text-sm); }
+table.figures.plan-figures :is(th, td) { padding: 0.35rem 0.5rem; }
+table.figures.plan-figures tbody th { color: var(--text); font-weight: 600; }
+.plan-milestones { display: grid; gap: 0.2rem; margin: 0; padding: 0; list-style: none; }
+.plan-milestones li { display: flex; flex-wrap: wrap; align-items: center; gap: 0.1rem 0.4rem; }
+.plan-milestones svg { flex: none; width: 0.75rem; height: 0.75rem; }  /* a diamond, as the Gantt draws a milestone */
+.plan-milestones .issue-id { display: inline-flex; align-items: center; min-height: 24px; font-size: var(--text-xs); }  /* a target 24px tall, as WCAG 2.5.8 asks */
+.plan-when { color: var(--muted); font-family: var(--font-mono); font-size: var(--text-xs); white-space: nowrap; }
+.plan-milestones .badge { font-size: var(--text-xs); }
 
 /* An import (components/MappingTable): each column of the file, a few of its values, and what it
    becomes here, with what was found from its header; each value of a mapped column and what it
@@ -2710,6 +2780,13 @@ table.figures.problems td:first-child { white-space: nowrap; font-variant-numeri
 .rule-sentence code { padding: 0.08rem 0.4rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--sunken);
                       color: var(--text); font-size: var(--text-sm); }
 .rule-card.off :is(.rule-name, .rule-word, .rule-sentence code) { color: var(--muted); }
+/* A planning condition (a4a, D72): what the plan says of an issue at each run of a scheduled rule (planned to
+   finish after its due date, its assignee booked over their day, a milestone at risk), chosen rather than
+   written, so on a well as the query and the command are, in the sentence's own words and face */
+.rule-sentence .rule-plan { padding: 0.08rem 0.4rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--sunken);
+                            color: var(--text); font-size: var(--text-sm); }
+.rule-card.off .rule-plan { color: var(--muted); }
+.rule-clause-body > .cluster > input.rule-days { width: 5rem; }
 .rule-said { margin: 0; color: var(--muted); font-size: var(--text-sm); overflow-wrap: anywhere; }
 .rule-said .issue-id { color: var(--text); }
 .rule-form { display: grid; gap: var(--space-3); min-width: 0; container-type: inline-size; }

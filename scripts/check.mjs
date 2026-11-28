@@ -48,6 +48,7 @@ const TEXT = [  // text, and what it's on: 4.5 to 1
   ["bad", "you"], ["muted", "you"],  // a4a: "Not sent", under what the person said, in --muted
   ["surface", "changes"],  // production's band: its name and words on the change's colour
   ["writes", "surface"],  // a4a: a draft's word on its band
+  ["bad", "accent-soft"],  // a4a: a late date on a chosen row of the data grid
   ...["reads", "writes", "changes", "outside", "own", "good", "warn", "bad", "idle"].map((tone) => [tone, `${tone}-bg`]),
 ];
 const MARKS = [  // 3 to 1

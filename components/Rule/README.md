@@ -59,3 +59,34 @@ A workflow rule, read as a sentence: when something happens to an issue (or on a
 ```
 
 **In a4a:** the Rules page, under Build, for each project. The preview is a static rendition.
+
+## On what the plan says
+
+A scheduled project rule can ask what the plan says of an issue, as well as whether it matches a query: planned to finish after its due date, its assignee booked for more hours than they work, or a milestone at risk (D72). Each run plans the project once, as the workflow agent, and keeps the issues that also match the rule's query; then the rule applies its command, tells people, or asks for an update. On a schedule only, at most every hour. Proposed, for a4a.
+
+- **In the sentence**, the condition follows the query, after "and", in the product's words, on a well as the query and the command are, but in Plex Sans, since it's chosen, not written (`span.rule-plan`): "**Every weekday at 08:00**, **if** an issue matches `project: MIG #Unresolved` and *is planned to finish after its due date*, **then** apply `tag late`." With a number of days, the number is part of its words: "is planned to finish more than 2 days after its due date", "is a milestone at risk, planned to finish less than 2 days before its due date". Off, it's `--muted` with the rest of the card.
+- **Asking for an update** is an action of its own, said as telling is, with its words in quotes: "**then** ask its assignee to confirm its dates: “Is this milestone still on track?”" Its badge is a plain fact, "asks for an update", beside how it stands, as "tells people" is ([Inbox](../Inbox/README.md) draws the request).
+- **In the form**, under **if**, after the query: "and", a choice of the planning conditions with "nothing more" first, and where the condition takes one, the days (`input.rule-days`, a number), with a note that says when it runs and what it plans. The choice is there only for a scheduled rule; a rule that runs on a change has none.
+- **Its preview** is the command bar's, as for any rule: the issues the plan and the query give now, each with why, in words, as a line of its change (`li.same`: "Planned to finish 18 Nov; due 13 Nov: 3 days late"), then what it would change. What rules did says the same in its table.
+- **What a screen reader hears**: the sentence as written; the condition is words in it, nothing more. In the form, the choice is named by its clause ("if and"), and described by the note.
+
+**Takes**, beyond the above: `plan` (`when`: `late`, `overbooked` or `milestone_at_risk`; `days`; and its words), and for an action `ask` (whom, which fields, its words); the form, the planning conditions with their words.
+
+**Markup:**
+
+```html
+<p class="rule-sentence"><span class="rule-word">Every weekday at 08:00</span>, <span class="rule-word">if</span> an issue matches <code>project: MIG #Unresolved</code> and <span class="rule-plan">is planned to finish after its due date</span>, <span class="rule-word">then</span> apply <code>tag late</code>.</p>
+
+<div class="rule-clause">
+  <span class="rule-word" id="rp-if">if</span>
+  <div class="rule-clause-body"><span id="rp-if-about">it matches</span>
+    <div class="query"><!-- QueryBar's row --></div>
+    <div class="cluster"><span id="rp-and">and</span>
+      <select aria-labelledby="rp-if rp-and" aria-describedby="rp-plan-note"><option>nothing more</option><option selected>it's planned to finish after its due date</option><option>its assignee is booked for more hours than they work</option><option>it's a milestone at risk</option></select>
+      <label for="rp-days">by more than</label><input id="rp-days" class="rule-days" type="number" min="0" value="0"><span>days</span></div>
+    <p class="note" id="rp-plan-note">On a schedule only, at most every hour: each run plans the project once, as the workflow agent, and keeps the issues that also match the query.</p>
+  </div>
+</div>
+```
+
+**In a4a:** a project's scheduled rules (`plan: {when, days}`) and the `ask` action. The preview's three scheduled rules on the plan, and a form making one.

@@ -1,4 +1,4 @@
-<!-- @dsCard group="Plans" height=2400 width=1280 subtitle="Data center migration: as it reads, and to change in place: bars chosen, dragged and linked, cells edited, rows ranked, a draft, what a move would also move, and the axis at four zooms" -->
+<!-- @dsCard group="Plans" height=2720 width=1280 subtitle="Data center migration: as it reads, its links of four kinds with lag, and to change in place: bars chosen, dragged and linked, cells edited, rows ranked, a draft, what a move would also move, and the axis at four zooms" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -155,6 +155,79 @@
 <li><svg width="28" height="14" aria-hidden="true"><line class="gantt-today" x1="14" x2="14" y1="0" y2="14"/></svg>Today</li>
 <li><svg width="28" height="14" aria-hidden="true"><rect class="gantt-whatif" x="1.5" y="1.5" width="25" height="11" rx="4"/></svg>Where a what-if would move it</li>
 </ul>
+</section>
+</div>
+<div class="ds-group"><p class="label">Links of four kinds, each from and to the ends it joins, with a lag or a lead beside it; those that drive a task’s dates heavier than those that don’t</p>
+<section class="gantt gantt-box" aria-labelledby="lt-title">
+<h2 id="lt-title" class="hidden">Data center migration, its links</h2>
+<div class="gantt-scroll" tabindex="0" role="group" aria-label="Data center migration’s links, 16 Nov to 4 Dec">
+<div class="gantt-grid">
+<div class="gantt-side">
+<div class="gantt-side-head" aria-hidden="true"><span>Task</span><span>When</span><span>Done</span></div>
+<ol class="gantt-rows">
+<li class="gantt-row" data-depth="0"><span class="gantt-name">Order the hardware<span class="hidden">, on the critical path</span></span><span class="gantt-when">16–18 Nov</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="0"><span class="gantt-name">Rack and cable<span class="hidden">, on the critical path, starts 2 working days after Order the hardware finishes (finish to start), which drives its start</span></span><span class="gantt-when">23–25 Nov</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="0"><span class="gantt-name">Label the cables<span class="hidden">, finishes no earlier than Rack and cable finishes (finish to finish), which doesn’t drive it: it finishes a day later on its own</span></span><span class="gantt-when">23–26 Nov</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="0"><span class="gantt-name">Set up the network<span class="hidden">, starts a working day after Rack and cable starts (start to start), which drives its start</span></span><span class="gantt-when">24–27 Nov</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="0"><span class="gantt-name">Power up the new site<span class="hidden">, starts a working day before Set up the network finishes (finish to start, a day’s lead), which drives its start</span></span><span class="gantt-when">27–30 Nov</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="0"><span class="gantt-name">Move the first racks<span class="hidden"></span></span><span class="gantt-when">30 Nov–2 Dec</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+<li class="gantt-row" data-depth="0"><span class="gantt-name">Keep the old site powered<span class="hidden">, can’t finish before Move the first racks starts (start to finish), which drives its finish</span></span><span class="gantt-when">26–30 Nov</span><span class="gantt-done">0%<span class="hidden"> done</span></span></li>
+</ol>
+</div>
+<svg class="gantt-chart" width="323" height="264" viewBox="0 0 323 264" aria-hidden="true">
+<rect class="gantt-weekend" x="85" y="40" width="17" height="224"/>
+<rect class="gantt-weekend" x="102" y="40" width="17" height="224"/>
+<rect class="gantt-weekend" x="204" y="40" width="17" height="224"/>
+<rect class="gantt-weekend" x="221" y="40" width="17" height="224"/>
+<line class="gantt-rule" x1="0" x2="0" y1="0" y2="264"/><text class="gantt-week" x="3" y="15">16 Nov</text>
+<text x="8.5" y="33" text-anchor="middle">16</text>
+<text x="25.5" y="33" text-anchor="middle">17</text>
+<text x="42.5" y="33" text-anchor="middle">18</text>
+<text x="59.5" y="33" text-anchor="middle">19</text>
+<text x="76.5" y="33" text-anchor="middle">20</text>
+<text x="93.5" y="33" text-anchor="middle">21</text>
+<text x="110.5" y="33" text-anchor="middle">22</text>
+<line class="gantt-rule" x1="119" x2="119" y1="0" y2="264"/><text class="gantt-week" x="122" y="15">23 Nov</text>
+<text x="127.5" y="33" text-anchor="middle">23</text>
+<text x="144.5" y="33" text-anchor="middle">24</text>
+<text x="161.5" y="33" text-anchor="middle">25</text>
+<text x="178.5" y="33" text-anchor="middle">26</text>
+<text x="195.5" y="33" text-anchor="middle">27</text>
+<text x="212.5" y="33" text-anchor="middle">28</text>
+<text x="229.5" y="33" text-anchor="middle">29</text>
+<line class="gantt-rule" x1="238" x2="238" y1="0" y2="264"/><text class="gantt-week" x="241" y="15">30 Nov</text>
+<text x="246.5" y="33" text-anchor="middle">30</text>
+<text x="263.5" y="33" text-anchor="middle">1</text>
+<text x="280.5" y="33" text-anchor="middle">2</text>
+<text x="297.5" y="33" text-anchor="middle">3</text>
+<text x="314.5" y="33" text-anchor="middle">4</text>
+<line class="gantt-rule" x1="0" x2="323" y1="40" y2="40"/>
+<path class="gantt-link critical" d="M50 54H56Q60 54 60 58V82Q60 86 64 86H114"/><path class="gantt-link-head critical" d="M120 86l-6 -3.5v7z"/>
+<text class="gantt-lag" x="64" y="73.5">+2d</text>
+<path class="gantt-link" d="M169 86H192Q196 86 196 90V114Q196 118 192 118H192"/><path class="gantt-link-head" d="M186 118l6 -3.5v7z"/>
+<path class="gantt-link driving" d="M120 86H114Q110 86 110 90V146Q110 150 114 150H131"/><path class="gantt-link-head driving" d="M137 150l-6 -3.5v7z"/>
+<text class="gantt-lag" x="106" y="121.5" text-anchor="end">+1d</text>
+<path class="gantt-link driving" d="M203 150H209Q213 150 213 154V166Q213 170 209 170H178Q174 170 174 174V178Q174 182 178 182H182"/><path class="gantt-link-head driving" d="M188 182l-6 -3.5v7z"/>
+<text class="gantt-lag" x="217" y="160">−1d</text>
+<path class="gantt-link driving" d="M239 214H233Q229 214 229 218V230Q229 234 233 234H264Q268 234 268 238V242Q268 246 264 246H260"/><path class="gantt-link-head driving" d="M254 246l6 -3.5v7z"/>
+<g class="gantt-task critical"><rect class="gantt-bar" x="1" y="48" width="49" height="12" rx="4"/></g>
+<g class="gantt-task critical"><rect class="gantt-bar" x="120" y="80" width="49" height="12" rx="4"/></g>
+<g class="gantt-task"><rect class="gantt-bar" x="120" y="112" width="66" height="12" rx="4"/></g>
+<g class="gantt-task"><rect class="gantt-bar" x="137" y="144" width="66" height="12" rx="4"/></g>
+<g class="gantt-task"><rect class="gantt-bar" x="188" y="176" width="66" height="12" rx="4"/></g>
+<g class="gantt-task"><rect class="gantt-bar" x="239" y="208" width="49" height="12" rx="4"/></g>
+<g class="gantt-task"><rect class="gantt-bar" x="171" y="240" width="83" height="12" rx="4"/></g>
+<line class="gantt-today" x1="59.5" x2="59.5" y1="40" y2="264"/><text class="gantt-today-label" x="62" y="260">Today</text>
+</svg>
+</div>
+</div>
+<ul class="gantt-legend">
+<li><svg width="28" height="14" aria-hidden="true"><path class="gantt-link critical" d="M1 7H21"/><path class="gantt-link-head critical" d="M27 7l-6 -3.5v7z"/></svg>On the critical path: ink</li>
+<li><svg width="28" height="14" aria-hidden="true"><path class="gantt-link driving" d="M1 7H21"/><path class="gantt-link-head driving" d="M27 7l-6 -3.5v7z"/></svg>Drives its task’s dates: heavier</li>
+<li><svg width="28" height="14" aria-hidden="true"><path class="gantt-link" d="M1 7H21"/><path class="gantt-link-head" d="M27 7l-6 -3.5v7z"/></svg>Doesn’t drive them: faint</li>
+<li><svg width="28" height="14" aria-hidden="true"><text class="gantt-lag" x="14" y="11" text-anchor="middle">+2d</text></svg>A lag, or a lead (−1d), in working days</li>
+</ul>
+<p class="note">Each link leaves its task at the end it names and enters the other at the end it names: finish to start, start to start (Rack and cable to Set up the network), finish to finish (Rack and cable to Label the cables) and start to finish (Move the first racks to Keep the old site powered).</p>
 </section>
 </div>
 <div class="ds-group"><p class="label">To change, in place: a task chosen, with its handles and the focus ring; a date set and the date planned; cells being typed in, refused and saving; a task nobody here may change; new tasks</p>

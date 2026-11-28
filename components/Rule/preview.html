@@ -1,4 +1,4 @@
-<!-- @dsCard group="Settings" height=1500 subtitle="A project's rules, read as sentences: on, off and one that needs fixing; a rule being made, with a problem and what it would do; and what rules did" -->
+<!-- @dsCard group="Settings" height=2600 subtitle="A project's rules, read as sentences: on, off and one that needs fixing, and scheduled ones on what the plan says; a rule being made, with a problem and what it would do; one on the plan; and what rules did" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -76,6 +76,33 @@
       <p class="rule-sentence"><span class="rule-word">When</span> an issue gets a comment, <span class="rule-word">if</span> it matches <code>tag: needs-info</code>, <span class="rule-word">then</span> apply <code>remove tag needs-info</code>.</p>
       <div class="cluster"><button type="button">Preview it</button><button type="button">Edit it</button><button type="button">Turn it back on</button><span class="grow"></span><button type="button" class="danger small">Delete it</button></div>
     </li>
+    <li class="card rule-card">
+      <div class="rule-head">
+        <h3 class="rule-name">Late tasks get flagged</h3>
+        <span class="badges"><span class="badge changes">changes issues</span><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>on</span></span>
+      </div>
+      <p class="rule-sentence"><span class="rule-word">Every weekday at 08:00</span>, <span class="rule-word">if</span> an issue matches <code>project: MIG #Unresolved</code> and <span class="rule-plan">is planned to finish after its due date</span>, <span class="rule-word">then</span> apply <code>tag late</code>.</p>
+      <p class="rule-said">Next runs Monday at 08:00. Today it planned Data center migration and tagged 2 issues.</p>
+      <div class="cluster"><button type="button">Preview it</button><button type="button">Edit it</button><button type="button">Turn it off</button><span class="grow"></span><button type="button" class="danger small">Delete it</button></div>
+    </li>
+    <li class="card rule-card">
+      <div class="rule-head">
+        <h3 class="rule-name">Overbooked people hear of it</h3>
+        <span class="badges"><span class="badge">tells people</span><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>on</span></span>
+      </div>
+      <p class="rule-sentence"><span class="rule-word">Every weekday at 08:00</span>, <span class="rule-word">if</span> an issue matches <code>project: MIG</code> and <span class="rule-plan">its assignee is booked for more hours than they work</span>, <span class="rule-word">then</span> tell its assignee and @anna “You’re booked over your day: see the workload.”</p>
+      <p class="rule-said">Next runs Monday at 08:00. Today it told Anna Schmidt about MIG-31.</p>
+      <div class="cluster"><button type="button">Preview it</button><button type="button">Edit it</button><button type="button">Turn it off</button><span class="grow"></span><button type="button" class="danger small">Delete it</button></div>
+    </li>
+    <li class="card rule-card">
+      <div class="rule-head">
+        <h3 class="rule-name">Milestones at risk ask for an update</h3>
+        <span class="badges"><span class="badge">asks for an update</span><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>on</span></span>
+      </div>
+      <p class="rule-sentence"><span class="rule-word">Every Monday at 09:00</span>, <span class="rule-word">if</span> an issue matches <code>project: MIG, WEB</code> and <span class="rule-plan">is a milestone at risk, planned to finish less than 2 days before its due date</span>, <span class="rule-word">then</span> ask its assignee to confirm its dates: “Is this milestone still on track?”</p>
+      <p class="rule-said">Last ran Monday at 09:00, and asked Lena Park about <a class="issue-id" href="#">WEB-41</a>.</p>
+      <div class="cluster"><button type="button">Preview it</button><button type="button">Edit it</button><button type="button">Turn it off</button><span class="grow"></span><button type="button" class="danger small">Delete it</button></div>
+    </li>
   </ul>
 </section>
 
@@ -120,6 +147,44 @@
   <div class="cluster end"><button type="button">Cancel</button><button type="submit" class="primary" disabled>Save the rule</button></div>
 </form>
 
+<form class="card form" aria-labelledby="rp-title">
+  <h2 id="rp-title">A rule on what the plan says</h2>
+  <div class="form-field"><label for="rp-name">Name</label><input id="rp-name" value="Late tasks get flagged"></div>
+  <fieldset class="unframed rule-form">
+    <legend class="hidden">The rule</legend>
+    <div class="rule-clause">
+      <span class="rule-word" id="rp-when">When</span>
+      <div class="rule-clause-body"><div class="cluster"><select aria-labelledby="rp-when"><option>every hour</option><option>every day</option><option selected>every weekday</option><option>every week</option></select><label for="rp-at">at</label><input id="rp-at" type="time" value="08:00"></div></div>
+    </div>
+    <div class="rule-clause">
+      <span class="rule-word" id="rp-if">if</span>
+      <div class="rule-clause-body"><span id="rp-if-about">it matches</span>
+        <div class="query">
+          <div class="query-row"><div class="query-field"><span class="query-mirror" aria-hidden="true">project: MIG #Unresolved</span><input type="text" class="query-input" role="combobox" aria-labelledby="rp-if rp-if-about" aria-autocomplete="list" aria-expanded="false" value="project: MIG #Unresolved" autocomplete="off" spellcheck="false"></div></div>
+        </div>
+        <div class="cluster"><span id="rp-and">and</span><select aria-labelledby="rp-if rp-and" aria-describedby="rp-plan-note"><option>nothing more</option><option selected>it’s planned to finish after its due date</option><option>its assignee is booked for more hours than they work</option><option>it’s a milestone at risk</option></select><label for="rp-days">by more than</label><input id="rp-days" class="rule-days" type="number" min="0" value="0"><span>days</span></div>
+        <p class="note" id="rp-plan-note">On a schedule only, at most every hour: each run plans the project once, as the workflow agent, and keeps the issues that also match the query.</p>
+      </div>
+    </div>
+    <div class="rule-clause">
+      <span class="rule-word" id="rp-then">then</span>
+      <div class="rule-clause-body"><span id="rp-then-about">apply</span>
+        <div class="query">
+          <div class="query-row"><div class="query-field"><span class="query-mirror" aria-hidden="true">tag late</span><input type="text" class="query-input" role="combobox" aria-labelledby="rp-then rp-then-about" aria-autocomplete="list" aria-expanded="false" value="tag late" autocomplete="off" spellcheck="false"></div></div>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <div class="command-preview" role="group" aria-label="What it would do">
+    <p class="label">What it would do now</p>
+    <p class="note">2 issues match it by the plan as it stands. Here is why, and what it would change.</p>
+    <ul class="command-issues">
+      <li><span class="issue-id">MIG-6</span><span class="command-summary">Order the hardware</span><ul class="change-lines"><li class="same">Planned to finish 18 Nov; due 13 Nov: 3 days late</li><li><span class="change-field">Tags:</span> <ins>late</ins> <span class="same">added</span></li></ul></li>
+      <li><span class="issue-id">WEB-41</span><span class="command-summary">Portal goes live</span><ul class="change-lines"><li class="same">Planned to finish 7 Dec; due 4 Dec: 3 days late</li><li><span class="change-field">Tags:</span> <ins>late</ins> <span class="same">added</span></li></ul></li>
+    </ul>
+  </div>
+  <div class="cluster end"><button type="button">Cancel</button><button type="submit" class="primary">Save the rule</button></div>
+</form>
 <section class="card" aria-labelledby="r-runs">
   <div class="section-head"><h2 id="r-runs">What rules did</h2><span class="note">The last 30 days, newest first.</span></div>
   <div class="figures-scroll" role="region" aria-label="Table of what rules did" tabindex="0">

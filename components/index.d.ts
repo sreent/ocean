@@ -654,6 +654,8 @@ export type GanttRow = {
   slackTo?: string;
   /** The rows it follows, finish to start. */
   after?: number[];
+  /** The rows it follows, of any kind, with their lag in working days (negative for a lead), and whether each drives its dates: heavier where it does (D72). */
+  links?: { from: number; type: "FS" | "SS" | "FF" | "SF"; lag?: number; driving?: boolean; said?: string }[];
   /** Where its name leads: the task itself. */
   href?: string;
   /** Where a what-if would put it, dashed in --changes; nothing is saved. */
@@ -793,6 +795,10 @@ export interface LoadGridProps {
 export declare function LoadGrid(props: LoadGridProps): React.ReactElement;
 
 /** A column of the data grid: its field, its head and which of its dates in the project's words, its kind and its set width. */
+/** The sheet as a modal of its own (EditSheet's dialog.sheet): from the window's foot on a phone, centred where it's wider. */
+export interface SheetDialogProps { title: string; about?: string; open: boolean; onClose: () => void; children: React.ReactNode }
+export declare function SheetDialog(props: SheetDialogProps): React.ReactElement;
+
 export interface DataGridColumn {
   field: string;
   head: string;
@@ -1004,6 +1010,26 @@ export interface InboxProps {
 /** What reached someone, by issue: unread by a dot and weight; each issue's own Mark read. Its count is the Shell's, beside its link. Proposed, for a4a. */
 export declare function Inbox(props: InboxProps): React.ReactElement;
 
+/** An update asked of someone (D72): in their inbox, what's asked, with a small form in place; on the issue's side, how it stands. */
+export interface UpdateRequestProps {
+  by: Someone;
+  at: string;
+  message?: string;
+  /** The asked fields as they stand; the time left with what it's of: "of 24h, 12h spent". */
+  fields: { name: string; value: string; of?: string; hint?: string }[];
+  /** Changing them: the fields as inputs. */
+  changing?: boolean;
+  invalid?: { field: string; title: string; hint: string };
+  /** Once answered: what they said, in the status line, and what changed. */
+  answer?: { said: string; changes?: React.ReactNode };
+  onConfirm?: () => void;
+  onChange?: (values: Record<string, string>) => void;
+}
+export declare function UpdateRequest(props: UpdateRequestProps): React.ReactElement;
+/** The issue's own mark that an update was asked: waiting (warn), answered (good), withdrawn (idle). */
+export interface UpdateAskedProps { by: Someone; of: Someone; what: string; at: string; message?: string; state: "waiting" | "answered" | "withdrawn"; said: string; changes?: React.ReactNode; onAskAgain?: () => void; onWithdraw?: () => void }
+export declare function UpdateAsked(props: UpdateAskedProps): React.ReactElement;
+
 export interface WatchToggleProps {
   watching: boolean;
   /** How many watch it, heard as words: "3 people watch it". */
@@ -1209,7 +1235,19 @@ export type DashboardWidget = { id: string; title?: string; width: "half" | "ful
   | { kind: "report"; report: "burndown" | "flow" | "created-resolved" | "cycle-time" | "time"; body: React.ReactNode }
   | { kind: "search"; show: "count" | "list"; count?: number; issues?: { id: string; summary: string; state: IssueState }[] }
   | { kind: "note"; text: React.ReactNode }
-);
+  /** A plan's summary (D72): its finish against its baseline, late and critical counts, the next milestones; by project for a portfolio. */
+  | { kind: "plan"; href: string; summary: PlanSummary; projects?: (PlanSummary & { name: string; href: string })[] }
+  /** Earned value by currency, against a baseline; none, and it asks for one. */
+  | { kind: "evm"; baseline?: string; currencies: { name: string; cpi: number; cpiSaid: string; spi: number; spiSaid: string; eac: string; budget?: string; over?: string; under?: string }[]; onSaveBaseline?: () => void }
+)
+export interface PlanSummary {
+  finish: string;
+  /** How far the finish moved against the baseline, in words: "3 days later than its baseline, 15 Dec"; none without a baseline. */
+  baseline?: string;
+  late: number;
+  critical: number;
+  next: { id: string; summary: string; href: string; when: string; late?: string }[];
+};
 
 export interface DashboardProps {
   widgets: DashboardWidget[];
@@ -1273,6 +1311,8 @@ export interface RuleProps {
   onEdit?: () => void;
   onToggle: () => void;
   onDelete?: () => void;
+  /** A scheduled rule's condition on what the plan says (D72), in its words: "is planned to finish after its due date". */
+  plan?: { when: "late" | "overbooked" | "milestone_at_risk"; days?: number; said: string };
 }
 /** A workflow rule read as a sentence, what it does and how it stands as badges, and what it did last. Proposed. */
 export declare function Rule(props: RuleProps): React.ReactElement;

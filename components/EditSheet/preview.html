@@ -1,4 +1,4 @@
-<!-- @dsCard group="Conversation" height=653 width=380 subtitle="A line changed by hand, the original kept" -->
+<!-- @dsCard group="Conversation" height=1180 width=380 subtitle="A line changed by hand, the original kept; and the sheet as a modal of its own, a4a's task on a phone" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,6 +10,7 @@
 </head>
 <body>
 <div id="root">
+<div class="ds-stack">
 <div class="ds-phone">
 <section class="talk" aria-label="A conversation with assistant">
 <header class="talk-head">
@@ -34,6 +35,20 @@
 </section>
 </div>
 </section>
+</div>
+<div class="ds-group"><p class="label">As a modal of its own: a4a's task, changed in its sheet on a phone</p>
+<dialog class="sheet ds-in-place" open aria-labelledby="es-title" aria-describedby="es-about">
+<div class="sheet-head"><div><h2 id="es-title">Rack and cable</h2><span id="es-about">MIG-7 · Data center migration</span></div><button type="button" aria-label="Close"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg></button></div>
+<form class="stack" aria-labelledby="es-title">
+<div class="form-field"><label for="es-start">Start date</label><input id="es-start" type="text" value="23 Nov"></div>
+<div class="form-field"><label for="es-due">Due date</label><input id="es-due" type="text" value="25 Nov" aria-describedby="es-planned"></div>
+<div class="form-field"><label for="es-est">Estimate</label><input id="es-est" type="text" value="3d"></div>
+<div class="form-field"><label for="es-who">Assignee</label><select id="es-who"><option selected>Ben Okafor</option><option>Kofi Mensah</option><option>Unassigned</option></select></div>
+<p class="note" id="es-planned">Planned for 23–25 Nov, after Order the hardware.</p>
+<div class="dialog-actions"><button type="button">Cancel</button><button type="submit" class="primary">Save</button></div>
+</form>
+</dialog>
+</div>
 </div>
 </div>
 </body>

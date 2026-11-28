@@ -1,4 +1,4 @@
-<!-- @dsCard group="Issues" height=812 width=1100 subtitle="What reached Ada, by issue: a mention, an assignment, changes folded into one, a help desk request; and its count beside the sidebar's link" -->
+<!-- @dsCard group="Issues" height=1600 width=1100 subtitle="What reached Ada, by issue: updates asked of her, to confirm or change in place; a mention, an assignment, changes folded into one, a help desk request; and its count beside the sidebar's link" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -10,6 +10,7 @@
 </head>
 <body>
 <div id="root">
+<div class="ds-stack">
 <div class="ds-app">
 <aside class="sidebar">
 <a class="brand" href="#"><span class="mark">a4</span><span>a4a</span></a>
@@ -33,6 +34,47 @@
 <div class="stack">
 <div class="modes" role="group" aria-label="Which notifications to show"><button type="button" aria-pressed="false">Unread</button><button type="button" aria-pressed="true">All</button></div>
 <ol class="inbox" aria-label="Notifications, by issue">
+<li class="inbox-group">
+<div class="inbox-issue"><span class="issue-id" aria-hidden="true">MIG-7</span><a class="inbox-summary" href="#"><span class="hidden">MIG-7: </span>Rack and cable</a><span class="badge">In Progress</span><button type="button" class="small">Mark read<span class="hidden"> MIG-7</span></button></div>
+<ol class="history">
+<li class="unread"><span class="avatar small" aria-hidden="true">AS</span><div class="history-body">
+<p class="history-head"><span class="hidden">Unread: </span><strong class="inbox-what">Anna Schmidt asks you to confirm its dates and the time left</strong> · <time datetime="2026-11-16T10:14">10:14</time></p>
+<div class="history-comment"><div class="prose"><p>The racks arrive a day late. Does Wednesday still hold?</p></div></div>
+<form class="update-ask" aria-label="Update MIG-7">
+<dl class="update-now"><div><dt>Start date</dt><dd>23 Nov</dd></div><div><dt>Due date</dt><dd>25 Nov</dd></div><div><dt>Time left</dt><dd>12h<span class="update-of">of 24h, 12h spent</span></dd></div></dl>
+<div class="update-actions"><button type="submit" class="primary">Confirm them</button><button type="button" aria-expanded="false" aria-controls="ua7-fields">Change them</button></div>
+<p class="update-said" role="status"></p>
+</form>
+</div></li>
+</ol>
+</li>
+<li class="inbox-group">
+<div class="inbox-issue"><span class="issue-id" aria-hidden="true">MIG-8</span><a class="inbox-summary" href="#"><span class="hidden">MIG-8: </span>Set up the network</a><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>In Review</span><button type="button" class="small">Mark read<span class="hidden"> MIG-8</span></button></div>
+<ol class="history">
+<li class="unread"><span class="avatar small" aria-hidden="true">AS</span><div class="history-body">
+<p class="history-head"><span class="hidden">Unread: </span><strong class="inbox-what">Anna Schmidt asks you to confirm its due date and the time left</strong> · <time datetime="2026-11-16T10:14">10:14</time></p>
+<form class="update-ask" aria-label="Update MIG-8">
+<fieldset class="update-fields" id="ua8-fields"><legend class="hidden">MIG-8’s due date and time left</legend>
+<div class="form-field"><label for="ua8-due">Due date</label><input id="ua8-due" type="text" value="19 Nov" aria-invalid="true" aria-describedby="ua8-err"></div>
+<div class="form-field"><label for="ua8-left">Time left</label><input id="ua8-left" type="text" value="6h" aria-describedby="ua8-left-hint"><p class="form-hint" id="ua8-left-hint">Its estimate becomes 14h: 8h spent and 6h left.</p></div>
+</fieldset>
+<p class="error-note" id="ua8-err" role="alert"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M7 7l10 10"/><path d="M17 7L7 17"/></svg><strong>MIG-8 can’t be due before it starts.</strong><span>It starts 20 Nov: give it a due date on or after that.</span></p>
+<div class="update-actions"><button type="submit" class="primary">Send the changes</button><button type="button">Cancel</button></div>
+<p class="update-said" role="status"></p>
+</form>
+</div></li>
+</ol>
+</li>
+<li class="inbox-group">
+<div class="inbox-issue"><span class="issue-id" aria-hidden="true">MIG-12</span><a class="inbox-summary" href="#"><span class="hidden">MIG-12: </span>Label the cables</a><span class="badge">In Progress</span><button type="button" class="small">Mark unread<span class="hidden"> MIG-12</span></button></div>
+<ol class="history">
+<li class="read"><span class="avatar small" aria-hidden="true">AS</span><div class="history-body">
+<p class="history-head"><strong class="inbox-what">Anna Schmidt asked you to confirm its dates</strong> · <time datetime="2026-11-15T16:02">Sun 15 Nov, 16:02</time></p>
+<p class="update-said" role="status"><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>Answered</span>You changed its due date at 16:20:</p>
+<ul class="change-lines"><li><span class="change-field">Due date:</span> <del>25 Nov</del> → <ins>26 Nov</ins></li></ul>
+</div></li>
+</ol>
+</li>
 <li class="inbox-group">
 <div class="inbox-issue"><span class="issue-id" aria-hidden="true">BACK-12</span><a class="inbox-summary" href="#"><span class="hidden">BACK-12: </span>Login fails on hotel Wi-Fi</a><span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>In Review</span><button type="button" class="small">Mark read<span class="hidden"> BACK-12</span></button></div>
 <ol class="history">
@@ -75,6 +117,33 @@
 </ol>
 </div>
 </main>
+</div>
+</div>
+<div class="ds-group"><p class="label">On the issue’s side: an update asked and waiting, answered, and withdrawn</p>
+<div class="ds-cols">
+<section class="card side-card update-asked" aria-labelledby="ua-s1">
+<h2 id="ua-s1" class="label">Update asked<span class="hidden">, waiting</span></h2>
+<span class="badge warn"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M12 3.5a8.5 8.5 0 1 0 0 17 8.5 8.5 0 0 0 0-17z"/><path d="M12 7.5V12l3 2"/></svg>Waiting on Ben Okafor</span>
+<p><span class="who-name">Anna Schmidt</span> asked <span class="who-name">Ben Okafor</span> to confirm its dates and the time left · <time datetime="2026-11-16T10:14">today, 10:14</time></p>
+<p class="update-why">The racks arrive a day late. Does Wednesday still hold?</p>
+<div class="cluster"><button type="button" class="small">Ask again</button><button type="button" class="small">Withdraw it</button></div>
+</section>
+<section class="card side-card update-asked" aria-labelledby="ua-s2">
+<h2 id="ua-s2" class="label">Update asked<span class="hidden">, answered</span></h2>
+<span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>Answered</span>
+<p><span class="who-name">Anna Schmidt</span> asked <span class="who-name">Ben Okafor</span> to confirm its dates · <time datetime="2026-11-16T10:14">Sun 15 Nov, 16:02</time></p>
+<p>Ben Okafor changed its due date, 16:20:</p>
+<ul class="change-lines"><li><span class="change-field">Due date:</span> <del>25 Nov</del> → <ins>26 Nov</ins></li></ul>
+
+</section>
+<section class="card side-card update-asked" aria-labelledby="ua-s3">
+<h2 id="ua-s3" class="label">Update asked<span class="hidden">, withdrawn</span></h2>
+<span class="badge idle"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M9 6.5v11"/><path d="M15 6.5v11"/></svg>Withdrawn</span>
+<p><span class="who-name">Lena Park</span> asked <span class="who-name">Kofi Mensah</span> for the time left · <time datetime="2026-11-16T10:14">Fri 13 Nov, 09:30</time></p>
+<p>Lena Park withdrew it, Fri 13 Nov.</p>
+
+</section>
+</div>
 </div>
 </div>
 </div>
