@@ -144,3 +144,32 @@ a4a's timeline is this Gantt made editable (`.gantt.editable`): its list a sheet
 | A draft | `g.gantt-task.drafted` for each task it changed, with its `rect.gantt-was` |
 
 Draw in this order: days off, rules and the axis; a row's `gantt-drop-into`; curves; summaries; for each task, where it was, where it would land, its group, its ring, its handles and its label; a link being drawn; a row's drop line; today.
+
+## Links of four kinds, with lag
+
+a4a keeps a dependency's kind and its lag on its one "depends on" link, so search, rules and imports see one kind of dependency (D72). The Gantt draws each kind from and to the ends it joins, says its lag beside it, and inks the links that drive a task's dates heavier than those that don't. Proposed, for a4a.
+
+- **From the end it names, to the end it names.** Finish to start, as before; start to start (SS), finish to finish (FF) and start to finish (SF). A link leaves a start leftwards and a finish rightwards, 6px out from the bar, turns with corners of 4px, and enters its successor at the end its kind names, from outside the bar, its head's tip on the bar: a start from the left, the head pointing right; a finish from the right, the head pointing left. Where the two ends overlap, it goes around through the gap between the rows, 2px under the successor's row top, as finish to start does.
+- **Driving or not**: a link that drives its task's dates (the engine's `driving`: without it the task would start or finish earlier) is inked heavier, `--muted` at 1.75 (`path.gantt-link.driving`, its head `.gantt-link-head.driving`); one that doesn't stays `--faint` at 1.25. The critical path's links always drive, and stay ink, twice as heavy (`.critical`), so the three read apart by weight and by ink.
+- **A lag or a lead** (`text.gantt-lag`), in working days with its sign ("+2d", "−1d", a true minus), in Plex Mono at 10px in `--muted`, haloed in the card's colour so it reads over a weekend's shade; beside the link's first leg, 4px out on the side away from its bars. None is drawn for a lag of 0.
+- **In words**: the chart stays hidden from screen readers, and the task's words say its links as the chart shows them: "starts 2 working days after Order the hardware finishes (finish to start), which drives its start"; "finishes no earlier than Rack and cable finishes (finish to finish), which doesn't drive it". The legend names the weights and the lag.
+- **Drawn on the chart** (`.gantt.editable`): a link may be drawn from either of a bar's dots onto either end of another, the start's dot making a link from its start and the finish's from its finish; the target's dot nearer the pointer is filled (`.gantt-link-handle.on`), and the words beside it say the kind it would make ("Start to start, after MIG-8"). A lag is typed in a command ("depends on MIG-8 SS +2d") or in the link's own form, where a4a gives the link its kind and lag.
+
+**Takes**, per row, in place of `after` for every kind: `links` (each `from`, the row it follows; `type`: `FS`, `SS`, `FF` or `SF`; `lag`, in working days, negative for a lead; `driving`; and its words).
+
+**Markup:** T is a row's top and y its middle, T + 14; L is the link's leg. Each link is its path and its head, drawn after the rules and before the summaries, as before.
+
+| Kind | Leaves | Enters, head | Its leg |
+| --- | --- | --- | --- |
+| Finish to start | the predecessor's finish, rightwards | the successor's start, from the left: `M xs y′ l-6 -3.5 v7 z` | 10px right of the finish; around through the gap where the start comes first |
+| Start to start | the predecessor's start, leftwards | the successor's start, from the left: `M xs y′ l-6 -3.5 v7 z` | 10px left of the earlier start |
+| Finish to finish | the predecessor's finish, rightwards | the successor's finish, from the right: `M xf y′ l6 -3.5 v7 z` | 10px right of the later finish |
+| Start to finish | the predecessor's start, leftwards | the successor's finish, from the right: `M xf y′ l6 -3.5 v7 z` | 10px left of the start, around through the gap, and in from 14px right of the finish |
+
+```html
+<!-- start to start, +1d, driving: from Rack and cable's start (x 120, y 86) to Set up the network's (x 137, y 150) -->
+<path class="gantt-link driving" d="M120 86H114Q110 86 110 90V146Q110 150 114 150H131"/><path class="gantt-link-head driving" d="M137 150l-6 -3.5v7z"/>
+<text class="gantt-lag" x="106" y="121.5" text-anchor="end">+1d</text>
+<!-- finish to finish, not driving: from Rack and cable's finish (x 169) to Label the cables' finish (x 186, y 118) -->
+<path class="gantt-link" d="M169 86H192Q196 86 196 90V114Q196 118 192 118H192"/><path class="gantt-link-head" d="M186 118l6 -3.5v7z"/>
+```

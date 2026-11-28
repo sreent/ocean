@@ -64,6 +64,7 @@ body:has(dialog.ds-in-place[open]) { overflow: visible; }
 
 /* A dialog, as it looks once open, drawn in place */
 dialog.dialog.ds-in-place { position: static; margin: 0; }
+dialog.sheet.ds-in-place { position: static; width: auto; max-width: 28rem; max-height: none; margin: 0; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
 .toasts.ds-in-place-toasts { position: static; justify-items: start; }  /* toasts drawn in place, not at the window's foot */
 
 /* The cover */

@@ -36,3 +36,12 @@ An issue's links to other issues, grouped by what they say: each other issue's i
 ```
 
 **In a4a:** an issue's page, under its description. The preview is a static rendition, with a link being added.
+
+## A dependency's kind and lag
+
+a4a keeps a dependency's kind and lag on its one "depends on" link (D72), as the Gantt draws them. Proposed, for a4a.
+
+- **In the list**, a dependency that isn't finish to start, or has a lag, says so under its summary, in `--muted` (`span.link-dep`), in words from this issue's side: "start to start, 2 working days after it starts", "finish to finish", "finish to start, a day before it finishes" (a lead). Finish to start with no lag, the usual kind, says nothing.
+- **Adding or changing one**: with "depends on" chosen, the form asks which ends it joins, in words from this issue's side ("its start after MIG-7 finishes", the default, then the three others), and the lag, in working days, signed, with a note saying what a lag and a lead do; a4a changes an existing link's kind and lag in the same fields.
+
+**Markup:** `<li><span class="issue-id">BACK-41</span><a href="…">Raise the gateway's read timeout</a><span class="badge">In Progress</span><span class="link-dep">start to start, 2 working days after it starts</span></li>`, and in `.link-add-fields`, after "To": `<label class="wide">Which ends<select><option>its start after MIG-7 finishes</option><option selected>its start after MIG-7 starts</option><option>its finish after MIG-7 finishes</option><option>its finish after MIG-7 starts</option></select></label><label>Lag, in working days<input type="text" value="+2d" aria-describedby="add-dep-lag"></label>`, then `<p class="note" id="add-dep-lag">…</p>`.

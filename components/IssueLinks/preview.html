@@ -1,4 +1,4 @@
-<!-- @dsCard group="Issues" height=811 subtitle="BACK-12's links, by what they say, and one being added" -->
+<!-- @dsCard group="Issues" height=1240 subtitle="BACK-12's links, by what they say, a dependency with its kind and lag, and one being added; and a dependency being added, with which ends it joins and its lag" -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,7 +25,7 @@
 <div class="link-group">
 <h3 class="label">depends on · 2</h3>
 <ul class="link-list">
-<li><span class="issue-id">BACK-41</span><a href="#">Raise the gateway's read timeout</a><span class="badge">In Progress</span></li>
+<li><span class="issue-id">BACK-41</span><a href="#">Raise the gateway's read timeout</a><span class="badge">In Progress</span><span class="link-dep">start to start, 2 working days after it starts</span></li>
 <li class="resolved"><span class="issue-id">BACK-9</span><a href="#">Move sessions to the new store</a><span class="badge good"><svg viewBox="0 0 24 24" aria-hidden="true" class="icon"><path d="M5.5 12.5l4 4 9-9"/></svg>Fixed</span></li>
 </ul>
 </div>
@@ -62,6 +62,21 @@
 </div>
 </div>
 </section>
+<section class="card issue-links-box" aria-labelledby="dep-title"><div class="issue-links">
+<div class="issue-links-head"><h2 id="dep-title">Links<span class="hidden">, a dependency being added</span></h2><button type="button" aria-expanded="true" aria-controls="add-dep">Add link</button></div>
+<fieldset class="link-add" id="add-dep">
+<legend>A link from MIG-8</legend>
+<div class="link-add-fields">
+<label>What it says<select><option selected>depends on</option><option>is required for</option><option>subtask of</option><option>parent for</option><option>duplicates</option><option>relates to</option></select></label>
+<label>To<input type="text" value="MIG-7" aria-describedby="add-dep-found"></label>
+<label class="wide">Which ends<select><option>its start after MIG-7 finishes</option><option selected>its start after MIG-7 starts</option><option>its finish after MIG-7 finishes</option><option>its finish after MIG-7 starts</option></select></label>
+<label>Lag, in working days<input type="text" value="+2d" aria-describedby="add-dep-lag"></label>
+</div>
+<p class="note" id="add-dep-lag">A lag waits after MIG-7 starts; a lead, such as −1d, overlaps it.</p>
+<p class="link-found" id="add-dep-found"><span class="issue-id">MIG-7</span><span>Rack and cable</span><span class="badge">In Progress</span></p>
+<div class="link-add-actions"><button type="button">Cancel</button><button type="button" class="primary">Link it</button></div>
+</fieldset>
+</div></section>
 </div>
 </body>
 </html>

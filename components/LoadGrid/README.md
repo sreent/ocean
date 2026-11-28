@@ -62,3 +62,61 @@ People's load, day by day: a row for each person and a column for each working d
 ```
 
 **In a4a:** Plans, for who's booked and levelling. Load css/charts.css with it. The preview is a static rendition, two weeks of a data center's move.
+
+## To change, where it's seen
+
+a4a's workload view is this grid made editable (`.load-grid.editable`): each day's work as blocks that are dragged to another person, to hand them the issue, or along the row to another day, to move it, each change made as a command makes it. Ocean gives each state its look; a4a supplies every word, every key and every figure. Proposed, for a4a (D72).
+
+- **A day** (`td.load-day`): its hours first, shaded by their share of the day as the read-only grid shades its cells (`span.load-cell[data-load]`, `.over`, `.part`, `.off` for a day away), then its work as blocks (`ul.load-blocks`), one for each issue booked that day: its id in mono and its hours (`button.load-block`, `.load-block-hours`), and its summary for screen readers. The days are cells of a grid (`role="grid"`), edged in `--line`.
+- **A block chosen** (`.chosen`) is `--accent-soft`, edged and its id in `--accent`, on each of the issue's days, so the person sees all of the work they'd move. **On its way** (`.moving`), it leaves its place dashed, its words `--muted`, on every day it took, and the frame shows a closed hand (`.load-scroll.dragging`). **Picked up from the keyboard** (`.lifted`, `aria-pressed="true"`), it's raised and edged in `--accent` where it is.
+- **Where it would land**: each day the issue would take is a drop target (`td.load-day.drop`), filled `--accent-soft` and edged in `--accent`, holding a copy of the block dashed in `--accent` (`.load-block.ghost`, hidden from screen readers), and under it what the day would come to (`p.load-would`: "6h of 8h"). Where that's over the person's day, the cell is `.drop.over`: `--warn-bg`, edged in `--warn`, the clock and its words, "12h of 8h". Handed to someone else, the whole issue goes to them, every day it takes; moved along the row, it moves by as many working days.
+- **Nobody here may change it** (`.locked`): a lock before its id, an arrow's pointer, and why in its words ("read-only: it's in Operations, which you can only read"); it can't be picked up.
+- **Levelling beside the grid** (`.load-body`, holding the frame and `section.levelling`): its moves as the Gantt's proposals list them, with a box to accept each (`ul.levelling-list.choose`, each row's `label.issue-pick > input` first), ticked to accept and unticked to refuse; then the primary for those ticked ("Make 2 moves"), all, and refusing them all. Beside the grid where the workload is 62rem wide or more, kept in view as the grid scrolls; under it where it's narrower. A drop that would move tasks whose dates people set opens the same list (`section.levelling.gantt-proposals`), as a move on the timeline does.
+
+**Keyboard** (a4a supplies the keys; Ocean the look of each state): the grid is one stop, a roving `tabindex` on its days; the arrows move a day, or a person up and down, Home and End to a row's ends. Enter goes into a day's blocks, ↑ and ↓ between them, Escape back to the day. On a block, Space picks it up (`.lifted`); the arrows then take the focus through the days, the one with the focus showing where it would land (`.drop`, with its ghost and what the day would come to); Enter puts it there and Escape puts it back. Each step is said in a live region (`p.hidden[role="status"]`): "MIG-21 to Wed 25 Nov: 6h of 8h." A command does the same from anywhere (CommandBar: "for kofi", "start 25 Nov"); Ctrl+Z undoes the last change (Toast).
+
+**What a screen reader hears**: each day as a cell, with its person and its date from the heads, its hours and whether they're over, and its blocks; each block by its id, its summary and its hours, and whether it's chosen, picked up or read-only and why; what a drag would do, in the live region ("Hand MIG-31 to Kofi Mensah: 6h of 8h on Thu 19 Nov, and 12h of 8h on Fri 20 Nov, 4h over his day.").
+
+**Touch**: in `pointer: coarse` each block is 44px tall; held still a moment (D53's 220 ms) it's picked up, with no text selection and no menu, where a finger that moves first scrolls the grid.
+
+**Narrower**: the grid scrolls sideways in its frame, the names in view, and never the page; under 40rem the names' column narrows. Levelling goes under the grid.
+
+**Takes**, beyond the above: `editable`; per person and day, `blocks` (each `id`, `summary`, `hours`, `locked` and why); `chosen` (an issue); `dragging` (an issue, onto whom and which days, each day's `would` and capacity, and the words for it); `lifted`; `focus` (a day or a block); `proposals` and `onAccept` (all, none or ids), `onMove`, `onHandOver`; `said`.
+
+**Markup:** a day of the editable grid, then where a block would land. `data-load` is as above, for the day's hours.
+
+```html
+<p class="note" id="lk-keys">Drag a block to someone else to hand them its issue, or along the row to move it. From the keyboard…</p>
+<p class="hidden" role="status">Hand MIG-31 to Kofi Mensah: 6h of 8h on Thu 19 Nov…</p>
+<div class="load-body">
+  <div class="load-scroll">                                                <!-- .dragging while a block is on its way -->
+    <table class="load-grid editable" role="grid" aria-label="Hours booked, 16 to 27 Nov, by task" aria-describedby="lk-keys">
+      <thead><tr><th scope="col" class="load-who">Person</th><th scope="col">Mon <span>16 Nov</span></th>…</tr></thead>
+      <tbody><tr>
+        <th scope="row" class="load-who">…Anna Schmidt, 8h a day…</th>
+        <td class="load-day" tabindex="0">                                      <!-- .week-start; .drop, .drop.over -->
+          <span class="load-cell over"><svg class="icon" aria-hidden="true"><!-- clock --></svg>10h<span>of 8h</span><span class="hidden">, over</span></span>
+          <ul class="load-blocks">
+            <li><button type="button" class="load-block" tabindex="-1" aria-describedby="lk-keys"><span class="issue-id">MIG-6</span><span class="hidden"> Order the hardware,</span><span class="load-block-hours">6h</span></button></li>   <!-- .chosen; .lifted with aria-pressed="true" -->
+            <li aria-hidden="true"><button type="button" class="load-block moving" tabindex="-1">…MIG-31…</button></li>   <!-- where it was, on its way -->
+          </ul>
+        </td>
+        <td class="load-day drop over" tabindex="-1">
+          <span class="load-cell" data-load="4">8h</span>
+          <ul class="load-blocks"><li>…MIG-12…</li><li aria-hidden="true"><span class="load-block ghost"><span class="issue-id">MIG-31</span><span class="load-block-hours">4h</span></span></li></ul>
+          <p class="load-would" aria-hidden="true"><svg class="icon" aria-hidden="true"><!-- clock --></svg>12h of 8h</p>
+        </td>
+      </tr></tbody>
+    </table>
+  </div>
+  <section class="levelling" aria-labelledby="lw-level">
+    <h3 id="lw-level">Levelling suggests 3 moves</h3>
+    <ul class="levelling-list choose"><li><label class="issue-pick"><input type="checkbox" checked aria-label="Accept the move of MIG-31"></label><span class="issue-id">MIG-31</span><span class="levelling-what">…</span><ul class="change-lines"><li><del>19–20 Nov</del> → <ins>23–24 Nov</ins></li></ul><span class="levelling-by">2 days later</span></li></ul>
+    <div class="levelling-actions"><button type="button" class="primary">Make 2 moves</button><button type="button">Make all 3</button><button type="button" class="link">Refuse them all</button></div>
+  </section>
+</div>
+```
+
+A locked block: `<button type="button" class="load-block locked" tabindex="-1" aria-describedby="lk-keys"><svg class="icon" aria-hidden="true"><!-- lock --></svg><span class="issue-id">OPS-4</span><span class="hidden"> Review the on-call rota, read-only: it's in Operations, which you can only read,</span><span class="load-block-hours">6h</span></button>`. A day away: `<td class="load-day" tabindex="-1"><span class="load-cell off">away</span></td>`.
+
+**In a4a:** the workload view of a search (`?view=workload`), where levelling now lives. The preview's second and third parts: a block on its way from Anna to Kofi, with levelling beside, and a task chosen on each of its days while another is picked up from the keyboard.

@@ -654,6 +654,8 @@ export type GanttRow = {
   slackTo?: string;
   /** The rows it follows, finish to start. */
   after?: number[];
+  /** The rows it follows, of any kind, with their lag in working days (negative for a lead), and whether each drives its dates: heavier where it does (D72). */
+  links?: { from: number; type: "FS" | "SS" | "FF" | "SF"; lag?: number; driving?: boolean; said?: string }[];
   /** Where its name leads: the task itself. */
   href?: string;
   /** Where a what-if would put it, dashed in --changes; nothing is saved. */
@@ -770,9 +772,81 @@ export interface LoadGridProps {
   status?: { tone: "good" | "warn"; badge: string; words: string };
   /** Its button says what happens: "Level 4 tasks". */
   onLevel?: () => void;
+  /** The workload to change where it's seen: each day's work as blocks, dragged to another person or day (D72). */
+  editable?: boolean;
+  /** Per person, per day: each issue's block, its hours, and whether nobody here may change it, and why. */
+  blocks?: { id: string; summary: string; hours: number; locked?: string }[][][];
+  /** The issue chosen: its blocks are --accent-soft on each of its days. */
+  chosen?: string;
+  /** A block on its way: onto whom and which days, what each day would come to against its capacity, and the words for it. */
+  dragging?: { id: string; to: { person: number; day: number; would: number; of: number }[]; said: string };
+  /** A block picked up from the keyboard. */
+  lifted?: string;
+  /** Levelling's moves beside the grid, each with a box: ticked to accept, unticked to refuse. */
+  proposals?: { id: string; what: string; who: string; field?: string; from: string; to: string; by: string; accepted: boolean }[];
+  onAccept?: (accept: "all" | "none" | string[]) => void;
+  /** Handed to someone else: the issue's Assignee. Along the row: its dates, by working days. */
+  onHandOver?: (id: string, person: string) => void;
+  onMove?: (id: string, days: number) => void;
+  /** Said in a live region: each step from the keyboard, and what a drag would do. */
+  said?: string;
 }
-/** People's load by day, shaded in Ocean Blue by the share of their day; over capacity in --warn with its words. Proposed. */
+/** People's load by day, shaded in Ocean Blue by the share of their day; over capacity in --warn with its words; editable, its work as blocks to drag. Proposed. */
 export declare function LoadGrid(props: LoadGridProps): React.ReactElement;
+
+/** A column of the data grid: its field, its head and which of its dates in the project's words, its kind and its set width. */
+/** The sheet as a modal of its own (EditSheet's dialog.sheet): from the window's foot on a phone, centred where it's wider. */
+export interface SheetDialogProps { title: string; about?: string; open: boolean; onClose: () => void; children: React.ReactNode }
+export declare function SheetDialog(props: SheetDialogProps): React.ReactElement;
+
+export interface DataGridColumn {
+  field: string;
+  head: string;
+  /** Under the head: "set" or "planned", so a field's two dates read apart. */
+  kind?: string;
+  type: "text" | "number" | "date" | "period" | "person" | "badge" | "money";
+  width: "s" | "m" | "l" | "xl";
+  /** The engine's: read-only, in --muted. */
+  planned?: boolean;
+  sortable?: boolean;
+}
+export type DataGridCell = { value: React.ReactNode; said?: string; tone?: Tone; shape?: boolean | IconName; late?: string; readOnly?: boolean };
+export interface DataGridRow {
+  id: string; href: string; summary: string;
+  /** 0 for the top; each level in, a step of indentation. */
+  depth: number;
+  /** A parent: open or folded. */
+  open?: boolean;
+  chosen?: boolean;
+  /** Nobody here may change it: a lock, and why in words. */
+  locked?: string;
+  cells: Record<string, DataGridCell>;
+}
+export interface DataGridProps {
+  title: string;
+  columns: DataGridColumn[];
+  sort?: { field: string; direction: "ascending" | "descending" };
+  /** Without groups, the rows alone; in groups, each under its head with its roll-ups. */
+  rows?: DataGridRow[];
+  groups?: { value: string; tone?: Tone; count: number; open: boolean; rollups: Record<string, DataGridCell>; rows: DataGridRow[] }[];
+  total?: { words: string; rollups: Record<string, DataGridCell> };
+  /** A cell being typed in: refused, with its note, or saving. */
+  editing?: { row: string; field: string; typed: string; invalid?: { title: string; hint: string }; saving?: boolean };
+  dates?: "set" | "planned" | "both";
+  shown?: string[];
+  exports?: { csv: string; xlsx: string };
+  /** Said in a live region: a sort, a width, a fold. */
+  said?: string;
+  onSort?: (field: string) => void;
+  onWidth?: (field: string, width: DataGridColumn["width"]) => void;
+  onShown?: (fields: string[]) => void;
+  onDates?: (dates: "set" | "planned" | "both") => void;
+  onEdit?: (row: string, field: string, value: string) => void;
+  onChoose?: (ids: string[]) => void;
+  onFold?: (rowOrGroup: string, open: boolean) => void;
+}
+/** A sheet edited in place, as a4a's table view: heads that sort and take set widths, frozen id and summary, cells by kind, parents folded, groups with roll-ups, and the total. Proposed. */
+export declare function DataGrid(props: DataGridProps): React.ReactElement;
 
 export interface DaysAwayProps {
   person: { name: string };
@@ -840,9 +914,13 @@ export interface IssueLinksProps {
   /** The issue the links are from. */
   issue: string;
   /** By what they say: "depends on", "is required for", "subtask of", "parent for", "duplicates", "relates to". */
-  groups: { phrase: string; links: { id: string; summary: string; href: string; state: IssueState; resolved?: boolean }[] }[];
+  groups: { phrase: string; links: { id: string; summary: string; href: string; state: IssueState; resolved?: boolean;
+    /** A dependency's kind and lag (D72), in words from this issue's side; none for finish to start with no lag. */
+    dependency?: { type: "FS" | "SS" | "FF" | "SF"; lag?: number; said: string } }[] }[];
   /** Add link, open: what it says, which issue, and the issue found. */
-  adding?: { phrase: string; to: string; found?: { id: string; summary: string; state: IssueState } };
+  adding?: { phrase: string; to: string; found?: { id: string; summary: string; state: IssueState };
+    /** With "depends on": which ends it joins, and its lag in working days. */
+    dependency?: { type: "FS" | "SS" | "FF" | "SF"; lag?: string } };
   onAdd: () => void;
   onLink: (phrase: string, to: string) => void;
 }
@@ -935,6 +1013,26 @@ export interface InboxProps {
 }
 /** What reached someone, by issue: unread by a dot and weight; each issue's own Mark read. Its count is the Shell's, beside its link. Proposed, for a4a. */
 export declare function Inbox(props: InboxProps): React.ReactElement;
+
+/** An update asked of someone (D72): in their inbox, what's asked, with a small form in place; on the issue's side, how it stands. */
+export interface UpdateRequestProps {
+  by: Someone;
+  at: string;
+  message?: string;
+  /** The asked fields as they stand; the time left with what it's of: "of 24h, 12h spent". */
+  fields: { name: string; value: string; of?: string; hint?: string }[];
+  /** Changing them: the fields as inputs. */
+  changing?: boolean;
+  invalid?: { field: string; title: string; hint: string };
+  /** Once answered: what they said, in the status line, and what changed. */
+  answer?: { said: string; changes?: React.ReactNode };
+  onConfirm?: () => void;
+  onChange?: (values: Record<string, string>) => void;
+}
+export declare function UpdateRequest(props: UpdateRequestProps): React.ReactElement;
+/** The issue's own mark that an update was asked: waiting (warn), answered (good), withdrawn (idle). */
+export interface UpdateAskedProps { by: Someone; of: Someone; what: string; at: string; message?: string; state: "waiting" | "answered" | "withdrawn"; said: string; changes?: React.ReactNode; onAskAgain?: () => void; onWithdraw?: () => void }
+export declare function UpdateAsked(props: UpdateAskedProps): React.ReactElement;
 
 export interface WatchToggleProps {
   watching: boolean;
@@ -1141,7 +1239,19 @@ export type DashboardWidget = { id: string; title?: string; width: "half" | "ful
   | { kind: "report"; report: "burndown" | "flow" | "created-resolved" | "cycle-time" | "time"; body: React.ReactNode }
   | { kind: "search"; show: "count" | "list"; count?: number; issues?: { id: string; summary: string; state: IssueState }[] }
   | { kind: "note"; text: React.ReactNode }
-);
+  /** A plan's summary (D72): its finish against its baseline, late and critical counts, the next milestones; by project for a portfolio. */
+  | { kind: "plan"; href: string; summary: PlanSummary; projects?: (PlanSummary & { name: string; href: string })[] }
+  /** Earned value by currency, against a baseline; none, and it asks for one. */
+  | { kind: "evm"; baseline?: string; currencies: { name: string; cpi: number; cpiSaid: string; spi: number; spiSaid: string; eac: string; budget?: string; over?: string; under?: string }[]; onSaveBaseline?: () => void }
+)
+export interface PlanSummary {
+  finish: string;
+  /** How far the finish moved against the baseline, in words: "3 days later than its baseline, 15 Dec"; none without a baseline. */
+  baseline?: string;
+  late: number;
+  critical: number;
+  next: { id: string; summary: string; href: string; when: string; late?: string }[];
+};
 
 export interface DashboardProps {
   widgets: DashboardWidget[];
@@ -1205,6 +1315,8 @@ export interface RuleProps {
   onEdit?: () => void;
   onToggle: () => void;
   onDelete?: () => void;
+  /** A scheduled rule's condition on what the plan says (D72), in its words: "is planned to finish after its due date". */
+  plan?: { when: "late" | "overbooked" | "milestone_at_risk"; days?: number; said: string };
 }
 /** A workflow rule read as a sentence, what it does and how it stands as badges, and what it did last. Proposed. */
 export declare function Rule(props: RuleProps): React.ReactElement;

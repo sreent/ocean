@@ -283,10 +283,13 @@ pre.entries { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 0.75rem
 
 /* The settings: forms for what people change most, or the whole version as written */
 
-.modes { display: inline-flex; margin: 0.25rem 0 1rem; border: 1px solid var(--line-strong);
+/* A choice of modes or views: one line where it fits, wrapping where it doesn't, as on a phone or in a longer
+   language, each row filled, with a line between every two choices, across and down; never scrolling, so
+   no choice is hidden. The lines are each choice's shadow on its neighbours, clipped at the frame */
+.modes { display: inline-flex; flex-wrap: wrap; max-width: 100%; margin: 0.25rem 0 1rem; border: 1px solid var(--line-strong);
          border-radius: var(--radius-sm); overflow: hidden; }
-.modes button { border: 0; border-radius: 0; }
-.modes button + button { border-left: 1px solid var(--line-strong); }
+.modes button { flex: 1 0 auto; border: 0; border-radius: 0; box-shadow: -1px 0 0 var(--line-strong), 0 -1px 0 var(--line-strong); }
+.modes button:focus-visible { outline-offset: -3px; }  /* inside its own edge, so the frame never clips it */
 .modes button[aria-pressed="true"] { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
 fieldset.form-card { min-width: 0; margin: 0 0 1rem; padding: 0.5rem 1.25rem 1.1rem;
                      border: 1px solid var(--line); border-radius: var(--radius); }
@@ -1088,6 +1091,22 @@ button.fd-part { width: 100%; padding: 0.3rem 0.4rem; border: 0; background: tra
 .sheet { display: grid; gap: var(--space-3); padding: var(--space-2) var(--space-4) var(--space-4);
          border-radius: var(--radius-lg) var(--radius-lg) 0 0; background: var(--surface); box-shadow: var(--shadow-raised); }
 .sheet::before { content: ""; justify-self: center; width: 2.4rem; height: 0.25rem; border-radius: var(--radius-pill); background: var(--line-strong); }
+/* The sheet as a modal of its own (a4a's edit sheet on a phone): the browser's own dialog, opened with
+   showModal(), which keeps the focus in it, closes with Escape and gives the focus back, over the page it
+   dims. From the window's foot on a phone, kept clear of the home indicator; centred, as a dialog is, and
+   without its handle, where the window is wider */
+dialog.sheet { position: fixed; inset: auto 0 0; width: min(100%, 36rem); max-width: none; max-height: calc(100dvh - var(--space-8)); margin: 0 auto;
+               overflow: auto; overscroll-behavior: contain; border: 0; color: var(--text);
+               padding-bottom: max(var(--space-4), env(safe-area-inset-bottom)); }
+dialog.sheet:not([open]) { display: none; }
+dialog.sheet::backdrop { background: rgba(10, 23, 36, 0.45); }
+body:has(dialog.sheet[open]) { overflow: hidden; }
+dialog.sheet > .sheet-head h2 { margin: 0; font-size: var(--text-lg); }
+dialog.sheet > .dialog-actions { flex-wrap: wrap; }
+@media (min-width: 761px) {
+  dialog.sheet { inset: 0; height: fit-content; margin: auto; padding: var(--space-5); border-radius: var(--radius-lg); }
+  dialog.sheet::before { display: none; }
+}
 .sheet-head { display: flex; justify-content: space-between; align-items: start; gap: var(--space-2); }
 .sheet-head strong { display: block; }
 .sheet-head span { color: var(--muted); font-size: var(--text-xs); }
@@ -1555,6 +1574,14 @@ a.board-card-summary:hover { text-decoration: underline; }  /* the copy where a 
 .gantt-late-mark { fill: none; stroke: var(--bad); stroke-width: 2; stroke-linecap: round; }
 .gantt-today { stroke: var(--accent); stroke-width: 1.5; }
 .gantt-chart .gantt-today-label { fill: var(--accent); font-weight: 600; }
+/* Links of four kinds (a4a, D72): each leaves its predecessor at the end its kind names and enters its
+   successor at the end its kind names, its head pointing into the bar: start to start, finish to finish and
+   start to finish, as finish to start does. Those that drive their task's dates are inked heavier than those
+   that don't; the critical path's stay ink, twice as heavy. A lag or a lead in working days beside its link */
+.gantt-link.driving:not(.critical) { stroke: var(--muted); stroke-width: 1.75; }
+.gantt-link-head.driving:not(.critical) { fill: var(--muted); }
+.gantt-chart .gantt-lag, .gantt-legend .gantt-lag { fill: var(--muted); font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+                                                    paint-order: stroke; stroke: var(--surface); stroke-width: 3px; stroke-linejoin: round; }
 .gantt-whatif { fill: none; stroke: var(--changes); stroke-width: 1.5; stroke-dasharray: 4 3; }  /* where a what-if would move it: dashed, as what isn't so, in the colour of a change */
 .gantt-legend { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); margin: 0; padding: 0; list-style: none; color: var(--muted);
                 font-size: var(--text-sm); }
@@ -1903,6 +1930,175 @@ button.cal-day.drop { background: var(--accent-soft); outline: 2px dashed var(--
 }
 .load-box { container-type: inline-size; }
 
+/* The workload, to change where it's seen (a4a's workload view, .load-grid.editable): each day's work as
+   blocks, an issue's hours that day, dragged to another person to hand it over or to another day to move
+   it, each the way a command would. The cell under a block on its way is where it would land, edged and
+   filled in --accent, with what the day would come to: in --warn, with the clock, where that's over the
+   person's day. A block chosen is --accent-soft, as a chosen row is, and so are its issue's other days; on
+   its way it leaves its place dashed; picked up from the keyboard it's raised. Levelling's moves sit
+   beside the grid where there's room, each with a box to accept it */
+.load-body { display: grid; gap: var(--space-4); min-width: 0; }
+@container (min-width: 62rem) {
+  .load-body:has(> .levelling) { grid-template-columns: minmax(0, 1fr) 21rem; align-items: start; }
+  .load-body > .levelling { position: sticky; top: var(--space-4); }
+}
+.load-grid.editable td.load-day { min-width: 6.25rem; height: 2.5rem; padding: 3px; border-radius: var(--radius-sm); box-shadow: inset 0 0 0 1px var(--line);
+                                  vertical-align: top; }
+.load-day > .load-cell { display: block; min-width: 0; height: auto; padding: 0.15rem 0.35rem; text-align: start; line-height: 1.35; }  /* the day's hours, shaded by its share */
+.load-day > .load-cell[data-load="0"] { box-shadow: none; }
+.load-day > .load-cell:is(.over, .part) span:not(.hidden) { display: inline; margin-inline-start: 0.25rem; }  /* "10h of 8h", on one line */
+.load-blocks { display: grid; gap: 2px; margin: 3px 0 0; padding: 0; list-style: none; }
+.load-block { display: flex; align-items: center; gap: var(--space-1); width: 100%; min-height: 1.65rem; padding: 0 0.35rem; border: 1px solid var(--line-strong);
+              border-radius: var(--radius-sm); background: var(--surface); color: var(--text); font-size: var(--text-xs); font-weight: 400; cursor: grab; }
+.load-block:hover { background: var(--sunken); }
+.load-block > .issue-id { flex: 1; min-width: 0; overflow: hidden; color: var(--text); font-size: var(--text-xs); text-align: start; text-overflow: ellipsis; }
+.load-block-hours { flex: none; color: var(--muted); font-family: var(--font-mono); }
+.load-block > .icon { flex: none; width: 0.75rem; height: 0.75rem; color: var(--muted); }
+.load-block:focus-visible { outline-offset: 1px; }
+.load-block.chosen { border-color: var(--accent); background: var(--accent-soft); }  /* and its issue's other days */
+.load-block.chosen > .issue-id { color: var(--accent); font-weight: 600; }
+.load-block.moving { border-style: dashed; border-color: var(--line-control); background: none; }  /* where it was, while it's on its way */
+.load-block.moving > * { color: var(--muted); }
+.load-block.lifted { border-color: var(--accent); box-shadow: var(--shadow-raised); }  /* picked up from the keyboard */
+.load-block.ghost { border: 1.5px dashed var(--accent); background: var(--accent-soft); cursor: grabbing; }  /* where it would land */
+.load-block.ghost > * { color: var(--accent); }
+.load-block.locked { cursor: default; }  /* nobody here may change it: a lock, and why in its words */
+.load-grid.editable td.load-day.drop { background-color: var(--accent-soft); box-shadow: inset 0 0 0 2px var(--accent); }
+.load-grid.editable td.load-day.drop.over { background-color: var(--warn-bg); box-shadow: inset 0 0 0 2px var(--warn); }
+.load-would { display: flex; align-items: center; gap: 0.2rem; margin: 3px 0 0; padding-inline: 0.2rem; color: var(--accent); font-size: var(--text-xs);
+              font-weight: 600; white-space: nowrap; }  /* what the day would come to */
+.load-day.over > .load-would { color: var(--warn); }
+.load-would > .icon { flex: none; width: 0.8rem; height: 0.8rem; stroke-width: 2.4; }
+.load-grid.editable td.load-day:focus-visible { outline: none; box-shadow: inset 0 0 0 2px var(--focus); }
+.load-scroll.dragging, .load-scroll.dragging * { cursor: grabbing; }
+.load-key .load-block { display: inline-flex; width: auto; min-height: 1.35rem; cursor: default; }  /* a block's states, in the key */
+.load > .note + .hidden[role="status"] { margin: 0; }
+@media (pointer: coarse) {  /* each block 44px; held still a moment, it's picked up, with no text selection and no menu */
+  .load-block { min-height: 44px; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+}
+@container (max-width: 40rem) {
+  .load-grid.editable .load-who { min-width: 8.5rem; }
+}
+
+/* A data grid (components/DataGrid): a sheet people edit in place, as a4a's table view. Heads that sort,
+   each column one of a few set widths (classes on its col, never a style); the box, the id and the summary
+   in view while the rest scroll sideways in the grid's own frame, the heads at its top and the total at its
+   foot. Cells by kind: text, a number, a date, a period, a person, a value in its tone (a Badge), and a date
+   someone set beside the date planned, each head saying which. A cell being typed in; refused, edged in
+   --bad with its note hanging under it; saving, dashed, as what isn't in force yet; read-only. Rows chosen,
+   parents with their children indented and folded, a group's head with its roll-ups, and the total */
+.data-grid-box { display: grid; gap: var(--space-3); min-width: 0; container-type: inline-size; }
+.data-grid-box > :is(.note, h2, h3) { margin: 0; }
+.dg-tools { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2) var(--space-3); }
+.dg-tools > :is(.modes, .note) { margin: 0; }
+.dg-tools > .grow { flex: 1; }
+.dg-export { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--space-1); }
+.dg-export > .label { margin: 0 var(--space-1) 0 0; }
+.dg-columns-button { anchor-name: --dg-columns; }
+@supports (position-area: block-end) {  /* under its button, where the browser anchors; else in the middle of the window */
+  .popover.dg-columns { inset: auto; margin: 4px 0; position-anchor: --dg-columns; position-area: block-end span-inline-start; position-try-fallbacks: flip-inline; }
+}
+.dg-columns > fieldset { margin: 0; padding: 0; border: 0; }
+.dg-columns legend { margin-bottom: var(--space-2); }
+.dg-columns-list { display: grid; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+.dg-columns-list > li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--space-3); }
+.dg-columns-list label { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--text); font-size: var(--text-md); }
+.dg-columns-list select { padding: 0.2rem 0.4rem; font-size: var(--text-sm); }
+.dg-scroll { max-height: calc(100dvh - var(--space-4)); overflow: auto; overscroll-behavior-x: contain; border: 1px solid var(--line);
+             border-radius: var(--radius-md); background: var(--surface); scroll-padding-block: 2.75rem 2.5rem; }  /* a cell the arrows reach clears the heads and the total */
+table.data-grid { table-layout: fixed; width: 0; border-collapse: separate; border-spacing: 0; font-size: var(--text-sm); }
+.data-grid col.dg-col-pick { width: 2.75rem; }
+.data-grid col.dg-col-id { width: 6.25rem; }
+.data-grid col.dg-w-s { width: 6rem; }  /* the set widths a column takes: narrow, medium, wide, widest */
+.data-grid col.dg-w-m { width: 9rem; }
+.data-grid col.dg-w-l { width: 14rem; }
+.data-grid col.dg-w-xl { width: 22rem; }
+.data-grid :is(th, td) { height: 2.25rem; padding: 0 var(--space-2); overflow: hidden; border-bottom: 1px solid var(--line); background: var(--surface);
+                         color: var(--text); font-weight: 400; text-align: start; text-overflow: ellipsis; vertical-align: middle; white-space: nowrap; }
+.data-grid thead th { position: sticky; top: 0; z-index: 4; height: 2.75rem; padding: 0; border-bottom-color: var(--line-strong); color: var(--muted);
+                      font-size: 0.82rem; font-weight: 600; }
+.data-grid thead th > :is(.dg-sort, .dg-head) { display: flex; align-items: center; gap: 0.3rem; width: 100%; height: 100%; padding: 0 var(--space-2); }
+.dg-sort { border: 0; border-radius: 0; background: none; color: inherit; font: inherit; text-align: start; }
+.dg-sort:hover { background: var(--sunken); color: var(--text); }
+.data-grid thead th.dg-num > .dg-sort { flex-direction: row-reverse; text-align: end; }  /* a number's head at its end, as its figures are */
+.dg-head-name { display: grid; min-width: 0; line-height: 1.2; }
+.dg-head-name > span { overflow: hidden; text-overflow: ellipsis; }
+.dg-kind { color: var(--faint); font-size: var(--text-xs); font-weight: 500; }  /* which of a field's dates: the one set, or the one planned */
+.dg-sort-mark { flex: none; width: 0.8rem; height: 0.8rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+.dg-sort:hover .dg-sort-mark { opacity: 0.6; }
+.data-grid th:is([aria-sort="ascending"], [aria-sort="descending"]) > .dg-sort { color: var(--text); }  /* the column it's sorted by, its mark showing which way */
+.data-grid th:is([aria-sort="ascending"], [aria-sort="descending"]) .dg-sort-mark { opacity: 1; }
+.data-grid th[aria-sort="descending"] .dg-sort-mark { rotate: 180deg; }
+.dg-resize { position: absolute; inset-block: 0.65rem; inset-inline-end: 0; width: 7px; border-inline-end: 1px solid var(--line); cursor: col-resize; }  /* the pointer's way to a width */
+.dg-resize:hover, .data-grid th.resizing .dg-resize { inset-block: 0; border-inline-end: 2px solid var(--accent); }
+.data-grid :is(.dg-pick, .dg-id, .dg-summary, .dg-group-head, .dg-total-head) { position: sticky; z-index: 2; }  /* over what scrolls under them, a cell being typed in too */
+.data-grid .dg-pick { inset-inline-start: 0; padding: 0; text-align: center; }
+.data-grid .dg-id { inset-inline-start: 2.75rem; }
+.data-grid .dg-summary { inset-inline-start: 9rem; border-inline-end: 1px solid var(--line); }  /* the edge the rest scrolls under */
+.data-grid.no-pick .dg-id { inset-inline-start: 0; }
+.data-grid.no-pick .dg-summary { inset-inline-start: 6.25rem; }
+.data-grid :is(.dg-group-head, .dg-total-head) { inset-inline-start: 0; border-inline-end: 1px solid var(--line); }  /* across the box, the id and the summary */
+.data-grid thead :is(.dg-pick, .dg-id, .dg-summary) { z-index: 5; }
+.data-grid :is(td, th):focus-visible { outline: 2px solid var(--focus); outline-offset: -2px; }
+.data-grid :is(.dg-sort, .issues-group-fold):focus-visible { outline-offset: -2px; }
+.data-grid tr[aria-selected="true"] > * { background: var(--accent-soft); }
+.data-grid tbody tr:not(.dg-group, .locked) > :is(td, th):not([aria-readonly="true"], .dg-pick, .dg-id, .editing):hover { background: var(--sunken); cursor: text; }
+.data-grid .dg-id > .issue-id { font-size: var(--text-xs); text-decoration: none; }
+.data-grid .dg-id > a.issue-id { color: var(--muted); }
+.data-grid .dg-id > a.issue-id:hover { color: var(--accent); text-decoration: underline; }
+/* A parent's children, indented a step a level, folded by the chevron before its summary */
+.data-grid .dg-summary { padding-inline-start: 1.9rem; }
+.data-grid tr[data-depth="1"] > .dg-summary { padding-inline-start: 3.15rem; }
+.data-grid tr[data-depth="2"] > .dg-summary { padding-inline-start: 4.4rem; }
+.data-grid tr[data-depth="3"] > .dg-summary { padding-inline-start: 5.65rem; }
+.data-grid tr[aria-expanded] > .dg-summary { font-weight: 600; }
+.dg-fold { display: inline-grid; place-items: center; width: 1.4rem; height: 1.4rem; margin-inline: -1.6rem 0.2rem; padding: 0; border: 0;
+           border-radius: var(--radius-sm); background: none; color: var(--muted); vertical-align: middle; }
+.dg-fold:hover { background: var(--line); color: var(--text); }
+.dg-fold > .icon { width: 0.9rem; height: 0.9rem; }
+.data-grid tr[aria-expanded="false"] :is(.dg-fold, .issues-group-fold) > .icon { rotate: -90deg; }
+@media (prefers-reduced-motion: no-preference) { .dg-fold > .icon { transition: rotate 120ms ease-out; } }
+.data-grid .dg-summary > .icon { width: 0.85rem; height: 0.85rem; margin-inline-start: 0.3rem; color: var(--muted); vertical-align: -0.1rem; }  /* a lock: nobody here may change it */
+/* Cells by kind */
+.data-grid :is(.dg-num, .dg-period) { text-align: end; font-variant-numeric: tabular-nums; }
+.data-grid :is(.dg-date, .dg-period) { font-family: var(--font-mono); font-size: var(--text-xs); }
+.data-grid td.dg-planned { color: var(--muted); }  /* the engine's dates: to read, not to type in */
+.data-grid td.dg-late { color: var(--bad); font-weight: 500; }  /* planned to finish after its due date */
+.data-grid td.dg-late > .icon { width: 0.8rem; height: 0.8rem; margin-inline-end: 0.2rem; vertical-align: -0.1rem; stroke-width: 2.4; }
+.data-grid .dg-person .who { gap: 0.4rem; max-width: 100%; }
+.data-grid .dg-person .who-name { overflow: hidden; font-weight: 400; text-overflow: ellipsis; }
+.data-grid .dg-badge > .badge { max-width: 100%; overflow: hidden; text-overflow: ellipsis; vertical-align: middle; }
+.dg-amounts { display: inline-flex; gap: var(--space-2); }  /* a cost in each currency it's kept in */
+/* A cell being typed in, refused or saving */
+.data-grid .editing { position: relative; z-index: 1; overflow: visible; padding: 0 2px; anchor-name: --gantt-cell; }  /* a person is picked from ul.popover.options.gantt-pick */
+.data-grid .editing.dg-summary { position: sticky; z-index: 3; }  /* its note over the frozen cells below it, under the heads */
+.data-grid .editing > :is(input, select) { width: 100%; height: 1.85rem; padding: 0 0.4rem; font: inherit; }
+.data-grid .editing > [aria-invalid="true"] { border-color: var(--bad); box-shadow: inset 0 0 0 1px var(--bad); }
+.dg-note { position: absolute; font-family: var(--font-sans); inset-block-start: calc(100% + 2px); inset-inline-start: 0; z-index: 1; width: max-content; max-width: min(22rem, 80vw);
+           padding: var(--space-2) var(--space-3); border: 1px solid var(--line); border-inline-start: 3px solid var(--bad); border-radius: var(--radius-sm);
+           background: var(--surface); box-shadow: var(--shadow-raised); font-size: var(--text-sm); font-weight: 400; line-height: 1.4; white-space: normal; }
+.data-grid .saving { color: var(--muted); text-decoration: underline dashed var(--line-control); text-underline-offset: 4px; }
+/* A group's head, with its roll-ups in the columns they roll up, and the total at the foot */
+.data-grid tr.dg-group > * { height: 2.5rem; border-top: 1px solid var(--line); font-weight: 600; }
+.data-grid tbody:first-of-type > tr.dg-group:first-child > * { border-top: 0; }
+.data-grid .dg-group-head { padding: 0; }
+.data-grid .dg-group-head > .issues-group-fold { height: 100%; padding-block: 0; font-size: var(--text-md); }
+.data-grid tfoot :is(td, th) { position: sticky; bottom: 0; z-index: 4; border-top: 1px solid var(--line-strong); border-bottom: 0; font-weight: 600; }
+.data-grid tfoot .dg-total-head { z-index: 5; }
+@container (max-width: 40rem) {  /* the id and the summary narrow, so a column still shows beside them */
+  .data-grid col.dg-col-id { width: 4.75rem; }
+  .data-grid col.dg-col-summary { width: 9rem; }
+  .data-grid .dg-summary { inset-inline-start: 7.5rem; }
+  .data-grid.no-pick .dg-summary { inset-inline-start: 4.75rem; }
+  .data-grid :is(tr[data-depth="2"], tr[data-depth="3"]) > .dg-summary { padding-inline-start: 3.6rem; }
+}
+@media (pointer: coarse) {  /* rows of 44px; the chevron's target grows, not its look */
+  .data-grid :is(th, td), .data-grid thead th { height: 44px; }
+  .data-grid .editing > :is(input, select) { height: 40px; }
+  .dg-fold { margin-block: calc((1.4rem - 44px) / 2); margin-inline: calc(-1.6rem - (44px - 1.4rem) / 2) calc(0.2rem - (44px - 1.4rem) / 2); }
+  .dg-resize { width: 16px; }
+}
+
 /* Cost against plan: budget, planned, earned, actual and forecast as bars on one scale, each with its
    figure; the indices in plain words; and the curves of planned value, earned value and actual cost
    over time in the series' order (css/charts.css), the forecast dashed, as what isn't so yet, with
@@ -1989,11 +2185,13 @@ table.figures.cost-figures td.cost-says { color: var(--muted); }  /* what a figu
 .link-list a:hover { text-decoration: underline; }
 .link-list .resolved a { color: var(--muted); }
 .link-list .badge { justify-self: end; }
+.link-list li > .link-dep { grid-column: 2; margin-top: -0.35rem; color: var(--muted); font-size: var(--text-xs); }  /* a dependency's kind and lag, under its summary (D72) */
 .link-add { display: grid; gap: var(--space-3); min-width: 0; margin: 0; padding: var(--space-2) var(--space-4) var(--space-4);
             border: 1px dashed var(--line-control); border-radius: var(--radius-md); }
 .link-add legend { padding: 0 0.3rem; font-weight: 600; }
 .link-add-fields { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: var(--space-2) var(--space-3); }
 .link-add label { display: grid; gap: 0.25rem; }
+.link-add-fields > .wide { grid-column: 1 / -1; }  /* a choice whose words are long, such as which ends a dependency joins */
 .link-add select, .link-add input:not([type="checkbox"]):not([type="radio"]) { width: 100%; }
 .link-found { display: flex; flex-wrap: wrap; align-items: center; gap: 0.2rem var(--space-2); margin: 0; }
 .link-add-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-2); }
@@ -2001,7 +2199,7 @@ table.figures.cost-figures td.cost-says { color: var(--muted); }  /* what a figu
 @container (max-width: 30rem) { .link-add-fields { grid-template-columns: minmax(0, 1fr); } }
 @container (max-width: 24rem) {  /* narrow, as in a column beside a form: its id and how it stands, then its summary */
   .link-list li { grid-template-columns: auto minmax(0, 1fr); gap: 0.2rem var(--space-2); }
-  .link-list li > a, .link-list li > .note { grid-column: 1 / -1; }
+  .link-list li > a, .link-list li > .note, .link-list li > .link-dep { grid-column: 1 / -1; }
   .link-list li > :is(.badge, .badges) { grid-row: 1; grid-column: 2; justify-self: start; }
 }
 .link-list li > .note { grid-column: 2 / -1; margin: 0; font-size: var(--text-sm); }  /* why it's there, when an agent said */
@@ -2128,7 +2326,6 @@ a.item-name:hover { text-decoration: underline; }
 .steps .modes { margin: 0; flex-wrap: wrap; }
 @media (max-width: 560px) {
   .steps .modes { display: grid; }
-  .steps .modes button + button { border-left: 0; border-top: 1px solid var(--line-strong); }
 }
 .secret { display: grid; gap: var(--space-2); padding: var(--space-3) var(--space-4); border: 1px solid var(--warn); border-radius: var(--radius-md);
           background: var(--warn-bg); }
@@ -2217,6 +2414,31 @@ a.inbox-summary:hover { text-decoration: underline; }
 .history > li.unread .inbox-what::before { content: ""; display: inline-block; width: 0.5rem; height: 0.5rem; margin-inline-end: 0.4rem;
                                            border-radius: 50%; background: var(--accent); vertical-align: 0.06em; }
 .inbox .history-comment { color: var(--text); font-size: var(--text-sm); }
+/* An update asked of someone (a4a, D72). In their inbox: who asks, for what, and why, then a small form
+   in place, on a well: the dates and the time left as they stand, to confirm as they are or to change;
+   once answered, what they said, in a status line. On the issue's side: that an update was asked, by
+   whom and when, and how it stands: waiting on someone (warn, the clock), answered (good, the tick), or
+   withdrawn (idle, the pause) */
+.update-ask { display: grid; gap: var(--space-3); justify-items: start; min-width: 0; margin: 0; padding: var(--space-3); border-radius: var(--radius-md);
+              background: var(--sunken); }
+.update-now { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); margin: 0; }
+.update-now > div { display: grid; gap: 0.1rem; }
+.update-now dt { color: var(--muted); font-size: var(--text-xs); }
+.update-now dd { margin: 0; color: var(--text); font-family: var(--font-mono); font-size: var(--text-sm); }
+.update-of { margin-inline-start: 0.4rem; color: var(--muted); font-family: var(--font-sans); font-size: var(--text-xs); }
+.update-fields { display: flex; flex-wrap: wrap; align-items: start; gap: var(--space-2) var(--space-3); min-width: 0; margin: 0; padding: 0; border: 0; }
+.update-fields .form-field { display: grid; gap: 0.15rem; margin: 0; }
+.update-fields .form-field > input { width: 9rem; max-width: 100%; font-family: var(--font-mono); }
+.update-fields .form-hint { max-width: 12rem; margin: 0; color: var(--muted); font-size: var(--text-xs); }
+.update-ask > .error-note { justify-self: stretch; }
+.update-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2); }
+.update-said { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-1) var(--space-2); margin: 0; color: var(--muted); font-size: var(--text-sm); }
+.update-said:empty { display: none; }
+.update-asked { display: grid; gap: var(--space-2); justify-items: start; }
+.update-asked > * { margin: 0; }
+.update-asked > p { color: var(--muted); font-size: var(--text-sm); }
+.update-asked .who-name { display: inline; color: var(--text); font-weight: 600; }
+.update-why { padding-inline-start: var(--space-3); border-inline-start: 2px solid var(--line); color: var(--text); font-size: var(--text-sm); }
 
 /* Watching an issue: a toggle, pressed while you watch it, as a choice of modes is, with how many
    watch beside its word; who watches, and why, is a list of people in a card beside the issue */
@@ -2396,7 +2618,6 @@ a.attachment-name:hover { text-decoration: underline; }
 .modes.report-choice { margin: 0; }  /* which report: a choice of five, a column on a phone, as .steps' is */
 @media (max-width: 560px) {
   .modes.report-choice { display: grid; }
-  .modes.report-choice button + button { border-left: 0; border-top: 1px solid var(--line-strong); }
 }
 .report { display: grid; gap: var(--space-4); min-width: 0; container-type: inline-size; }
 .report > * { margin: 0; }
@@ -2502,6 +2723,26 @@ details.chart-more[open] > summary { margin-bottom: var(--space-2); }
 .widget-list li:last-child { border-bottom: 0; }
 .widget-list a { overflow-wrap: anywhere; }
 .widget.adding { border-style: dashed; }  /* a widget being made, not on the dashboard yet */
+/* A plan's summary, as a widget (a4a, D72): its finish and how far it has moved against its baseline,
+   how many tasks are late (--bad, with the cross and its words) and on the critical path, and its next
+   milestones; then the same by project, for a portfolio, as figures. Earned value by currency is
+   CostPanel's figures, each index with its words (.cost-figures, .cost-sub) */
+.plan-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr)); gap: var(--space-3) var(--space-4); margin: 0; }
+.plan-summary > div { display: grid; gap: 0.15rem; align-content: start; min-width: 0; }
+.plan-summary dt { margin: 0; }
+.plan-summary dd { min-width: 0; margin: 0; }
+.plan-figure { font-size: 1.45rem; font-weight: 650; letter-spacing: -0.01em; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.plan-says { color: var(--muted); font-size: var(--text-sm); }
+.plan-none { color: var(--muted); font-weight: 400; }  /* no baseline, no late tasks: said, quietly */
+table.figures.plan-figures { margin: 0; font-size: var(--text-sm); }
+table.figures.plan-figures :is(th, td) { padding: 0.35rem 0.5rem; }
+table.figures.plan-figures tbody th { color: var(--text); font-weight: 600; }
+.plan-milestones { display: grid; gap: 0.2rem; margin: 0; padding: 0; list-style: none; }
+.plan-milestones li { display: flex; flex-wrap: wrap; align-items: center; gap: 0.1rem 0.4rem; }
+.plan-milestones svg { flex: none; width: 0.75rem; height: 0.75rem; }  /* a diamond, as the Gantt draws a milestone */
+.plan-milestones .issue-id { display: inline-flex; align-items: center; min-height: 24px; font-size: var(--text-xs); }  /* a target 24px tall, as WCAG 2.5.8 asks */
+.plan-when { color: var(--muted); font-family: var(--font-mono); font-size: var(--text-xs); white-space: nowrap; }
+.plan-milestones .badge { font-size: var(--text-xs); }
 
 /* An import (components/MappingTable): each column of the file, a few of its values, and what it
    becomes here, with what was found from its header; each value of a mapped column and what it
@@ -2541,6 +2782,13 @@ table.figures.problems td:first-child { white-space: nowrap; font-variant-numeri
 .rule-sentence code { padding: 0.08rem 0.4rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--sunken);
                       color: var(--text); font-size: var(--text-sm); }
 .rule-card.off :is(.rule-name, .rule-word, .rule-sentence code) { color: var(--muted); }
+/* A planning condition (a4a, D72): what the plan says of an issue at each run of a scheduled rule (planned to
+   finish after its due date, its assignee booked over their day, a milestone at risk), chosen rather than
+   written, so on a well as the query and the command are, in the sentence's own words and face */
+.rule-sentence .rule-plan { padding: 0.08rem 0.4rem; border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--sunken);
+                            color: var(--text); font-size: var(--text-sm); }
+.rule-card.off .rule-plan { color: var(--muted); }
+.rule-clause-body > .cluster > input.rule-days { width: 5rem; }
 .rule-said { margin: 0; color: var(--muted); font-size: var(--text-sm); overflow-wrap: anywhere; }
 .rule-said .issue-id { color: var(--text); }
 .rule-form { display: grid; gap: var(--space-3); min-width: 0; container-type: inline-size; }
